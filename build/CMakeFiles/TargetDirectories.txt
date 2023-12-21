@@ -1,0 +1,3 @@
+/home/miaan/miaangine/build/CMakeFiles/miaangine.dir
+/home/miaan/miaangine/build/CMakeFiles/edit_cache.dir
+/home/miaan/miaangine/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra CMakeFiles/miaangine.dir/src/Miaangine/AAAA/AAAA.cpp.o CMakeFiles/miaangine.dir/src/main.cpp.o -o miaangine  -L/usr/lib/x86_64-linux-gnu  -lSDL2 

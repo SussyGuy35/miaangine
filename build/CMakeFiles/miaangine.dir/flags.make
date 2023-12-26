@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/SDL2 -I/home/miaan/miaangine/src -I/home/miaan/miaangine/src/Miaangine
+CXX_INCLUDES = -I/usr/include/SDL2 -I/home/miaan/miaangine/src -I/home/miaan/miaangine/src/miaangine
 
-CXX_FLAGS =  -Wall -Wextra -std=gnu++14
+CXX_FLAGS =  -Wall -std=gnu++14
 

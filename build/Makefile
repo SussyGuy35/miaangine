@@ -129,30 +129,6 @@ miaangine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/build
 .PHONY : miaangine/fast
 
-src/Miaangine/AAAA/AAAA.o: src/Miaangine/AAAA/AAAA.cpp.o
-.PHONY : src/Miaangine/AAAA/AAAA.o
-
-# target to build an object file
-src/Miaangine/AAAA/AAAA.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/Miaangine/AAAA/AAAA.cpp.o
-.PHONY : src/Miaangine/AAAA/AAAA.cpp.o
-
-src/Miaangine/AAAA/AAAA.i: src/Miaangine/AAAA/AAAA.cpp.i
-.PHONY : src/Miaangine/AAAA/AAAA.i
-
-# target to preprocess a source file
-src/Miaangine/AAAA/AAAA.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/Miaangine/AAAA/AAAA.cpp.i
-.PHONY : src/Miaangine/AAAA/AAAA.cpp.i
-
-src/Miaangine/AAAA/AAAA.s: src/Miaangine/AAAA/AAAA.cpp.s
-.PHONY : src/Miaangine/AAAA/AAAA.s
-
-# target to generate assembly for a file
-src/Miaangine/AAAA/AAAA.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/Miaangine/AAAA/AAAA.cpp.s
-.PHONY : src/Miaangine/AAAA/AAAA.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -177,6 +153,126 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/miaangine/core/engine.o: src/miaangine/core/engine.cpp.o
+.PHONY : src/miaangine/core/engine.o
+
+# target to build an object file
+src/miaangine/core/engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o
+.PHONY : src/miaangine/core/engine.cpp.o
+
+src/miaangine/core/engine.i: src/miaangine/core/engine.cpp.i
+.PHONY : src/miaangine/core/engine.i
+
+# target to preprocess a source file
+src/miaangine/core/engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.i
+.PHONY : src/miaangine/core/engine.cpp.i
+
+src/miaangine/core/engine.s: src/miaangine/core/engine.cpp.s
+.PHONY : src/miaangine/core/engine.s
+
+# target to generate assembly for a file
+src/miaangine/core/engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.s
+.PHONY : src/miaangine/core/engine.cpp.s
+
+src/miaangine/core/game-state.o: src/miaangine/core/game-state.cpp.o
+.PHONY : src/miaangine/core/game-state.o
+
+# target to build an object file
+src/miaangine/core/game-state.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o
+.PHONY : src/miaangine/core/game-state.cpp.o
+
+src/miaangine/core/game-state.i: src/miaangine/core/game-state.cpp.i
+.PHONY : src/miaangine/core/game-state.i
+
+# target to preprocess a source file
+src/miaangine/core/game-state.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.i
+.PHONY : src/miaangine/core/game-state.cpp.i
+
+src/miaangine/core/game-state.s: src/miaangine/core/game-state.cpp.s
+.PHONY : src/miaangine/core/game-state.s
+
+# target to generate assembly for a file
+src/miaangine/core/game-state.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.s
+.PHONY : src/miaangine/core/game-state.cpp.s
+
+src/miaangine/core/timer.o: src/miaangine/core/timer.cpp.o
+.PHONY : src/miaangine/core/timer.o
+
+# target to build an object file
+src/miaangine/core/timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o
+.PHONY : src/miaangine/core/timer.cpp.o
+
+src/miaangine/core/timer.i: src/miaangine/core/timer.cpp.i
+.PHONY : src/miaangine/core/timer.i
+
+# target to preprocess a source file
+src/miaangine/core/timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.i
+.PHONY : src/miaangine/core/timer.cpp.i
+
+src/miaangine/core/timer.s: src/miaangine/core/timer.cpp.s
+.PHONY : src/miaangine/core/timer.s
+
+# target to generate assembly for a file
+src/miaangine/core/timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.s
+.PHONY : src/miaangine/core/timer.cpp.s
+
+src/miaangine/init/sdl-init.o: src/miaangine/init/sdl-init.cpp.o
+.PHONY : src/miaangine/init/sdl-init.o
+
+# target to build an object file
+src/miaangine/init/sdl-init.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o
+.PHONY : src/miaangine/init/sdl-init.cpp.o
+
+src/miaangine/init/sdl-init.i: src/miaangine/init/sdl-init.cpp.i
+.PHONY : src/miaangine/init/sdl-init.i
+
+# target to preprocess a source file
+src/miaangine/init/sdl-init.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.i
+.PHONY : src/miaangine/init/sdl-init.cpp.i
+
+src/miaangine/init/sdl-init.s: src/miaangine/init/sdl-init.cpp.s
+.PHONY : src/miaangine/init/sdl-init.s
+
+# target to generate assembly for a file
+src/miaangine/init/sdl-init.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.s
+.PHONY : src/miaangine/init/sdl-init.cpp.s
+
+src/miaangine/input/input-manager.o: src/miaangine/input/input-manager.cpp.o
+.PHONY : src/miaangine/input/input-manager.o
+
+# target to build an object file
+src/miaangine/input/input-manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o
+.PHONY : src/miaangine/input/input-manager.cpp.o
+
+src/miaangine/input/input-manager.i: src/miaangine/input/input-manager.cpp.i
+.PHONY : src/miaangine/input/input-manager.i
+
+# target to preprocess a source file
+src/miaangine/input/input-manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.i
+.PHONY : src/miaangine/input/input-manager.cpp.i
+
+src/miaangine/input/input-manager.s: src/miaangine/input/input-manager.cpp.s
+.PHONY : src/miaangine/input/input-manager.s
+
+# target to generate assembly for a file
+src/miaangine/input/input-manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.s
+.PHONY : src/miaangine/input/input-manager.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +282,24 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... miaangine"
-	@echo "... src/Miaangine/AAAA/AAAA.o"
-	@echo "... src/Miaangine/AAAA/AAAA.i"
-	@echo "... src/Miaangine/AAAA/AAAA.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/miaangine/core/engine.o"
+	@echo "... src/miaangine/core/engine.i"
+	@echo "... src/miaangine/core/engine.s"
+	@echo "... src/miaangine/core/game-state.o"
+	@echo "... src/miaangine/core/game-state.i"
+	@echo "... src/miaangine/core/game-state.s"
+	@echo "... src/miaangine/core/timer.o"
+	@echo "... src/miaangine/core/timer.i"
+	@echo "... src/miaangine/core/timer.s"
+	@echo "... src/miaangine/init/sdl-init.o"
+	@echo "... src/miaangine/init/sdl-init.i"
+	@echo "... src/miaangine/init/sdl-init.s"
+	@echo "... src/miaangine/input/input-manager.o"
+	@echo "... src/miaangine/input/input-manager.i"
+	@echo "... src/miaangine/input/input-manager.s"
 .PHONY : help
 
 

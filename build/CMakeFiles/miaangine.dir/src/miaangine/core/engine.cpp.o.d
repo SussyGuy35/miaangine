@@ -1,5 +1,6 @@
-CMakeFiles/miaangine.dir/src/main.cpp.o: \
- /home/miaan/miaangine/src/main.cpp /usr/include/stdc-predef.h \
+CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o: \
+ /home/miaan/miaangine/src/miaangine/core/engine.cpp \
+ /usr/include/stdc-predef.h \
  /home/miaan/miaangine/src/miaangine/core/engine.hpp \
  /home/miaan/miaangine/src/miaangine/core/engine-forward.hpp \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
@@ -277,22 +278,4 @@ CMakeFiles/miaangine.dir/src/main.cpp.o: \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
  /usr/include/c++/11/bits/stl_multimap.h \
- /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/iostream \
- /usr/include/c++/11/ostream /usr/include/c++/11/ios \
- /usr/include/c++/11/bits/ios_base.h \
- /usr/include/c++/11/bits/locale_classes.h \
- /usr/include/c++/11/bits/locale_classes.tcc \
- /usr/include/c++/11/system_error \
- /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h \
- /usr/include/c++/11/stdexcept /usr/include/c++/11/streambuf \
- /usr/include/c++/11/bits/streambuf.tcc \
- /usr/include/c++/11/bits/basic_ios.h \
- /usr/include/c++/11/bits/locale_facets.h /usr/include/c++/11/cwctype \
- /usr/include/wctype.h /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_base.h \
- /usr/include/c++/11/bits/streambuf_iterator.h \
- /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h \
- /usr/include/c++/11/bits/locale_facets.tcc \
- /usr/include/c++/11/bits/basic_ios.tcc \
- /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/erase_if.h

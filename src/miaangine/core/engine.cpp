@@ -12,7 +12,7 @@ namespace mia
 
     Engine::~Engine()
     {
-        m_initSDL->Clean();
+        
     }
 
     int Engine::Init()
@@ -24,6 +24,8 @@ namespace mia
 
     int Engine::Exit()
     {
+        m_initSDL->Clean();
+
         delete(this);
   
         return 0;

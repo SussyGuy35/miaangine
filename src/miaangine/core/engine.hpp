@@ -1,8 +1,6 @@
 #ifndef _MIA_ENGINE_HPP
 #define _MIA_ENGINE_HPP
 
-#include "engine-forward.hpp"
-
 #include <memory>
 
 #include "game-state.hpp"
@@ -12,9 +10,9 @@
 
 #include "input/input-manager.hpp"
 
-// namespace mia
-// {
-    class mia::Engine
+namespace mia
+{
+    class Engine
     {
     public:
         Engine();
@@ -33,6 +31,6 @@
         uint8_t GetGameState() const;
         uint8_t SetGameState(uint8_t _state);
     };
-// }
+}
 
 #endif

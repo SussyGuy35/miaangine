@@ -13,8 +13,8 @@ namespace mia
         ObjectContainer();
         ~ObjectContainer();
 
-    private:
-        std::list<Object*> m_objectList;
+    public:
+        std::list<Object*> objectList;
 
     public:
         void AddObject(Object* _object);

@@ -1,4 +1,5 @@
 .out
 SDL2.dll
 *.exe
+build
 .vscode

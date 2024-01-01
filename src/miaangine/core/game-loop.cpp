@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "environment/environment-manager.hpp"
+
 namespace mia
 {
     GameLoop::GameLoop()
@@ -16,11 +18,17 @@ namespace mia
 
     void GameLoop::Start()
     {
-        std::cout << "Start" << std::endl;
+        for (Object* _object : Environment::container->objectList)
+        {
+            _object->Start();
+        }
     }
 
     void GameLoop::Update()
     {
-        std::cout << "Update" << std::endl;
+        for (Object* _object : Environment::container->objectList)
+        {
+            _object->Update();
+        }
     }
 }

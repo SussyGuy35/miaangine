@@ -19,7 +19,7 @@ namespace mia
         static std::shared_ptr<ObjectContainer> container;
 
     public:
-        static Object* Make(Object _object);
+        static Object* Create();
     };
 }
 

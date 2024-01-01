@@ -22,8 +22,6 @@
     public:
         const Vector2& position = m_position;
 
-        void OnCreate();
-
         void Start();
         void Update();
     };

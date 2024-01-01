@@ -1,5 +1,6 @@
 #include <core/engine.hpp>
 #include <input/input-manager.hpp>
+#include <environment/environment-manager.hpp>
 
 #ifndef SDL_MAIN_HANDLED
 #define SDL_MAIN_HANDLED

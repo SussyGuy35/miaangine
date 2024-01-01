@@ -16,14 +16,9 @@ namespace mia
 
     }
 
-    void Object::OnCreate()
-    {
-
-    }
-
     void Object::Start()
     {
-        
+        printf("A");
     }
 
     void Object::Update()

@@ -4,7 +4,7 @@ namespace mia
 {
     std::shared_ptr<ObjectContainer> Environment::container = std::make_shared<ObjectContainer>();
 
-    Object* Environment::Make(Object _object)
+    Object* Environment::Create()
     {
         Object* _instance = new Object();
 

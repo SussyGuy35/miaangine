@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/miaan/miaangine/src/main.cpp" "CMakeFiles/miaangine.dir/src/main.cpp.o" "gcc" "CMakeFiles/miaangine.dir/src/main.cpp.o.d"
   "/home/miaan/miaangine/src/miaangine/core/engine.cpp" "CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o" "gcc" "CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o.d"
+  "/home/miaan/miaangine/src/miaangine/core/game-loop.cpp" "CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o" "gcc" "CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o.d"
   "/home/miaan/miaangine/src/miaangine/core/game-state.cpp" "CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o" "gcc" "CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o.d"
   "/home/miaan/miaangine/src/miaangine/core/timer.cpp" "CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o" "gcc" "CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o.d"
   "/home/miaan/miaangine/src/miaangine/init/sdl-init.cpp" "CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o" "gcc" "CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o.d"

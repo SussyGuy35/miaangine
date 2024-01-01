@@ -97,10 +97,24 @@ CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miaan/miaangine/src/miaangine/core/engine.cpp -o CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.s
 
+CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o: CMakeFiles/miaangine.dir/flags.make
+CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o: ../src/miaangine/core/game-loop.cpp
+CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o: CMakeFiles/miaangine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o -MF CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o.d -o CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o -c /home/miaan/miaangine/src/miaangine/core/game-loop.cpp
+
+CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/miaan/miaangine/src/miaangine/core/game-loop.cpp > CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.i
+
+CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/miaan/miaangine/src/miaangine/core/game-loop.cpp -o CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.s
+
 CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o: CMakeFiles/miaangine.dir/flags.make
 CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o: ../src/miaangine/core/game-state.cpp
 CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o: CMakeFiles/miaangine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o -MF CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o.d -o CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o -c /home/miaan/miaangine/src/miaangine/core/game-state.cpp
 
 CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.s: cmake_force
 CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o: CMakeFiles/miaangine.dir/flags.make
 CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o: ../src/miaangine/core/timer.cpp
 CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o: CMakeFiles/miaangine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o -MF CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o.d -o CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o -c /home/miaan/miaangine/src/miaangine/core/timer.cpp
 
 CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.s: cmake_force
 CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o: CMakeFiles/miaangine.dir/flags.make
 CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o: ../src/miaangine/init/sdl-init.cpp
 CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o: CMakeFiles/miaangine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o -MF CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o.d -o CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o -c /home/miaan/miaangine/src/miaangine/init/sdl-init.cpp
 
 CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.s: cmake_force
 CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o: CMakeFiles/miaangine.dir/flags.make
 CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o: ../src/miaangine/input/input-manager.cpp
 CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o: CMakeFiles/miaangine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o -MF CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o.d -o CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o -c /home/miaan/miaangine/src/miaangine/input/input-manager.cpp
 
 CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.i: cmake_force
@@ -157,6 +171,7 @@ CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.s: cmake_force
 miaangine_OBJECTS = \
 "CMakeFiles/miaangine.dir/src/main.cpp.o" \
 "CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o" \
+"CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o" \
 "CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o" \
 "CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o" \
 "CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o" \
@@ -167,13 +182,14 @@ miaangine_EXTERNAL_OBJECTS =
 
 miaangine: CMakeFiles/miaangine.dir/src/main.cpp.o
 miaangine: CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o
+miaangine: CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o
 miaangine: CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o
 miaangine: CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o
 miaangine: CMakeFiles/miaangine.dir/src/miaangine/init/sdl-init.cpp.o
 miaangine: CMakeFiles/miaangine.dir/src/miaangine/input/input-manager.cpp.o
 miaangine: CMakeFiles/miaangine.dir/build.make
 miaangine: CMakeFiles/miaangine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable miaangine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/miaan/miaangine/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable miaangine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/miaangine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

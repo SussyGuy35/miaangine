@@ -177,6 +177,30 @@ src/miaangine/core/engine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.s
 .PHONY : src/miaangine/core/engine.cpp.s
 
+src/miaangine/core/game-loop.o: src/miaangine/core/game-loop.cpp.o
+.PHONY : src/miaangine/core/game-loop.o
+
+# target to build an object file
+src/miaangine/core/game-loop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o
+.PHONY : src/miaangine/core/game-loop.cpp.o
+
+src/miaangine/core/game-loop.i: src/miaangine/core/game-loop.cpp.i
+.PHONY : src/miaangine/core/game-loop.i
+
+# target to preprocess a source file
+src/miaangine/core/game-loop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.i
+.PHONY : src/miaangine/core/game-loop.cpp.i
+
+src/miaangine/core/game-loop.s: src/miaangine/core/game-loop.cpp.s
+.PHONY : src/miaangine/core/game-loop.s
+
+# target to generate assembly for a file
+src/miaangine/core/game-loop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/miaangine.dir/build.make CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.s
+.PHONY : src/miaangine/core/game-loop.cpp.s
+
 src/miaangine/core/game-state.o: src/miaangine/core/game-state.cpp.o
 .PHONY : src/miaangine/core/game-state.o
 
@@ -288,6 +312,9 @@ help:
 	@echo "... src/miaangine/core/engine.o"
 	@echo "... src/miaangine/core/engine.i"
 	@echo "... src/miaangine/core/engine.s"
+	@echo "... src/miaangine/core/game-loop.o"
+	@echo "... src/miaangine/core/game-loop.i"
+	@echo "... src/miaangine/core/game-loop.s"
 	@echo "... src/miaangine/core/game-state.o"
 	@echo "... src/miaangine/core/game-state.i"
 	@echo "... src/miaangine/core/game-state.s"

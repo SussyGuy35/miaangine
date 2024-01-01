@@ -23,7 +23,7 @@ namespace mia
     public:
         uint8_t GetState() const;
 
-        void SetState(uint8_t _state);
+        uint8_t SetState(uint8_t _state);
     };
 }
 

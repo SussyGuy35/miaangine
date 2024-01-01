@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/miaangine.dir/src/main.cpp.o.d"
   "CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o"
   "CMakeFiles/miaangine.dir/src/miaangine/core/engine.cpp.o.d"
+  "CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o"
+  "CMakeFiles/miaangine.dir/src/miaangine/core/game-loop.cpp.o.d"
   "CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o"
   "CMakeFiles/miaangine.dir/src/miaangine/core/game-state.cpp.o.d"
   "CMakeFiles/miaangine.dir/src/miaangine/core/timer.cpp.o"

@@ -15,12 +15,16 @@ int main(int argc, char* argv[])
 
     mia::Input::SetupKeyBind();
 
+    engine->loop->Start();
+
     while (true)
     {
         mia::Input::RegisterInput();
 
+        engine->loop->Update();
+
         if (mia::Input::IsQuit()) break;
-        if (engine->GetGameState() == 2) break;
+        if (engine->state->GetState() == 2) break;
     }
 
     engine->Exit();

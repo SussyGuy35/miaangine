@@ -5,6 +5,7 @@
 
 #include "game-state.hpp"
 #include "timer.hpp"
+#include "game-loop.hpp"
 
 #include "init/sdl-init.hpp"
 
@@ -21,15 +22,13 @@ namespace mia
         int Init();
         int Exit();
 
-    private:
-        std::shared_ptr<GameState> m_gameState;
-        std::shared_ptr<Timer> m_timer;
-
-        std::unique_ptr<InitSDL> m_initSDL;
-
     public:
-        uint8_t GetGameState() const;
-        uint8_t SetGameState(uint8_t _state);
+        std::shared_ptr<GameState> state;
+        std::shared_ptr<Timer> timer;
+        std::shared_ptr<GameLoop> loop;
+
+    private:
+        std::unique_ptr<InitSDL> m_initSDL;
     };
 }
 

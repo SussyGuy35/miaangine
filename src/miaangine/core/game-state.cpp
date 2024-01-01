@@ -18,8 +18,9 @@ namespace mia
         return m_state;
     }
 
-    void GameState::SetState(uint8_t _state)
+    uint8_t GameState::SetState(uint8_t _state)
     {
         m_state = _state;
+        return _state;
     }
 }

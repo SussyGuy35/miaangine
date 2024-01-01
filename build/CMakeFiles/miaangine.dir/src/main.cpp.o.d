@@ -1,7 +1,6 @@
 CMakeFiles/miaangine.dir/src/main.cpp.o: \
  /home/miaan/miaangine/src/main.cpp /usr/include/stdc-predef.h \
  /home/miaan/miaangine/src/miaangine/core/engine.hpp \
- /home/miaan/miaangine/src/miaangine/core/engine-forward.hpp \
  /usr/include/c++/11/memory /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -116,6 +115,7 @@ CMakeFiles/miaangine.dir/src/main.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /home/miaan/miaangine/src/miaangine/core/game-state.hpp \
  /home/miaan/miaangine/src/miaangine/core/timer.hpp \
+ /home/miaan/miaangine/src/miaangine/core/game-loop.hpp \
  /home/miaan/miaangine/src/miaangine/init/sdl-init.hpp \
  /usr/include/SDL2/SDL.h /usr/include/SDL2/SDL_main.h \
  /usr/include/SDL2/SDL_stdinc.h /usr/include/SDL2/SDL_config.h \

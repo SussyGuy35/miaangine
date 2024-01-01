@@ -3,8 +3,9 @@
 namespace mia
 {
     Engine::Engine(): 
-        m_gameState(std::make_shared<GameState>()),
-        m_timer(std::make_shared<Timer>()),
+        state(std::make_shared<GameState>()),
+        timer(std::make_shared<Timer>()),
+        loop(std::make_shared<GameLoop>()),
         m_initSDL(std::make_unique<InitSDL>(800, 600, false))
     {
         
@@ -29,16 +30,5 @@ namespace mia
         delete(this);
   
         return 0;
-    }
-
-    uint8_t Engine::GetGameState() const 
-    {
-        return m_gameState->GetState();
-    }
-
-    uint8_t Engine::SetGameState(uint8_t _state)
-    {
-        m_gameState->SetState(_state);
-        return _state;
     }
 }

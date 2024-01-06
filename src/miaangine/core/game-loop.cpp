@@ -1,7 +1,5 @@
 #include "game-loop.hpp"
 
-#include <iostream>
-
 #include "environment/environment-manager.hpp"
 
 namespace mia

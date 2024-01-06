@@ -2,6 +2,7 @@
 #include "keybind.hpp"
 
 #include <iostream>
+#include <string.h>
 
 namespace mia 
 {
@@ -101,7 +102,6 @@ namespace mia
 
     uint16_t KeyBind::GetMainKeyBind(std::string _name)
     {
-
         return m_buttonMap[_name] & (SDL_NUM_SCANCODES - 1);
     }
 

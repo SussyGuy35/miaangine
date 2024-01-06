@@ -19,7 +19,8 @@ namespace mia
         static std::shared_ptr<ObjectContainer> container;
 
     public:
-        static Object* Create();
+        static Object* Create(Vector2 _position = Vector2::zero());
+        static Object* Create(float _x, float _y);
     };
 }
 

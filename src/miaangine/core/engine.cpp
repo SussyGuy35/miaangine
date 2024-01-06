@@ -6,7 +6,8 @@ namespace mia
         state(std::make_shared<GameState>()),
         timer(std::make_shared<Timer>()),
         loop(std::make_shared<GameLoop>()),
-        m_initSDL(std::make_unique<InitSDL>(800, 600, false))
+        renderer(std::make_shared<Renderer>()),
+        sdl(std::make_unique<SDLHandle>(800, 600, false))
     {
         
     }
@@ -18,14 +19,14 @@ namespace mia
 
     int Engine::Init()
     {
-        m_initSDL->Init();
+        sdl->Init();
 
         return 0;
     }
 
     int Engine::Exit()
     {
-        m_initSDL->Clean();
+        sdl->Clear();
 
         delete(this);
   

@@ -6,13 +6,12 @@
 #define SDL_MAIN_HANDLED
 #endif
 
-#include <iostream>
-
 int main(int argc, char* argv[])
 {
     mia::Engine* engine = new mia::Engine();
 
     engine->Init();
+    mia::Environment::Create(50, 50)->MakeRect(10, 10, {255, 0, 0, 255});
 
     mia::Input::SetupKeyBind();
 
@@ -23,6 +22,8 @@ int main(int argc, char* argv[])
         mia::Input::RegisterInput();
 
         engine->loop->Update();
+        
+        engine->renderer->Render(engine->sdl->renderer);
 
         if (mia::Input::IsQuit()) break;
         if (engine->state->GetState() == 2) break;

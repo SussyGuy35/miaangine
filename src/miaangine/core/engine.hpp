@@ -6,8 +6,8 @@
 #include "game-state.hpp"
 #include "timer.hpp"
 #include "game-loop.hpp"
-
-#include "init/sdl-init.hpp"
+#include "renderer.hpp"
+#include "sdl-handle.hpp"
 
 #include "input/input-manager.hpp"
 
@@ -26,9 +26,8 @@ namespace mia
         std::shared_ptr<GameState> state;
         std::shared_ptr<Timer> timer;
         std::shared_ptr<GameLoop> loop;
-
-    private:
-        std::unique_ptr<InitSDL> m_initSDL;
+        std::shared_ptr<Renderer> renderer;
+        std::shared_ptr<SDLHandle> sdl;
     };
 }
 

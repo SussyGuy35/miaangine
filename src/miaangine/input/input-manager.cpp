@@ -12,19 +12,24 @@ namespace mia
             // ================================================
             // ================== KEYBINDING ==================
             {
-                "Up", {SDL_SCANCODE_W, SDL_SCANCODE_SPACE}
+                "Up", 
+                {SDL_SCANCODE_W, SDL_SCANCODE_SPACE}
             },
             {
-                "Down", {SDL_SCANCODE_S, SDL_SCANCODE_SPACE}
+                "Down", 
+                {SDL_SCANCODE_S, SDL_SCANCODE_SPACE}
             },
             {
-                "Left", {SDL_SCANCODE_A, SDL_SCANCODE_SPACE}
+                "Left", 
+                {SDL_SCANCODE_A, SDL_SCANCODE_SPACE}
             },
             {
-                "Right", {SDL_SCANCODE_D, SDL_SCANCODE_SPACE}
+                "Right", 
+                {SDL_SCANCODE_D, SDL_SCANCODE_SPACE}
             },
             {
-                "Jump", {SDL_SCANCODE_SPACE, 0}
+                "Jump", 
+                {SDL_SCANCODE_SPACE, 0}
             },
             // ================================================
         })

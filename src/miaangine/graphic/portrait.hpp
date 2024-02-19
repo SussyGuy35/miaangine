@@ -2,7 +2,7 @@
 #define _MIA_PORTRAIT_HPP
 
 #include <SDL.h>
-#include "util/mia-math.hpp"
+#include "util/math.hpp"
 
 namespace mia
 {

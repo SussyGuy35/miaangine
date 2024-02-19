@@ -1,6 +1,6 @@
-#include <core/engine.hpp>
-#include <input/input-manager.hpp>
-#include <environment/environment-manager.hpp>
+#include "core/engine.hpp"
+#include "input/input-manager.hpp"
+#include "environment/environment-manager.hpp"
 
 #ifndef SDL_MAIN_HANDLED
 #define SDL_MAIN_HANDLED
@@ -11,7 +11,6 @@ int main(int argc, char* argv[])
     mia::Engine* engine = new mia::Engine();
 
     engine->Init();
-    mia::Environment::Create(50, 50)->MakeRect(10, 10, {255, 0, 0, 255});
 
     mia::Input::SetupKeyBind();
 

@@ -3,7 +3,7 @@
 
 #include "object-forward.hpp"
 
-#include "util/mia-math.hpp"
+#include "util/math.hpp"
 
 #include "graphic/portrait.hpp"
 

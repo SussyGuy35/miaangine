@@ -9,6 +9,9 @@ namespace mia
 {
     class GameloopEvent : public IEventPublisher
     {
+    public:
+        GameloopEvent();
+
     private:
         std::vector<IEventListener*> _listeners; 
 

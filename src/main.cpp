@@ -1,6 +1,6 @@
-#include "core/engine.hpp"
+#include "event/event-manager.hpp"
 #include "input/input-manager.hpp"
-#include "environment/environment-manager.hpp"
+#include "core/sdl-handle.hpp"
 
 #ifndef SDL_MAIN_HANDLED
 #define SDL_MAIN_HANDLED
@@ -8,27 +8,24 @@
 
 int main(int argc, char* argv[])
 {
-    mia::Engine* engine = new mia::Engine();
+    mia::SDLHandle* sdlHandle = new mia::SDLHandle(800, 600, false);
+    mia::EventManager* eventManager = new mia::EventManager();
+    mia::InputManager* inputManager = new mia::InputManager();
 
-    engine->Init();
+    sdlHandle->Init();
 
-    mia::Input::SetupKeyBind();
-
-    engine->loop->Start();
+    inputManager->SetupKeyBind();
 
     while (true)
     {
-        mia::Input::RegisterInput();
+        inputManager->RegisterInput();
 
-        engine->loop->Update();
-        
-        engine->renderer->Render(engine->sdl->renderer);
+        eventManager->onEnterFrame->NotifyListeners();
 
-        if (mia::Input::IsQuit()) break;
-        if (engine->state->GetState() == 2) break;
+        if (inputManager->IsQuit()) break;
     }
 
-    engine->Exit();
+    sdlHandle->Clear();
 
     return 0;
 }

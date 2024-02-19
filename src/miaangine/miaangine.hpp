@@ -8,6 +8,4 @@
 #ifndef _MIAANGINE_HPP
 #define _MIAANGINE_HPP
 
-#include "environment/environment-manager.hpp"
-
 #endif

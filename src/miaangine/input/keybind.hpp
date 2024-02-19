@@ -15,8 +15,8 @@ namespace mia
         KeyBind();
 
     private:
-        std::list<std::pair<std::string, std::pair<uint16_t, uint16_t>>> m_keyBind;
-        std::map<std::string, uint32_t> m_buttonMap;
+        std::list<std::pair<std::string, std::pair<uint16_t, uint16_t>>> _keyBind;
+        std::map<std::string, uint32_t> _buttonMap;
 
     public:
         uint16_t GetMainKeyBind(std::string _name);

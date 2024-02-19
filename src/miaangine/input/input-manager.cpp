@@ -7,7 +7,7 @@
 namespace mia 
 {
     KeyBind::KeyBind():
-        m_keyBind(
+        _keyBind(
         {
             // ================================================
             // ================== KEYBINDING ==================
@@ -35,23 +35,23 @@ namespace mia
         })
     {}
 
-    std::unique_ptr<KeyBind> Input::m_keyBind = std::make_unique<KeyBind>();
+    std::unique_ptr<KeyBind> InputManager::_keyBind = std::make_unique<KeyBind>();
 
-    bool Input::s_keyState[SDL_NUM_SCANCODES] = {false};
-    bool Input::s_keyDownState[SDL_NUM_SCANCODES] = {false};
-    bool Input::s_keyUpState[SDL_NUM_SCANCODES] = {false};
+    bool InputManager::_keyState[SDL_NUM_SCANCODES] = {false};
+    bool InputManager::_keyDownState[SDL_NUM_SCANCODES] = {false};
+    bool InputManager::_keyUpState[SDL_NUM_SCANCODES] = {false};
 
-    bool Input::s_isQuit = false;
+    bool InputManager::_isQuit = false;
 
-    void Input::SetupKeyBind()
+    void InputManager::SetupKeyBind()
     {
-        m_keyBind->PopulateKeyMap();
+        _keyBind->PopulateKeyMap();
     }
 
-    void Input::RegisterInput()
+    void InputManager::RegisterInput()
     {
-        memset(s_keyDownState, 0, SDL_NUM_SCANCODES);
-		memset(s_keyUpState, 0, SDL_NUM_SCANCODES);
+        memset(_keyDownState, 0, SDL_NUM_SCANCODES);
+		memset(_keyUpState, 0, SDL_NUM_SCANCODES);
 
         SDL_Event event;
 		while (SDL_PollEvent(&event))
@@ -59,86 +59,86 @@ namespace mia
 			switch (event.type)
 			{
 			case SDL_QUIT:
-                s_isQuit = true;
-				break;
+                _isQuit = true;
+			break;
 
 			case SDL_KEYDOWN:
 			case SDL_KEYUP:
                 UpdateKeyInputEvent();
-			    break;
+			break;
 
 			default:
-				break;
+			break;
 			}
 		}
     }
 
-    bool Input::GetButton(std::string _button)
+    bool InputManager::GetButton(std::string _button)
 	{
 		return 
-            s_keyState[m_keyBind->GetMainKeyBind(_button)] || 
-            s_keyState[m_keyBind->GetAltKeyBind(_button)];
+            _keyState[_keyBind->GetMainKeyBind(_button)] || 
+            _keyState[_keyBind->GetAltKeyBind(_button)];
 	}
-	bool Input::GetButtonDown(std::string _button)
+	bool InputManager::GetButtonDown(std::string _button)
 	{
 		return 
-            s_keyDownState[m_keyBind->GetMainKeyBind(_button)] || 
-            s_keyDownState[m_keyBind->GetAltKeyBind(_button)];
+            _keyDownState[_keyBind->GetMainKeyBind(_button)] || 
+            _keyDownState[_keyBind->GetAltKeyBind(_button)];
 	}
-	bool Input::GetButtonUp(std::string _button)
+	bool InputManager::GetButtonUp(std::string _button)
 	{
 		return  
-            s_keyUpState[m_keyBind->GetMainKeyBind(_button)] || 
-            s_keyUpState[m_keyBind->GetAltKeyBind(_button)];
+            _keyUpState[_keyBind->GetMainKeyBind(_button)] || 
+            _keyUpState[_keyBind->GetAltKeyBind(_button)];
 	}
 
-    bool Input::GetKey(int _key)
+    bool InputManager::GetKey(int _key)
     {
-        return s_keyState[_key];
+        return _keyState[_key];
     }
-    bool Input::GetKeyDown(int _key)
+    bool InputManager::GetKeyDown(int _key)
     {
-        return s_keyDownState[_key];
+        return _keyDownState[_key];
     }
-    bool Input::GetKeyUp(int _key)
+    bool InputManager::GetKeyUp(int _key)
     {
-        return s_keyUpState[_key];
+        return _keyUpState[_key];
     }
 
     uint16_t KeyBind::GetMainKeyBind(std::string _name)
     {
-        return m_buttonMap[_name] & (SDL_NUM_SCANCODES - 1);
+        return _buttonMap[_name] & (SDL_NUM_SCANCODES - 1);
     }
 
     uint16_t KeyBind::GetAltKeyBind(std::string _name)
     {
-        return m_buttonMap[_name] >> 9;
+        return _buttonMap[_name] >> 9;
     }
 
-	void Input::UpdateKeyInputEvent()
+	void InputManager::UpdateKeyInputEvent()
 	{
 		const uint8_t* _currentKeyState = SDL_GetKeyboardState(NULL);
 
 		for (int i = 0; i < SDL_NUM_SCANCODES; i++)
 		{
-            if (!s_keyState[i] && _currentKeyState[i])
+            if (!_keyState[i] && _currentKeyState[i])
             {
-                s_keyDownState[i] = 1;
+                _keyDownState[i] = 1;
             }
-            if (s_keyState[i] && !_currentKeyState[i])
+            if (_keyState[i] && !_currentKeyState[i])
             {
-                s_keyUpState[i] = 1;
+                _keyUpState[i] = 1;
             }
 
-			s_keyState[i] = _currentKeyState[i];
+			_keyState[i] = _currentKeyState[i];
 		}
 	}
 
     void KeyBind::PopulateKeyMap()
     {
-        for (auto _button : m_keyBind)
+        for (auto _button : _keyBind)
         {
-            m_buttonMap.insert(std::make_pair
+            _buttonMap.insert(std::make_pair
             (
                 _button.first,
                 _button.second.first + _button.second.second * SDL_NUM_SCANCODES

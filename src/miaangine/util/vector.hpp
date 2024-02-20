@@ -52,7 +52,8 @@ namespace mia
 		{
 			return (x * _t.y) - (y * _t.x);
 		}
-		inline float Length()
+
+		inline float Magnitude()
 		{
 			return sqrt(x * x + y * y);
 		}
@@ -60,33 +61,39 @@ namespace mia
 		// Normalize
 		inline Vector2 Normalize()
 		{
-			return *this / Length();
+			return *this / Magnitude();
 		}
 
 		// Unit vector
-		static Vector2 up()
+		static const Vector2& up()
 		{
-			return Vector2(0, 1);
+			static const Vector2 result(0, 1);
+			return result;
 		}
-		static Vector2 down()
+		static const Vector2& down()
 		{
-			return Vector2(0, -1);
+			static const Vector2 result(0, 1);
+			return result;
 		}
-		static Vector2 right()
+		static const Vector2& right()
 		{
-			return Vector2(1, 0);
+			static const Vector2 result(0, 1);
+			return result;
 		}
-		static Vector2 left()
+		static const Vector2& left()
 		{
-			return Vector2(-1, 0);
+			static const Vector2 result(0, 1);
+			return result;
 		}
-		static Vector2 zero()
+		static const Vector2& zero()
 		{
-			return Vector2(0, 0);
+			static const Vector2 result(0, 1);
+			return result;
 		}
-		static Vector2 one()
+		static const Vector2& one()
 		{
-			return Vector2(1, 1);
+			static const Vector2 result(0, 1);
+			return result;
 		}
 	};
 }

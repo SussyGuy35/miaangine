@@ -13,8 +13,8 @@ namespace mia
         bool Init();
         void Clear();
 
-        SDL_Window* window;
-        SDL_Renderer* renderer;
+        SDL_Window *window;
+        SDL_Renderer *renderer;
 
     private:
         uint32_t m_width;

@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "gameloop-event.hpp"
+#include "game-loop-event.hpp"
 
 namespace mia
 {
@@ -11,11 +11,11 @@ namespace mia
     {
     public:
         EventManager():
-            onEnterFrame(std::make_unique<GameloopEvent>())
+            onEnterFrame(std::make_unique<GameLoopEvent>())
         {}
 
     public:
-        std::unique_ptr<GameloopEvent> onEnterFrame;
+        std::unique_ptr<GameLoopEvent> onEnterFrame;
 
     };
 }

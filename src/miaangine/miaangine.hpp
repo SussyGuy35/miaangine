@@ -8,4 +8,10 @@
 #ifndef _MIAANGINE_HPP
 #define _MIAANGINE_HPP
 
+#include "core/engine.hpp"
+#include "util/math.hpp"
+#include "event/event-manager.hpp"
+#include "object/game-object.hpp"
+#include "object/portrait.hpp"
+
 #endif

@@ -7,13 +7,17 @@
 
 namespace mia 
 {
-    class GameLoopEvent : public IEventPublisher
+    class GameLoopEventPublisher : public IEventPublisher
     {
     public:
-        GameLoopEvent();
+        GameLoopEventPublisher(uint8_t message = 0):
+            _message(message)
+        {}
 
     private:
         std::vector<IEventListener*> _listeners; 
+
+        uint8_t _message;
 
     public:
         void RegisterListener(IEventListener *listener) override;

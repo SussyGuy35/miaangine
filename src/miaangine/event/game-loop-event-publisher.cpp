@@ -1,4 +1,4 @@
-#include "game-loop-event.hpp"
+#include "game-loop-event-publisher.hpp"
 
 #include "debug/debug.hpp"
 
@@ -6,17 +6,12 @@
 
 namespace mia 
 {
-    GameLoopEvent::GameLoopEvent()
-    {
-
-    }
-
-    void GameLoopEvent::RegisterListener(IEventListener *listener)
+    void GameLoopEventPublisher::RegisterListener(IEventListener *listener)
     {
         _listeners.push_back(listener);
     }
 
-    void GameLoopEvent::RemoveListener(IEventListener *listener)
+    void GameLoopEventPublisher::RemoveListener(IEventListener *listener)
     {
         auto listenerIterator = std::find(_listeners.begin(), _listeners.end(), listener);
 
@@ -26,11 +21,11 @@ namespace mia
         }
     }
 
-    void GameLoopEvent::NotifyListeners()
+    void GameLoopEventPublisher::NotifyListeners()
     {
         for (IEventListener *listener : _listeners)
         {
-            listener->Update();
+            listener->Update(_message);
         }
     }
 }

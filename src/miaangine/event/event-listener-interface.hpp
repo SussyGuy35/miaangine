@@ -6,7 +6,7 @@ namespace mia
     class IEventListener
     {
     public:
-        virtual void Update() = 0;
+        virtual void Update(uint8_t message) = 0;
     };
 }
 

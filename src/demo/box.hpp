@@ -4,5 +4,5 @@
 
 class Box : public mia::GameObject
 {
-    void Update() override;
+    void Update(uint8_t message) override;
 };

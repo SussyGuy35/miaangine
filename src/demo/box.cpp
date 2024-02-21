@@ -2,5 +2,5 @@
 
 void Box::Update()
 {
-    SDL_Log("FSAD");
+    
 }

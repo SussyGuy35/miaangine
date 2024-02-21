@@ -1,7 +1,7 @@
 #ifndef _MIA_KEYBIND_HPP
 #define _MIA_KEYBIND_HPP
 
-#include <string>
+#include <string.h>
 #include <utility>
 #include <list>
 #include <map>
@@ -15,12 +15,19 @@ namespace mia
         KeyBind();
 
     private:
-        std::list<std::pair<std::string, std::pair<uint16_t, uint16_t>>> _keyBind;
-        std::map<std::string, uint32_t> _buttonMap;
+        struct cmp_str
+        {
+            bool operator()(char const *a, char const *b) const
+            {
+                return strcmp(a, b) < 0;
+            }
+        };
+        std::list<std::pair<const char *, std::pair<uint16_t, uint16_t>>> _keyBind;
+        std::map<const char *, uint32_t, cmp_str> _buttonMap;
 
     public:
-        uint16_t GetMainKeyBind(std::string _name);
-        uint16_t GetAltKeyBind(std::string _name);
+        uint16_t GetMainKeyBind(const char *name);
+        uint16_t GetAltKeyBind(const char *name);
 
         void PopulateKeyMap();
     };

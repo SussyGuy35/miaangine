@@ -73,46 +73,46 @@ namespace mia
 		}
     }
 
-    bool InputManager::GetButton(std::string _button)
+    bool InputManager::GetButton(const char *button)
 	{
 		return 
-            _keyState[_keyBind->GetMainKeyBind(_button)] || 
-            _keyState[_keyBind->GetAltKeyBind(_button)];
+            _keyState[_keyBind->GetMainKeyBind(button)] || 
+            _keyState[_keyBind->GetAltKeyBind(button)];
 	}
-	bool InputManager::GetButtonDown(std::string _button)
+	bool InputManager::GetButtonDown(const char *button)
 	{
 		return 
-            _keyDownState[_keyBind->GetMainKeyBind(_button)] || 
-            _keyDownState[_keyBind->GetAltKeyBind(_button)];
+            _keyDownState[_keyBind->GetMainKeyBind(button)] || 
+            _keyDownState[_keyBind->GetAltKeyBind(button)];
 	}
-	bool InputManager::GetButtonUp(std::string _button)
+	bool InputManager::GetButtonUp(const char *button)
 	{
 		return  
-            _keyUpState[_keyBind->GetMainKeyBind(_button)] || 
-            _keyUpState[_keyBind->GetAltKeyBind(_button)];
+            _keyUpState[_keyBind->GetMainKeyBind(button)] || 
+            _keyUpState[_keyBind->GetAltKeyBind(button)];
 	}
 
-    bool InputManager::GetKey(int _key)
+    bool InputManager::GetKey(int key)
     {
-        return _keyState[_key];
+        return _keyState[key];
     }
-    bool InputManager::GetKeyDown(int _key)
+    bool InputManager::GetKeyDown(int key)
     {
-        return _keyDownState[_key];
+        return _keyDownState[key];
     }
-    bool InputManager::GetKeyUp(int _key)
+    bool InputManager::GetKeyUp(int key)
     {
-        return _keyUpState[_key];
-    }
-
-    uint16_t KeyBind::GetMainKeyBind(std::string _name)
-    {
-        return _buttonMap[_name] & (SDL_NUM_SCANCODES - 1);
+        return _keyUpState[key];
     }
 
-    uint16_t KeyBind::GetAltKeyBind(std::string _name)
+    uint16_t KeyBind::GetMainKeyBind(const char *keyName)
     {
-        return _buttonMap[_name] >> 9;
+        return _buttonMap[keyName] & (SDL_NUM_SCANCODES - 1);
+    }
+
+    uint16_t KeyBind::GetAltKeyBind(const char *keyName)
+    {
+        return _buttonMap[keyName] >> 9;
     }
 
 	void InputManager::UpdateKeyInputEvent()

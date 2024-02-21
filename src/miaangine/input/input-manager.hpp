@@ -30,12 +30,12 @@ namespace mia
 
         static bool IsQuit() { return _isQuit; }
 
-        static bool GetButton(std::string _button);
-        static bool GetButtonDown(std::string _button);
-        static bool GetButtonUp(std::string _button);
-        static bool GetKey(int _key);
-        static bool GetKeyDown(int _key);
-        static bool GetKeyUp(int _key);
+        static bool GetButton(const char *button);
+        static bool GetButtonDown(const char *button);
+        static bool GetButtonUp(const char *button);
+        static bool GetKey(int key);
+        static bool GetKeyDown(int key);
+        static bool GetKeyUp(int key);
     };
 }
 

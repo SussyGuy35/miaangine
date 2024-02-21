@@ -1,25 +1,10 @@
-#include "miaangine.hpp"
-
-#ifndef SDL_MAIN_HANDLED
-#define SDL_MAIN_HANDLED
-#endif
+#include "demo/flappy-bird.hpp"
 
 int main(int argc, char *argv[])
 {
-    mia::Init();
+    Game *game = new Game();
 
-    
-
-    while (true)
-    {
-        mia::RegisterInput();
-
-        if (mia::inputManager->IsQuit()) break;
-        
-        mia::NextFrame();
-    }
-
-    mia::End();
+    game->Run();
 
     return 0;
 }

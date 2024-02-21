@@ -1,5 +1,7 @@
 #include "game-loop-event.hpp"
 
+#include "debug/debug.hpp"
+
 #include <algorithm>
 
 namespace mia 

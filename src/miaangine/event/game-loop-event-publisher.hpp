@@ -1,6 +1,7 @@
 #ifndef _MIA_GAME_LOOP_EVENTS_HPP
 #define _MIA_GAME_LOOP_EVENTS_HPP
 
+#include <stdint.h>
 #include <vector>
 
 #include "event-publisher-interface.hpp"
@@ -15,7 +16,7 @@ namespace mia
         {}
 
     private:
-        std::vector<IEventListener*> _listeners; 
+        std::vector<IEventListener *> _listeners; 
 
         uint8_t _message;
 

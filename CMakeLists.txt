@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(flappy-bird)
+project(game)
 
 set(CMAKE_CXX_FLAGS "-Wall")
 set(CMAKE_CXX_STANDARD 17)

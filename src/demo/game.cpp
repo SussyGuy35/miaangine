@@ -1,10 +1,7 @@
-#include "flappy-bird.hpp"
+#include "game.hpp"
 
 #include <iostream>
 #include "box.hpp"
-
-const int FPS = 60;
-const int DELAY_TIME = 1000 / FPS;
 
 void Game::Run()
 {

@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(miaangine)
+project(flappy-bird)
 
-set(CMAKE_CXX_FLAGS "-Wall -O0 -g -mwindows")
+set(CMAKE_CXX_FLAGS "-Wall")
 set(CMAKE_CXX_STANDARD 17)
 
 # Set include dir
@@ -13,7 +13,8 @@ include_directories("src/")
 include_directories("src/miaangine")
 
 # Set source files
-file(GLOB_RECURSE SOURCES "main.cpp" "src/*.cpp")
+file(GLOB_RECURSE SOURCES "demo/main.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 # Executable
 add_executable(${PROJECT_NAME} ${SOURCES})

@@ -1,4 +1,4 @@
-#include "demo/flappy-bird.hpp"
+#include "flappy-bird.hpp"
 
 int main(int argc, char *argv[])
 {

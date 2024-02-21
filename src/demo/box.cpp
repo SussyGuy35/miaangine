@@ -5,6 +5,7 @@ void Box::Update(uint8_t message)
     switch (message)
     {
     case 1:
+        position.y += .1;
         break;
     
     default:

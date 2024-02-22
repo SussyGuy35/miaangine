@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "-Wall")
 set(CMAKE_CXX_STANDARD 17)
 
 # Set include dir
+# list(APPEND CMAKE_PREFIX_PATH "")
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 

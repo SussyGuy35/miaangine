@@ -12,7 +12,7 @@
 #include "debug/debug.hpp"
 #include "util/math.hpp"
 #include "event/event-manager.hpp"
-#include "object/game-object.hpp"
+#include "object/world-object.hpp"
 #include "object/portrait.hpp"
 
 #endif

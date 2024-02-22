@@ -7,14 +7,14 @@
 
 namespace mia 
 {
-    class GameObject : public IEventListener
+    class WorldObject : public IEventListener
     {
     public:
-        GameObject(Vector2 position = Vector2::zero()):
+        WorldObject(Vector2 position = Vector2::zero()):
             position(position)
         {}
 
-        ~GameObject();
+        ~WorldObject();
 
     public:
         Vector2 position;

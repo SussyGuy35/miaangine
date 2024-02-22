@@ -11,11 +11,12 @@ namespace mia
     {
     public:
         EventManager():
-            onEnterFrame(std::make_unique<GameLoopEventPublisher>(1))
+            onEnterNewFrame(std::make_unique<GameLoopEventPublisher>(1))
         {}
 
     public:
-        std::unique_ptr<GameLoopEventPublisher> onEnterFrame;
+        std::unique_ptr<GameLoopEventPublisher> onEnterNewFrame;
+        std::unique_ptr<GameLoopEventPublisher> onFrameLoop;
     };
 }
 

@@ -11,13 +11,11 @@ void Game::Run()
 
     while (true)
     {
-        mia::RegisterInput();
+        mia::NewFrame();
 
         if (mia::inputManager->IsQuit()) break;
 
-        mia::portraitRenderer->RenderPotraits();
-
-        mia::NextFrame();
+        mia::Render();
     }
 
     mia::End();
@@ -26,6 +24,6 @@ void Game::Run()
 void Game::InitScene()
 {
     Box* box = new Box();
-    mia::eventManager->onEnterFrame->RegisterListener(box);
+    mia::eventManager->onEnterNewFrame->RegisterListener(box);
     mia::portraitRenderer->RegisterPortrait(box);
 }

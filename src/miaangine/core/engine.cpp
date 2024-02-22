@@ -22,12 +22,16 @@ void mia::End()
     delete(portraitRenderer);
 }
 
-void mia::RegisterInput()
+void mia::NewFrame()
 {
+    eventManager->onEnterNewFrame->NotifyListeners();
+
     inputManager->RegisterInput();
+
+    eventManager->onFrameLoop->NotifyListeners();
 }
 
-void mia::NextFrame()
+void mia::Render()
 {
-    eventManager->onEnterFrame->NotifyListeners();
+    mia::portraitRenderer->RenderPotraits();
 }

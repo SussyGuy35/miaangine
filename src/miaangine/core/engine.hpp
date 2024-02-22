@@ -16,8 +16,8 @@ namespace mia
     void Init();
     void End();
 
-    void RegisterInput();
-    void NextFrame();
+    void NewFrame();
+    void Render();
 }
 
 #endif

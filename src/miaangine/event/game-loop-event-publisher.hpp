@@ -16,7 +16,7 @@ namespace mia
         {}
 
     private:
-        std::vector<IEventListener *> _listeners; 
+        std::vector<IEventListener*> _listeners; 
 
         uint8_t _message;
 

@@ -13,7 +13,7 @@ namespace mia
         PortraitRenderer() {}
 
     private:
-        std::vector<Portrait *> _portraits;
+        std::vector<Portrait*> _portraits;
 
     public:
         void RegisterPortrait(Portrait *portrait);

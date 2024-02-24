@@ -22,8 +22,8 @@ namespace mia
                 return strcmp(a, b) < 0;
             }
         };
-        std::list<std::pair<const char *, std::pair<uint16_t, uint16_t>>> _keyBind;
-        std::map<const char *, uint32_t, cmp_str> _buttonMap;
+        std::list<std::pair<const char*, std::pair<uint16_t, uint16_t>>> _keyBind;
+        std::map<const char*, uint32_t, cmp_str> _buttonMap;
 
     public:
         uint16_t GetMainKeyBind(const char *name);

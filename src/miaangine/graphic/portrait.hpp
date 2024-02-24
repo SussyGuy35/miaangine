@@ -3,27 +3,22 @@
 
 #include "util/math.hpp"
 
-namespace mia 
-{
-    class Portrait
+#include "object/world-object.hpp"
+
+// namespace mia 
+// {
+    class mia::Portrait
     {
     public:
-        Portrait(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero()):
-            size(size),
-            offset(offset)
-        {}
-
-        Portrait(float sx, float sy, float ox = 0, float oy = 0):
-            size(Vector2(sx, sy)),
-            offset(Vector2(ox, oy))
-        {}
+        Portrait(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
+        Portrait(float sx, float sy, float ox = 0, float oy = 0);
 
     public:
         Vector2 size;
         Vector2 offset;
 
-        Vector2 *position = nullptr;
+        WorldObject *master;
     };
-}
+// }
 
 #endif

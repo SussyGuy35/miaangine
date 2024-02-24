@@ -29,8 +29,8 @@ namespace mia
             SDL_RenderClear(sdlHandle->renderer);
 
             SDL_Rect rect;
-            rect.x = portrait->position->x + portrait->offset.x;
-            rect.y = portrait->position->y + portrait->offset.x;
+            rect.x = portrait->master->position.x + portrait->offset.x;
+            rect.y = portrait->master->position.y + portrait->offset.x;
             rect.w = portrait->size.x;
             rect.h = portrait->size.y;
 

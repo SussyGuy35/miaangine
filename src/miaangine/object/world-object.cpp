@@ -1,26 +1,54 @@
 #include "world-object.hpp"
 
+#include "graphic/portrait.hpp"
+#include "physic/body.hpp"
+
 namespace mia
 {
+    WorldObject::WorldObject(Vector2 position):
+        position(position)
+    {}
+    WorldObject::WorldObject(float x, float y):
+        position(Vector2(x, y))
+    {}
+
+    WorldObject::~WorldObject()
+    {
+        delete(portrait);
+        delete(body);
+    }
+
+    void WorldObject::AttachPortrait(Portrait *portrait)
+    {
+        this->portrait = portrait;
+        this->portrait->master = this;
+    }
+
+    void WorldObject::AttachBody(Body *body)
+    {
+        this->body = body;
+        this->body->master = this;
+    }
+
     void WorldObject::MakePortrait(Vector2 size, Vector2 offset)
     {
         portrait = new Portrait(size, offset);
-        portrait->position = &position;
+        portrait->master = this;
     }
     void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
         portrait = new Portrait(sx, sy, ox, oy);
-        portrait->position = &position;
+        portrait->master = this;
     }
 
-    void WorldObject::MakeCollider(Vector2 size, Vector2 offset)
+    void WorldObject::MakeBody(Vector2 size, Vector2 offset)
     {
-        collider = new Collider(size, offset);
-        collider->position = &position;
+        body = new Body(size, offset);
+        body->master = this;
     }
-    void WorldObject::MakeCollider(float sx, float sy, float ox, float oy)
+    void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
-        collider = new Collider(sx, sy, ox, oy);
-        collider->position = &position;
+        body = new Body(sx, sy, ox, oy);
+        body->master = this;
     }
 }

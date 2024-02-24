@@ -1,6 +1,7 @@
 #include "game.hpp"
 
-#include <iostream>
+#include <memory>
+
 #include "box.hpp"
 
 void Game::Run()

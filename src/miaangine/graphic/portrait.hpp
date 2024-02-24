@@ -1,19 +1,19 @@
-#ifndef _MIA_COLLIDER_HPP
-#define _MIA_COLLIDER_HPP
+#ifndef _MIA_PORTRAIT_HPP
+#define _MIA_PORTRAIT_HPP
 
 #include "util/math.hpp"
 
-namespace mia
+namespace mia 
 {
-    class Collider
+    class Portrait
     {
     public:
-        Collider(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero()):
+        Portrait(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero()):
             size(size),
             offset(offset)
         {}
 
-        Collider(float sx, float sy, float ox = 0, float oy = 0):
+        Portrait(float sx, float sy, float ox = 0, float oy = 0):
             size(Vector2(sx, sy)),
             offset(Vector2(ox, oy))
         {}

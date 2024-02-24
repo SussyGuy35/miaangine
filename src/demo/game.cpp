@@ -23,7 +23,8 @@ void Game::Run()
 
 void Game::InitScene()
 {
-    Box* box = new Box();
-    mia::eventManager->onEnterNewFrame->RegisterListener(box);
-    mia::portraitRenderer->RegisterPortrait(box);
+    Box *box = new Box(100, 10);
+    mia::eventManager->mainFrameLoop->RegisterListener(box);
+    box->MakePortrait(50, 50);
+    mia::portraitRenderer->RegisterPortrait(box->portrait);
 }

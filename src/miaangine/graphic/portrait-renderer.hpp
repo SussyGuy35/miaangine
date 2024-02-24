@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "object/portrait.hpp"
+#include "portrait.hpp"
 
 namespace mia 
 {

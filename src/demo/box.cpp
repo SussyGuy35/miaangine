@@ -4,7 +4,7 @@ void Box::Update(uint8_t message)
 {
     switch (message)
     {
-    case 1:
+    case 2:
         position.y += .1;
         break;
     
@@ -12,4 +12,3 @@ void Box::Update(uint8_t message)
         break;
     }
 }
-

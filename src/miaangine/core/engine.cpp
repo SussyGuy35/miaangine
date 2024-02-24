@@ -28,7 +28,7 @@ void mia::NewFrame()
 
     inputManager->RegisterInput();
 
-    eventManager->onFrameLoop->NotifyListeners();
+    eventManager->mainFrameLoop->NotifyListeners();
 }
 
 void mia::Render()

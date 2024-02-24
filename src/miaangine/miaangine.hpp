@@ -13,6 +13,6 @@
 #include "util/math.hpp"
 #include "event/event-manager.hpp"
 #include "object/world-object.hpp"
-#include "object/portrait.hpp"
+#include "graphic/portrait-renderer.hpp"
 
 #endif

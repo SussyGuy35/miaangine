@@ -2,11 +2,11 @@
 
 #include "miaangine.hpp"
 
-class Box : public mia::Portrait
+class Box : public mia::WorldObject
 {
 public:
-    Box():
-        Portrait(mia::Vector2(100, 10), mia::Vector2(100, 100))
+    Box(float x, float y):
+        WorldObject(x, y)
     {}
 
     void Update(uint8_t message) override;

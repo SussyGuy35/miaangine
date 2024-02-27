@@ -48,7 +48,7 @@ namespace mia
         _keyBind->PopulateKeyMap();
     }
 
-    void InputManager::RegisterInput()
+    void InputManager::Update()
     {
         memset(_keyDownState, 0, SDL_NUM_SCANCODES);
 		memset(_keyUpState, 0, SDL_NUM_SCANCODES);

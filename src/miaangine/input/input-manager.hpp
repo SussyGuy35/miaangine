@@ -26,7 +26,7 @@ namespace mia
     
     public:
         static void SetupKeyBind();
-        static void RegisterInput();
+        static void Update();
 
         static bool IsQuit() { return _isQuit; }
 

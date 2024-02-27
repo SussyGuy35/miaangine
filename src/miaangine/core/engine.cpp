@@ -28,8 +28,8 @@ void mia::NewFrame()
 {
     eventManager->onEnterNewFrame->NotifyListeners();
 
-    timer->TimerCalculate();
-    inputManager->RegisterInput();
+    timer->Step();
+    inputManager->Update();
 
     eventManager->mainFrameLoop->NotifyListeners();
 }

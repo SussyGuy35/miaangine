@@ -13,9 +13,18 @@ namespace mia
         PhysicWorld();
 
     private:
-        std::vector<Body> _bodies;
+        std::vector<Body*> _bodies;
 
-        
+        Vector2 _gravity;
+
+    public:
+        void AddBody(Body *body);
+        // void RemoveBody(Body *body); //TODO
+        bool GetBody(int index, Body *bodyRef);
+
+        void Step(double timePass);
+
+        bool CollideCheck(Body *bodyA, Body *bodyB);
     };
 }
 

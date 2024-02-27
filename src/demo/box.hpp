@@ -10,4 +10,6 @@ public:
     {}
 
     void Update(uint8_t message) override;
+
+    bool fall = false;
 };

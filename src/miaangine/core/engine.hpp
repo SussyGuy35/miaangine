@@ -6,6 +6,7 @@
 #include "event/event-manager.hpp"
 #include "timer.hpp"
 #include "graphic/portrait-renderer.hpp"
+#include "physic/physic-world.hpp"
 
 namespace mia
 {
@@ -14,6 +15,7 @@ namespace mia
     extern InputManager *inputManager;
     extern Timer *timer;
     extern PortraitRenderer *portraitRenderer;
+    extern PhysicWorld *physicWorld;
 
     void Init();
     void End();

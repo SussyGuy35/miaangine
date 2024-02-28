@@ -9,10 +9,6 @@
 #define _MIAANGINE_HPP
 
 #include "core/engine.hpp"
-#include "debug/debug.hpp"
 #include "util/math.hpp"
-#include "event/event-manager.hpp"
-#include "object/world-object.hpp"
-#include "graphic/portrait-renderer.hpp"
 
 #endif

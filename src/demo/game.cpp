@@ -10,10 +10,13 @@ void Game::Run()
 
     InitScene();
 
+    mia::sdlHandle->WindowLog();
+
     while (true)
     {
         mia::NewFrame();
 
+        mia::timer->Log();
         if (mia::inputManager->IsQuit()) break;
 
         mia::Render();
@@ -28,4 +31,5 @@ void Game::InitScene()
     mia::eventManager->mainFrameLoop->RegisterListener(box);
     box->MakePortrait(50, 50);
     mia::portraitRenderer->RegisterPortrait(box->portrait);
+    box->fall = true;
 }

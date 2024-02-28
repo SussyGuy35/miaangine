@@ -1,5 +1,3 @@
-#pragma once
-
 #include "miaangine.hpp"
 
 class Box : public mia::WorldObject

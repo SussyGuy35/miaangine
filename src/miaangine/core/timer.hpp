@@ -11,21 +11,22 @@ namespace mia
         Timer();
 
     private:
-        uint32_t _startTicks, _elapseTicks, _lastFrameTicks;
-        uint32_t _currentTick;
+        uint64_t _currentTicks, _lastFrameTicks, _elapseTicks;
 
-        double _timeStep;
-
+        double _elapseTime;
         float _FPS;
-        uint32_t _frameCount;
+        double _currentTime;
+        uint64_t _frameCount;
 
     public:
-        const uint32_t &currentTick = _currentTick;
-        const double &timeStep = _timeStep;
+        const double &elapseTime = _elapseTime;
         const float &FPS = _FPS;
+        const uint64_t &frameCount = _frameCount;
+        const double &time = _currentTime;
 
         void Step();
 
+        void Log();
     };
 }
 

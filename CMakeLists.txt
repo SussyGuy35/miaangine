@@ -1,24 +1,20 @@
 cmake_minimum_required(VERSION 3.10)
 
+include(CMakePrintHelpers)
+
 project(game)
 
-set(CMAKE_CXX_FLAGS "-Wall")
-set(CMAKE_CXX_STANDARD 17)
-
-# Set include dir
-# list(APPEND CMAKE_PREFIX_PATH "")
+# list(APPEND CMAKE_PREFIX_PATH "C:\\Development\\MinGW\\lib\\cmake\\SDL2")
 find_package(SDL2 REQUIRED)
+
+add_compile_options(-Wall -Wextra -Wdeprecated -w)
+
+include_directories(src)
+include_directories(src/miaangine)
 include_directories(${SDL2_INCLUDE_DIRS})
 
-include_directories("src/")
-include_directories("src/miaangine")
-
-# Set source files
 file(GLOB_RECURSE SOURCES "demo/main.cpp")
 file(GLOB_RECURSE SOURCES "src/*.cpp")
-
-# Executable
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# Link SDL2 libraries
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})

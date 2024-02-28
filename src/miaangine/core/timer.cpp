@@ -3,26 +3,37 @@
 namespace mia
 {
     Timer::Timer() :
-        _startTicks(0),
+        _currentTicks(SDL_GetPerformanceCounter()), 
+        _lastFrameTicks(SDL_GetPerformanceCounter()), 
         _elapseTicks(0),
-        _lastFrameTicks(0),
-        _currentTick(SDL_GetTicks()),
-        _timeStep(0.0)
+        _elapseTime(0.0),
+        _FPS(0.0),
+        _currentTime(0),
+        _frameCount(0)
     {}
 
     void Timer::Step()
     {
-        _currentTick = SDL_GetTicks();
-        _elapseTicks = _currentTick - _startTicks;
-        _timeStep = static_cast<double>(_currentTick - _lastFrameTicks) / 1000.0;
-        _lastFrameTicks = _currentTick;
+        _currentTicks = SDL_GetPerformanceCounter();
+        _elapseTime = static_cast<double>(_currentTicks - _lastFrameTicks) / static_cast<double>(SDL_GetPerformanceFrequency());
+        _lastFrameTicks = _currentTicks;
+
+        if (_elapseTime != 0)
+        {
+            _FPS = 1.0 / _elapseTime;
+        }
+        else 
+        {
+            _FPS = 0.0;
+        }
+
+        _currentTime += _elapseTime;
 
         _frameCount++;
-        if (_elapseTicks >= 1000) 
-        {
-            _FPS = static_cast<float>(_frameCount) / (_elapseTicks / 1000.0f);
-            _frameCount = 0;
-            _startTicks = _currentTick;
-        }
+    }
+
+    void Timer::Log()
+    {
+        
     }
 }

@@ -1,11 +1,13 @@
 #include "sdl-handle.hpp"
 
+#include <stdio.h>
+
 namespace mia
 {
     SDLHandle::SDLHandle(uint32_t _width, uint32_t _height, bool _fullscreen):
-        m_width(_width),
-        m_height(_height),
-        m_fullscreen(_fullscreen)
+        _width(_width),
+        _height(_height),
+        _fullscreen(_fullscreen)
     {
 
     }
@@ -19,8 +21,8 @@ namespace mia
             "MIAANGINE", 
             SDL_WINDOWPOS_UNDEFINED, 
             SDL_WINDOWPOS_UNDEFINED, 
-            m_width, 
-            m_height, 
+            _width, 
+            _height, 
             SDL_WINDOW_OPENGL
         );
         if (window == NULL) return false;
@@ -39,5 +41,10 @@ namespace mia
     {
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(renderer);
+    }
+
+    void SDLHandle::WindowLog()
+    {
+        SDL_Log("Window > Width: %d | Height: %d | Fullscreen: %d", _width, _height, _fullscreen);
     }
 }

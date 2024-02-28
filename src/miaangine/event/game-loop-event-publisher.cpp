@@ -1,7 +1,5 @@
 #include "game-loop-event-publisher.hpp"
 
-#include "debug/debug.hpp"
-
 #include <algorithm>
 
 namespace mia 

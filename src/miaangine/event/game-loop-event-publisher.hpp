@@ -24,6 +24,7 @@ namespace mia
         void RegisterListener(IEventListener *listener) override;
         void RemoveListener(IEventListener *listener) override;
         void NotifyListeners() override;
+        void Log() override;
     };
 }
 

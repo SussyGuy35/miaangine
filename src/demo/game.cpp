@@ -8,12 +8,9 @@ void Game::Run()
 {
     mia::Init();
 
-    SDL_Log("A");
-    printf("B");
-
     InitScene();
 
-    mia::sdlHandle->WindowLog();
+    mia::sdlHandle->Log();
 
     while (true)
     {

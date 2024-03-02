@@ -22,7 +22,7 @@ namespace mia
         bool Init();
         void Clear();
 
-        void WindowLog();
+        void Log();
     };
 }
 

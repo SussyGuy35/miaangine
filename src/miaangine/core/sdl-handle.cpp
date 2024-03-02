@@ -43,8 +43,8 @@ namespace mia
         SDL_DestroyRenderer(renderer);
     }
 
-    void SDLHandle::WindowLog()
+    void SDLHandle::Log()
     {
-        SDL_Log("Window > Width: %d | Height: %d | Fullscreen: %d", _width, _height, _fullscreen);
+        SDL_Log("(%lf | %ld)\nSDL > Screen: Width: %d | Height: %d | Fullscreen: %d", _width, _height, _fullscreen);
     }
 }

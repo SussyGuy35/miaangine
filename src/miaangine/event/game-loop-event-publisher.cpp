@@ -26,4 +26,9 @@ namespace mia
             listener->Update(_message);
         }
     }
+
+    void GameLoopEventPublisher::Log()
+    {
+        SDL_Log("(%lf | %ld)\nEventListener > Listeners count: %ld", GlobalTime::time, GlobalTime::frameCount, _listeners.size());
+    }
 }

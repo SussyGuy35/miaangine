@@ -4,7 +4,6 @@
 #include "input/input-manager.hpp"
 #include "sdl-handle.hpp"
 #include "event/event-manager.hpp"
-#include "timer.hpp"
 #include "graphic/portrait-renderer.hpp"
 #include "physic/physic-world.hpp"
 
@@ -13,7 +12,6 @@ namespace mia
     extern SDLHandle *sdlHandle;
     extern EventManager *eventManager;
     extern InputManager *inputManager;
-    extern Timer *timer;
     extern PortraitRenderer *portraitRenderer;
     extern PhysicWorld *physicWorld;
 

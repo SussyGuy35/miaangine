@@ -3,15 +3,14 @@
 #include <memory>
 
 #include "box.hpp"
+#include "pipe.hpp"
 
 void Game::Run()
 {
     mia::Init();
 
     InitScene();
-
-    mia::sdlHandle->Log();
-
+    
     while (true)
     {
         mia::NewFrame();
@@ -31,4 +30,16 @@ void Game::InitScene()
     box->MakePortrait(50, 50);
     mia::portraitRenderer->RegisterPortrait(box->portrait);
     box->fall = true;
+
+    Box *boxtwo = new Box(500, 10);
+    mia::events->mainFrameLoop->RegisterListener(boxtwo);
+    boxtwo->MakePortrait(50, 50);
+    mia::portraitRenderer->RegisterPortrait(boxtwo->portrait);
+
+    Pipe *pipe = new Pipe(300, 200);
+    mia::events->mainFrameLoop->RegisterListener(pipe);
+    pipe->MakePortrait(50, 50);
+    mia::portraitRenderer->RegisterPortrait(pipe->portrait);
+
+    mia::portraitRenderer->Log();
 }

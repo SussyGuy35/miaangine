@@ -9,6 +9,7 @@
 #define _MIAANGINE_HPP
 
 #include "core/engine.hpp"
+#include "core/time.hpp"
 #include "util/math.hpp"
 
 #endif

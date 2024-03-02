@@ -23,11 +23,11 @@ namespace mia
 
     void PortraitRenderer::RenderPotraits()
     {
+        SDL_SetRenderDrawColor(sdlHandle->renderer, 0, 0, 0, 255);
+        SDL_RenderClear(sdlHandle->renderer);
+
         for (const Portrait *portrait : _portraits)
         {
-            SDL_SetRenderDrawColor(sdlHandle->renderer, 0, 0, 0, 255);
-            SDL_RenderClear(sdlHandle->renderer);
-
             SDL_Rect rect;
             rect.x = portrait->master->position.x + portrait->offset.x;
             rect.y = portrait->master->position.y + portrait->offset.x;

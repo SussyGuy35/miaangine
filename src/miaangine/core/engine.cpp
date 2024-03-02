@@ -30,6 +30,7 @@ void mia::NewFrame()
 {
     eventManager->onEnterNewFrame->NotifyListeners();
 
+    Time::Step();
     inputManager->Update();
 
     eventManager->mainFrameLoop->NotifyListeners();

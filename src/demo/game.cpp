@@ -16,7 +16,7 @@ void Game::Run()
     {
         mia::NewFrame();
 
-        mia::timer->Log();
+        mia::sdlHandle->Log();
         if (mia::inputManager->IsQuit()) break;
 
         mia::Render();

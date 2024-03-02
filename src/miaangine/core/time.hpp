@@ -5,10 +5,10 @@
 
 namespace mia
 {
-    class GlobalTime
+    class Time
     {
     private:
-        GlobalTime();
+        Time();
 
     private:
         static uint64_t _currentTicks, _lastFrameTicks, _elapseTicks;

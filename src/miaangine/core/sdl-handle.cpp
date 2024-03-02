@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 
+#include "time.hpp"
+
 namespace mia
 {
     SDLHandle::SDLHandle(uint32_t _width, uint32_t _height, bool _fullscreen):
@@ -45,6 +47,9 @@ namespace mia
 
     void SDLHandle::Log()
     {
-        SDL_Log("(%lf | %ld)\nSDL > Screen: Width: %d | Height: %d | Fullscreen: %d", _width, _height, _fullscreen);
+        SDL_Log("(%f | %llu)\n"
+                "SDLHandle > Screen: Width %u | Height %u | Fullscreen %d\n<>",
+                Time::time, Time::frameCount,
+                _width, _height, _fullscreen);
     }
 }

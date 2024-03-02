@@ -2,26 +2,26 @@
 
 namespace mia
 {
-    uint64_t GlobalTime::_currentTicks = SDL_GetPerformanceCounter();
-    uint64_t GlobalTime::_lastFrameTicks = SDL_GetPerformanceCounter();
-    uint64_t GlobalTime::_elapseTicks = 0;
+    uint64_t Time::_currentTicks = SDL_GetPerformanceCounter();
+    uint64_t Time::_lastFrameTicks = SDL_GetPerformanceCounter();
+    uint64_t Time::_elapseTicks = 0;
 
-    double GlobalTime::_elapseTime = 0;
-    const double &GlobalTime::elapseTime = GlobalTime::_elapseTime;
+    double Time::_elapseTime = 0;
+    const double &Time::elapseTime = Time::_elapseTime;
 
-    float GlobalTime::_FPS = 0;
-    const float &GlobalTime::FPS = GlobalTime::_FPS;
+    float Time::_FPS = 0;
+    const float &Time::FPS = Time::_FPS;
 
-    uint64_t GlobalTime::_frameCount = 0;
-    const uint64_t &GlobalTime::elapseTime = GlobalTime::_frameCount;
+    uint64_t Time::_frameCount = 0;
+    const uint64_t &Time::frameCount = Time::_frameCount;
 
-    double GlobalTime::_currentTime = 0;
-    const double &GlobalTime::time = GlobalTime::_currentTime;
+    double Time::_currentTime = 0;
+    const double &Time::time = Time::_currentTime;
 
-    GlobalTime::GlobalTime()
+    Time::Time()
     {}
 
-    void GlobalTime::Step()
+    void Time::Step()
     {
         _currentTicks = SDL_GetPerformanceCounter();
         _elapseTime = static_cast<double>(_currentTicks - _lastFrameTicks) / static_cast<double>(SDL_GetPerformanceFrequency());

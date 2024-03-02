@@ -33,7 +33,7 @@ void mia::NewFrame()
     Time::Step();
     inputs->Update();
 
-    events->mainFrameLoop->NotifyListeners();
+    events->mainFrameStepLoop->NotifyListeners();
 
     physicWorld->Step(0.0); //TODO
 }

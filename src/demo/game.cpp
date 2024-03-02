@@ -26,18 +26,18 @@ void Game::Run()
 void Game::InitScene()
 {
     Box *box = new Box(100, 10);
-    mia::events->mainFrameLoop->RegisterListener(box);
+    mia::events->mainFrameStepLoop->RegisterListener(box);
     box->MakePortrait(50, 50);
     mia::portraitRenderer->RegisterPortrait(box->portrait);
     box->fall = true;
 
     Box *boxtwo = new Box(500, 10);
-    mia::events->mainFrameLoop->RegisterListener(boxtwo);
+    mia::events->mainFrameStepLoop->RegisterListener(boxtwo);
     boxtwo->MakePortrait(50, 50);
     mia::portraitRenderer->RegisterPortrait(boxtwo->portrait);
 
     Pipe *pipe = new Pipe(300, 200);
-    mia::events->mainFrameLoop->RegisterListener(pipe);
+    mia::events->mainFrameStepLoop->RegisterListener(pipe);
     pipe->MakePortrait(50, 50);
     mia::portraitRenderer->RegisterPortrait(pipe->portrait);
 

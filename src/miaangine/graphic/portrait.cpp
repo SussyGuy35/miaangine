@@ -13,4 +13,12 @@ namespace mia
         offset(Vector2(ox, oy)),
         master(nullptr)
     {}
+
+    void Portrait::Log()
+    {
+        SDL_Log(":: %f : %llu ::\n"
+                "Portrait > Size(%.2f, %.2f); Offset(%.2f, %.2f)\n<>",
+                Time::time, Time::stepCount,
+                size.x, size.y, offset.x, offset.y);
+    }
 }

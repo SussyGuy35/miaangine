@@ -12,8 +12,8 @@ namespace mia
     float Time::_FPS = 0;
     const float &Time::FPS = Time::_FPS;
 
-    uint64_t Time::_frameCount = 0;
-    const uint64_t &Time::frameCount = Time::_frameCount;
+    uint64_t Time::_stepCount = 0;
+    const uint64_t &Time::stepCount = Time::_stepCount;
 
     double Time::_currentTime = 0;
     const double &Time::time = Time::_currentTime;
@@ -38,6 +38,6 @@ namespace mia
 
         _currentTime += _elapseTime;
 
-        _frameCount++;
+        _stepCount++;
     }
 }

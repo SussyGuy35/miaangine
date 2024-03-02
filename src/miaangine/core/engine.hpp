@@ -10,8 +10,8 @@
 namespace mia
 {
     extern SDLHandle *sdlHandle;
-    extern EventManager *eventManager;
-    extern InputManager *inputManager;
+    extern EventManager *events;
+    extern InputManager *inputs;
     extern PortraitRenderer *portraitRenderer;
     extern PhysicWorld *physicWorld;
 

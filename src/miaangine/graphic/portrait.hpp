@@ -18,6 +18,8 @@
         Vector2 offset;
 
         WorldObject *master;
+
+        virtual void Log();
     };
 // }
 

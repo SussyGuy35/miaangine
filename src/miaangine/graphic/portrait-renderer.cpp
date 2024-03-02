@@ -40,4 +40,12 @@ namespace mia
 
         SDL_RenderPresent(sdlHandle->renderer);
     }
+
+    void PortraitRenderer::Log()
+    {
+        SDL_Log(":: %f : %llu ::\n"
+                "PortraitRenderer > Portrait Count(%d)\n<>",
+                Time::time, Time::stepCount,
+                _portraits.size());
+    }
 }

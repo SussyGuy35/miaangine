@@ -20,6 +20,8 @@
         WorldObject *master;
 
         bool colliding;
+
+        virtual void Log();
     };
 // }
 

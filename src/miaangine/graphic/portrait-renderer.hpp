@@ -20,6 +20,8 @@ namespace mia
         void RemovePortrait(Portrait *portrait);
 
         void RenderPotraits();
+
+        void Log();
     };
 }
 

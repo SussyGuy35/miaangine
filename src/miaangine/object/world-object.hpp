@@ -32,6 +32,8 @@ namespace mia
 
         void MakeBody(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
         void MakeBody(float sx, float sy, float ox = 0, float oy = 0);
+
+        virtual void Log();
     };
 }
 

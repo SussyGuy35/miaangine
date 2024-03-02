@@ -6,6 +6,7 @@ void Box::Update(uint8_t message)
     {
     case 2:
         if (fall) position.y += .1;
+        Log();
         break;
     
     default:

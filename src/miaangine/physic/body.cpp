@@ -15,4 +15,12 @@ namespace mia
         master(nullptr),
         colliding(false)
     {}
+
+    void Body::Log()
+    {
+        SDL_Log(":: %f : %llu ::\n"
+                "Body > Size(%.2f, %.2f); Offset(%.2f, %.2f); Colliding(%d)\n<>",
+                Time::time, Time::stepCount,
+                size.x, size.y, offset.x, offset.y, colliding);
+    }
 }

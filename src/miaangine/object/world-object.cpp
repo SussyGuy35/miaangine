@@ -51,4 +51,12 @@ namespace mia
         body = new Body(sx, sy, ox, oy);
         body->master = this;
     }
+
+    void WorldObject::Log()
+    {
+        SDL_Log(":: %f : %llu ::\n"
+                "WorldObject > Position(%.2f, %.2f)\n<>",
+                Time::time, Time::stepCount,
+                position.x, position.y);
+    }
 }

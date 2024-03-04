@@ -42,4 +42,5 @@ void Game::InitScene()
     mia::portraitRenderer->RegisterPortrait(pipe->portrait);
 
     mia::portraitRenderer->Log();
+    
 }

@@ -19,7 +19,7 @@ namespace mia
         return true;
     }
 
-    void PhysicWorld::Step(double timePass) //TODO
+    void PhysicWorld::Step(double timePass)
     {
         BodiesVelocityCalculate(timePass);
         
@@ -55,7 +55,7 @@ namespace mia
         }
     }
 
-    void PhysicWorld::BodiesCollideCheck()
+    void PhysicWorld::BodiesCollideCheck() //TODO
     {
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++) _bodies[i]->colliding = false;
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)

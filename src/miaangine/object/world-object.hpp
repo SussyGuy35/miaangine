@@ -17,13 +17,19 @@ namespace mia
 
         ~WorldObject();
 
+        
     public:
         Vector2 position;
 
-        Portrait *portrait;
-        Body *body;
+    protected:
+        Portrait *_portrait;
+        Body *_body;
+        // Straight using this var derived class may cause undefined reference error
 
     public:
+        Portrait *portrait();
+        Body *body();
+
         void AttachPortrait(Portrait *portrait);
         void AttachBody(Body *body);
 

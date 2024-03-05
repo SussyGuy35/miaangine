@@ -8,52 +8,78 @@
 namespace mia
 {
     WorldObject::WorldObject(Vector2 position):
-        position(position)
+        position(position),
+        _portrait(nullptr),
+        _body(nullptr)
     {}
     WorldObject::WorldObject(float x, float y):
-        position(Vector2(x, y))
+        position(Vector2(x, y)),
+        _portrait(nullptr),
+        _body(nullptr)
     {}
 
     WorldObject::~WorldObject()
     {
-        delete(portrait);
-        delete(body);
+        delete(_portrait);
+        delete(_body);
+    }
+
+    Portrait *WorldObject::portrait()
+    {
+        if (_portrait == nullptr) 
+        {
+            SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "WorldObject > Portrait: Null reference"); //FIXME
+            return nullptr;
+        }
+
+        return _portrait;
+    }
+
+    Body *WorldObject::body()
+    {
+        if (_portrait == nullptr) 
+        {
+            SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "WorldObject > Body: Null reference"); //FIXME
+            return nullptr;
+        }
+
+        return _body;
     }
 
     void WorldObject::AttachPortrait(Portrait *portrait)
     {
-        this->portrait = portrait;
-        this->portrait->master = this;
+        _portrait = portrait;
+        _portrait->master = this;
     }
 
     void WorldObject::AttachBody(Body *body)
     {
-        this->body = body;
-        this->body->master = this;
+        this->_body = body;
+        this->_body->master = this;
     }
 
     void WorldObject::MakePortrait(Vector2 size, Vector2 offset)
     {
-        portrait = new Portrait(size, offset);
-        portrait->master = this;
+        _portrait = new Portrait(size, offset);
+        _portrait->master = this;
     }
     void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
-        portrait = new Portrait(sx, sy, ox, oy);
-        portrait->master = this;
+        _portrait = new Portrait(sx, sy, ox, oy);
+        _portrait->master = this;
     }
 
     void WorldObject::MakeBody(Vector2 size, Vector2 offset)
     {
-        body = new Body(size, offset);
-        body->master = this;
-        physicWorld->AddBody(body);
+        _body = new Body(size, offset);
+        _body->master = this;
+        physicWorld->AddBody(_body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
-        body = new Body(sx, sy, ox, oy);
-        body->master = this;
-        physicWorld->AddBody(body);
+        _body = new Body(sx, sy, ox, oy);
+        _body->master = this;
+        physicWorld->AddBody(_body);
     }
 
     void WorldObject::Log()

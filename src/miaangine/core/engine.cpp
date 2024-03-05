@@ -8,7 +8,7 @@ mia::PhysicWorld *mia::physicWorld = new mia::PhysicWorld();
 
 void mia::Init()
 {
-    SDL_Log("**MIAANGINE**\n\n");
+    SDL_Log("**MIAANGINE**\n");
 
     sdlHandle->Init();
     sdlHandle->Log();
@@ -34,7 +34,7 @@ void mia::NewFrame()
     Time::Step();
     inputs->Update();
 
-    events->mainFrameStepLoop->NotifyListeners();
+    events->primaryUpdate->NotifyListeners();
 
     physicWorld->Step(Time::elapseTime);
 }

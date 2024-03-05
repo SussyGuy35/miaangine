@@ -11,13 +11,13 @@ namespace mia
     {
     public:
         EventManager():
-            onEnterNewFrame(std::make_unique<RegularEventPublisher>(1)),
-            mainFrameStepLoop(std::make_unique<RegularEventPublisher>(2))
+            onEnterNewFrame(std::make_unique<RegularEventPublisher>(_EVENT_ON_ENTER_FRAME)),
+            primaryUpdate(std::make_unique<RegularEventPublisher>(_EVENT_PRIMARY_UPDATE))
         {}
 
     public:
         std::unique_ptr<RegularEventPublisher> onEnterNewFrame;
-        std::unique_ptr<RegularEventPublisher> mainFrameStepLoop;
+        std::unique_ptr<RegularEventPublisher> primaryUpdate;
     };
 }
 

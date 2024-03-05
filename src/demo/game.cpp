@@ -25,5 +25,9 @@ void Game::Run()
 
 void Game::InitScene()
 {
-    
+    Box *box = new Box(100, 10);
+    Box *boxtwo = new Box(500, 10);
+    Pipe *pipe = new Pipe(100, 500);
+
+    box->fall = true;
 }

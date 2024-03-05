@@ -8,14 +8,14 @@ Box::Box(float x, float y):
 
     mia::portraitRenderer->RegisterPortrait(portrait());
 
-    mia::events->mainFrameStepLoop->RegisterListener(this);
+    mia::events->primaryUpdate->RegisterListener(this);
 }
 
 void Box::Update(uint8_t message)
 {
     switch (message)
     {
-    case 2:
+    case mia::_EVENT_PRIMARY_UPDATE:
         if (fall) body()->velocity.y = 500;
         break;
     

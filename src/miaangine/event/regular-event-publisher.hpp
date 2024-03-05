@@ -27,10 +27,12 @@ namespace mia
         void Log() override;
     };
 
-    // typedef enum
-    // {
-    //     MIA_
-    // } 
+    typedef enum
+    {
+        _EVENT_ON_ENTER_FRAME,
+        _EVENT_PRIMARY_UPDATE
+
+    } RegularEventType;
 }
 
 #endif

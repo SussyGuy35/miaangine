@@ -12,4 +12,6 @@
 #include "core/time.hpp"
 #include "util/math.hpp"
 
+#include "event/regular-event-publisher.hpp"
+
 #endif

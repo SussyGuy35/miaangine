@@ -27,7 +27,7 @@ namespace mia
         }
     }
 
-    void RegularEventPublisher::Log()
+    void RegularEventPublisher::Log() //TODO
     {
         SDL_Log("%.2f - %llu | "
                 "EventListener > Listeners Count(%d)",

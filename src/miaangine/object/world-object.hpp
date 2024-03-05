@@ -2,6 +2,7 @@
 #define _MIA_GAME_OBJECT_HPP
 
 #include <SDL.h>
+#include <vector>
 
 #include "event/event-listener-interface.hpp"
 
@@ -23,13 +24,12 @@ namespace mia
         Vector2 position;
 
     protected:
-        Portrait *_portrait;
-        Body *_body;
-        // Straight using these variables in derived class may cause undefined reference error
+        std::vector<Portrait*> _portraits;
+        std::vector<Body*> _bodies;
 
     public:
-        Portrait *portrait();
-        Body *body();
+        Portrait *portrait(int index = 0);
+        Body *body(int index = 0);
 
         void AttachPortrait(Portrait *portrait);
         void AttachBody(Body *body);

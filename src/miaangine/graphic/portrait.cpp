@@ -16,7 +16,7 @@ namespace mia
         master(nullptr)
     {}
 
-    void Portrait::Log()
+    void Portrait::Log() //TODO
     {
         SDL_Log("%.2f - %llu | "
                 "Portrait > Size(%.2f, %.2f); Offset(%.2f, %.2f)",

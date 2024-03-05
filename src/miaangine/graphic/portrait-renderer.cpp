@@ -41,7 +41,7 @@ namespace mia
         SDL_RenderPresent(sdlHandle->renderer);
     }
 
-    void PortraitRenderer::Log()
+    void PortraitRenderer::Log() //TODO
     {
         SDL_Log("%.2f - %llu | "
                 "PortraitRenderer > Portrait Count(%d)",

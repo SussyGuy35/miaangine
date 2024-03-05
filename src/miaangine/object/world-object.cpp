@@ -8,96 +8,88 @@
 namespace mia
 {
     WorldObject::WorldObject(Vector2 position):
-        position(position),
-        _portrait(nullptr),
-        _body(nullptr)
+        position(position)
     {}
     WorldObject::WorldObject(float x, float y):
-        position(Vector2(x, y)),
-        _portrait(nullptr),
-        _body(nullptr)
+        position(Vector2(x, y))
     {}
 
     WorldObject::~WorldObject()
     {
-        delete(_portrait);
-        delete(_body);
+        for (auto& body : _bodies) delete(body);
+        _bodies.clear();
+
+        for (auto& portrait : _portraits) delete(portrait);
+        _portraits.clear();
     }
 
-    Portrait *WorldObject::portrait()
+    Portrait *WorldObject::portrait(int index)
     {
-        if (_portrait == nullptr) 
+        if (_portraits.empty()) 
         {
             SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "WorldObject > Portrait: Null reference"); //FIXME
             return nullptr;
         }
 
-        return _portrait;
+        return _portraits[index];
     }
 
-    Body *WorldObject::body()
+    Body *WorldObject::body(int index)
     {
-        if (_portrait == nullptr) 
+        if (_bodies.empty()) 
         {
             SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "WorldObject > Body: Null reference"); //FIXME
             return nullptr;
         }
 
-        return _body;
+        return _bodies[index];
     }
 
     void WorldObject::AttachPortrait(Portrait *portrait)
     {
-        if (_portrait != nullptr) delete(_portrait);
-
-        _portrait = portrait;
-        _portrait->master = this;
+        _portraits.push_back(portrait);
+        portrait->master = this;
     }
 
     void WorldObject::AttachBody(Body *body)
     {
-        if (_body != nullptr) delete(_body);
-
-        _body = body;
-        _body->master = this;
+        _bodies.push_back(body);
+        body->master = this;
     }
 
     void WorldObject::MakePortrait(Vector2 size, Vector2 offset)
     {
-        if (_portrait != nullptr) delete(_portrait);
-
-        _portrait = new Portrait(size, offset);
-        _portrait->master = this;
+        Portrait *portrait = new Portrait(size, offset);
+        _portraits.push_back(portrait);
+        portrait->master = this;
     }
     void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
-        if (_portrait != nullptr) delete(_portrait);
-        _portrait = new Portrait(sx, sy, ox, oy);
-        _portrait->master = this;
+        Portrait *portrait = new Portrait(sx, sy, ox, oy);
+        _portraits.push_back(portrait);
+        portrait->master = this;
     }
 
     void WorldObject::MakeBody(Vector2 size, Vector2 offset)
     {
-        if (_body != nullptr) delete(_body);
-
-        _body = new Body(size, offset);
-        _body->master = this;
-        physicWorld->AddBody(_body);
+        Body *body = new Body(size, offset);
+        _bodies.push_back(body);
+        body->master = this;
+        physicWorld->AddBody(body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
-        if (_body != nullptr) delete(_body);
-
-        _body = new Body(sx, sy, ox, oy);
-        _body->master = this;
-        physicWorld->AddBody(_body);
+        Body *body = new Body(sx, sy, ox, oy);
+        _bodies.push_back(body);
+        body->master = this;
+        physicWorld->AddBody(body);
     }
 
-    void WorldObject::Log()
+    void WorldObject::Log() //TODO
     {
         SDL_Log("%.2f - %llu | "
-                "WorldObject > Position(%.2f, %.2f); HasPortrait(%d); HasBody(%d)",
+                "WorldObject > Position(%.2f, %.2f); Portrait Count(%d); Body Count(%d)",
                 Time::time, Time::stepCount,
-                position.x, position.y, (_portrait != nullptr), (_body != nullptr));
+                position.x, position.y, static_cast<int>(_portraits.size()), static_cast<int>(_bodies.size()));
     }
 }

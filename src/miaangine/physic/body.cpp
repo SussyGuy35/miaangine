@@ -18,7 +18,7 @@ namespace mia
         colliding(false)
     {}
 
-    void Body::Log()
+    void Body::Log() //TODO
     {
         SDL_Log("%.2f - %llu | "
                 "Body > Size(%.2f, %.2f); Offset(%.2f, %.2f); Velocity(%.2f, %.2f); Colliding(%d)",

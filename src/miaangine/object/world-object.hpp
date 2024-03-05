@@ -1,7 +1,9 @@
 #ifndef _MIA_GAME_OBJECT_HPP
 #define _MIA_GAME_OBJECT_HPP
 
-#include "event/event-manager.hpp"
+#include <SDL.h>
+
+#include "event/event-listener-interface.hpp"
 
 #include "util/math.hpp"
 

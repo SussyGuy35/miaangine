@@ -1,22 +1,25 @@
-#include "box.hpp"
+#include "bird.hpp"
 
-Box::Box(float x, float y):
+Bird::Bird(float x, float y):
     WorldObject(x, y)
 {
     MakePortrait(50, 50);
     MakeBody(50, 50);
 
     mia::portraitRenderer->RegisterPortrait(portrait());
+    portrait()->color = {255, 20, 255, 255};
 
     mia::events->primaryUpdate->RegisterListener(this);
 }
 
-void Box::Update(uint8_t message)
+void Bird::Update(uint8_t message)
 {
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        if (fall) body()->velocity.y = 500;
+        acceleration += GRAVITY * mia::Time::elapseTime;
+
+        body()->velocity.y += acceleration;
         break;
     
     default:

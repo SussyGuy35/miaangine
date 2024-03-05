@@ -1,6 +1,6 @@
 #include "engine.hpp"
 
-mia::SDLHandle *mia::sdlHandle = new mia::SDLHandle(800, 600, false);
+mia::SDLHandle *mia::sdlHandle = new mia::SDLHandle(400, 600, false);
 mia::EventManager *mia::events = new mia::EventManager();
 mia::InputManager *mia::inputs = new mia::InputManager();
 mia::PortraitRenderer *mia::portraitRenderer = new mia::PortraitRenderer();

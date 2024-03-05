@@ -2,6 +2,7 @@
 #define _MIA_COLLIDER_HPP
 
 #include "util/math.hpp"
+#include "core/time.hpp"
 
 #include "object/world-object.hpp"
 

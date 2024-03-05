@@ -96,27 +96,27 @@ namespace mia
 		}
 		static const Vector2& down()
 		{
-			static const Vector2 result(0, 1);
+			static const Vector2 result(0, -1);
 			return result;
 		}
 		static const Vector2& right()
 		{
-			static const Vector2 result(0, 1);
+			static const Vector2 result(1, 0);
 			return result;
 		}
 		static const Vector2& left()
 		{
-			static const Vector2 result(0, 1);
+			static const Vector2 result(-1, 0);
 			return result;
 		}
 		static const Vector2& zero()
 		{
-			static const Vector2 result(0, 1);
+			static const Vector2 result(0, 0);
 			return result;
 		}
 		static const Vector2& one()
 		{
-			static const Vector2 result(0, 1);
+			static const Vector2 result(1, 1);
 			return result;
 		}
 	};

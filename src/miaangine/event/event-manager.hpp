@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "game-loop-event-publisher.hpp"
+#include "regular-event-publisher.hpp"
 
 namespace mia
 {
@@ -11,13 +11,13 @@ namespace mia
     {
     public:
         EventManager():
-            onEnterNewFrame(std::make_unique<GameLoopEventPublisher>(1)),
-            mainFrameStepLoop(std::make_unique<GameLoopEventPublisher>(2))
+            onEnterNewFrame(std::make_unique<RegularEventPublisher>(1)),
+            mainFrameStepLoop(std::make_unique<RegularEventPublisher>(2))
         {}
 
     public:
-        std::unique_ptr<GameLoopEventPublisher> onEnterNewFrame;
-        std::unique_ptr<GameLoopEventPublisher> mainFrameStepLoop;
+        std::unique_ptr<RegularEventPublisher> onEnterNewFrame;
+        std::unique_ptr<RegularEventPublisher> mainFrameStepLoop;
     };
 }
 

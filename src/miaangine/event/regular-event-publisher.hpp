@@ -1,5 +1,5 @@
-#ifndef _MIA_GAME_LOOP_EVENTS_HPP
-#define _MIA_GAME_LOOP_EVENTS_HPP
+#ifndef _MIA_REGULAR_EVENT_PUBLISHER_HPP
+#define _MIA_REGULAR_EVENT_PUBLISHER_HPP
 
 #include <stdint.h>
 #include <vector>
@@ -8,10 +8,10 @@
 
 namespace mia 
 {
-    class GameLoopEventPublisher : public IEventPublisher
+    class RegularEventPublisher : public IEventPublisher
     {
     public:
-        GameLoopEventPublisher(uint8_t message = 0):
+        RegularEventPublisher(uint8_t message = 0):
             _message(message)
         {}
 
@@ -26,6 +26,11 @@ namespace mia
         void NotifyListeners() override;
         void Log() override;
     };
+
+    // typedef enum
+    // {
+    //     MIA_
+    // } 
 }
 
 #endif

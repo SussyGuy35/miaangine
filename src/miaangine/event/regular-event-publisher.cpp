@@ -1,15 +1,15 @@
-#include "game-loop-event-publisher.hpp"
+#include "regular-event-publisher.hpp"
 
 #include <algorithm>
 
 namespace mia 
 {
-    void GameLoopEventPublisher::RegisterListener(IEventListener *listener)
+    void RegularEventPublisher::RegisterListener(IEventListener *listener)
     {
         _listeners.push_back(listener);
     }
 
-    void GameLoopEventPublisher::RemoveListener(IEventListener *listener)
+    void RegularEventPublisher::RemoveListener(IEventListener *listener)
     {
         auto listenerIterator = std::find(_listeners.begin(), _listeners.end(), listener);
 
@@ -19,7 +19,7 @@ namespace mia
         }
     }
 
-    void GameLoopEventPublisher::NotifyListeners()
+    void RegularEventPublisher::NotifyListeners()
     {
         for (IEventListener *listener : _listeners)
         {
@@ -27,7 +27,7 @@ namespace mia
         }
     }
 
-    void GameLoopEventPublisher::Log()
+    void RegularEventPublisher::Log()
     {
         SDL_Log("%.2f - %llu | "
                 "EventListener > Listeners Count(%d)",

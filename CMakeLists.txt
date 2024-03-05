@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 
 project(game)
 
-# list(APPEND CMAKE_PREFIX_PATH "C:\\Development\\MinGW\\lib\\cmake\\SDL2")
 find_package(SDL2 REQUIRED)
 
 add_compile_options(-w -Wl,-subsystem,windows)

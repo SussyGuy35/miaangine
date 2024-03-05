@@ -10,12 +10,14 @@
     class mia::Portrait
     {
     public:
-        Portrait(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
-        Portrait(float sx, float sy, float ox = 0, float oy = 0);
+        Portrait(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero(), SDL_Color color = {255, 255, 255, 255});
+        Portrait(float sx, float sy, float ox = 0, float oy = 0, SDL_Color color = {255, 255, 255, 255});
 
     public:
         Vector2 size;
         Vector2 offset;
+
+        SDL_Color color;
 
         WorldObject *master;
 

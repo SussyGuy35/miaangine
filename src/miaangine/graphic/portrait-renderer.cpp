@@ -34,7 +34,7 @@ namespace mia
             rect.w = portrait->size.x;
             rect.h = portrait->size.y;
 
-            SDL_SetRenderDrawColor(sdlHandle->renderer, 255, 0, 0, 255);
+            SDL_SetRenderDrawColor(sdlHandle->renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
             SDL_RenderFillRect(sdlHandle->renderer, &rect);
         }
 

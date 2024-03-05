@@ -48,35 +48,46 @@ namespace mia
 
     void WorldObject::AttachPortrait(Portrait *portrait)
     {
+        if (_portrait != nullptr) delete(_portrait);
+
         _portrait = portrait;
         _portrait->master = this;
     }
 
     void WorldObject::AttachBody(Body *body)
     {
-        this->_body = body;
-        this->_body->master = this;
+        if (_body != nullptr) delete(_body);
+
+        _body = body;
+        _body->master = this;
     }
 
     void WorldObject::MakePortrait(Vector2 size, Vector2 offset)
     {
+        if (_portrait != nullptr) delete(_portrait);
+
         _portrait = new Portrait(size, offset);
         _portrait->master = this;
     }
     void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
+        if (_portrait != nullptr) delete(_portrait);
         _portrait = new Portrait(sx, sy, ox, oy);
         _portrait->master = this;
     }
 
     void WorldObject::MakeBody(Vector2 size, Vector2 offset)
     {
+        if (_body != nullptr) delete(_body);
+
         _body = new Body(size, offset);
         _body->master = this;
         physicWorld->AddBody(_body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
+        if (_body != nullptr) delete(_body);
+
         _body = new Body(sx, sy, ox, oy);
         _body->master = this;
         physicWorld->AddBody(_body);

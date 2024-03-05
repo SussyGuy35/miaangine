@@ -29,8 +29,8 @@ namespace mia
 
     void GameLoopEventPublisher::Log()
     {
-        SDL_Log(":: %f : %llu ::\n"
-                "EventListener > Listeners Count(%d)\n<>",
+        SDL_Log("%.2f - %llu | "
+                "EventListener > Listeners Count(%d)",
                 Time::time, Time::stepCount,
                 _listeners.size());
     }

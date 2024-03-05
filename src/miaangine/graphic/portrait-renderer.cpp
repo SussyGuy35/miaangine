@@ -43,8 +43,8 @@ namespace mia
 
     void PortraitRenderer::Log()
     {
-        SDL_Log(":: %f : %llu ::\n"
-                "PortraitRenderer > Portrait Count(%d)\n<>",
+        SDL_Log("%.2f - %llu | "
+                "PortraitRenderer > Portrait Count(%d)",
                 Time::time, Time::stepCount,
                 _portraits.size());
     }

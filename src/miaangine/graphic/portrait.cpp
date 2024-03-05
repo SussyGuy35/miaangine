@@ -16,8 +16,8 @@ namespace mia
 
     void Portrait::Log()
     {
-        SDL_Log(":: %f : %llu ::\n"
-                "Portrait > Size(%.2f, %.2f); Offset(%.2f, %.2f)\n<>",
+        SDL_Log("%.2f - %llu | "
+                "Portrait > Size(%.2f, %.2f); Offset(%.2f, %.2f)",
                 Time::time, Time::stepCount,
                 size.x, size.y, offset.x, offset.y);
     }

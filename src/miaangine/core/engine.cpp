@@ -8,9 +8,10 @@ mia::PhysicWorld *mia::physicWorld = new mia::PhysicWorld();
 
 void mia::Init()
 {
-    SDL_Log("*MIAANGINE*");
+    SDL_Log("**MIAANGINE**\n\n");
 
     sdlHandle->Init();
+    sdlHandle->Log();
 
     inputs->SetupKeyBind();
 }

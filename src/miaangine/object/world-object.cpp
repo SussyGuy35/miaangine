@@ -95,9 +95,9 @@ namespace mia
 
     void WorldObject::Log()
     {
-        SDL_Log(":: %f : %llu ::\n"
-                "WorldObject > Position(%.2f, %.2f)\n<>",
+        SDL_Log("%.2f - %llu | "
+                "WorldObject > Position(%.2f, %.2f); HasPortrait(%d); HasBody(%d)",
                 Time::time, Time::stepCount,
-                position.x, position.y);
+                position.x, position.y, (_portrait != nullptr), (_body != nullptr));
     }
 }

@@ -47,8 +47,8 @@ namespace mia
 
     void SDLHandle::Log()
     {
-        SDL_Log(":: %f : %llu ::\n"
-                "SDLHandle > Screen: Width(%u); Height (%u); Fullscreen(%d)\n<>",
+        SDL_Log("%.2f - %llu | "
+                "SDLHandle > Screen: Width(%u); Height (%u); Fullscreen(%d)",
                 Time::time, Time::stepCount,
                 _width, _height, _fullscreen);
     }

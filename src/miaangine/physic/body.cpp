@@ -20,8 +20,8 @@ namespace mia
 
     void Body::Log()
     {
-        SDL_Log(":: %f : %llu ::\n"
-                "Body > Size(%.2f, %.2f); Offset(%.2f, %.2f); Velocity(%.2f, %.2f); Colliding(%d)\n<>",
+        SDL_Log("%.2f - %llu | "
+                "Body > Size(%.2f, %.2f); Offset(%.2f, %.2f); Velocity(%.2f, %.2f); Colliding(%d)",
                 Time::time, Time::stepCount,
                 size.x, size.y, offset.x, offset.y, velocity.x, velocity.y, colliding);
     }

@@ -24,7 +24,11 @@ namespace mia
 
         void Step(double timePass);
 
-        bool CollideCheck(Body *bodyA, Body *bodyB);
+        bool IsColliding(Body *bodyA, Body *bodyB);
+    
+    private:
+        void BodiesVelocityCalculate(double timePass);
+        void BodiesCollideCheck();
     };
 }
 

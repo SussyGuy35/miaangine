@@ -5,7 +5,7 @@ void Box::Update(uint8_t message)
     switch (message)
     {
     case 2:
-        if (fall) position.y += 500 * mia::Time::elapseTime;
+        if (fall) body->velocity.y = 500;
         break;
     
     default:

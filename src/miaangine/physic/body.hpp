@@ -19,6 +19,7 @@
 
         WorldObject *master;
 
+        Vector2 velocity;
         bool colliding;
 
         virtual void Log();

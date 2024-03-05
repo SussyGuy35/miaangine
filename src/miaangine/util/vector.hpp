@@ -8,13 +8,13 @@ namespace mia
     class Vector2
 	{
 	public: 
-		Vector2(float _x = 0, float _y = 0):
+		Vector2(double _x = 0, double _y = 0):
 			x(_x),
 			y(_y)
 		{}
 
 	public:
-		float x, y;
+		double x, y;
 
 	public:
 		Vector2& operator= (const Vector2& _t)
@@ -34,26 +34,50 @@ namespace mia
 		{
 			return Vector2(x - _t.x, y - _t.y);
 		}
-		inline Vector2 operator*(const float& _t)
+		inline Vector2 operator*(const double& _t)
 		{
 			return Vector2(x * _t, y * _t);
 		}
-		inline Vector2 operator/(const float& _t)
+		inline Vector2 operator/(const double& _t)
 		{
 			return Vector2(x / _t, y / _t);
 		}
+		inline Vector2 operator+=(const Vector2& _t)
+		{
+			x += _t.x;
+			y += _t.y;
+			return *this;
+		}
+		inline Vector2 operator-=(const Vector2& _t)
+		{
+			x -= _t.x;
+			y -= _t.y;
+			return *this;
+		}
+		inline Vector2 operator*=(const double& _t)
+		{
+			x *= _t;
+			y *= _t;
+			return *this;
+		}
+		inline Vector2 operator/=(const double& _t)
+		{
+			x /= _t;
+			y /= _t;
+			return *this;
+		}
 
 		// Product operator
-		inline float Dot(Vector2 _t)
+		inline double Dot(Vector2 _t)
 		{
 			return (x * _t.x) + (y * _t.y);
 		}
-		inline float Cross(Vector2 _t)
+		inline double Cross(Vector2 _t)
 		{
 			return (x * _t.y) - (y * _t.x);
 		}
 
-		inline float Magnitude()
+		inline double Magnitude()
 		{
 			return sqrt(x * x + y * y);
 		}

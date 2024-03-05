@@ -5,7 +5,7 @@ void Pipe::Update(uint8_t message)
     switch (message)
     {
     case 2:
-        position.x -= 50 * mia::Time::elapseTime;
+        body->velocity.x = -50;
         break;
     
     default:

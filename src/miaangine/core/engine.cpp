@@ -35,7 +35,7 @@ void mia::NewFrame()
 
     events->mainFrameStepLoop->NotifyListeners();
 
-    physicWorld->Step(0.0); //TODO
+    physicWorld->Step(Time::elapseTime); //TODO
 }
 
 void mia::Render()

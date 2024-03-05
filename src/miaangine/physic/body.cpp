@@ -6,6 +6,7 @@ namespace mia
         size(size),
         offset(offset),
         master(nullptr),
+        velocity(Vector2::zero()),
         colliding(false)
     {}
 
@@ -13,14 +14,15 @@ namespace mia
         size(Vector2(sx, sy)),
         offset(Vector2(ox, oy)),
         master(nullptr),
+        velocity(Vector2::zero()),
         colliding(false)
     {}
 
     void Body::Log()
     {
         SDL_Log(":: %f : %llu ::\n"
-                "Body > Size(%.2f, %.2f); Offset(%.2f, %.2f); Colliding(%d)\n<>",
+                "Body > Size(%.2f, %.2f); Offset(%.2f, %.2f); Velocity(%.2f, %.2f); Colliding(%d)\n<>",
                 Time::time, Time::stepCount,
-                size.x, size.y, offset.x, offset.y, colliding);
+                size.x, size.y, offset.x, offset.y, velocity.x, velocity.y, colliding);
     }
 }

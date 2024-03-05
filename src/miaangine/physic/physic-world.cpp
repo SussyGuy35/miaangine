@@ -21,23 +21,12 @@ namespace mia
 
     void PhysicWorld::Step(double timePass) //TODO
     {
-        for (int i = 0; i < static_cast<int>(_bodies.size()); i++) _bodies[i]->colliding = false;
-        for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
-        {
-            Body *bodyA = _bodies[i];
-            for (int j = i + 1; j < static_cast<int>(_bodies.size()); j++)
-            {
-                Body *bodyB = _bodies[j];
-
-                if (CollideCheck(bodyA, bodyB))
-                {
-                    bodyA->colliding = bodyB->colliding = true;
-                }
-            }
-        }
+        BodiesVelocityCalculate(timePass);
+        
+        BodiesCollideCheck();
     }
 
-    bool PhysicWorld::CollideCheck(Body *bodyA, Body *bodyB)
+    bool PhysicWorld::IsColliding(Body *bodyA, Body *bodyB)
     {
         float aMinX = bodyA->master->position.x + bodyA->offset.x - bodyA->size.x; 
         float aMaxX = bodyA->master->position.x + bodyA->offset.x + bodyA->size.x; 
@@ -53,5 +42,34 @@ namespace mia
                 aMaxX >= bMinX &&
                 aMinY <= bMaxY &&
                 aMaxY >= bMinY);
+    }
+
+    void PhysicWorld::BodiesVelocityCalculate(double timePass)
+    {
+        for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
+        {
+            Body *body = _bodies[i];
+            Vector2 &position = body->master->position;
+
+            position += body->velocity * timePass;
+        }
+    }
+
+    void PhysicWorld::BodiesCollideCheck()
+    {
+        for (int i = 0; i < static_cast<int>(_bodies.size()); i++) _bodies[i]->colliding = false;
+        for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
+        {
+            Body *bodyA = _bodies[i];
+            for (int j = i + 1; j < static_cast<int>(_bodies.size()); j++)
+            {
+                Body *bodyB = _bodies[j];
+
+                if (IsColliding(bodyA, bodyB))
+                {
+                    bodyA->colliding = bodyB->colliding = true;
+                }
+            }
+        }
     }
 }

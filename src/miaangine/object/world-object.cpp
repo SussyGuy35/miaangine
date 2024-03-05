@@ -3,6 +3,8 @@
 #include "graphic/portrait.hpp"
 #include "physic/body.hpp"
 
+#include "core/engine.hpp"
+
 namespace mia
 {
     WorldObject::WorldObject(Vector2 position):
@@ -45,11 +47,13 @@ namespace mia
     {
         body = new Body(size, offset);
         body->master = this;
+        physicWorld->AddBody(body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
         body = new Body(sx, sy, ox, oy);
         body->master = this;
+        physicWorld->AddBody(body);
     }
 
     void WorldObject::Log()

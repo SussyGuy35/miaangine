@@ -25,5 +25,7 @@ void Game::Run()
 
 void Game::InitScene()
 {
-    Bird *box = new Bird(100, 250);
+    Bird *box = new Bird(70, 250);
+    Pipe *pipe = new Pipe();
+    pipe->Reset();
 }

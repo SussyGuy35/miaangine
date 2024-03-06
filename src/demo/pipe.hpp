@@ -3,7 +3,15 @@
 class Pipe : public mia::WorldObject
 {
 public:
-    Pipe(float x, float y);
+    Pipe();
 
     void Update(uint8_t message) override;
+
+private:
+    const int PIPE_HOLE_RADIUS;
+    const int PIPE_WIDTH;
+    const float SPEED;
+
+public:
+    void Reset();
 };

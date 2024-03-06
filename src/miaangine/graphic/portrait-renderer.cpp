@@ -8,6 +8,7 @@ namespace mia
 {
     void PortraitRenderer::RegisterPortrait(Portrait *portrait)
     {
+        // portrait->Log();
         _portraits.push_back(portrait);
     }
 
@@ -30,9 +31,10 @@ namespace mia
         {
             SDL_Rect rect;
             rect.x = portrait->master->position.x + portrait->offset.x;
-            rect.y = portrait->master->position.y + portrait->offset.x;
+            rect.y = portrait->master->position.y + portrait->offset.y;
             rect.w = portrait->size.x;
             rect.h = portrait->size.y;
+
 
             SDL_SetRenderDrawColor(sdlHandle->renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
             SDL_RenderFillRect(sdlHandle->renderer, &rect);

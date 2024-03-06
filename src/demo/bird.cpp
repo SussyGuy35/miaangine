@@ -1,10 +1,14 @@
 #include "bird.hpp"
 
 Bird::Bird(float x, float y):
-    WorldObject(x, y)
+    WorldObject(x, y),
+    SIZE(mia::Vector2(50, 47)),
+    GRAVITY(1500),
+    JUMP_VELOCITY(-550)
+
 {
-    MakePortrait(50, 50);
-    MakeBody(50, 50);
+    MakePortrait(SIZE);
+    MakeBody(SIZE);
 
     mia::portraitRenderer->RegisterPortrait(portrait());
     portrait()->color = {255, 20, 255, 255};
@@ -17,9 +21,14 @@ void Bird::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        acceleration += GRAVITY * mia::Time::elapseTime;
+        body()->velocity.y += GRAVITY * mia::Time::elapseTime;
+        
+        if (mia::inputs->GetButtonDown("Jump"))
+        {
+            body()->velocity.y = JUMP_VELOCITY;
+        }
 
-        body()->velocity.y += acceleration;
+        if (body()->colliding) SDL_Log("A");
         break;
     
     default:

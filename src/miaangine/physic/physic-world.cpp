@@ -61,7 +61,6 @@ namespace mia
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
         {
             Body *bodyA = _bodies[i];
-            bodyA->Log();
             for (int j = i + 1; j < static_cast<int>(_bodies.size()); j++)
             {
                 Body *bodyB = _bodies[j];

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "miaangine.hpp"
 
 class Pipe : public mia::WorldObject
@@ -13,5 +15,7 @@ private:
     const float SPEED;
 
 public:
+    bool moving;
+
     void Reset();
 };

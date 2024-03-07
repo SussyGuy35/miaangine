@@ -9,7 +9,4 @@ public:
 
 public:
     void Run();
-
-private:
-    void InitScene();
 };

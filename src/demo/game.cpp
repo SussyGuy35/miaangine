@@ -4,12 +4,16 @@
 
 #include "bird.hpp"
 #include "pipe.hpp"
+#include "pipe-manager.hpp"
 
 void Game::Run()
 {
     mia::Init();
 
-    InitScene();
+    Bird *bird = new Bird(70, 250);
+    PipeManager *pipeManager = new PipeManager();
+
+    pipeManager->Start();
     
     while (true)
     {
@@ -17,15 +21,10 @@ void Game::Run()
 
         if (mia::inputs->IsQuit()) break;
 
+        if (bird->body()->colliding) pipeManager->Stop();
+
         mia::Render();
     }
 
     mia::End();
-}
-
-void Game::InitScene()
-{
-    Bird *box = new Bird(70, 250);
-    Pipe *pipe = new Pipe();
-    pipe->Reset();
 }

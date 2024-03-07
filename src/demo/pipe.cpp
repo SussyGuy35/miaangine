@@ -2,11 +2,13 @@
 
 Pipe::Pipe():
     WorldObject("Pipe", 0, 0),
-    PIPE_HOLE_RADIUS(100),
+    PIPE_HOLE_RADIUS(95),
     PIPE_WIDTH(90),
-    SPEED(160)
+    SPEED(170)
 
 {
+    moving = true;
+
     MakePortrait(PIPE_WIDTH, 600, 0, -600 - PIPE_HOLE_RADIUS);
     MakeBody(PIPE_WIDTH, 600, 0, -600 - PIPE_HOLE_RADIUS);
 
@@ -27,7 +29,8 @@ void Pipe::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        body()->velocity.x = -SPEED;
+        if (moving) body()->velocity.x = -SPEED;
+        else body()->velocity.x = 0;
         break;
     
     default:

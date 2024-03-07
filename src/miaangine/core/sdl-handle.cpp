@@ -6,16 +6,20 @@
 
 namespace mia
 {
-    SDLHandle::SDLHandle(uint32_t _width, uint32_t _height, bool _fullscreen):
-        _width(_width),
-        _height(_height),
-        _fullscreen(_fullscreen)
+    SDLHandle::SDLHandle():
+        _width(0),
+        _height(0),
+        _fullscreen(0)
     {
 
     }
 
-    bool SDLHandle::Init()
+    bool SDLHandle::Init(uint32_t width, uint32_t height, bool fullscreen)
     {
+        _width = width;
+        _height = height;
+        _fullscreen = fullscreen;
+
         if(SDL_Init(SDL_INIT_VIDEO) < 0) return false;
 
         // Create window

@@ -8,7 +8,7 @@ namespace mia
     class SDLHandle
     {
     public:
-        SDLHandle(uint32_t width, uint32_t height, bool fullscreen);
+        SDLHandle();
 
     private:
         uint32_t _width;
@@ -19,7 +19,7 @@ namespace mia
         SDL_Window *window;
         SDL_Renderer *renderer;
 
-        bool Init();
+        bool Init(uint32_t width, uint32_t height, bool fullscreen);
         void Clear();
 
         void Log();

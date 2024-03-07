@@ -1,16 +1,16 @@
 #include "engine.hpp"
 
-mia::SDLHandle *mia::sdlHandle = new mia::SDLHandle(400, 600, false);
+mia::SDLHandle *mia::sdlHandle = new mia::SDLHandle();
 mia::EventManager *mia::events = new mia::EventManager();
 mia::InputManager *mia::inputs = new mia::InputManager();
 mia::PortraitRenderer *mia::portraitRenderer = new mia::PortraitRenderer();
 mia::PhysicWorld *mia::physicWorld = new mia::PhysicWorld();
 
-void mia::Init()
+void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 {
     SDL_Log("**MIAANGINE**\n");
 
-    sdlHandle->Init();
+    sdlHandle->Init(width, height, fullscreen);
     sdlHandle->Log();
 
     inputs->SetupKeyBind();

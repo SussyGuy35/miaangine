@@ -15,7 +15,7 @@ namespace mia
     extern PortraitRenderer *portraitRenderer;
     extern PhysicWorld *physicWorld;
 
-    void Init();
+    void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();
 
     void NewFrame();

@@ -6,17 +6,9 @@ namespace mia
         _gravity(Vector2(0.0, 9.81))
     {}
 
-    void PhysicWorld::AddBody(Body *body)
+    void PhysicWorld::RegisterBody(Body *body)
     {
         _bodies.push_back(body);
-    }
-
-    bool PhysicWorld::GetBody(int index, Body *bodyRef)
-    {
-        if (index >= static_cast<int>(_bodies.size())) return false;
-
-        bodyRef = _bodies[index];
-        return true;
     }
 
     void PhysicWorld::Step(double timePass)

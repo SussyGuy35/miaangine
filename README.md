@@ -119,13 +119,14 @@ MyObject():
 ```
 *You can also make a stand-alone Portrait by ```new Portrait()``` but I recomment using GameObject::MakePortrait()*
 
-### Physic
+### Physics
 **Miaangine physics only supports AABB** <br>
-Similar to the portrait, make a body by ```MakeBody()```, access it by ```body()``` (also support multiple body in one object)
+Similar to the portrait, make a body by ```MakeBody()```, access it by ```body()```, then use ```RegisterBody()``` to register the body to the physics world (also support multiple body in one object)
 ```c
 MyObject():
     WorldObject("Name of my object")
 {
     MakeBody(size, offset)
+    mia::physicWorld->RegisterBody(body());
 }
 ```

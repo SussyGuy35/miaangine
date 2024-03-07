@@ -18,9 +18,8 @@ namespace mia
         Vector2 _gravity;
 
     public:
-        void AddBody(Body *body);
+        void RegisterBody(Body *body);
         // void RemoveBody(Body *body); //TODO
-        bool GetBody(int index, Body *bodyRef);
 
         void Step(double timePass);
 

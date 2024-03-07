@@ -8,10 +8,11 @@ Bird::Bird(float x, float y):
 
 {
     MakePortrait(SIZE);
-    MakeBody(SIZE);
-
     mia::portraitRenderer->RegisterPortrait(portrait());
     portrait()->color = {255, 20, 255, 255};
+
+    MakeBody(SIZE);
+    mia::physicWorld->RegisterBody(body());
 
     mia::events->primaryUpdate->RegisterListener(this);
 }

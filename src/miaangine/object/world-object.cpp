@@ -80,8 +80,6 @@ namespace mia
 
         body->ShiftMaster(this);
         _bodies.push_back(body);
-
-        physicWorld->AddBody(body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
@@ -89,8 +87,6 @@ namespace mia
 
         body->ShiftMaster(this);
         _bodies.push_back(body);
-        
-        physicWorld->AddBody(body);
     }
 
     void WorldObject::Log() //TODO

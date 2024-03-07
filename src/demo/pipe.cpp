@@ -10,16 +10,16 @@ Pipe::Pipe():
     moving = true;
 
     MakePortrait(PIPE_WIDTH, 600, 0, -600 - PIPE_HOLE_RADIUS);
-    MakeBody(PIPE_WIDTH, 600, 0, -600 - PIPE_HOLE_RADIUS);
-
     MakePortrait(PIPE_WIDTH, 600, 0, PIPE_HOLE_RADIUS);
-    MakeBody(PIPE_WIDTH, 600, 0, PIPE_HOLE_RADIUS);
-
     portrait(0)->color = {10, 10, 255, 255};
     portrait(1)->color = {10, 10, 255, 255};
-
     mia::portraitRenderer->RegisterPortrait(portrait(0));
     mia::portraitRenderer->RegisterPortrait(portrait(1));
+
+    MakeBody(PIPE_WIDTH, 600, 0, -600 - PIPE_HOLE_RADIUS);
+    MakeBody(PIPE_WIDTH, 600, 0, PIPE_HOLE_RADIUS);
+    mia::physicWorld->RegisterBody(body(0));
+    mia::physicWorld->RegisterBody(body(1));
 
     mia::events->primaryUpdate->RegisterListener(this);
 }

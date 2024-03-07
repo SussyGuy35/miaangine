@@ -28,6 +28,8 @@ void Bird::Update(uint8_t message)
             body()->velocity.y = JUMP_VELOCITY;
         }
 
+        if (body()->colliding) SDL_Log("A");
+
         break;
     
     default:

@@ -8,11 +8,11 @@
 namespace mia
 {
     WorldObject::WorldObject(const char* name, Vector2 position):
-        name(name),
+        GameObject(name),
         position(position)
     {}
     WorldObject::WorldObject(const char* name, float x, float y):
-        name(name),
+        GameObject(name),
         position(Vector2(x, y))
     {}
 

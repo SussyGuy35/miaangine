@@ -1,11 +1,11 @@
-#ifndef _MIA_GAME_OBJECT_HPP
-#define _MIA_GAME_OBJECT_HPP
+#ifndef _MIA_WORLD_OBJECT_HPP
+#define _MIA_WORLD_OBJECT_HPP
 
 #include <SDL.h>
 #include <string>
 #include <vector>
 
-#include "event/event-listener-interface.hpp"
+#include "game-object.hpp"
 
 #include "util/math.hpp"
 
@@ -13,7 +13,7 @@ namespace mia
 {
     class Portrait;
     class Body;
-    class WorldObject : public IEventListener
+    class WorldObject : public GameObject
     {
     public:
         WorldObject(const char* name = "object", Vector2 position = Vector2::zero());
@@ -22,7 +22,6 @@ namespace mia
         ~WorldObject();
 
     public:
-        std::string name; //TODO
         Vector2 position;
 
     protected:

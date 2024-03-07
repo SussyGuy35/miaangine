@@ -64,7 +64,7 @@ public:
 ```
 
 ### Event system
-Miaangine uses event publisher system to notify each game object and you can freely custom it <br>
+*Miaangine uses event publisher system to notify each game object and you can freely custom it* <br>
 Use ```mia::events->[event publisher]->RegisterListener([object])``` to register object to a event publisher <br>
 Then the method ```Update(uint8_t message)``` in every game object is registered will be automatically called with a different ```uint8_t message``` based on the event 
 ```c
@@ -120,7 +120,7 @@ MyObject():
 *You can also make a stand-alone Portrait by ```new Portrait()``` but I recomment using GameObject::MakePortrait()*
 
 ### Physic
-**Miaangine physics only supports AABB**
+**Miaangine physics only supports AABB** <br>
 Similar to the portrait, make a body by ```MakeBody()```, access it by ```body()``` (also support multiple body in one object
 ```c
 MyObject():

@@ -1,7 +1,7 @@
 #include "engine.hpp"
 
 mia::SDLHandle *mia::sdlHandle = new mia::SDLHandle();
-mia::Events *mia::events = new mia::Events();
+mia::EventManager *mia::events = new mia::EventManager();
 mia::PortraitRenderer *mia::portraitRenderer = new mia::PortraitRenderer();
 mia::PhysicWorld *mia::physicWorld = new mia::PhysicWorld();
 

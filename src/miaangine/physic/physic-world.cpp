@@ -31,12 +31,12 @@ namespace mia
         float aMinX = bodyA->position->x + bodyA->offset.x; 
         float aMaxX = bodyA->position->x + bodyA->offset.x + bodyA->size.x; 
         float aMinY = bodyA->position->y + bodyA->offset.y; 
-        float aMaxY = bodyA->position->y + bodyA->offset.y + bodyA->size.y; 
+        float aMaxY = bodyA->position->y + bodyA->offset.y - bodyA->size.y; 
 
         float bMinX = bodyB->position->x + bodyB->offset.x; 
         float bMaxX = bodyB->position->x + bodyB->offset.x + bodyB->size.x; 
         float bMinY = bodyB->position->y + bodyB->offset.y; 
-        float bMaxY = bodyB->position->y + bodyB->offset.y + bodyB->size.y; 
+        float bMaxY = bodyB->position->y + bodyB->offset.y - bodyB->size.y; 
 
         return (aMinX <= bMaxX &&
                 aMaxX >= bMinX &&
@@ -51,7 +51,8 @@ namespace mia
             Body *body = _bodies[i];
             Vector2 &position = body->master->position;
 
-            position += body->velocity * timePass;
+            position.x += body->velocity.x * timePass;
+            position.y += body->velocity.y * timePass;
         }
     }
 
@@ -61,6 +62,7 @@ namespace mia
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
         {
             Body *bodyA = _bodies[i];
+            bodyA->Log();
             for (int j = i + 1; j < static_cast<int>(_bodies.size()); j++)
             {
                 Body *bodyB = _bodies[j];

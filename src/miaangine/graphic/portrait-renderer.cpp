@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <algorithm>
 
+#include "core/camera.hpp"
+
 namespace mia 
 {
     PortraitRenderer::PortraitRenderer()
@@ -30,12 +32,7 @@ namespace mia
 
         for (const Portrait *portrait : _portraits)
         {
-            SDL_Rect rect;
-            rect.x = portrait->position->x + portrait->offset.x;
-            rect.y = portrait->position->y + portrait->offset.y;
-            rect.w = portrait->size.x;
-            rect.h = portrait->size.y;
-
+            SDL_Rect rect = RectRenderingCalculate(portrait);
 
             SDL_SetRenderDrawColor(renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
             SDL_RenderFillRect(renderer, &rect);
@@ -50,5 +47,17 @@ namespace mia
                 "PortraitRenderer > Portrait Count(%d)",
                 Time::time, Time::stepCount,
                 _portraits.size());
+    }
+
+    SDL_Rect PortraitRenderer::RectRenderingCalculate(const Portrait *portrait)
+    {
+        SDL_Rect rect;
+
+        rect.x = portrait->position->x + portrait->offset.x - Camera::position.x;
+        rect.y = -(portrait->position->y + portrait->offset.y - Camera::position.y);
+        rect.w = portrait->size.x;
+        rect.h = portrait->size.y;
+
+        return rect;
     }
 }

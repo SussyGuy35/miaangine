@@ -3,8 +3,8 @@
 Bird::Bird(float x, float y):
     WorldObject("Bird", x, y),
     SIZE(mia::Vector2(50, 47)),
-    GRAVITY(1500),
-    JUMP_VELOCITY(-550)
+    GRAVITY(-1500),
+    JUMP_VELOCITY(550)
 
 {
     MakePortrait(SIZE);

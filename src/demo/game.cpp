@@ -10,7 +10,7 @@ void Game::Run()
 {
     mia::Init(400, 600, 0);
 
-    Bird *bird = new Bird(70, 250);
+    Bird *bird = new Bird(70, -250);
     PipeManager *pipeManager = new PipeManager();
 
     pipeManager->Start();

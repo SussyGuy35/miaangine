@@ -17,17 +17,21 @@
         ~Portrait();
 
     private:
+        std::string _unclaimName;
         Vector2 _unclaimPosition;
 
     public:
         Vector2 size;
         Vector2 offset;
+
+        std::string *name = &_unclaimName;
         Vector2 *position = &_unclaimPosition;
 
         SDL_Color color;
 
         WorldObject *master;
 
+        void ShiftMaster(WorldObject *master);
         virtual void Log();
     };
 // }

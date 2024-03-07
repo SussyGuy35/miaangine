@@ -7,10 +7,12 @@
 
 namespace mia
 {
-    WorldObject::WorldObject(Vector2 position):
+    WorldObject::WorldObject(const char* name, Vector2 position):
+        name(name),
         position(position)
     {}
-    WorldObject::WorldObject(float x, float y):
+    WorldObject::WorldObject(const char* name, float x, float y):
+        name(name),
         position(Vector2(x, y))
     {}
 
@@ -47,59 +49,55 @@ namespace mia
 
     void WorldObject::AttachPortrait(Portrait *portrait)
     {
+        portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
-        portrait->master = this;
-        portrait->position = &position;
     }
 
     void WorldObject::AttachBody(Body *body)
     {
+        body->ShiftMaster(this);
         _bodies.push_back(body);
-        body->master = this;
-        body->position = &position;
     }
 
     void WorldObject::MakePortrait(Vector2 size, Vector2 offset)
     {
         Portrait *portrait = new Portrait(size, offset);
 
+        portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
-        portrait->master = this;
-        portrait->position = &position;
     }
     void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
         Portrait *portrait = new Portrait(sx, sy, ox, oy);
 
+        portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
-        portrait->master = this;
-        portrait->position = &position;
     }
 
     void WorldObject::MakeBody(Vector2 size, Vector2 offset)
     {
         Body *body = new Body(size, offset);
 
+        body->ShiftMaster(this);
         _bodies.push_back(body);
-        body->master = this;
-        body->position = &position;
+
         physicWorld->AddBody(body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
         Body *body = new Body(sx, sy, ox, oy);
 
+        body->ShiftMaster(this);
         _bodies.push_back(body);
-        body->master = this;
-        body->position = &position;
+        
         physicWorld->AddBody(body);
     }
 
     void WorldObject::Log() //TODO
     {
         SDL_Log("%.2f - %llu | "
-                "WorldObject > Position(%.2f, %.2f); Portrait Count(%d); Body Count(%d)",
+                "WorldObject [%s] > Position(%.2f, %.2f); Portrait Count(%d); Body Count(%d)",
                 Time::time, Time::stepCount,
-                position.x, position.y, static_cast<int>(_portraits.size()), static_cast<int>(_bodies.size()));
+                name.c_str(), position.x, position.y, static_cast<int>(_portraits.size()), static_cast<int>(_bodies.size()));
     }
 }

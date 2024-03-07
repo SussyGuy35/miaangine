@@ -1,7 +1,7 @@
 #include "pipe.hpp"
 
 Pipe::Pipe():
-    WorldObject(0, 0),
+    WorldObject("Pipe", 0, 0),
     PIPE_HOLE_RADIUS(100),
     PIPE_WIDTH(90),
     SPEED(160)

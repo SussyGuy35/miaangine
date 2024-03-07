@@ -2,6 +2,7 @@
 #define _MIA_GAME_OBJECT_HPP
 
 #include <SDL.h>
+#include <string>
 #include <vector>
 
 #include "event/event-listener-interface.hpp"
@@ -15,12 +16,13 @@ namespace mia
     class WorldObject : public IEventListener
     {
     public:
-        WorldObject(Vector2 position = Vector2::zero());
-        WorldObject(float x, float y);
+        WorldObject(const char* name = "object", Vector2 position = Vector2::zero());
+        WorldObject(const char* name, float x, float y);
 
         ~WorldObject();
 
     public:
+        std::string name; //TODO
         Vector2 position;
 
     protected:

@@ -3,7 +3,9 @@
 PipeManager::PipeManager()
 {
     _pipes[0] = new Pipe();
+    _pipes[0]->name = "Pipe_00";
     _pipes[1] = new Pipe();
+    _pipes[1]->name = "Pipe_01";
 
     _dominantPipe = 0;
     

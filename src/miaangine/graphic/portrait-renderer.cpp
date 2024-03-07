@@ -1,11 +1,13 @@
 #include "portrait-renderer.hpp"
 
+#include <SDL.h>
 #include <algorithm>
-
-#include "core/engine.hpp"
 
 namespace mia 
 {
+    PortraitRenderer::PortraitRenderer()
+    {}
+
     void PortraitRenderer::RegisterPortrait(Portrait *portrait)
     {
         _portraits.push_back(portrait);
@@ -21,10 +23,10 @@ namespace mia
         }
     }
 
-    void PortraitRenderer::RenderPotraits()
+    void PortraitRenderer::RenderPotraits(SDL_Renderer *renderer)
     {
-        SDL_SetRenderDrawColor(sdlHandle->renderer, 0, 0, 0, 255);
-        SDL_RenderClear(sdlHandle->renderer);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
 
         for (const Portrait *portrait : _portraits)
         {
@@ -35,11 +37,11 @@ namespace mia
             rect.h = portrait->size.y;
 
 
-            SDL_SetRenderDrawColor(sdlHandle->renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
-            SDL_RenderFillRect(sdlHandle->renderer, &rect);
+            SDL_SetRenderDrawColor(renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
+            SDL_RenderFillRect(renderer, &rect);
         }
 
-        SDL_RenderPresent(sdlHandle->renderer);
+        SDL_RenderPresent(renderer);
     }
 
     void PortraitRenderer::Log() //TODO

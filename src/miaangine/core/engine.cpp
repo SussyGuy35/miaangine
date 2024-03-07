@@ -39,5 +39,5 @@ void mia::NewFrame()
 
 void mia::Render()
 {
-    mia::portraitRenderer->RenderPotraits();
+    mia::portraitRenderer->RenderPotraits(sdlHandle->renderer);
 }

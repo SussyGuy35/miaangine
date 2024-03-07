@@ -10,7 +10,7 @@ namespace mia
     class PortraitRenderer
     {
     public:
-        PortraitRenderer() {}
+        PortraitRenderer();
 
     private:
         std::vector<Portrait*> _portraits;
@@ -19,7 +19,7 @@ namespace mia
         void RegisterPortrait(Portrait *portrait);
         void RemovePortrait(Portrait *portrait);
 
-        void RenderPotraits();
+        void RenderPotraits(SDL_Renderer *renderer);
 
         void Log();
     };

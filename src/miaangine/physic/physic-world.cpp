@@ -28,15 +28,15 @@ namespace mia
 
     bool PhysicWorld::IsColliding(Body *bodyA, Body *bodyB)
     {
-        float aMinX = bodyA->master->position.x + bodyA->offset.x - bodyA->size.x; 
-        float aMaxX = bodyA->master->position.x + bodyA->offset.x + bodyA->size.x; 
-        float aMinY = bodyA->master->position.y + bodyA->offset.y - bodyA->size.y; 
-        float aMaxY = bodyA->master->position.y + bodyA->offset.y + bodyA->size.y; 
+        float aMinX = bodyA->position->x + bodyA->offset.x - bodyA->size.x; 
+        float aMaxX = bodyA->position->x + bodyA->offset.x + bodyA->size.x; 
+        float aMinY = bodyA->position->y + bodyA->offset.y - bodyA->size.y; 
+        float aMaxY = bodyA->position->y + bodyA->offset.y + bodyA->size.y; 
 
-        float bMinX = bodyB->master->position.x + bodyB->offset.x - bodyB->size.x; 
-        float bMaxX = bodyB->master->position.x + bodyB->offset.x + bodyB->size.x; 
-        float bMinY = bodyB->master->position.y + bodyB->offset.y - bodyB->size.y; 
-        float bMaxY = bodyB->master->position.y + bodyB->offset.y + bodyB->size.y; 
+        float bMinX = bodyB->position->x + bodyB->offset.x - bodyB->size.x; 
+        float bMaxX = bodyB->position->x + bodyB->offset.x + bodyB->size.x; 
+        float bMinY = bodyB->position->y + bodyB->offset.y - bodyB->size.y; 
+        float bMaxY = bodyB->position->y + bodyB->offset.y + bodyB->size.y; 
 
         return (aMinX <= bMaxX &&
                 aMaxX >= bMinX &&

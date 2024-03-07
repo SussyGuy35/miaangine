@@ -49,39 +49,49 @@ namespace mia
     {
         _portraits.push_back(portrait);
         portrait->master = this;
+        portrait->position = &position;
     }
 
     void WorldObject::AttachBody(Body *body)
     {
         _bodies.push_back(body);
         body->master = this;
+        body->position = &position;
     }
 
     void WorldObject::MakePortrait(Vector2 size, Vector2 offset)
     {
         Portrait *portrait = new Portrait(size, offset);
+
         _portraits.push_back(portrait);
         portrait->master = this;
+        portrait->position = &position;
     }
     void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
         Portrait *portrait = new Portrait(sx, sy, ox, oy);
+
         _portraits.push_back(portrait);
         portrait->master = this;
+        portrait->position = &position;
     }
 
     void WorldObject::MakeBody(Vector2 size, Vector2 offset)
     {
         Body *body = new Body(size, offset);
+
         _bodies.push_back(body);
         body->master = this;
+        body->position = &position;
         physicWorld->AddBody(body);
     }
     void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
         Body *body = new Body(sx, sy, ox, oy);
+
         _bodies.push_back(body);
         body->master = this;
+        body->position = &position;
         physicWorld->AddBody(body);
     }
 

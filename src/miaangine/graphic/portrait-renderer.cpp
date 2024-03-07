@@ -30,8 +30,8 @@ namespace mia
         for (const Portrait *portrait : _portraits)
         {
             SDL_Rect rect;
-            rect.x = portrait->master->position.x + portrait->offset.x;
-            rect.y = portrait->master->position.y + portrait->offset.y;
+            rect.x = portrait->position->x + portrait->offset.x;
+            rect.y = portrait->position->y + portrait->offset.y;
             rect.w = portrait->size.x;
             rect.h = portrait->size.y;
 

@@ -10,6 +10,7 @@
 
 #include "core/engine.hpp"
 #include "core/time.hpp"
+#include "core/camera.hpp"
 #include "util/math.hpp"
 
 #include "event/regular-event-publisher.hpp"

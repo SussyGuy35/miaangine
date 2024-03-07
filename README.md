@@ -14,15 +14,15 @@ cmake ..
 Then you can compile and run game.exe to run the demo
 
 ## Getting Started
-Copy "src/miaangine/" folder from the source code and paste it wherever in your project
+Copy "src/miaangine/" folder from the source code and paste it wherever in your project <br> 
 Then you can import "miaangine.hpp" to use all the features or import specify any file depending on your needs
 
 ## Features
-Custom SDL window
-Render 2D rectangle
-Input system
-Game loop events
-AABB-based physic engine
+- Custom SDL window
+- Render 2D rectangle
+- Input system
+- Game loop events
+- AABB-based physic engine
 
 ## Tutorial
 *Make sure to import the necessary header*
@@ -64,9 +64,9 @@ public:
 ```
 
 ### Event system
-Miaangine uses event publisher system to notify each game object and you can freely custom it<br>
-Use ```mia::events->[event publisher]->RegisterListener([object])``` to register object to a event publisher
-Then the method ```Update(uint8_t message)``` in every game object is registered will be automatically called with a different ```uint8_t message``` based on the event
+Miaangine uses event publisher system to notify each game object and you can freely custom it <br>
+Use ```mia::events->[event publisher]->RegisterListener([object])``` to register object to a event publisher <br>
+Then the method ```Update(uint8_t message)``` in every game object is registered will be automatically called with a different ```uint8_t message``` based on the event 
 ```c
 MyObject():
     WorldObject("Name of my object")
@@ -89,14 +89,14 @@ void MyObject::Update(uint8_t message)
     }
 }
 ```
-There are built-in events: (format of this part: - [event publisher name] <[the event message]> : [the event description])
+There are built-in events: (format of this part: - [event publisher name] <[the event message]> : [the event description]) <br>
 - onEnterNewFrame <_EVENT_ON_ENTER_FRAME> : notify whenever a new frame runs, this event will notify before any calculation in that frame
 - primaryUpdate <_EVENT_PRIMARY_UPDATE> : notify every frame, after calculating the timer and receiving input but before calculating the physic
 
 *you can see the usage of the event system by looking at the demo*
 
 ### Rendering
-*Miaangine currently just support rendering 2D rectangle*<br>
+*Miaangine currently just support rendering 2D rectangle* <br> 
 Make a portrait (render image) inside a ```WorldObject``` by method ```MakePortrait()```
 ```c
 MyObject():

@@ -28,7 +28,6 @@ void Bird::Update(uint8_t message)
             body()->velocity.y = JUMP_VELOCITY;
         }
 
-        body()->Log();
         break;
     
     default:

@@ -3,18 +3,18 @@
 namespace mia
 {
     Body::Body(Vector2 size, Vector2 offset):
+        _unclaimPosition(Vector2::zero()),
         size(size),
         offset(offset),
-        position(new Vector2()),
         master(nullptr),
         velocity(Vector2::zero()),
         colliding(false)
     {}
 
     Body::Body(float sx, float sy, float ox, float oy):
+        _unclaimPosition(Vector2::zero()),
         size(Vector2(sx, sy)),
         offset(Vector2(ox, oy)),
-        position(new Vector2()),
         master(nullptr),
         velocity(Vector2::zero()),
         colliding(false)
@@ -22,7 +22,6 @@ namespace mia
 
     Body::~Body()
     {
-        delete(position);
     }
 
     void Body::Log() //TODO

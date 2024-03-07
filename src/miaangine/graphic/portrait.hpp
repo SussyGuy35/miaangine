@@ -16,10 +16,13 @@
 
         ~Portrait();
 
+    private:
+        Vector2 _unclaimPosition;
+
     public:
         Vector2 size;
         Vector2 offset;
-        Vector2 *position;
+        Vector2 *position = &_unclaimPosition;
 
         SDL_Color color;
 

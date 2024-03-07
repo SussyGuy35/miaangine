@@ -43,4 +43,7 @@ void Pipe::Reset()
 
     position.x = 400;
     position.y = spawnPos;
+    SDL_Log("%f, %f", position.x, position.y);
+    Log();
+    portrait()->Log();
 }

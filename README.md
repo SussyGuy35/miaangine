@@ -1,8 +1,8 @@
 # MIAANGINE
 
 ## Overview
-Miaangine is a simple, lightweight 2D game engine using C++ SDL2.
-Miaangine can work on Windows and Linux
+Miaangine is a simple, lightweight 2D game engine using C++ SDL2 by Miaan. <br>
+The engine can work on Windows and Linux
 
 ## Demo
 Use CMake to build the CMakeLists.txt:
@@ -121,7 +121,7 @@ MyObject():
 
 ### Physic
 **Miaangine physics only supports AABB** <br>
-Similar to the portrait, make a body by ```MakeBody()```, access it by ```body()``` (also support multiple body in one object
+Similar to the portrait, make a body by ```MakeBody()```, access it by ```body()``` (also support multiple body in one object)
 ```c
 MyObject():
     WorldObject("Name of my object")

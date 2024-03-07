@@ -19,7 +19,7 @@ void Game::Run()
     {
         mia::NewFrame();
 
-        if (mia::inputs->IsQuit()) break;
+        if (mia::Input::IsQuit()) break;
 
         if (bird->body()->colliding) pipeManager->Stop();
 

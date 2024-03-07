@@ -35,20 +35,23 @@ namespace mia
         })
     {}
 
-    std::unique_ptr<KeyBind> InputManager::_keyBind = std::make_unique<KeyBind>();
+    std::unique_ptr<KeyBind> Input::_keyBind = std::make_unique<KeyBind>();
 
-    bool InputManager::_keyState[SDL_NUM_SCANCODES] = {false};
-    bool InputManager::_keyDownState[SDL_NUM_SCANCODES] = {false};
-    bool InputManager::_keyUpState[SDL_NUM_SCANCODES] = {false};
+    bool Input::_keyState[SDL_NUM_SCANCODES] = {false};
+    bool Input::_keyDownState[SDL_NUM_SCANCODES] = {false};
+    bool Input::_keyUpState[SDL_NUM_SCANCODES] = {false};
 
-    bool InputManager::_isQuit = false;
+    bool Input::_isQuit = false;
 
-    void InputManager::SetupKeyBind()
+    Input::Input() 
+    {}
+
+    void Input::SetupKeyBind()
     {
         _keyBind->PopulateKeyMap();
     }
 
-    void InputManager::Update()
+    void Input::Update()
     {
         memset(_keyDownState, 0, SDL_NUM_SCANCODES);
 		memset(_keyUpState, 0, SDL_NUM_SCANCODES);
@@ -73,34 +76,34 @@ namespace mia
 		}
     }
 
-    bool InputManager::GetButton(const char *button)
+    bool Input::GetButton(const char *button)
 	{
 		return 
             _keyState[_keyBind->GetMainKeyBind(button)] || 
             _keyState[_keyBind->GetAltKeyBind(button)];
 	}
-	bool InputManager::GetButtonDown(const char *button)
+	bool Input::GetButtonDown(const char *button)
 	{
 		return 
             _keyDownState[_keyBind->GetMainKeyBind(button)] || 
             _keyDownState[_keyBind->GetAltKeyBind(button)];
 	}
-	bool InputManager::GetButtonUp(const char *button)
+	bool Input::GetButtonUp(const char *button)
 	{
 		return  
             _keyUpState[_keyBind->GetMainKeyBind(button)] || 
             _keyUpState[_keyBind->GetAltKeyBind(button)];
 	}
 
-    bool InputManager::GetKey(int key)
+    bool Input::GetKey(int key)
     {
         return _keyState[key];
     }
-    bool InputManager::GetKeyDown(int key)
+    bool Input::GetKeyDown(int key)
     {
         return _keyDownState[key];
     }
-    bool InputManager::GetKeyUp(int key)
+    bool Input::GetKeyUp(int key)
     {
         return _keyUpState[key];
     }
@@ -115,7 +118,7 @@ namespace mia
         return _buttonMap[keyName] >> 9;
     }
 
-	void InputManager::UpdateKeyInputEvent()
+	void Input::UpdateKeyInputEvent()
 	{
 		const uint8_t* _currentKeyState = SDL_GetKeyboardState(NULL);
 

@@ -2,7 +2,7 @@
 
 Pipe::Pipe():
     WorldObject("Pipe", 0, 0),
-    PIPE_HOLE_RADIUS(95),
+    PIPE_HOLE_RADIUS(97),
     PIPE_WIDTH(90),
     SPEED(170)
 

@@ -8,10 +8,10 @@
 
 namespace mia 
 {
-    class InputManager
+    class Input
     {
-    public:
-        InputManager() {} 
+    private:
+        Input();
 
     private:
         static std::unique_ptr<KeyBind> _keyBind;

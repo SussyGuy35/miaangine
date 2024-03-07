@@ -8,7 +8,6 @@ namespace mia
 {
     void PortraitRenderer::RegisterPortrait(Portrait *portrait)
     {
-        // portrait->Log();
         _portraits.push_back(portrait);
     }
 

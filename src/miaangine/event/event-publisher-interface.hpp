@@ -3,7 +3,7 @@
 
 #include "event-listener-interface.hpp"
 
-#include "core/time.hpp"
+#include "time/time.hpp"
 
 namespace mia
 {

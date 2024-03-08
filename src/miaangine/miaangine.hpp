@@ -9,7 +9,7 @@
 #define _MIAANGINE_HPP
 
 #include "core/engine.hpp"
-#include "core/time.hpp"
+#include "time/time.hpp"
 #include "core/camera.hpp"
 #include "util/math.hpp"
 

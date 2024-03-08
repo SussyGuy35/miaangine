@@ -4,7 +4,7 @@
 #include <string>
 
 #include "util/math.hpp"
-#include "core/time.hpp"
+#include "time/time.hpp"
 
 #include "object/world-object.hpp"
 

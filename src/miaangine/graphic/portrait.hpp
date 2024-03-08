@@ -2,7 +2,7 @@
 #define _MIA_PORTRAIT_HPP
 
 #include "util/math.hpp"
-#include "core/time.hpp"
+#include "time/time.hpp"
 
 #include "object/world-object.hpp"
 

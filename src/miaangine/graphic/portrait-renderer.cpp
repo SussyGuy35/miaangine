@@ -5,6 +5,8 @@
 
 #include "core/camera.hpp"
 
+#include "time/time-manager.hpp"
+
 namespace mia 
 {
     PortraitRenderer *PortraitRenderer::__instance = nullptr;
@@ -47,7 +49,7 @@ namespace mia
     {
         SDL_Log("%.2f - %llu | "
                 "PortraitRenderer > Portrait Count(%d)",
-                Time::time, Time::stepCount,
+                TimeManager::time, TimeManager::stepCount,
                 _portraits.size());
     }
 

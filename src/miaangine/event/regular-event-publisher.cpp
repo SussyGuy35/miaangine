@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "time/time-manager.hpp"
+
 namespace mia 
 {
     void RegularEventPublisher::RegisterListener(IEventListener *listener)
@@ -31,7 +33,7 @@ namespace mia
     {
         SDL_Log("%.2f - %llu | "
                 "EventListener > Listeners Count(%d)",
-                Time::time, Time::stepCount,
+                TimeManager::time, TimeManager::stepCount,
                 _listeners.size());
     }
 }

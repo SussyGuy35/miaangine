@@ -5,10 +5,10 @@
 
 namespace mia
 {
-    class Time
+    class TimeManager
     {
     private:
-        Time();
+        TimeManager();
 
     private:
         static uint64_t _currentTicks, _lastFrameTicks, _elapseTicks;

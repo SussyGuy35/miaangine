@@ -3,8 +3,6 @@
 
 #include "event-listener-interface.hpp"
 
-#include "time/time.hpp"
-
 namespace mia
 {
     class IEventPublisher

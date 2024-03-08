@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-#include "time/time.hpp"
+#include "time/time-manager.hpp"
 
 namespace mia
 {
@@ -55,7 +55,7 @@ namespace mia
     {
         SDL_Log("%.2f - %llu | "
                 "SDLHandle > Screen: Width(%u); Height (%u); Fullscreen(%d)",
-                Time::time, Time::stepCount,
+                TimeManager::time, TimeManager::stepCount,
                 _width, _height, _fullscreen);
     }
 }

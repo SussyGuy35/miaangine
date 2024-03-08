@@ -30,12 +30,12 @@ void mia::NewFrame()
 {
     event->onEnterNewFrame->NotifyListeners();
 
-    Time::Step();
+    TimeManager::Step();
     input->Update();
 
     event->primaryUpdate->NotifyListeners();
 
-    physics->Step(Time::elapseTime);
+    physics->Step(TimeManager::elapseTime);
 }
 
 void mia::Render()

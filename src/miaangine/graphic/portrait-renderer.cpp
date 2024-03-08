@@ -53,10 +53,10 @@ namespace mia
     {
         SDL_Rect rect;
 
-        rect.x = portrait->position->x + portrait->offset.x - Camera::position.x;
-        rect.y = Camera::position.y + Camera::SCREEN_HEIGHT - portrait->position->y - portrait->offset.y + portrait->size.y; //FIXME
-        rect.w = portrait->size.x;
-        rect.h = portrait->size.y;
+        rect.x = static_cast<int>(portrait->position->x + portrait->offset.x - Camera::position.x);
+        rect.y = static_cast<int>(Camera::position.y + Camera::SCREEN_HEIGHT - portrait->position->y - portrait->offset.y - portrait->size.y); //FIXME
+        rect.w = static_cast<int>(portrait->size.x);
+        rect.h = static_cast<int>(portrait->size.y);
 
         return rect;
     }

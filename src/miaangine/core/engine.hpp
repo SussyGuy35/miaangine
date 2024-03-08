@@ -2,6 +2,7 @@
 #define _MIA_ENGINE_HPP
 
 #include "sdl-handle.hpp"
+#include "time/time-manager.hpp"
 #include "input/input-manager.hpp"
 #include "event/event-manager.hpp"
 #include "graphic/portrait-renderer.hpp"
@@ -12,6 +13,7 @@
 namespace mia
 {
     extern SDLHandle *sdlHandle;
+    extern TimeManager *time;
     extern InputManager *input;
     extern EventManager *event;
     extern PortraitRenderer *portraitRenderer;

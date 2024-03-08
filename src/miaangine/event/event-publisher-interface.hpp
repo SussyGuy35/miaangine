@@ -11,7 +11,6 @@ namespace mia
         virtual void RegisterListener(IEventListener *listener) = 0;
         virtual void RemoveListener(IEventListener *listener) = 0;
         virtual void NotifyListeners() = 0;
-        virtual void Log() = 0;
     };
 }
 

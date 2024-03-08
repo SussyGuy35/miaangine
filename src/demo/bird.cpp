@@ -22,7 +22,7 @@ void Bird::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        body()->velocity.y += GRAVITY * mia::TimeManager::elapseTime;
+        body()->velocity.y += GRAVITY * mia::time->elapseTime;
         
         if (mia::input->GetButtonDown("Jump"))
         {

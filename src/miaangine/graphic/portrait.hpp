@@ -31,7 +31,6 @@
         WorldObject *master;
 
         void ShiftMaster(WorldObject *master);
-        virtual void Log();
     };
 // }
 

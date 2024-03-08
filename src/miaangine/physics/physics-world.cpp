@@ -55,7 +55,7 @@ namespace mia
         }
     }
 
-    void PhysicsWorld::BodiesCollideCheck() //TODO
+    void PhysicsWorld::BodiesCollideCheck() //FIXME
     {
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++) _bodies[i]->colliding = false;
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)

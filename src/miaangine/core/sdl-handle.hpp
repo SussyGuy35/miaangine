@@ -37,7 +37,7 @@ namespace mia
         bool Init(uint32_t width, uint32_t height, bool fullscreen);
         void Clear();
 
-        void Log();
+        // void Log();
     };
 }
 

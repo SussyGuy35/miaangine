@@ -56,11 +56,11 @@ namespace mia
         SDL_DestroyRenderer(renderer);
     }
 
-    void SDLHandle::Log() //TODO
-    {
-        SDL_Log("%.2f - %llu | "
-                "SDLHandle > Screen: Width(%u); Height (%u); Fullscreen(%d)",
-                TimeManager::time, TimeManager::stepCount,
-                _width, _height, _fullscreen);
-    }
+    // void SDLHandle::Log() //TODO
+    // {
+    //     SDL_Log("%.2f - %llu | "
+    //             "SDLHandle > Screen: Width(%u); Height (%u); Fullscreen(%d)",
+    //             TimeManager::time, TimeManager::stepCount,
+    //             _width, _height, _fullscreen);
+    // }
 }

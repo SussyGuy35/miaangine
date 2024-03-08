@@ -50,13 +50,13 @@ namespace mia
         SDL_RenderPresent(renderer);
     }
 
-    void PortraitRenderer::Log() //TODO
-    {
-        SDL_Log("%.2f - %llu | "
-                "PortraitRenderer > Portrait Count(%d)",
-                TimeManager::time, TimeManager::stepCount,
-                _portraits.size());
-    }
+    // void PortraitRenderer::Log() //TODO
+    // {
+    //     SDL_Log("%.2f - %llu | "
+    //             "PortraitRenderer > Portrait Count(%d)",
+    //             TimeManager::time, TimeManager::stepCount,
+    //             _portraits.size());
+    // }
 
     SDL_Rect PortraitRenderer::RectRenderingCalculate(const Portrait *portrait)
     {

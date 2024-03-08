@@ -36,8 +36,6 @@ namespace mia
 
         void RenderPotraits(SDL_Renderer *renderer);
 
-        void Log();
-
     private:
         SDL_Rect RectRenderingCalculate(const Portrait *portrait);
     };

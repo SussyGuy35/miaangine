@@ -14,7 +14,7 @@ Bird::Bird():
     MakeBody(SIZE);
     mia::physics->RegisterBody(body());
 
-    mia::events->primaryUpdate->RegisterListener(this);
+    mia::event->primaryUpdate->RegisterListener(this);
 }
 
 void Bird::Update(uint8_t message)
@@ -24,7 +24,7 @@ void Bird::Update(uint8_t message)
     case mia::_EVENT_PRIMARY_UPDATE:
         body()->velocity.y += GRAVITY * mia::Time::elapseTime;
         
-        if (mia::Input::GetButtonDown("Jump"))
+        if (mia::input->GetButtonDown("Jump"))
         {
             body()->velocity.y = JUMP_VELOCITY;
         }

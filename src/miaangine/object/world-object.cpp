@@ -1,7 +1,7 @@
 #include "world-object.hpp"
 
 #include "graphic/portrait.hpp"
-#include "physic/body.hpp"
+#include "physics/body.hpp"
 
 #include "core/engine.hpp"
 

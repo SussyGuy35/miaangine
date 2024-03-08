@@ -8,34 +8,46 @@
 
 namespace mia 
 {
-    class Input
+    class InputManager
     {
     private:
-        Input();
+        static InputManager *__instance;
+    public:
+        static InputManager* Instance() 
+        {
+            if (!__instance) __instance = new InputManager(); 
+            return __instance;
+        }
+
+        InputManager(const InputManager&) = delete;
+        void operator=(const InputManager&) = delete;
 
     private:
-        static std::unique_ptr<KeyBind> _keyBind;
+        InputManager();
 
-        static bool _keyState[SDL_NUM_SCANCODES];
-        static bool _keyDownState[SDL_NUM_SCANCODES];
-        static bool _keyUpState[SDL_NUM_SCANCODES];
+    private:
+        std::unique_ptr<KeyBind> _keyBind;
 
-        static bool _isQuit;
+        bool _keyState[SDL_NUM_SCANCODES];
+        bool _keyDownState[SDL_NUM_SCANCODES];
+        bool _keyUpState[SDL_NUM_SCANCODES];
 
-        static void UpdateKeyInputEvent();
+        bool _isQuit;
+
+        void UpdateKeyInputEvent();
     
     public:
-        static void SetupKeyBind();
-        static void Update();
+        void SetupKeyBind();
+        void Update();
 
-        static bool IsQuit() { return _isQuit; }
+        bool IsQuit() { return _isQuit; } //TODO
 
-        static bool GetButton(const char *button);
-        static bool GetButtonDown(const char *button);
-        static bool GetButtonUp(const char *button);
-        static bool GetKey(int key);
-        static bool GetKeyDown(int key);
-        static bool GetKeyUp(int key);
+        bool GetButton(const char *button);
+        bool GetButtonDown(const char *button);
+        bool GetButtonUp(const char *button);
+        bool GetKey(int key);
+        bool GetKeyDown(int key);
+        bool GetKeyUp(int key);
     };
 }
 

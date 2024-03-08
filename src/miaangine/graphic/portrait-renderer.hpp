@@ -9,7 +9,19 @@ namespace mia
 {
     class PortraitRenderer
     {
+    private:
+        static PortraitRenderer *__instance;
     public:
+        static PortraitRenderer* Instance() 
+        {
+            if (!__instance) __instance = new PortraitRenderer(); 
+            return __instance;
+        }
+
+        PortraitRenderer(const PortraitRenderer&) = delete;
+        void operator=(const PortraitRenderer&) = delete;
+    
+    private:
         PortraitRenderer();
 
     private:

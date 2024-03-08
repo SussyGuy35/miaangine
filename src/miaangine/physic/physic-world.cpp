@@ -2,6 +2,8 @@
 
 namespace mia
 {
+    PhysicWorld *PhysicWorld::__instance = nullptr;
+
     PhysicWorld::PhysicWorld():
         _gravity(Vector2(0.0, 9.81))
     {}

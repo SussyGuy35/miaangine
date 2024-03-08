@@ -7,6 +7,8 @@
 
 namespace mia 
 {
+    PortraitRenderer *PortraitRenderer::__instance = nullptr;
+
     PortraitRenderer::PortraitRenderer()
     {}
 

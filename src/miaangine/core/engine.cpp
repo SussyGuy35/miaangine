@@ -1,9 +1,9 @@
 #include "engine.hpp"
 
-mia::SDLHandle *mia::sdlHandle = new mia::SDLHandle();
-mia::EventManager *mia::events = new mia::EventManager();
-mia::PortraitRenderer *mia::portraitRenderer = new mia::PortraitRenderer();
-mia::PhysicWorld *mia::physicWorld = new mia::PhysicWorld();
+mia::SDLHandle *mia::sdlHandle = SDLHandle::Instance();
+mia::EventManager *mia::events = EventManager::Instance();
+mia::PortraitRenderer *mia::portraitRenderer = PortraitRenderer::Instance();
+mia::PhysicWorld *mia::physicWorld = PhysicWorld::Instance();
 
 void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 {

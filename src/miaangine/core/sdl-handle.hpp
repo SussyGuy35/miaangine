@@ -7,7 +7,19 @@ namespace mia
 {
     class SDLHandle
     {
+    private:
+        static SDLHandle *__instance;
     public:
+        static SDLHandle* Instance() 
+        {
+            if (!__instance) __instance = new SDLHandle(); 
+            return __instance;
+        }
+
+        SDLHandle(const SDLHandle&) = delete;
+        void operator=(const SDLHandle&) = delete;
+
+    private:
         SDLHandle();
 
     private:

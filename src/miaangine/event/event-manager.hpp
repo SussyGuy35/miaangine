@@ -9,12 +9,21 @@ namespace mia
 {
     class EventManager
     {
+    private:
+        static EventManager *__instance;
     public:
-        EventManager():
-            onEnterNewFrame(std::make_unique<RegularEventPublisher>(_EVENT_ON_ENTER_FRAME)),
-            primaryUpdate(std::make_unique<RegularEventPublisher>(_EVENT_PRIMARY_UPDATE))
-        {}
+        static EventManager* Instance() 
+        {
+            if (!__instance) __instance = new EventManager(); 
+            return __instance;
+        }
 
+        EventManager(const EventManager&) = delete;
+        void operator=(const EventManager&) = delete;
+
+    private:
+        EventManager();
+        
     public:
         std::unique_ptr<RegularEventPublisher> onEnterNewFrame;
         std::unique_ptr<RegularEventPublisher> primaryUpdate;

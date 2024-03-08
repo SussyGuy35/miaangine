@@ -9,7 +9,19 @@ namespace mia
 {
     class PhysicWorld
     {
+    private:
+        static PhysicWorld *__instance;
     public:
+        static PhysicWorld* Instance() 
+        {
+            if (!__instance) __instance = new PhysicWorld(); 
+            return __instance;
+        }
+
+        PhysicWorld(const PhysicWorld&) = delete;
+        void operator=(const PhysicWorld&) = delete;
+
+    private:
         PhysicWorld();
 
     private:

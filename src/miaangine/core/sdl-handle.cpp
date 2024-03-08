@@ -6,6 +6,8 @@
 
 namespace mia
 {
+    SDLHandle *SDLHandle::__instance = nullptr;
+
     SDLHandle::SDLHandle():
         _width(0),
         _height(0),

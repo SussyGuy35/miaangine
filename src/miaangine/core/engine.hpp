@@ -5,14 +5,14 @@
 #include "sdl-handle.hpp"
 #include "event/event-manager.hpp"
 #include "graphic/portrait-renderer.hpp"
-#include "physic/physic-world.hpp"
+#include "physics/physics-world.hpp"
 
 namespace mia
 {
     extern SDLHandle *sdlHandle;
     extern EventManager *events;
     extern PortraitRenderer *portraitRenderer;
-    extern PhysicWorld *physicWorld;
+    extern PhysicsWorld *physics;
 
     void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();

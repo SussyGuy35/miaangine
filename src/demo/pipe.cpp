@@ -18,8 +18,8 @@ Pipe::Pipe():
 
     MakeBody(PIPE_WIDTH, mia::Camera::SCREEN_HEIGHT, 0, -mia::Camera::SCREEN_HEIGHT - PIPE_HOLE_RADIUS);
     MakeBody(PIPE_WIDTH, mia::Camera::SCREEN_HEIGHT, 0, PIPE_HOLE_RADIUS);
-    mia::physicWorld->RegisterBody(body(0));
-    mia::physicWorld->RegisterBody(body(1));
+    mia::physics->RegisterBody(body(0));
+    mia::physics->RegisterBody(body(1));
 
     mia::events->primaryUpdate->RegisterListener(this);
 }

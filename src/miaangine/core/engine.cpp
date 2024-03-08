@@ -3,7 +3,7 @@
 mia::SDLHandle *mia::sdlHandle = SDLHandle::Instance();
 mia::EventManager *mia::events = EventManager::Instance();
 mia::PortraitRenderer *mia::portraitRenderer = PortraitRenderer::Instance();
-mia::PhysicWorld *mia::physicWorld = PhysicWorld::Instance();
+mia::PhysicsWorld *mia::physics = PhysicsWorld::Instance();
 
 void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 {
@@ -22,7 +22,7 @@ void mia::End()
     delete(sdlHandle);
     delete(events);
     delete(portraitRenderer);
-    delete(physicWorld);
+    delete(physics);
 }
 
 void mia::NewFrame()
@@ -34,7 +34,7 @@ void mia::NewFrame()
 
     events->primaryUpdate->NotifyListeners();
 
-    physicWorld->Step(Time::elapseTime);
+    physics->Step(Time::elapseTime);
 }
 
 void mia::Render()

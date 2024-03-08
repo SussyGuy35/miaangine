@@ -7,22 +7,22 @@
 
 namespace mia
 {
-    class PhysicWorld
+    class PhysicsWorld
     {
     private:
-        static PhysicWorld *__instance;
+        static PhysicsWorld *__instance;
     public:
-        static PhysicWorld* Instance() 
+        static PhysicsWorld* Instance() 
         {
-            if (!__instance) __instance = new PhysicWorld(); 
+            if (!__instance) __instance = new PhysicsWorld(); 
             return __instance;
         }
 
-        PhysicWorld(const PhysicWorld&) = delete;
-        void operator=(const PhysicWorld&) = delete;
+        PhysicsWorld(const PhysicsWorld&) = delete;
+        void operator=(const PhysicsWorld&) = delete;
 
     private:
-        PhysicWorld();
+        PhysicsWorld();
 
     private:
         std::vector<Body*> _bodies;

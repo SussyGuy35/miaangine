@@ -12,7 +12,7 @@ Bird::Bird():
     portrait()->color = {255, 20, 255, 255};
 
     MakeBody(SIZE);
-    mia::physicWorld->RegisterBody(body());
+    mia::physics->RegisterBody(body());
 
     mia::events->primaryUpdate->RegisterListener(this);
 }

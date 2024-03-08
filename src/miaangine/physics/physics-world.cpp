@@ -1,26 +1,26 @@
-#include "physic-world.hpp"
+#include "physics-world.hpp"
 
 namespace mia
 {
-    PhysicWorld *PhysicWorld::__instance = nullptr;
+    PhysicsWorld *PhysicsWorld::__instance = nullptr;
 
-    PhysicWorld::PhysicWorld():
+    PhysicsWorld::PhysicsWorld():
         _gravity(Vector2(0.0, 9.81))
     {}
 
-    void PhysicWorld::RegisterBody(Body *body)
+    void PhysicsWorld::RegisterBody(Body *body)
     {
         _bodies.push_back(body);
     }
 
-    void PhysicWorld::Step(double timePass)
+    void PhysicsWorld::Step(double timePass)
     {
         BodiesVelocityCalculate(timePass);
         
         BodiesCollideCheck();
     }
 
-    bool PhysicWorld::IsColliding(Body *bodyA, Body *bodyB)
+    bool PhysicsWorld::IsColliding(Body *bodyA, Body *bodyB)
     {
         float aMinX = bodyA->position->x + bodyA->offset.x; 
         float aMaxX = bodyA->position->x + bodyA->offset.x + bodyA->size.x; 
@@ -38,7 +38,7 @@ namespace mia
                 aMaxY >= bMinY);
     }
 
-    void PhysicWorld::BodiesVelocityCalculate(double timePass)
+    void PhysicsWorld::BodiesVelocityCalculate(double timePass)
     {
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
         {
@@ -50,7 +50,7 @@ namespace mia
         }
     }
 
-    void PhysicWorld::BodiesCollideCheck() //TODO
+    void PhysicsWorld::BodiesCollideCheck() //TODO
     {
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++) _bodies[i]->colliding = false;
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)

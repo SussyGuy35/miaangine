@@ -25,6 +25,9 @@ namespace mia
     private:
         InputManager();
 
+    public:
+        ~InputManager();
+
     private:
         std::unique_ptr<KeyBind> _keyBind;
 

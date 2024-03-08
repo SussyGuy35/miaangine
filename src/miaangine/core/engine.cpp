@@ -21,6 +21,7 @@ void mia::End()
     sdlHandle->Clear();
 
     delete(sdlHandle);
+    delete(input);
     delete(event);
     delete(portraitRenderer);
     delete(physics);

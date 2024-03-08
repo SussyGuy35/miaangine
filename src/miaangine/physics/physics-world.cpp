@@ -8,6 +8,11 @@ namespace mia
         _gravity(Vector2(0.0, 9.81))
     {}
 
+    PhysicsWorld::~PhysicsWorld()
+    {
+        __instance = nullptr;
+    }
+
     void PhysicsWorld::RegisterBody(Body *body)
     {
         _bodies.push_back(body);

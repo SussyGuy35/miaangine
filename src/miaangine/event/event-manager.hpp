@@ -25,6 +25,9 @@ namespace mia
         EventManager();
         
     public:
+        ~EventManager();
+
+    public:
         std::unique_ptr<RegularEventPublisher> onEnterNewFrame;
         std::unique_ptr<RegularEventPublisher> primaryUpdate;
     };

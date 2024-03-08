@@ -24,6 +24,9 @@ namespace mia
     private:
         PortraitRenderer();
 
+    public:
+        ~PortraitRenderer();
+
     private:
         std::vector<Portrait*> _portraits;
 

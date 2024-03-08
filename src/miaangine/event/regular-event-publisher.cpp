@@ -6,6 +6,13 @@
 
 namespace mia 
 {
+    RegularEventPublisher::RegularEventPublisher(uint8_t message):
+        _message(message)
+    {}
+
+    RegularEventPublisher::~RegularEventPublisher()
+    {}
+
     void RegularEventPublisher::RegisterListener(IEventListener *listener)
     {
         _listeners.push_back(listener);

@@ -12,8 +12,13 @@ namespace mia
         _width(0),
         _height(0),
         _fullscreen(0)
-    {
+    {}
 
+    SDLHandle::~SDLHandle()
+    {
+        __instance = nullptr;
+        SDL_DestroyWindow(window);
+        SDL_DestroyRenderer(renderer);
     }
 
     bool SDLHandle::Init(uint32_t width, uint32_t height, bool fullscreen)

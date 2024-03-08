@@ -14,6 +14,11 @@ namespace mia
     PortraitRenderer::PortraitRenderer()
     {}
 
+    PortraitRenderer::~PortraitRenderer()
+    {
+        __instance = nullptr;
+    }
+
     void PortraitRenderer::RegisterPortrait(Portrait *portrait)
     {
         _portraits.push_back(portrait);

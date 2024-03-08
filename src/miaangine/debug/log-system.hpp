@@ -2,6 +2,7 @@
 #define _MIA_LOG_SYSTEM_HPP
 
 #include <stdarg.h>
+#include <string>
 
 namespace mia
 {
@@ -21,6 +22,9 @@ namespace mia
 
     private:
         LogSystem();
+
+    public:
+        ~LogSystem();
 
     public:
         void Log(const char *format, ...);

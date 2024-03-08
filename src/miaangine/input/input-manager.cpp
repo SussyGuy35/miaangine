@@ -45,6 +45,11 @@ namespace mia
         _isQuit(false)
     {}
 
+    InputManager::~InputManager()
+    {
+        __instance = nullptr;
+    }
+
     void InputManager::SetupKeyBind()
     {
         _keyBind->PopulateKeyMap();

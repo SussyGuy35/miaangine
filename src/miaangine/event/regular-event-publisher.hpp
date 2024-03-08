@@ -11,9 +11,9 @@ namespace mia
     class RegularEventPublisher : public IEventPublisher
     {
     public:
-        RegularEventPublisher(uint8_t message = 0):
-            _message(message)
-        {}
+        RegularEventPublisher(uint8_t message = 0);
+
+        ~RegularEventPublisher();
 
     private:
         std::vector<IEventListener*> _listeners; 

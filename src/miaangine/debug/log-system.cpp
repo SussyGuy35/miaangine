@@ -1,7 +1,5 @@
 #include "log-system.hpp"
 
-#include <string>
-
 #include "util/math.hpp"
 
 namespace mia
@@ -11,6 +9,11 @@ namespace mia
     LogSystem::LogSystem()
     {
 
+    }
+
+    LogSystem::~LogSystem()
+    {
+        __instance = nullptr;
     }
 
     void LogSystem::Log(const char *format, ...)

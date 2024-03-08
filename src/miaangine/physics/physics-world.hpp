@@ -24,6 +24,9 @@ namespace mia
     private:
         PhysicsWorld();
 
+    public:
+        ~PhysicsWorld();
+
     private:
         std::vector<Body*> _bodies;
 

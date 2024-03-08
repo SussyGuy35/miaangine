@@ -21,6 +21,9 @@ namespace mia
 
     private:
         SDLHandle();
+    
+    public:
+        ~SDLHandle();
 
     private:
         uint32_t _width;

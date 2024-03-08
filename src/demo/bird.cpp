@@ -1,7 +1,7 @@
 #include "bird.hpp"
 
-Bird::Bird(float x, float y):
-    WorldObject("Bird", x, y),
+Bird::Bird():
+    WorldObject("Bird", 70, 500),
     SIZE(mia::Vector2(50, 47)),
     GRAVITY(-1500),
     JUMP_VELOCITY(550)

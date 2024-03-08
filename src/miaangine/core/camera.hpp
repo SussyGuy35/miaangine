@@ -11,7 +11,7 @@ namespace mia
         Camera();
 
     public:
-        static const int PIXEL_PER_UNIT = 10;
+        static const int SCREEN_HEIGHT = 600; //FIXME
 
         static Vector2 position;
     };

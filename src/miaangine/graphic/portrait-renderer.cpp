@@ -54,7 +54,7 @@ namespace mia
         SDL_Rect rect;
 
         rect.x = portrait->position->x + portrait->offset.x - Camera::position.x;
-        rect.y = -(portrait->position->y + portrait->offset.y - Camera::position.y);
+        rect.y = Camera::position.y + Camera::SCREEN_HEIGHT - portrait->position->y - portrait->offset.y + portrait->size.y; //FIXME
         rect.w = portrait->size.x;
         rect.h = portrait->size.y;
 

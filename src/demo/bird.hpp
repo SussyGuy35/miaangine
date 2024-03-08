@@ -5,7 +5,7 @@
 class Bird : public mia::WorldObject
 {
 public:
-    Bird(float x, float y);
+    Bird();
 
     void Update(uint8_t message) override;
 

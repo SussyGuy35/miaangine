@@ -128,6 +128,6 @@ MyObject():
     WorldObject("Name of my object")
 {
     MakeBody(size, offset)
-    mia::physicWorld->RegisterBody(body());
+    mia::physics->RegisterBody(body());
 }
 ```

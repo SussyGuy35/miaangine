@@ -15,6 +15,8 @@ void Game::Run()
 
     pipeManager->Start();
     
+    
+
     while (true)
     {
         mia::NewFrame();

@@ -7,6 +7,8 @@
 #include "graphic/portrait-renderer.hpp"
 #include "physics/physics-world.hpp"
 
+#include "debug/log-system.hpp"
+
 namespace mia
 {
     extern SDLHandle *sdlHandle;

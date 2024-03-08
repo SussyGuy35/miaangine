@@ -6,6 +6,8 @@
 #include "pipe.hpp"
 #include "pipe-manager.hpp"
 
+#include "debug/log-system.hpp"
+
 void Game::Run()
 {
     mia::Init(400, 600, 0);
@@ -15,7 +17,7 @@ void Game::Run()
 
     pipeManager->Start();
     
-    
+    SDL_Log("%d : % ", 5, 5);
 
     while (true)
     {

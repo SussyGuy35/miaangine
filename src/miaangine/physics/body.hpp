@@ -16,7 +16,7 @@
         Body(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
         Body(float sx, float sy, float ox = 0, float oy = 0);
 
-        ~Body();
+        virtual ~Body();
 
     private:
         std::string _unclaimName;

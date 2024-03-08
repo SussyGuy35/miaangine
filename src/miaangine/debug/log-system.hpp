@@ -1,5 +1,7 @@
+#ifndef _MIA_LOG_SYSTEM_HPP
+#define _MIA_LOG_SYSTEM_HPP
+
 #include <stdarg.h>
-#include <SDL.h>
 
 namespace mia
 {
@@ -24,6 +26,8 @@ namespace mia
         void Log(const char *format, ...);
 
     private:
-        void OutputLog(const char *textToPrint);
+        void ProcessEntityLog(char type, va_list &args, std::string &output);
     };
 }
+
+#endif

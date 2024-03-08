@@ -19,7 +19,7 @@ namespace mia
         WorldObject(const char* name = "object", Vector2 position = Vector2::zero());
         WorldObject(const char* name, float x, float y);
 
-        ~WorldObject();
+        virtual ~WorldObject();
 
     public:
         Vector2 position;

@@ -14,6 +14,8 @@ namespace mia
             name(name)
         {}
 
+        virtual ~GameObject() {}
+
         std::string name;
     };
 }

@@ -25,7 +25,8 @@ Then you can import "miaangine.hpp" to use all the features or import specify an
 - AABB-based physic engine
 
 ## Tutorial
-*Make sure to import the necessary header*
+*Make sure to import the necessary header* <br>
+**This toturial litterally outdated after a day :P** 
 
 ### Init/End program
 Use ```mia::Init()``` to make the SDL window

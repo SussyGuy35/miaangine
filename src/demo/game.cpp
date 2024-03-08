@@ -10,8 +10,8 @@ void Game::Run()
 {
     mia::Init(400, 600, 0);
 
-    Bird *bird = new Bird();
     PipeManager *pipeManager = new PipeManager();
+    Bird *bird = new Bird();
 
     pipeManager->Start();
     
@@ -20,8 +20,6 @@ void Game::Run()
         mia::NewFrame();
 
         if (mia::Input::IsQuit()) break;
-
-        if (bird->body()->colliding) pipeManager->Stop();
 
         mia::Render();
     }

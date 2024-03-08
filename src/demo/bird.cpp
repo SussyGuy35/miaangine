@@ -29,6 +29,16 @@ void Bird::Update(uint8_t message)
             body()->velocity.y = JUMP_VELOCITY;
         }
 
+        if (body()->colliding) 
+        {
+            portrait()->color = {255, 0, 0, 255};
+        }
+        else 
+        {
+            portrait()->color = {255, 20, 255, 255};
+
+        }
+
         break;
     
     default:

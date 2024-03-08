@@ -22,13 +22,13 @@ namespace mia
     {
         float aMinX = bodyA->position->x + bodyA->offset.x; 
         float aMaxX = bodyA->position->x + bodyA->offset.x + bodyA->size.x; 
-        float aMinY = bodyA->position->y + bodyA->offset.y - bodyA->size.y; 
-        float aMaxY = bodyA->position->y + bodyA->offset.y; 
+        float aMinY = bodyA->position->y + bodyA->offset.y; 
+        float aMaxY = bodyA->position->y + bodyA->offset.y + bodyA->size.y; 
 
         float bMinX = bodyB->position->x + bodyB->offset.x; 
         float bMaxX = bodyB->position->x + bodyB->offset.x + bodyB->size.x; 
-        float bMinY = bodyB->position->y + bodyB->offset.y - bodyB->size.y; 
-        float bMaxY = bodyB->position->y + bodyB->offset.y; 
+        float bMinY = bodyB->position->y + bodyB->offset.y; 
+        float bMaxY = bodyB->position->y + bodyB->offset.y + bodyB->size.y; 
 
         return (aMinX <= bMaxX &&
                 aMaxX >= bMinX &&

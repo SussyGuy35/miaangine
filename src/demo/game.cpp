@@ -16,8 +16,8 @@ void Game::Run()
     Bird *bird = new Bird();
 
     pipeManager->Start();
-    
-    SDL_Log("%d : % ", 5, 5);
+
+    mia::logs->Log("abcd %^o e", bird);
 
     while (true)
     {

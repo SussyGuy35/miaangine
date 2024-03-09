@@ -19,6 +19,8 @@ namespace mia
     extern PortraitRenderer *portraitRenderer;
     extern PhysicsWorld *physics;
 
+    extern LogSystem *logs;
+
     void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();
 

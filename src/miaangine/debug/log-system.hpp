@@ -30,7 +30,8 @@ namespace mia
         void Log(const char *format, ...);
 
     private:
-        void ProcessEntityLog(char type, va_list &args, std::string &output);
+        void ProcessEntityLog(char type, void *data, char *str, int &len);
+        void UpdateNormalLog(char *out, size_t size, const char *format, ...);
     };
 }
 

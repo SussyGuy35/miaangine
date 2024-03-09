@@ -3,6 +3,8 @@
 #include <SDL.h>
 #include <cstring>
 
+#include "time/time-manager.hpp"
+
 #include "util/math.hpp"
 #include "object/game-object.hpp"
 
@@ -22,11 +24,17 @@ namespace mia
 
     void LogSystem::Log(const char *format, ...)
     {
+        char str[1024] = "";
+        int len = 0;
+     
+        char tlog[512];
+        UpdateNormalLog(tlog, sizeof(tlog), "%.3f - %llu > ", TimeManager::Instance()->time, TimeManager::Instance()->stepCount);
+        strcat(str, tlog);
+        len += strlen(tlog);
+        
         va_list args; 
         va_start(args, format);
 
-        char out[512];
-        int len = 0;
         for (int i = 0; format[i] != '\0'; ++i) 
         {
             if (format[i] == '%' && format[i + 1] == '^')
@@ -35,16 +43,16 @@ namespace mia
                 char type = format[i];
 
                 void *data = va_arg(args, void*);
-                ProcessEntityLog(format[i], data, out, len);
+                ProcessEntityLog(format[i], data, str, len);
             }
             else 
             {
-                out[len++] = format[i];
+                str[len++] = format[i];
             }
         }
-        out[len] = '\0';
+        str[len] = '\0';
 
-        SDL_Log("%s", out);
+        SDL_Log("%s", str);
 
         va_end(args);
     }

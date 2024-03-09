@@ -17,12 +17,12 @@ void Game::Run()
 
     pipeManager->Start();
 
-    mia::logs->Log("abcd %^o e", bird);
 
     while (true)
     {
         mia::NewFrame();
 
+    mia::logs->Log("abcd %^o e", bird);
         if (mia::input->IsQuit()) break;
 
         mia::Render();

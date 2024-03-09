@@ -22,7 +22,6 @@ void Game::Run()
     {
         mia::NewFrame();
 
-    mia::logs->Log("abcd %^o e", bird);
         if (mia::input->IsQuit()) break;
 
         mia::Render();

@@ -7,8 +7,7 @@
 #include "event/event-manager.hpp"
 #include "graphic/portrait-renderer.hpp"
 #include "physics/physics-world.hpp"
-
-#include "debug/log-system.hpp"
+#include "debug/debug-manager.hpp"
 
 namespace mia
 {
@@ -18,8 +17,7 @@ namespace mia
     extern EventManager *event;
     extern PortraitRenderer *portraitRenderer;
     extern PhysicsWorld *physics;
-
-    extern LogSystem *logs;
+    extern DebugManager *debug;
 
     void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();

@@ -6,7 +6,7 @@ mia::InputManager *mia::input = InputManager::Instance();
 mia::EventManager *mia::event = EventManager::Instance();
 mia::PortraitRenderer *mia::portraitRenderer = PortraitRenderer::Instance();
 mia::PhysicsWorld *mia::physics = PhysicsWorld::Instance();
-mia::LogSystem *mia::logs = LogSystem::Instance();
+mia::DebugManager *mia::debug = DebugManager::Instance();
 
 void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 {
@@ -27,7 +27,7 @@ void mia::End()
     delete(event);
     delete(portraitRenderer);
     delete(physics);
-    delete(logs);
+    delete(debug);
 }
 
 void mia::NewFrame()

@@ -1,35 +1,37 @@
-#ifndef _MIA_DEBUG_MANAGER_HPP
-#define _MIA_DEBUG_MANAGER_HPP
+#ifndef _MIA_LOG_SYSTEM_HPP
+#define _MIA_LOG_SYSTEM_HPP
 
-#include "log-system.hpp"
+#include <stdarg.h>
+#include <string>
 
 namespace mia
 {
     class DebugManager
     {
-        private:
-            static DebugManager *__instance;
-        public:
-            static DebugManager* Instance() 
-            {
-                if (!__instance) __instance = new DebugManager(); 
-                return __instance;
-            }
+    private:
+        static DebugManager *__instance;
+    public:
+        static DebugManager* Instance() 
+        {
+            if (!__instance) __instance = new DebugManager(); 
+            return __instance;
+        }
 
-            DebugManager(const DebugManager&) = delete;
-            void operator=(const DebugManager&) = delete;
+        DebugManager(const DebugManager&) = delete;
+        void operator=(const DebugManager&) = delete;
 
-        private:
-            DebugManager();
+    private:
+        DebugManager();
 
-        public:
-            ~DebugManager();
+    public:
+        ~DebugManager();
 
-        private:
-            LogSystem *logs; 
+    public:
+        void Log(const char *format, ...);
 
-        public:
-            void Log(const char *format, ...);
+    private:
+        void AppendMiaEntityLogToStr(char type, void *data, char *out, int &len);
+        void VirtualLog(char *out, size_t size, const char *format, ...);
     };
 }
 

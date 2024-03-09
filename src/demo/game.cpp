@@ -6,8 +6,6 @@
 #include "pipe.hpp"
 #include "pipe-manager.hpp"
 
-#include "debug/log-system.hpp"
-
 void Game::Run()
 {
     mia::Init(400, 600, 0);
@@ -16,7 +14,7 @@ void Game::Run()
     Bird *bird = new Bird();
 
     pipeManager->Start();
-
+    mia::debug->Log("d %^o d", bird);
 
     while (true)
     {

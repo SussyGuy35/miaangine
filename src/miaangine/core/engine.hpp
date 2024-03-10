@@ -2,7 +2,6 @@
 #define _MIA_ENGINE_HPP
 
 #include "sdl-handle.hpp"
-#include "util/internal/window-util.hpp"
 #include "time/time-manager.hpp"
 #include "input/input-manager.hpp"
 #include "event/event-manager.hpp"
@@ -13,7 +12,6 @@
 namespace mia
 {
     extern SDLHandle *sdlHandle;
-    extern WindowUtilities *windowManager;
     extern TimeManager *time;
     extern InputManager *input;
     extern EventManager *event;
@@ -22,7 +20,7 @@ namespace mia
     extern DebugManager *debug;
 
     extern int windowWidth, windowHeight;
-    extern bool fullscreen;
+    extern bool fullscreenMode; //TODO
 
     void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();

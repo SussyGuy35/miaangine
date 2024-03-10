@@ -2,7 +2,7 @@
 #define _MIA_ENGINE_HPP
 
 #include "sdl-handle.hpp"
-#include "window-manager.hpp"
+#include "window-util.hpp"
 #include "time/time-manager.hpp"
 #include "input/input-manager.hpp"
 #include "event/event-manager.hpp"
@@ -13,7 +13,7 @@
 namespace mia
 {
     extern SDLHandle *sdlHandle;
-    extern WindowManager *windowManager;
+    extern WindowUtilities *windowManager;
     extern TimeManager *time;
     extern InputManager *input;
     extern EventManager *event;

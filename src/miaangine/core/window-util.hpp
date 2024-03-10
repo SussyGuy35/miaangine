@@ -1,27 +1,27 @@
-#ifndef _MIA_WINDOW_MANAGER_HPP
-#define _MIA_WINDOW_MANAGER_HPP
+#ifndef _MIA_WINDOW_UTIL_HPP
+#define _MIA_WINDOW_UTIL_HPP
 
 namespace mia
 {
-    class WindowManager
+    class WindowUtilities
     {
     private:
-        static WindowManager *__instance;
+        static WindowUtilities *__instance;
     public:
-        static WindowManager* Instance() 
+        static WindowUtilities* Instance() 
         {
-            if (!__instance) __instance = new WindowManager(); 
+            if (!__instance) __instance = new WindowUtilities(); 
             return __instance;
         }
 
-        WindowManager(const WindowManager&) = delete;
-        void operator=(const WindowManager&) = delete;
+        WindowUtilities(const WindowUtilities&) = delete;
+        void operator=(const WindowUtilities&) = delete;
 
     private:
-        WindowManager();
+        WindowUtilities();
     
     public:
-        ~WindowManager();
+        ~WindowUtilities();
 
     private:
         int _width, _height;

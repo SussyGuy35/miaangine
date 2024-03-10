@@ -1,7 +1,7 @@
 #include "engine.hpp"
 
 mia::SDLHandle *mia::sdlHandle = SDLHandle::Instance();
-mia::WindowManager *mia::windowManager = WindowManager::Instance();
+mia::WindowUtilities *mia::windowManager = WindowUtilities::Instance();
 mia::TimeManager *mia::time = TimeManager::Instance();
 mia::InputManager *mia::input = InputManager::Instance();
 mia::EventManager *mia::event = EventManager::Instance();

@@ -5,6 +5,7 @@
 
 #include "core/camera.hpp"
 
+#include "core/engine.hpp"
 #include "time/time-manager.hpp"
 
 namespace mia 
@@ -55,7 +56,7 @@ namespace mia
         SDL_Rect rect;
 
         rect.x = static_cast<int>(portrait->position->x + portrait->offset.x - Camera::position.x);
-        rect.y = static_cast<int>(Camera::position.y + Camera::SCREEN_HEIGHT - portrait->position->y - portrait->offset.y - portrait->size.y); //FIXME
+        rect.y = static_cast<int>(Camera::position.y + windowHeight - portrait->position->y - portrait->offset.y - portrait->size.y); //FIXME
         rect.w = static_cast<int>(portrait->size.x);
         rect.h = static_cast<int>(portrait->size.y);
 

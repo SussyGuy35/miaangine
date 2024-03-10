@@ -1,6 +1,7 @@
 #include "engine.hpp"
 
 mia::SDLHandle *mia::sdlHandle = SDLHandle::Instance();
+mia::WindowManager *mia::windowManager = WindowManager::Instance();
 mia::TimeManager *mia::time = TimeManager::Instance();
 mia::InputManager *mia::input = InputManager::Instance();
 mia::EventManager *mia::event = EventManager::Instance();
@@ -22,6 +23,7 @@ void mia::End()
     sdlHandle->Clear();
 
     delete(sdlHandle);
+    delete(windowManager);
     delete(time);
     delete(input);
     delete(event);

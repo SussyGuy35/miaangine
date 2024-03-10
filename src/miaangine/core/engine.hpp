@@ -2,7 +2,7 @@
 #define _MIA_ENGINE_HPP
 
 #include "sdl-handle.hpp"
-#include "window-util.hpp"
+#include "util/internal/window-util.hpp"
 #include "time/time-manager.hpp"
 #include "input/input-manager.hpp"
 #include "event/event-manager.hpp"

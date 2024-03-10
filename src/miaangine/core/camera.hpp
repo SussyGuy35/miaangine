@@ -9,7 +9,7 @@ namespace mia
     {
     private:
         Camera();
-
+ 
     public:
         static const int SCREEN_HEIGHT = 600; //FIXME
 

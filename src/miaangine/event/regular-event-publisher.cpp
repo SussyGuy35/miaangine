@@ -35,12 +35,4 @@ namespace mia
             listener->Update(_message);
         }
     }
-
-    // void RegularEventPublisher::Log() //TODO
-    // {
-    //     SDL_Log("%.2f - %llu | "
-    //             "EventListener > Listeners Count(%d)",
-    //             TimeManager::time, TimeManager::stepCount,
-    //             _listeners.size());
-    // }
 }

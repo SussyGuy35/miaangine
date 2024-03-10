@@ -88,12 +88,4 @@ namespace mia
         body->ShiftMaster(this);
         _bodies.push_back(body);
     }
-
-    // void WorldObject::Log() //TODO
-    // {
-    //     SDL_Log("%.2f - %llu | "
-    //             "WorldObject [%s] > Position(%.2f, %.2f); Portrait Count(%d); Body Count(%d)",
-    //             TimeManager::time, TimeManager::stepCount,
-    //             name.c_str(), position.x, position.y, static_cast<int>(_portraits.size()), static_cast<int>(_bodies.size()));
-    // }
 }

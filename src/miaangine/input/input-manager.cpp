@@ -8,7 +8,7 @@ namespace mia
 {
     InputManager *InputManager::__instance = nullptr;
 
-    KeyBind::KeyBind(): //TODO
+    KeyBind::KeyBind(): //FIXME
         _keyBind(
         {
             // ================================================

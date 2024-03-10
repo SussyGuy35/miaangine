@@ -43,7 +43,7 @@ namespace mia
         void SetupKeyBind();
         void Update();
 
-        bool IsQuit() { return _isQuit; } //TODO
+        bool IsQuit() { return _isQuit; } //FIXME
 
         bool GetButton(const char *button);
         bool GetButtonDown(const char *button);

@@ -5,7 +5,6 @@ Bird::Bird():
     SIZE(mia::Vector2(50, 47)),
     GRAVITY(-1500),
     JUMP_VELOCITY(550)
-
 {
     MakePortrait(SIZE);
     mia::portraitRenderer->RegisterPortrait(portrait());
@@ -36,7 +35,6 @@ void Bird::Update(uint8_t message)
         else 
         {
             portrait()->color = {255, 20, 255, 255};
-
         }
 
         break;

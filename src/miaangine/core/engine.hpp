@@ -21,6 +21,9 @@ namespace mia
     extern PhysicsWorld *physics;
     extern DebugManager *debug;
 
+    extern int windowWidth, windowHeight;
+    extern bool fullscreen;
+
     void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();
 

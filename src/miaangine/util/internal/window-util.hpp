@@ -23,17 +23,10 @@ namespace mia
     public:
         ~WindowUtilities();
 
-    private:
-        int _width, _height;
-        bool _fullscreen;
-
-    public:
-        const int &width = _width;
-        const int &height = _height;
-        const bool &fullscreen = _fullscreen;
-
-        void ChangeWindow(int width, int height);
-        void ChangeFullscreen(bool state);
+    public: //TODO
+        // const int &width = _width;
+        // const int &height = _height;
+        // const bool &fullscreen = _fullscreen;
     };
 } 
 

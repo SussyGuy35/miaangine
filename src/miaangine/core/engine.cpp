@@ -9,11 +9,19 @@ mia::PortraitRenderer *mia::portraitRenderer = PortraitRenderer::Instance();
 mia::PhysicsWorld *mia::physics = PhysicsWorld::Instance();
 mia::DebugManager *mia::debug = DebugManager::Instance();
 
+int mia::windowWidth = 10;
+int mia::windowHeight = 10;
+bool mia::fullscreen = 0;
+
 void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 {
-    SDL_Log("**MIAANGINE**\n");
+    windowWidth = width;
+    windowHeight = height;
+    mia::fullscreen = fullscreen;
 
-    sdlHandle->Init(width, height, fullscreen);
+    sdlHandle->Init(windowWidth, windowHeight, mia::fullscreen);
+
+    SDL_Log("**MIAANGINE**\n");
 
     input->SetupKeyBind();
 }

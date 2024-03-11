@@ -37,9 +37,6 @@ namespace mia
 
     void PortraitRenderer::RenderPotraits(SDL_Renderer *renderer)
     {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-
         for (const Portrait *portrait : _portraits)
         {
             SDL_Rect rect = RectRenderingCalculate(portrait);
@@ -47,8 +44,6 @@ namespace mia
             SDL_SetRenderDrawColor(renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
             SDL_RenderFillRect(renderer, &rect);
         }
-
-        SDL_RenderPresent(renderer);
     }
 
     SDL_Rect PortraitRenderer::RectRenderingCalculate(const Portrait *portrait)

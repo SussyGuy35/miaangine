@@ -7,7 +7,7 @@ Bird::Bird():
     JUMP_VELOCITY(550)
 {
     MakePortrait(SIZE);
-    mia::portraitRenderer->RegisterPortrait(portrait());
+    mia::renderer->portraitHandle->RegisterPortrait(portrait());
     portrait()->color = {255, 20, 255, 255};
 
     MakeBody(SIZE);

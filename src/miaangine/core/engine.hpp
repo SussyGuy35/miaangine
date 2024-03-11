@@ -5,7 +5,7 @@
 #include "time/time-manager.hpp"
 #include "input/input-manager.hpp"
 #include "event/event-manager.hpp"
-#include "graphic/portrait-renderer.hpp"
+#include "graphic/renderer.hpp"
 #include "physics/physics-world.hpp"
 #include "debug/debug-manager.hpp"
 
@@ -15,7 +15,7 @@ namespace mia
     extern TimeManager *time;
     extern InputManager *input;
     extern EventManager *event;
-    extern PortraitRenderer *portraitRenderer;
+    extern Renderer *renderer;
     extern PhysicsWorld *physics;
     extern DebugManager *debug;
 

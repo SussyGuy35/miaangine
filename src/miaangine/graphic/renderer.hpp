@@ -1,6 +1,8 @@
 #ifndef _MIA_RENDERER_HPP
 #define _MID_RENDERER_HPP
 
+#include "portrait-renderer.hpp"
+
 namespace mia
 {
     class Renderer
@@ -22,6 +24,11 @@ namespace mia
 
     public:
         ~Renderer();
+    
+    public:
+        PortraitRenderer *portraitHandle;
+
+        void Render(SDL_Renderer *renderer);
     };
 }
 

@@ -4,7 +4,7 @@ mia::SDLHandle *mia::sdlHandle = SDLHandle::Instance();
 mia::TimeManager *mia::time = TimeManager::Instance();
 mia::InputManager *mia::input = InputManager::Instance();
 mia::EventManager *mia::event = EventManager::Instance();
-mia::PortraitRenderer *mia::portraitRenderer = PortraitRenderer::Instance();
+mia::Renderer *mia::renderer = Renderer::Instance();
 mia::PhysicsWorld *mia::physics = PhysicsWorld::Instance();
 mia::DebugManager *mia::debug = DebugManager::Instance();
 
@@ -33,7 +33,7 @@ void mia::End()
     delete(time);
     delete(input);
     delete(event);
-    delete(portraitRenderer);
+    delete(renderer);
     delete(physics);
     delete(debug);
 }
@@ -52,5 +52,5 @@ void mia::NewFrame()
 
 void mia::Render()
 {
-    mia::portraitRenderer->RenderPotraits(sdlHandle->renderer);
+    mia::renderer->Render(sdlHandle->renderer);
 }

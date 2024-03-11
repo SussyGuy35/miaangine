@@ -1,12 +1,12 @@
 #include "engine.hpp"
 
-mia::SDLHandle *mia::sdlHandle = SDLHandle::Instance();
-mia::TimeManager *mia::time = TimeManager::Instance();
-mia::InputManager *mia::input = InputManager::Instance();
-mia::EventManager *mia::event = EventManager::Instance();
-mia::Renderer *mia::renderer = Renderer::Instance();
-mia::PhysicsWorld *mia::physics = PhysicsWorld::Instance();
-mia::DebugManager *mia::debug = DebugManager::Instance();
+std::unique_ptr<mia::SDLHandle>    mia::sdlHandle (mia::SDLHandle::Instance());
+std::unique_ptr<mia::TimeManager>  mia::time      (mia::TimeManager::Instance());
+std::unique_ptr<mia::InputManager> mia::input     (mia::InputManager::Instance());
+std::unique_ptr<mia::EventManager> mia::event     (mia::EventManager::Instance());
+std::unique_ptr<mia::Renderer>     mia::renderer  (mia::Renderer::Instance());
+std::unique_ptr<mia::PhysicsWorld> mia::physics   (mia::PhysicsWorld::Instance());
+std::unique_ptr<mia::DebugManager> mia::debug     (mia::DebugManager::Instance());
 
 int mia::windowWidth = 10;
 int mia::windowHeight = 10;
@@ -29,13 +29,13 @@ void mia::End()
 {
     sdlHandle->Clear();
 
-    delete(sdlHandle);
-    delete(time);
-    delete(input);
-    delete(event);
-    delete(renderer);
-    delete(physics);
-    delete(debug);
+    // delete(sdlHandle);
+    // delete(time);
+    // delete(input);
+    // delete(event);
+    // delete(renderer);
+    // delete(physics);
+    // delete(debug);
 }
 
 void mia::NewFrame()

@@ -2,8 +2,10 @@
 
 namespace mia
 {
-    Vector2 Camera::position = Vector2::zero();
+    Camera *Camera::__instance = nullptr;
 
-    Camera::Camera()
+
+    Camera::Camera():
+        position(Vector2::zero())
     {}
 }

@@ -13,13 +13,13 @@ namespace mia
     class ScreenObject : public GameObject
     {
     public:
-        ScreenObject(const char* name = "object", Vector2 position = Vector2::zero());
+        ScreenObject(const char* name = "object", vector2 position = vector2::zero());
         ScreenObject(const char* name, float x, float y);
 
         virtual ~ScreenObject();
 
     public:
-        Vector2 position;
+        vector2 position;
 
     protected:
         std::vector<Image*> _images;
@@ -29,7 +29,7 @@ namespace mia
 
         void AttachImage(Image *portrait);
 
-        void MakeImage(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
+        void MakeImage(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
         void MakeImage(float sx, float sy, float ox = 0, float oy = 0);
     };
 }

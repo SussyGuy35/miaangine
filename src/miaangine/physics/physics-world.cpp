@@ -7,7 +7,7 @@ namespace mia
     PhysicsWorld *PhysicsWorld::__instance = nullptr;
 
     PhysicsWorld::PhysicsWorld():
-        _gravity(Vector2(0.0, 9.81))
+        _gravity(vector2(0.0, 9.81))
     {}
 
     PhysicsWorld::~PhysicsWorld()
@@ -60,7 +60,7 @@ namespace mia
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
         {
             Body *body = _bodies[i];
-            Vector2 &position = body->master->position;
+            vector2 &position = body->master->position;
 
             position.x += body->velocity.x * timePass;
             position.y += body->velocity.y * timePass;

@@ -5,10 +5,10 @@
 
 namespace mia 
 {
-    class Vector2
+    class vector2
 	{
 	public: 
-		Vector2(double _x = 0, double _y = 0):
+		vector2(double _x = 0, double _y = 0):
 			x(_x),
 			y(_y)
 		{}
@@ -17,7 +17,7 @@ namespace mia
 		double x, y;
 
 	public:
-		Vector2& operator= (const Vector2& _t)
+		vector2& operator= (const vector2& _t)
 		{
 			x = _t.x;
 			y = _t.y;
@@ -26,41 +26,41 @@ namespace mia
 		}
 
 		// Basic operator
-		inline Vector2 operator+(const Vector2& _t)
+		inline vector2 operator+(const vector2& _t)
 		{
-			return Vector2(x + _t.x, y + _t.y);
+			return vector2(x + _t.x, y + _t.y);
 		}
-		inline Vector2 operator-(const Vector2& _t)
+		inline vector2 operator-(const vector2& _t)
 		{
-			return Vector2(x - _t.x, y - _t.y);
+			return vector2(x - _t.x, y - _t.y);
 		}
-		inline Vector2 operator*(const double& _t)
+		inline vector2 operator*(const double& _t)
 		{
-			return Vector2(x * _t, y * _t);
+			return vector2(x * _t, y * _t);
 		}
-		inline Vector2 operator/(const double& _t)
+		inline vector2 operator/(const double& _t)
 		{
-			return Vector2(x / _t, y / _t);
+			return vector2(x / _t, y / _t);
 		}
-		inline Vector2 operator+=(const Vector2& _t)
+		inline vector2 operator+=(const vector2& _t)
 		{
 			x += _t.x;
 			y += _t.y;
 			return *this;
 		}
-		inline Vector2 operator-=(const Vector2& _t)
+		inline vector2 operator-=(const vector2& _t)
 		{
 			x -= _t.x;
 			y -= _t.y;
 			return *this;
 		}
-		inline Vector2 operator*=(const double& _t)
+		inline vector2 operator*=(const double& _t)
 		{
 			x *= _t;
 			y *= _t;
 			return *this;
 		}
-		inline Vector2 operator/=(const double& _t)
+		inline vector2 operator/=(const double& _t)
 		{
 			x /= _t;
 			y /= _t;
@@ -68,11 +68,11 @@ namespace mia
 		}
 
 		// Product operator
-		inline double Dot(Vector2 _t)
+		inline double Dot(vector2 _t)
 		{
 			return (x * _t.x) + (y * _t.y);
 		}
-		inline double Cross(Vector2 _t)
+		inline double Cross(vector2 _t)
 		{
 			return (x * _t.y) - (y * _t.x);
 		}
@@ -83,40 +83,40 @@ namespace mia
 		}
 		
 		// Normalize
-		inline Vector2 Normalize()
+		inline vector2 Normalize()
 		{
 			return *this / Magnitude();
 		}
 
 		// Unit vector
-		static const Vector2& up()
+		static const vector2& up()
 		{
-			static const Vector2 result(0, 1);
+			static const vector2 result(0, 1);
 			return result;
 		}
-		static const Vector2& down()
+		static const vector2& down()
 		{
-			static const Vector2 result(0, -1);
+			static const vector2 result(0, -1);
 			return result;
 		}
-		static const Vector2& right()
+		static const vector2& right()
 		{
-			static const Vector2 result(1, 0);
+			static const vector2 result(1, 0);
 			return result;
 		}
-		static const Vector2& left()
+		static const vector2& left()
 		{
-			static const Vector2 result(-1, 0);
+			static const vector2 result(-1, 0);
 			return result;
 		}
-		static const Vector2& zero()
+		static const vector2& zero()
 		{
-			static const Vector2 result(0, 0);
+			static const vector2 result(0, 0);
 			return result;
 		}
-		static const Vector2& one()
+		static const vector2& one()
 		{
-			static const Vector2 result(1, 1);
+			static const vector2 result(1, 1);
 			return result;
 		}
 	};

@@ -65,7 +65,7 @@ namespace mia
         {
         case 'v':
             {
-                Vector2 *entity = const_cast<Vector2*>( static_cast<const Vector2*>(data) );
+                vector2 *entity = const_cast<vector2*>( static_cast<const vector2*>(data) );
 
                 VirtualLog(entityLog, sizeof(entityLog), "(%.2f, %.2f)[Vector2]", entity->x, entity->y);
             }

@@ -30,7 +30,7 @@ namespace mia
     private:
         std::vector<Body*> _bodies;
 
-        Vector2 _gravity;
+        vector2 _gravity;
 
     public:
         void RegisterBody(Body *body);

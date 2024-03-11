@@ -15,13 +15,13 @@ namespace mia
     class WorldObject : public GameObject
     {
     public:
-        WorldObject(const char* name = "object", Vector2 position = Vector2::zero());
+        WorldObject(const char* name = "object", vector2 position = vector2::zero());
         WorldObject(const char* name, float x, float y);
 
         virtual ~WorldObject();
 
     public:
-        Vector2 position;
+        vector2 position;
 
     protected:
         std::vector<Portrait*> _portraits;
@@ -34,10 +34,10 @@ namespace mia
         void AttachPortrait(Portrait *portrait);
         void AttachBody(Body *body);
 
-        void MakePortrait(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
+        void MakePortrait(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
         void MakePortrait(float sx, float sy, float ox = 0, float oy = 0);
 
-        void MakeBody(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
+        void MakeBody(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
         void MakeBody(float sx, float sy, float ox = 0, float oy = 0);
     };
 }

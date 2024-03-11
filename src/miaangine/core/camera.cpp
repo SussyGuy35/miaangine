@@ -6,6 +6,6 @@ namespace mia
 
 
     Camera::Camera():
-        position(Vector2::zero())
+        position(vector2::zero())
     {}
 }

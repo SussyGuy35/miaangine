@@ -12,21 +12,21 @@
     class mia::Image
     {
     public:
-        Image(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero(), SDL_Color color = {255, 255, 255, 255});
+        Image(vector2 size = vector2::zero(), vector2 offset = vector2::zero(), SDL_Color color = {255, 255, 255, 255});
         Image(float sx, float sy, float ox = 0, float oy = 0, SDL_Color color = {255, 255, 255, 255});
 
         virtual ~Image();
 
     private:
         std::string _unclaimName;
-        Vector2 _unclaimPosition;
+        vector2 _unclaimPosition;
 
     public:
-        Vector2 size;
-        Vector2 offset;
+        vector2 size;
+        vector2 offset;
 
         std::string *name = &_unclaimName;
-        Vector2 *position = &_unclaimPosition;
+        vector2 *position = &_unclaimPosition;
 
         SDL_Color color;
 

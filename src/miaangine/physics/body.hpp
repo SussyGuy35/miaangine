@@ -14,25 +14,25 @@
     class mia::Body
     {
     public:
-        Body(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
+        Body(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
         Body(float sx, float sy, float ox = 0, float oy = 0);
 
         virtual ~Body();
 
     private:
         std::string _unclaimName;
-        Vector2 _unclaimPosition;
+        vector2 _unclaimPosition;
 
     public:
-        Vector2 size;
-        Vector2 offset;
+        vector2 size;
+        vector2 offset;
 
         std::string *name = &_unclaimName;
-        Vector2 *position = &_unclaimPosition;
+        vector2 *position = &_unclaimPosition;
 
         WorldObject *master;
 
-        Vector2 velocity;
+        vector2 velocity;
         bool colliding;
 
         void ShiftMaster(WorldObject *master);

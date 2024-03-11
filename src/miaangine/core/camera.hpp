@@ -26,7 +26,7 @@ namespace mia
         ~Camera();
  
     public:
-        Vector2 position;
+        vector2 position;
     };
 }
 

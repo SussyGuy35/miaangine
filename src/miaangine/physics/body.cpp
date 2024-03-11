@@ -4,23 +4,23 @@
 
 namespace mia
 {
-    Body::Body(Vector2 size, Vector2 offset):
+    Body::Body(vector2 size, vector2 offset):
         _unclaimName("unclaimed"),
-        _unclaimPosition(Vector2::zero()),
+        _unclaimPosition(vector2::zero()),
         size(size),
         offset(offset),
         master(nullptr),
-        velocity(Vector2::zero()),
+        velocity(vector2::zero()),
         colliding(false)
     {}
 
     Body::Body(float sx, float sy, float ox, float oy):
         _unclaimName("unclaimed"),
-        _unclaimPosition(Vector2::zero()),
-        size(Vector2(sx, sy)),
-        offset(Vector2(ox, oy)),
+        _unclaimPosition(vector2::zero()),
+        size(vector2(sx, sy)),
+        offset(vector2(ox, oy)),
         master(nullptr),
-        velocity(Vector2::zero()),
+        velocity(vector2::zero()),
         colliding(false)
     {}
 

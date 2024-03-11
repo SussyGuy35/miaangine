@@ -4,8 +4,7 @@
 
 #include "core/camera.hpp"
 
-#include "core/engine.hpp"
-#include "time/time-manager.hpp"
+#include "core/engine.hpp" //FIXME
 
 namespace mia 
 {
@@ -34,7 +33,7 @@ namespace mia
         }
     }
 
-    void PortraitRenderer::RenderPotraits(SDL_Renderer *renderer)
+    void PortraitRenderer::Render(SDL_Renderer *renderer)
     {
         for (const Portrait *portrait : _portraits)
         {

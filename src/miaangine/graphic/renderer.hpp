@@ -2,6 +2,7 @@
 #define _MID_RENDERER_HPP
 
 #include "portrait-renderer.hpp"
+#include "image-renderer.hpp"
 
 namespace mia
 {
@@ -27,6 +28,7 @@ namespace mia
     
     public:
         PortraitRenderer *portraitHandle;
+        ImageRenderer *imageHandle;
 
         void Render(SDL_Renderer *renderer);
     };

@@ -35,7 +35,7 @@ namespace mia
         void RegisterPortrait(Portrait *portrait);
         void RemovePortrait(Portrait *portrait);
 
-        void RenderPotraits(SDL_Renderer *renderer);
+        void Render(SDL_Renderer *renderer);
 
     private:
         SDL_Rect RectRenderingCalculate(const Portrait *portrait);

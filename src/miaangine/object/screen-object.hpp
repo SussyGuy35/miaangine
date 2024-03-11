@@ -22,10 +22,10 @@ namespace mia
         Vector2 position;
 
     protected:
-        std::vector<Image*> _portraits;
+        std::vector<Image*> _images;
 
     public:
-        Image *portrait(int index = 0);\
+        Image *image(int index = 0);
 
         void AttachImage(Image *portrait);
 

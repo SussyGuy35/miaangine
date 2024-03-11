@@ -1,6 +1,8 @@
 #ifndef _MIA_IMAGE_HPP
 #define _MIA_IMAGE_HPP
 
+#include <SDL.h>
+
 #include "util/math.hpp"
 
 #include "object/screen-object.hpp"
@@ -9,28 +11,28 @@
 // {
     class mia::Image
     {
-    // public:
-    //     Image(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero(), SDL_Color color = {255, 255, 255, 255});
-    //     Image(float sx, float sy, float ox = 0, float oy = 0, SDL_Color color = {255, 255, 255, 255});
+    public:
+        Image(Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero(), SDL_Color color = {255, 255, 255, 255});
+        Image(float sx, float sy, float ox = 0, float oy = 0, SDL_Color color = {255, 255, 255, 255});
 
-    //     virtual ~Image();
+        virtual ~Image();
 
-    // private:
-    //     std::string _unclaimName;
-    //     Vector2 _unclaimPosition;
+    private:
+        std::string _unclaimName;
+        Vector2 _unclaimPosition;
 
-    // public:
-    //     Vector2 size;
-    //     Vector2 offset;
+    public:
+        Vector2 size;
+        Vector2 offset;
 
-    //     std::string *name = &_unclaimName;
-    //     Vector2 *position = &_unclaimPosition;
+        std::string *name = &_unclaimName;
+        Vector2 *position = &_unclaimPosition;
 
-    //     SDL_Color color;
+        SDL_Color color;
 
-    //     WorldObject *master;
+        ScreenObject *master;
 
-    //     void ShiftMaster(WorldObject *master);
+        void ShiftMaster(ScreenObject *master);
     };  
 // }
 

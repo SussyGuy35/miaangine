@@ -3,8 +3,6 @@
 #include "graphic/portrait.hpp"
 #include "physics/body.hpp"
 
-#include "core/engine.hpp"
-
 namespace mia
 {
     WorldObject::WorldObject(const char* name, Vector2 position):

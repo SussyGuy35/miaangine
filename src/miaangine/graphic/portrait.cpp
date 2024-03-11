@@ -1,7 +1,5 @@
 #include "portrait.hpp"
 
-#include "time/time-manager.hpp"
-
 namespace mia
 {
     Portrait::Portrait(Vector2 size, Vector2 offset, SDL_Color color):
@@ -22,7 +20,8 @@ namespace mia
 
     Portrait::~Portrait()
     {
-
+        delete(name);
+        delete(position);
     }
 
     void Portrait::ShiftMaster(WorldObject *master)

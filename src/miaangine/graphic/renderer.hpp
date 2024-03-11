@@ -1,6 +1,8 @@
 #ifndef _MIA_RENDERER_HPP
 #define _MID_RENDERER_HPP
 
+#include <memory>
+
 #include "portrait-renderer.hpp"
 #include "image-renderer.hpp"
 
@@ -27,8 +29,8 @@ namespace mia
         ~Renderer();
     
     public:
-        PortraitRenderer *portraitHandle;
-        ImageRenderer *imageHandle;
+        std::unique_ptr<PortraitRenderer> portraitHandle;
+        std::unique_ptr<ImageRenderer> imageHandle;
 
         void Render(SDL_Renderer *renderer);
     };

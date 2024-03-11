@@ -34,7 +34,7 @@ namespace mia
 
     public:
         void RegisterBody(Body *body);
-        // void RemoveBody(Body *body); //TODO
+        void RemoveBody(Body *body);
 
         void Step(double timePass);
 

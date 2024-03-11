@@ -12,9 +12,6 @@ namespace mia
     Renderer::~Renderer()
     {
         __instance = nullptr;
-
-        delete(portraitHandle);
-        delete(imageHandle);
     }
 
     void Renderer::Render(SDL_Renderer *renderer)

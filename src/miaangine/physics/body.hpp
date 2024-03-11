@@ -1,7 +1,8 @@
 #ifndef _MIA_COLLIDER_HPP
 #define _MIA_COLLIDER_HPP
 
-#include <string>
+#include <string> //FIXME
+#include <memory>
 
 #include "util/math.hpp"
 #include "time/time-manager.hpp"

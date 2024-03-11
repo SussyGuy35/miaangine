@@ -2,6 +2,7 @@
 #define _MIA_PORTRAIT_HPP
 
 #include <SDL.h>
+#include <memory>
 
 #include "util/math.hpp"
 

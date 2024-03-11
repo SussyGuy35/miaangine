@@ -26,7 +26,8 @@ namespace mia
 
     Body::~Body()
     {
-
+        delete(name);
+        delete(position);
     }
 
     void Body::ShiftMaster(WorldObject *master)

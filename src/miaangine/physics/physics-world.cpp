@@ -1,5 +1,7 @@
 #include "physics-world.hpp"
 
+#include <algorithm>
+
 namespace mia
 {
     PhysicsWorld *PhysicsWorld::__instance = nullptr;
@@ -16,6 +18,16 @@ namespace mia
     void PhysicsWorld::RegisterBody(Body *body)
     {
         _bodies.push_back(body);
+    }
+
+    void PhysicsWorld::RemoveBody(Body *body)
+    {
+        auto listenerIterator = std::find(_bodies.begin(), _bodies.end(), body);
+
+        if (listenerIterator != _bodies.end())
+        {
+            _bodies.erase(listenerIterator);
+        }
     }
 
     void PhysicsWorld::Step(double timePass)

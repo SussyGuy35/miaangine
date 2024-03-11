@@ -1,7 +1,6 @@
 #ifndef _MIA_WORLD_OBJECT_HPP
 #define _MIA_WORLD_OBJECT_HPP
 
-#include <SDL.h>
 #include <string>
 #include <vector>
 

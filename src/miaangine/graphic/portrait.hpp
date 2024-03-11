@@ -1,6 +1,8 @@
 #ifndef _MIA_PORTRAIT_HPP
 #define _MIA_PORTRAIT_HPP
 
+#include <SDL.h>
+
 #include "util/math.hpp"
 
 #include "object/world-object.hpp"

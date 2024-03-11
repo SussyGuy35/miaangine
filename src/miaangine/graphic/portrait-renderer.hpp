@@ -1,6 +1,7 @@
 #ifndef _MIA_PORTRAIT_RENDERER_HPP
 #define _MIA_PORTRAIT_RENDERER_HPP
 
+#include <SDL.h>
 #include <vector>
 
 #include "portrait.hpp"

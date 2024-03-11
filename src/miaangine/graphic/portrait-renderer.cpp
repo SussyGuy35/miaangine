@@ -1,6 +1,5 @@
 #include "portrait-renderer.hpp"
 
-#include <SDL.h>
 #include <algorithm>
 
 #include "core/camera.hpp"

@@ -12,8 +12,8 @@
     class mia::Image
     {
     public:
-        Image(vector2 size = vector2::zero(), vector2 offset = vector2::zero(), SDL_Color color = {255, 255, 255, 255});
-        Image(float sx, float sy, float ox = 0, float oy = 0, SDL_Color color = {255, 255, 255, 255});
+        Image(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Image(float sx, float sy, float ox = 0, float oy = 0);
 
         virtual ~Image();
 

@@ -28,7 +28,10 @@ namespace mia
 
     public:
         void Log(const char *format, ...);
-        
+        void Warning(const char *format, ...);
+        void Error(const char *format, ...);
+
+        void FormatStr(char *out, const char *format, ...);
     };
 }
 

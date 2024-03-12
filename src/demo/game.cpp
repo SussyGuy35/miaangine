@@ -14,8 +14,6 @@ void Game::Run()
     PipeManager *pipeManager = new PipeManager();
     Bird *bird = new Bird();
 
-    mia::debug->Log("%^o", bird);
-    SDL_Log("%.5d", 11);
 
     pipeManager->Start();
     

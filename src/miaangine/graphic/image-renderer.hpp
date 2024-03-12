@@ -2,6 +2,8 @@
 #define _MIA_IMAGE_RENDERER_HPP
 
 #include <SDL.h>
+#include <SDL_image.h>
+
 #include <vector>
 
 #include "image.hpp"

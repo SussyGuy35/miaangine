@@ -1,5 +1,7 @@
 #include "renderer.hpp"
 
+#include <SDL_image.h> //FIXME
+
 namespace mia
 {
     Renderer *Renderer::__instance = nullptr;

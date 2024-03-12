@@ -2,6 +2,7 @@
 #define _MIA_PORTRAIT_RENDERER_HPP
 
 #include <SDL.h>
+#include <SDL_image.h>
 #include <vector>
 
 #include "portrait.hpp"

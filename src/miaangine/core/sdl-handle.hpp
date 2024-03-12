@@ -2,6 +2,7 @@
 #define _MIA_SDL_HANDLE_HPP
 
 #include <SDL.h>
+#include <SDL_image.h>
 
 namespace mia
 {

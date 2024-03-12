@@ -23,7 +23,6 @@ namespace mia
     {
         if(SDL_Init(SDL_INIT_VIDEO) < 0) return false;
 
-        // Create window
         window = SDL_CreateWindow( 
             "MIAANGINE", 
             SDL_WINDOWPOS_UNDEFINED, 
@@ -32,14 +31,17 @@ namespace mia
             height,
             SDL_WINDOW_OPENGL
         );
-        if (window == NULL) return false;
+        if (window == nullptr) return false;
 
         renderer = SDL_CreateRenderer(
             window, 
             -1, 
             SDL_RENDERER_ACCELERATED
         );
-        if (renderer == NULL) return false;
+        if (renderer == nullptr) return false;
+
+        int imgFlags = IMG_INIT_PNG;
+        if (!(IMG_Init(imgFlags) & imgFlags)) return false;
 
         return true;
     }

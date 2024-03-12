@@ -12,54 +12,28 @@ namespace mia
             _content("")
         {}
 
-        string(char *content)
+        string(const char *content):
+            _content(new char[strlen(content) + 1])
         {
-            delete[](_content);
-            _content = content;
-        }
-
-        string(const char *content)
-        {
-            delete[](_content);
-            _content = new char[strlen(content)];
             strcpy(_content, content);
         }
 
-        string(string &str)
-        {
-            delete[](_content);
-            _content = str._content;
-        }
-
-        string(const string &str)
-        {
-            delete[](_content);
-            _content = new char[strlen(str._content)];
-            strcpy(_content, str._content);
-        }
+        string(const string &str) noexcept:
+            _content(str._content)
+        {}
 
         ~string() 
         {
             delete[](_content);
         }
 
-        inline string& operator=(const string &other) 
+        inline string& operator=(const string &other) noexcept
         {
-            if (this != &other) 
+            if (this != &other)
             {
-                delete[](_content);
-                _content = new char[strlen(other._content)];
-                strcpy(_content, other._content);
+                delete[] _content;
+                _content = other._content;
             }
-
-            return *this;
-        }
-
-        inline string& operator=(const char *content) 
-        {
-            delete[](_content);
-            _content = new char[strlen(content)];
-            strcpy(_content, content);
 
             return *this;
         }
@@ -77,8 +51,23 @@ namespace mia
             return *this;
         }
 
+        inline string& operator+=(const char *content) 
+        {
+            size_t len = strlen(_content) + strlen(content);
+            char *temp = new char[len + 1];
+            strcpy(temp, _content);
+            strcat(temp, content);
+
+            delete[](_content);
+            _content = temp;
+
+            return *this;
+        }
+
         inline bool operator==(const string &other)
         {
+            if (_content == other._content) return true;
+
             int llen = strlen(_content);
             int rlen = strlen(other._content);
 
@@ -87,6 +76,22 @@ namespace mia
             for (int i = 0; i < llen; i++)
             {
                 if (_content[i] != other._content[i])
+                    return false;
+            }
+
+            return true;
+        }
+
+        inline bool operator==(const char *content)
+        {
+            int llen = strlen(_content);
+            int rlen = strlen(content);
+
+            if (llen != rlen) return false;
+
+            for (int i = 0; i < llen; i++)
+            {
+                if (_content[i] != content[i])
                     return false;
             }
 
@@ -103,6 +108,22 @@ namespace mia
             for (int i = 0; i < llen; i++)
             {
                 if (_content[i] != other._content[i])
+                    return true;
+            }
+
+            return false;
+        }
+
+        inline bool operator!=(const char *content)
+        {
+            int llen = strlen(_content);
+            int rlen = strlen(content);
+
+            if (llen != rlen) return true;
+
+            for (int i = 0; i < llen; i++)
+            {
+                if (_content[i] != content[i])
                     return true;
             }
 

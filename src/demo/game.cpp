@@ -15,10 +15,7 @@ void Game::Run()
     Bird *bird = new Bird();
 
     pipeManager->Start();
-
-    mia::string c("ABCD");
-    SDL_Log("%d", sizeof(c));
-
+    
     while (true)
     {
         mia::NewFrame();

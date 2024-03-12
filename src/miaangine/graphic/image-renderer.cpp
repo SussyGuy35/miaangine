@@ -2,8 +2,6 @@
 
 #include <algorithm>
 
-#include "core/engine.hpp" //FIXME
-
 namespace mia 
 {
     ImageRenderer *ImageRenderer::__instance = nullptr;

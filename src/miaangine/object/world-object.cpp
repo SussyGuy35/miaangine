@@ -3,6 +3,8 @@
 #include "graphic/portrait.hpp"
 #include "physics/body.hpp"
 
+#include "debug/debug-manager.hpp"
+
 namespace mia
 {
     WorldObject::WorldObject(const char* name, vector2 position):
@@ -25,9 +27,9 @@ namespace mia
 
     Portrait *WorldObject::portrait(int index)
     {
-        if (_portraits.empty()) 
+        if (_portraits.empty() || index >= _portraits.size()) 
         {
-            SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "WorldObject > Portrait: Null reference"); //FIXME
+            mia::DebugManager::Instance()->Error("[WorldObject] access denied: [portrait(%d)] Null reference", index); //FIXME
             return nullptr;
         }
 
@@ -36,9 +38,9 @@ namespace mia
 
     Body *WorldObject::body(int index)
     {
-        if (_bodies.empty()) 
+        if (_bodies.empty() || index >= _bodies.size()) 
         {
-            SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "WorldObject > Body: Null reference"); //FIXME
+            mia::DebugManager::Instance()->Error("[WorldObject] access denied: [body(%d)] Null reference", index); //FIXME
             return nullptr;
         }
 

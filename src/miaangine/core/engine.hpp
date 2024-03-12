@@ -22,7 +22,7 @@ namespace mia
     extern std::unique_ptr<DebugManager> debug;
 
     extern int windowWidth, windowHeight;
-    extern bool fullscreenMode; //TODO
+    extern bool fullscreenMode;
 
     void Init(uint32_t width, uint32_t height, bool fullscreen);
     void End();

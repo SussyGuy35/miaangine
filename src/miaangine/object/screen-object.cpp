@@ -2,6 +2,8 @@
 
 #include "graphic/image.hpp"
 
+#include "debug/debug-manager.hpp"
+
 namespace mia
 {
     ScreenObject::ScreenObject(const char* name, vector2 position):
@@ -21,9 +23,9 @@ namespace mia
 
     Image *ScreenObject::image(int index)
     {
-        if (_images.empty()) 
+        if (_images.empty() || index >= _images.size()) 
         {
-            SDL_LogMessage(SDL_LOG_CATEGORY_ERROR, SDL_LOG_PRIORITY_INFO, "ScreenObject > Image: Null reference"); //FIXME
+            mia::DebugManager::Instance()->Warning("[ScreenObject] access denied: [image(%d)] Null reference", index); //FIXME
             return nullptr;
         }
 

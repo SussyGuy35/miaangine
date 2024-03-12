@@ -1,7 +1,6 @@
 #ifndef _MIA_COLLIDER_HPP
 #define _MIA_COLLIDER_HPP
 
-#include <string> //FIXME
 #include <memory>
 
 #include "util/math.hpp"

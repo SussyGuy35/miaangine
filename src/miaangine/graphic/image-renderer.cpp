@@ -2,8 +2,6 @@
 
 #include <algorithm>
 
-#include "core/camera.hpp"
-
 #include "core/engine.hpp" //FIXME
 
 namespace mia 

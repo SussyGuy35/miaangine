@@ -8,7 +8,7 @@
 
 namespace mia 
 {
-    class InputManager
+    class InputManager //FIXME
     {
     private:
         static InputManager *__instance;

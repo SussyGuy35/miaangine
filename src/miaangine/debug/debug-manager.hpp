@@ -28,10 +28,7 @@ namespace mia
 
     public:
         void Log(const char *format, ...);
-
-    private:
-        void AppendMiaEntityLogToStr(char type, void *data, char *out, int &len);
-        void VirtualLog(char *out, size_t size, const char *format, ...);
+        
     };
 }
 

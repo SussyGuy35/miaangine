@@ -60,7 +60,7 @@ namespace mia
         for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
         {
             Body *body = _bodies[i];
-            vector2 &position = body->master->position;
+            vector2 &position = body->master()->position;
 
             position.x += body->velocity.x * timePass;
             position.y += body->velocity.y * timePass;

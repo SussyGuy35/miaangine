@@ -21,6 +21,8 @@
         string _unclaimName;
         vector2 _unclaimPosition;
 
+        ScreenObject *_master;
+
     public:
         vector2 size;
         vector2 offset;
@@ -30,7 +32,7 @@
 
         SDL_Color color;
 
-        ScreenObject *master;
+        ScreenObject* master();
 
         void ShiftMaster(ScreenObject *master);
     };  

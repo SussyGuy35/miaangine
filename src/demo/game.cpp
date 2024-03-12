@@ -13,7 +13,7 @@ void Game::Run()
 
     PipeManager *pipeManager = new PipeManager();
     Bird *bird = new Bird();
-
+    
     pipeManager->Start();
     
     while (true)

@@ -1,6 +1,6 @@
 #include "body.hpp"
 
-#include "time/time-manager.hpp"
+#include "debug/debug-manager.hpp"
 
 namespace mia
 {
@@ -9,7 +9,7 @@ namespace mia
         _unclaimPosition(vector2::zero()),
         size(size),
         offset(offset),
-        master(nullptr),
+        _master(nullptr),
         velocity(vector2::zero()),
         colliding(false)
     {}
@@ -19,7 +19,7 @@ namespace mia
         _unclaimPosition(vector2::zero()),
         size(vector2(sx, sy)),
         offset(vector2(ox, oy)),
-        master(nullptr),
+        _master(nullptr),
         velocity(vector2::zero()),
         colliding(false)
     {}
@@ -30,9 +30,20 @@ namespace mia
         delete(position);
     }
 
+    WorldObject *Body::master()
+    {
+        if (!_master) 
+        {
+            mia::DebugManager::Instance()->Error("[Body] access denied: [master] Null reference"); //FIXME
+            return nullptr;
+        }
+
+        return _master;
+    }
+
     void Body::ShiftMaster(WorldObject *master)
     {
-        this->master = master;
+        this->_master = master;
         name = &(master->name);
         position = &(master->position);
     }

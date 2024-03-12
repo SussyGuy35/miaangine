@@ -27,8 +27,8 @@ namespace mia
         std::vector<Body*> _bodies;
 
     public:
-        Portrait *portrait(int index = 0);
-        Body *body(int index = 0);
+        Portrait* portrait(int index = 0);
+        Body* body(int index = 0);
 
         void AttachPortrait(Portrait *portrait);
         void AttachBody(Body *body);

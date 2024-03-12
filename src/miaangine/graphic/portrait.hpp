@@ -22,6 +22,8 @@
         string _unclaimName;
         vector2 _unclaimPosition;
 
+        WorldObject *_master;
+
     public:
         vector2 size;
         vector2 offset;
@@ -31,7 +33,7 @@
 
         SDL_Color color;
 
-        WorldObject *master;
+        WorldObject* master();
 
         void ShiftMaster(WorldObject *master);
     };

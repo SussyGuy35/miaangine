@@ -22,6 +22,8 @@
         string _unclaimName;
         vector2 _unclaimPosition;
 
+        WorldObject *_master;
+
     public:
         vector2 size;
         vector2 offset;
@@ -29,10 +31,10 @@
         string *name = &_unclaimName;
         vector2 *position = &_unclaimPosition;
 
-        WorldObject *master;
-
         vector2 velocity;
         bool colliding;
+
+        WorldObject* master();
 
         void ShiftMaster(WorldObject *master);
     };

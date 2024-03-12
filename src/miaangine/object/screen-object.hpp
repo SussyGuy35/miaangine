@@ -25,7 +25,7 @@ namespace mia
         std::vector<Image*> _images;
 
     public:
-        Image *image(int index = 0);
+        Image* image(int index = 0);
 
         void AttachImage(Image *portrait);
 

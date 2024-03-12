@@ -1,9 +1,9 @@
 #ifndef _MIA_GAME_OBJECT_HPP
 #define _MIA_GAME_OBJECT_HPP
 
-#include <string>
-
 #include "event/event-listener-interface.hpp"
+
+#include "util/string.hpp"
 
 namespace mia
 {
@@ -16,7 +16,7 @@ namespace mia
 
         virtual ~GameObject() {}
 
-        std::string name;
+        string name;
     };
 }
 

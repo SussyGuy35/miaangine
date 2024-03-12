@@ -1,7 +1,6 @@
 #ifndef _MIA_WORLD_OBJECT_HPP
 #define _MIA_WORLD_OBJECT_HPP
 
-#include <string>
 #include <vector>
 
 #include "game-object.hpp"

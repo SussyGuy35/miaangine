@@ -14,6 +14,8 @@ void Game::Run()
     PipeManager *pipeManager = new PipeManager();
     Bird *bird = new Bird();
 
+    mia::debug->Log("%^o", bird);
+
     pipeManager->Start();
     
     while (true)

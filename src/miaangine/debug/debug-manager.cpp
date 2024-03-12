@@ -75,7 +75,7 @@ namespace mia
             {
                 GameObject *entity = const_cast<GameObject*>( static_cast<const GameObject*>(data) );
 
-                VirtualLog(entityLog, sizeof(entityLog), "%s[GameObject]", (entity->name).c_str());
+                VirtualLog(entityLog, sizeof(entityLog), "%s[GameObject]", (entity->name).str());
             }
             break;
         

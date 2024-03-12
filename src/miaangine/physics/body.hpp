@@ -20,14 +20,14 @@
         virtual ~Body();
 
     private:
-        std::string _unclaimName;
+        string _unclaimName;
         vector2 _unclaimPosition;
 
     public:
         vector2 size;
         vector2 offset;
 
-        std::string *name = &_unclaimName;
+        string *name = &_unclaimName;
         vector2 *position = &_unclaimPosition;
 
         WorldObject *master;

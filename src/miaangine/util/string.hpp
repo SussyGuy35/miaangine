@@ -73,8 +73,40 @@ namespace mia
 
             delete[](_content);
             _content = temp;
-            
+
             return *this;
+        }
+
+        inline bool operator==(const string &other)
+        {
+            int llen = strlen(_content);
+            int rlen = strlen(other._content);
+
+            if (llen != rlen) return false;
+
+            for (int i = 0; i < llen; i++)
+            {
+                if (_content[i] != other._content[i])
+                    return false;
+            }
+
+            return true;
+        }
+
+        inline bool operator!=(const string &other)
+        {
+            int llen = strlen(_content);
+            int rlen = strlen(other._content);
+
+            if (llen != rlen) return true;
+
+            for (int i = 0; i < llen; i++)
+            {
+                if (_content[i] != other._content[i])
+                    return true;
+            }
+
+            return false;
         }
 
     private:

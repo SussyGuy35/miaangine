@@ -16,6 +16,8 @@ void Game::Run()
 
     pipeManager->Start();
 
+    mia::string c("ABCD");
+
     while (true)
     {
         mia::NewFrame();

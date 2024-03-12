@@ -11,6 +11,7 @@
 #include "core/engine.hpp"
 #include "core/camera.hpp"
 #include "util/math.hpp"
+#include "util/string.hpp"
 
 #include "event/regular-event-publisher.hpp"
 

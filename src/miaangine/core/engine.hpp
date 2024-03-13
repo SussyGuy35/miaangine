@@ -13,13 +13,13 @@
 
 namespace mia
 {
-    extern std::unique_ptr<SDLHandle>    sdlHandle;
-    extern std::unique_ptr<TimeManager>  time;
-    extern std::unique_ptr<InputManager> input;
-    extern std::unique_ptr<EventManager> event;
-    extern std::unique_ptr<Renderer>     renderer;
-    extern std::unique_ptr<PhysicsWorld> physics;
-    extern std::unique_ptr<DebugManager> debug;
+    extern SDLHandle    *sdlHandle;
+    extern TimeManager  *time;
+    extern InputManager *input;
+    extern EventManager *event;
+    extern Renderer     *renderer;
+    extern PhysicsWorld *physics;
+    extern DebugManager *debug;
 
     extern int windowWidth, windowHeight;
     extern bool fullscreenMode;

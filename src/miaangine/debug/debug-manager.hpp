@@ -22,8 +22,6 @@ namespace mia
 
     private:
         DebugManager();
-
-    public:
         ~DebugManager();
 
     public:

@@ -21,8 +21,6 @@ namespace mia
 
     private:
         TimeManager();
-
-    public:
         ~TimeManager();
 
     private:

@@ -24,8 +24,6 @@ namespace mia
     
     private:
         Renderer();
-
-    public:
         ~Renderer();
     
     public:

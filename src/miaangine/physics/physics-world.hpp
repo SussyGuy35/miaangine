@@ -23,8 +23,6 @@ namespace mia
 
     private:
         PhysicsWorld();
-
-    public:
         ~PhysicsWorld();
 
     private:

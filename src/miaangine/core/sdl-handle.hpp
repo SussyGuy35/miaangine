@@ -22,8 +22,6 @@ namespace mia
 
     private:
         SDLHandle();
-    
-    public:
         ~SDLHandle();
 
     public:

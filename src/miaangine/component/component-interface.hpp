@@ -5,7 +5,7 @@
 
 namespace mia
 {
-    class IComponent
+    class IComponent //ABANDON
     {
     public:
         virtual GameObject* master() = 0;

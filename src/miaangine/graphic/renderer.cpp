@@ -20,7 +20,7 @@ namespace mia
         SDL_RenderClear(renderer);
 
         portraitHandle->Render(renderer);
-        imageHandle->Render(renderer);
+        // imageHandle->Render(renderer);
 
         SDL_RenderPresent(renderer);
     }

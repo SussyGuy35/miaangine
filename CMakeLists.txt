@@ -6,7 +6,7 @@ project(game)
 add_compile_options(-w -Wl,-subsystem,windows)
 
 # EXECUTABLE
-file(GLOB_RECURSE SOURCES "src/demo/object-test/*.cpp") # <============
+file(GLOB_RECURSE SOURCES "src/demo/flappy-bird/*.cpp") # <============
 
 file(GLOB_RECURSE ENGINE_SOURCES "src/miaangine/*.cpp")
 list(APPEND SOURCES ${ENGINE_SOURCES})
@@ -22,7 +22,7 @@ find_package(SDL2 REQUIRED)
 find_package(SDL2_image REQUIRED)
 
 # DIRECTORIES
-set(INCLUDES "src/demo/object-test") # <============
+set(INCLUDES "src/demo/flappy-bird") # <============
 
 list(APPEND INCLUDES "src;src/miaangine")
 list(APPEND INCLUDES "vendor/SDL/include/SDL2")

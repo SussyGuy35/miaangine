@@ -28,8 +28,8 @@
         vector2 size;
         vector2 offset;
 
-        const string& name() const;
-        const vector2& position() const;
+        string& name() ;
+        vector2& position() ;
 
         WorldObject* master();
 

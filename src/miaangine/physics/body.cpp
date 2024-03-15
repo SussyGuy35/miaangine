@@ -27,12 +27,12 @@ namespace mia
     Body::~Body()
     {}
 
-    const string& Body::name() const
+    string& Body::name() 
     {
         return (!_master ? _ucName : _master->name);
     }
 
-    const vector2& Body::position() const
+    vector2& Body::position() 
     {
         return (!_master ? _ucPosition : _master->position);
     }

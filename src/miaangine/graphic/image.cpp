@@ -25,12 +25,12 @@ namespace mia
     Image::~Image()
     {}
 
-    const string& Image::name() const
+    string& Image::name() 
     {
         return (!_master ? _ucName : _master->name);
     }
 
-    const vector2& Image::position() const
+    vector2& Image::position() 
     {
         return (!_master ? _ucPosition : _master->position);
     }

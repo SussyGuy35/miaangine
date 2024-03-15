@@ -29,7 +29,7 @@ namespace mia
 
     void PortraitRenderer::Render(SDL_Renderer *renderer)
     {
-        for (const Portrait *portrait : _portraits)
+        for (Portrait *portrait : _portraits)
         {
             SDL_Rect rect = RectRenderingCalculate(portrait);
 
@@ -38,7 +38,7 @@ namespace mia
         }
     }
 
-    SDL_Rect PortraitRenderer::RectRenderingCalculate(const Portrait *portrait)
+    SDL_Rect PortraitRenderer::RectRenderingCalculate(Portrait *portrait)
     {
         SDL_Rect rect;
 

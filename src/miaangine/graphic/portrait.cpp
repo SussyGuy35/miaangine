@@ -25,12 +25,12 @@ namespace mia
     Portrait::~Portrait()
     {}
 
-    const string& Portrait::name() const
+    string& Portrait::name() 
     {
         return (!_master ? _ucName : _master->name);
     }
 
-    const vector2& Portrait::position() const
+    vector2& Portrait::position() 
     {
         return (!_master ? _ucPosition : _master->position);
     }

@@ -29,7 +29,7 @@ namespace mia
 
     void ImageRenderer::Render(SDL_Renderer *renderer)
     {
-        for (const Image *image : _images)
+        for (Image *image : _images)
         {
             SDL_Rect rect = RectRenderingCalculate(image);
 
@@ -38,7 +38,7 @@ namespace mia
         }
     }
 
-    SDL_Rect ImageRenderer::RectRenderingCalculate(const Image *image)
+    SDL_Rect ImageRenderer::RectRenderingCalculate(Image *image)
     {
         SDL_Rect rect;
 

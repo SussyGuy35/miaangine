@@ -29,7 +29,7 @@ namespace mia
         void Render(SDL_Renderer *renderer);
 
     private:
-        SDL_Rect RectRenderingCalculate(const Portrait *portrait);
+        SDL_Rect RectRenderingCalculate(Portrait *portrait);
     };
 }
 

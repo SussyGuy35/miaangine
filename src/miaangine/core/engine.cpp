@@ -1,12 +1,6 @@
 #include "engine.hpp"
 
-mia::SDLHandle    &mia::sdlHandle (mia::SDLHandle::Instance());
-mia::TimeManager  &mia::time      (mia::TimeManager::Instance());
-mia::InputManager &mia::input     (mia::InputManager::Instance());
-mia::EventManager &mia::event     (mia::EventManager::Instance());
-mia::Renderer     &mia::renderer  (mia::Renderer::Instance());
-mia::PhysicsWorld &mia::physics   (mia::PhysicsWorld::Instance());
-mia::DebugManager &mia::debug     (mia::DebugManager::Instance());
+#include "engine-components.hpp"
 
 int mia::windowWidth = 10;
 int mia::windowHeight = 10;

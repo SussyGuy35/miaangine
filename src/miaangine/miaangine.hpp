@@ -8,8 +8,9 @@
 #ifndef _MIAANGINE_HPP
 #define _MIAANGINE_HPP
 
+#include "core/engine-components.hpp"
 #include "core/engine.hpp"
-#include "core/camera.hpp"
+
 #include "util/math.hpp"
 #include "util/string.hpp"
 

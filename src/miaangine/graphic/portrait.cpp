@@ -5,7 +5,8 @@
 namespace mia
 {
     Portrait::Portrait(vector2 size, vector2 offset):
-        _unclaimPosition(vector2::zero()),
+        _ucName("unclaimed"),
+        _ucPosition(vector2::zero()),
         size(size),
         offset(offset),
         color({255, 255, 255, 255}),
@@ -13,7 +14,8 @@ namespace mia
     {}
 
     Portrait::Portrait(float sx, float sy, float ox, float oy):
-        _unclaimPosition(vector2::zero()),
+        _ucName("unclaimed"),
+        _ucPosition(vector2::zero()),
         size(vector2(sx, sy)),
         offset(vector2(ox, oy)),
         color({255, 255, 255, 255}),
@@ -21,17 +23,24 @@ namespace mia
     {}
 
     Portrait::~Portrait()
+    {}
+
+    const string& Portrait::name() const
     {
-        delete(name);
-        delete(position);
+        return (!_master ? _ucName : _master->name);
     }
 
-    WorldObject *Portrait::master()
+    const vector2& Portrait::position() const
+    {
+        return (!_master ? _ucPosition : _master->position);
+    }
+
+    WorldObject* Portrait::master()
     {
         if (!_master) 
         {
             mia::DebugManager::Instance().Error("[Portrait] access denied: [master] Null reference"); //FIXME
-            return nullptr;
+            // return *_master; //FIXME
         }
 
         return _master;
@@ -40,7 +49,5 @@ namespace mia
     void Portrait::ShiftMaster(WorldObject *master)
     {
         this->_master = master;
-        name = &(master->name);
-        position = &(master->position);
     }
 }

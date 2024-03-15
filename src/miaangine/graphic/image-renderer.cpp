@@ -42,8 +42,8 @@ namespace mia
     {
         SDL_Rect rect;
 
-        rect.x = static_cast<int>(image->position->x + image->offset.x);
-        rect.y = static_cast<int>(image->position->y + image->offset.y);
+        rect.x = static_cast<int>(image->position().x + image->offset.x);
+        rect.y = static_cast<int>(image->position().y + image->offset.y);
         rect.w = static_cast<int>(image->size.x);
         rect.h = static_cast<int>(image->size.y);
 

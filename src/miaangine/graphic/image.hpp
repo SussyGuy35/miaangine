@@ -18,8 +18,8 @@
         virtual ~Image();
 
     private:
-        string _unclaimName;
-        vector2 _unclaimPosition;
+        string _ucName;
+        vector2 _ucPosition;
 
         ScreenObject *_master;
 
@@ -27,12 +27,12 @@
         vector2 size;
         vector2 offset;
 
-        string *name = &_unclaimName;
-        vector2 *position = &_unclaimPosition;
-
-        SDL_Color color;
+        const string& name() const;
+        const vector2& position() const; 
 
         ScreenObject* master();
+
+        SDL_Color color;
 
         void ShiftMaster(ScreenObject *master);
     };  

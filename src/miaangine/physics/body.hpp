@@ -18,8 +18,8 @@
         virtual ~Body();
 
     private:
-        string _unclaimName;
-        vector2 _unclaimPosition;
+        string _ucName;
+        vector2 _ucPosition;
 
         WorldObject *_master;
 
@@ -27,13 +27,13 @@
         vector2 size;
         vector2 offset;
 
-        string *name = &_unclaimName;
-        vector2 *position = &_unclaimPosition;
+        const string& name() const;
+        const vector2& position() const;
+
+        WorldObject* master();
 
         vector2 velocity;
         bool colliding;
-
-        WorldObject* master();
 
         void ShiftMaster(WorldObject *master);
     };

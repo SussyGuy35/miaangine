@@ -42,8 +42,8 @@ namespace mia
     {
         SDL_Rect rect;
 
-        rect.x = static_cast<int>(portrait->position->x + portrait->offset.x - camera.position.x);
-        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position->y - portrait->offset.y - portrait->size.y);
+        rect.x = static_cast<int>(portrait->position().x + portrait->offset.x - camera.position.x);
+        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset.y - portrait->size.y);
         rect.w = static_cast<int>(portrait->size.x);
         rect.h = static_cast<int>(portrait->size.y);
 

@@ -8,11 +8,11 @@ Bird::Bird():
     
 {
     MakePortrait(SIZE);
-    mia::renderer.portraitHandle.RegisterPortrait(portrait());
-    portrait()->color = {255, 20, 255, 255};
+    mia::renderer.portraitHandle.RegisterPortrait(&portrait());
+    portrait().color = {255, 20, 255, 255};
 
     MakeBody(SIZE);
-    mia::physics.RegisterBody(body());
+    mia::physics.RegisterBody(&body());
 
     mia::event.primaryUpdate.RegisterListener(this);
 }
@@ -22,20 +22,20 @@ void Bird::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        body()->velocity.y += GRAVITY * mia::time.elapseTime;
+        body().velocity.y += GRAVITY * mia::time.elapseTime;
         
         if (mia::input.GetButtonDown("Jump"))
         {
-            body()->velocity.y = JUMP_VELOCITY;
+            body().velocity.y = JUMP_VELOCITY;
         }
 
-        if (body()->colliding) 
+        if (body().colliding) 
         {
-            portrait()->color = {255, 0, 0, 255};
+            portrait().color = {255, 0, 0, 255};
         }
         else 
         {
-            portrait()->color = {255, 20, 255, 255};
+            portrait().color = {255, 20, 255, 255};
         }
 
         break;

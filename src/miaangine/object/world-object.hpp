@@ -27,17 +27,17 @@ namespace mia
         std::vector<Body*> _bodies;
 
     public:
-        Portrait* portrait(int index = 0);
-        Body* body(int index = 0);
+        Portrait& portrait(int index = 0);
+        Body& body(int index = 0);
 
-        void AttachPortrait(Portrait *portrait);
-        void AttachBody(Body *body);
+        Portrait& AttachPortrait(Portrait *portrait);
+        Body& AttachBody(Body *body);
 
-        void MakePortrait(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        void MakePortrait(float sx, float sy, float ox = 0, float oy = 0);
+        Portrait& MakePortrait(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Portrait& MakePortrait(float sx, float sy, float ox = 0, float oy = 0);
 
-        void MakeBody(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        void MakeBody(float sx, float sy, float ox = 0, float oy = 0);
+        Body& MakeBody(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Body& MakeBody(float sx, float sy, float ox = 0, float oy = 0);
     };
 }
 

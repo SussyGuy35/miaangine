@@ -25,12 +25,12 @@ namespace mia
         std::vector<Image*> _images;
 
     public:
-        Image* image(int index = 0);
+        Image& image(int index = 0);
 
-        void AttachImage(Image *portrait);
+        Image& AttachImage(Image *portrait);
 
-        void MakeImage(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        void MakeImage(float sx, float sy, float ox = 0, float oy = 0);
+        Image& MakeImage(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Image& MakeImage(float sx, float sy, float ox = 0, float oy = 0);
     };
 }
 

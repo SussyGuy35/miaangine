@@ -12,6 +12,7 @@ namespace mia
     private:
         friend class Singleton<GenericTask>;
         GenericTask();
+        ~GenericTask();
 
     public:
         int windowWidth, windowHeight;

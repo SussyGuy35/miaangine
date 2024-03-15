@@ -10,6 +10,9 @@ namespace mia
         fullscreenMode(0)
     {}
 
+    GenericTask::~GenericTask()
+    {}
+
     void GenericTask::Init(uint32_t width, uint32_t height, bool fullscreen)
     {
         windowWidth = width;

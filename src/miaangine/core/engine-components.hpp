@@ -13,7 +13,7 @@
 
 namespace mia
 {
-    extern GenericTask      &generic;
+    extern GenericTask  &generic;
     extern SDLHandle    &sdl;
     extern TimeManager  &time;
     extern Camera       &camera;

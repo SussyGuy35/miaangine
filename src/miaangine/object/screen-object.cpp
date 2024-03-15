@@ -21,31 +21,31 @@ namespace mia
         _images.clear();
     }
 
-    Image *ScreenObject::image(int index)
+    Image& ScreenObject::image(int index)
     {
         if (_images.empty() || index >= _images.size()) 
         {
             mia::DebugManager::Instance().Warning("[ScreenObject] access denied: [image(%d)] Null reference", index); //FIXME
-            return nullptr;
+            return MakeImage();
         }
 
-        return _images[index];
+        return *_images[index];
     }
 
-    void ScreenObject::AttachImage(Image *image)
+    Image& ScreenObject::AttachImage(Image* image)
     {
         image->ShiftMaster(this);
         _images.push_back(image);
     }
 
-    void ScreenObject::MakeImage(vector2 size, vector2 offset)
+    Image& ScreenObject::MakeImage(vector2 size, vector2 offset)
     {
         Image *image = new Image(size, offset);
 
         image->ShiftMaster(this);
         _images.push_back(image);
     }
-    void ScreenObject::MakeImage(float sx, float sy, float ox, float oy)
+    Image& ScreenObject::MakeImage(float sx, float sy, float ox, float oy)
     {
         Image *image = new Image(sx, sy, ox, oy);
 

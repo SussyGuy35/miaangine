@@ -25,48 +25,50 @@ namespace mia
         _portraits.clear();
     }
 
-    Portrait *WorldObject::portrait(int index)
+    Portrait& WorldObject::portrait(int index)
     {
         if (_portraits.empty() || index >= _portraits.size()) 
         {
             mia::DebugManager::Instance().Error("[WorldObject] access denied: [portrait(%d)] Null reference", index); //FIXME
-            return nullptr;
+            return MakePortrait();
         }
 
-        return _portraits[index];
+        return *_portraits[index];
     }
 
-    Body *WorldObject::body(int index)
+    Body& WorldObject::body(int index)
     {
         if (_bodies.empty() || index >= _bodies.size()) 
         {
             mia::DebugManager::Instance().Error("[WorldObject] access denied: [body(%d)] Null reference", index); //FIXME
-            return nullptr;
+            return MakeBody();
         }
 
-        return _bodies[index];
+        return *_bodies[index];
     }
 
-    void WorldObject::AttachPortrait(Portrait *portrait)
+    Portrait& WorldObject::AttachPortrait(Portrait *portrait)
     {
         portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
     }
 
-    void WorldObject::AttachBody(Body *body)
+    Body& WorldObject::AttachBody(Body *body)
     {
         body->ShiftMaster(this);
         _bodies.push_back(body);
     }
 
-    void WorldObject::MakePortrait(vector2 size, vector2 offset)
+    Portrait& WorldObject::MakePortrait(vector2 size, vector2 offset)
     {
         Portrait *portrait = new Portrait(size, offset);
 
         portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
+
+        return *portrait;
     }
-    void WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
+    Portrait& WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
     {
         Portrait *portrait = new Portrait(sx, sy, ox, oy);
 
@@ -74,14 +76,14 @@ namespace mia
         _portraits.push_back(portrait);
     }
 
-    void WorldObject::MakeBody(vector2 size, vector2 offset)
+    Body& WorldObject::MakeBody(vector2 size, vector2 offset)
     {
         Body *body = new Body(size, offset);
 
         body->ShiftMaster(this);
         _bodies.push_back(body);
     }
-    void WorldObject::MakeBody(float sx, float sy, float ox, float oy)
+    Body& WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
         Body *body = new Body(sx, sy, ox, oy);
 

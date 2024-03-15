@@ -13,9 +13,7 @@ namespace mia
     {}
 
     TimeManager::~TimeManager()
-    {
-        
-    }
+    {}
 
     void TimeManager::Step()
     {

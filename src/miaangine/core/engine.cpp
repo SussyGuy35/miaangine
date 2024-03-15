@@ -2,7 +2,7 @@
 
 mia::SDLHandle    &mia::sdlHandle (mia::SDLHandle::Instance());
 mia::TimeManager  &mia::time      (mia::TimeManager::Instance());
-mia::InputManager *mia::input     (mia::InputManager::Instance());
+mia::InputManager &mia::input     (mia::InputManager::Instance());
 mia::EventManager *mia::event     (mia::EventManager::Instance());
 mia::Renderer     *mia::renderer  (mia::Renderer::Instance());
 mia::PhysicsWorld *mia::physics   (mia::PhysicsWorld::Instance());
@@ -22,7 +22,7 @@ void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 
     SDL_Log("**MIAANGINE**\n");
 
-    input->SetupKeyBind();
+    input.SetupKeyBind();
 }
 
 void mia::End()
@@ -35,7 +35,7 @@ void mia::NewFrame()
     event->onEnterNewFrame->NotifyListeners();
 
     time.Step();
-    input->Update();
+    input.Update();
 
     event->primaryUpdate->NotifyListeners();
 

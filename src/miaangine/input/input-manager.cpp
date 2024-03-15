@@ -6,8 +6,6 @@
 
 namespace mia 
 {
-    InputManager *InputManager::__instance = nullptr;
-
     KeyBind::KeyBind(): //FIXME
         _keyBind(
         {
@@ -46,9 +44,7 @@ namespace mia
     {}
 
     InputManager::~InputManager()
-    {
-        __instance = nullptr;
-    }
+    {}
 
     void InputManager::SetupKeyBind()
     {

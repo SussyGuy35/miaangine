@@ -4,25 +4,16 @@
 #include <SDL.h>
 #include <memory>
 
+#include "util/singleton.hpp"
+
 #include "keybind.hpp"
 
 namespace mia 
 {
-    class InputManager //FIXME
+    class InputManager : public Singleton<InputManager>
     {
     private:
-        static InputManager *__instance;
-    public:
-        static InputManager* Instance() 
-        {
-            if (!__instance) __instance = new InputManager(); 
-            return __instance;
-        }
-
-        InputManager(const InputManager&) = delete;
-        void operator=(const InputManager&) = delete;
-
-    private:
+        friend class Singleton<InputManager>;
         InputManager();
         ~InputManager();
 

@@ -24,7 +24,7 @@ void Bird::Update(uint8_t message)
     case mia::_EVENT_PRIMARY_UPDATE:
         body()->velocity.y += GRAVITY * mia::time.elapseTime;
         
-        if (mia::input->GetButtonDown("Jump"))
+        if (mia::input.GetButtonDown("Jump"))
         {
             body()->velocity.y = JUMP_VELOCITY;
         }

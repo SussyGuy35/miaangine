@@ -20,7 +20,7 @@ void Game::Run()
     {
         mia::NewFrame();
 
-        if (mia::input->IsQuit()) break;
+        if (mia::input.IsQuit()) break;
 
         mia::Render();
     }

@@ -7,11 +7,11 @@
 
 namespace mia
 {
-    class Generic : public Singleton<Generic>
+    class GenericTask : public Singleton<GenericTask>
     {
     private:
-        friend class Singleton<Generic>;
-        Generic();
+        friend class Singleton<GenericTask>;
+        GenericTask();
 
     public:
         int windowWidth, windowHeight;

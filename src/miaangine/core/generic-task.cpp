@@ -4,31 +4,31 @@
 
 namespace mia
 {
-    Generic::Generic():
+    GenericTask::GenericTask():
         windowWidth(0),
         windowHeight(0),
         fullscreenMode(0)
     {}
 
-    void Generic::Init(uint32_t width, uint32_t height, bool fullscreen)
+    void GenericTask::Init(uint32_t width, uint32_t height, bool fullscreen)
     {
         windowWidth = width;
         windowHeight = height;
         fullscreenMode = fullscreen;
 
-        sdlHandle.Init(windowWidth, windowHeight, fullscreenMode);
+        sdl.Init(windowWidth, windowHeight, fullscreenMode);
 
         SDL_Log("**MIAANGINE**\n");
 
         input.SetupKeyBind();
     }
 
-    void Generic::End()
+    void GenericTask::End()
     {
-        sdlHandle.Clear();
+        sdl.Clear();
     }
 
-    void Generic::NewFrame()
+    void GenericTask::NewFrame()
     {
         event.onEnterNewFrame->NotifyListeners();
 
@@ -40,8 +40,8 @@ namespace mia
         physics.Step(time.elapseTime);
     }
 
-    void Generic::Render()
+    void GenericTask::Render()
     {
-        renderer.Render(sdlHandle.renderer);
+        renderer.Render(sdl.renderer);
     }
 }

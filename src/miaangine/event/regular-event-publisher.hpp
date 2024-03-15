@@ -10,9 +10,9 @@ namespace mia
 {
     class RegularEventPublisher : public IEventPublisher
     {
-    public:
+    private:
+        friend class EventManager;
         RegularEventPublisher(uint8_t message = 0);
-
         ~RegularEventPublisher();
 
     private:

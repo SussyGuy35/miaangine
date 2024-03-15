@@ -21,7 +21,7 @@ Pipe::Pipe():
     mia::physics.RegisterBody(body(0));
     mia::physics.RegisterBody(body(1));
 
-    mia::event.primaryUpdate->RegisterListener(this);
+    mia::event.primaryUpdate.RegisterListener(this);
 }
 
 void Pipe::Update(uint8_t message)

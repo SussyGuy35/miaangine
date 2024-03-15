@@ -14,7 +14,7 @@ Bird::Bird():
     MakeBody(SIZE);
     mia::physics.RegisterBody(body());
 
-    mia::event.primaryUpdate->RegisterListener(this);
+    mia::event.primaryUpdate.RegisterListener(this);
 }
 
 void Bird::Update(uint8_t message)

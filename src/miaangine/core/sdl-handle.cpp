@@ -1,8 +1,6 @@
 #include "sdl-handle.hpp"
 
-#include <stdio.h>
-
-#include "time/time-manager.hpp"
+#include "engine-components.hpp"
 
 namespace mia
 {

@@ -1,7 +1,7 @@
 #ifndef _MIA_EVENT_MANAGER_HPP
 #define _MIA_EVENT_MANAGER_HPP
 
-#include <memory>
+#include <memory> //FIXME
 
 #include "util/singleton.hpp"
 

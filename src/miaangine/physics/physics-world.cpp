@@ -1,5 +1,7 @@
 #include "physics-world.hpp"
 
+#include "core/engine-components.hpp"
+
 #include <algorithm>
 
 namespace mia

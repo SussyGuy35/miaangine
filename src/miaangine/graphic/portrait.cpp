@@ -1,6 +1,6 @@
 #include "portrait.hpp"
 
-#include "debug/debug-manager.hpp"
+#include "core/engine-components.hpp"
 
 namespace mia
 {

@@ -13,15 +13,25 @@
 
 namespace mia
 {
-    extern Generic      &generic   = mia::Generic::Instance();
-    extern SDLHandle    &sdlHandle = mia::SDLHandle::Instance();
-    extern TimeManager  &time      = mia::TimeManager::Instance();
-    extern Camera       &camera    = mia::Camera::Instance();
-    extern InputManager &input     = mia::InputManager::Instance();
-    extern EventManager &event     = mia::EventManager::Instance();
-    extern Renderer     &renderer  = mia::Renderer::Instance();
-    extern PhysicsWorld &physics   = mia::PhysicsWorld::Instance();
-    extern DebugManager &debug     = mia::DebugManager::Instance();
+    extern Generic      &generic;
+    extern SDLHandle    &sdlHandle;
+    extern TimeManager  &time;
+    extern Camera       &camera;
+    extern InputManager &input;
+    extern EventManager &event;
+    extern Renderer     &renderer;
+    extern PhysicsWorld &physics;
+    extern DebugManager &debug;
 }
 
 #endif
+
+// mia::Generic      &mia::generic   = mia::Generic::Instance();
+// mia::SDLHandle    &mia::sdlHandle = mia::SDLHandle::Instance();
+// mia::TimeManager  &mia::time      = mia::TimeManager::Instance();
+// mia::Camera       &mia::camera    = mia::Camera::Instance();
+// mia::InputManager &mia::input     = mia::InputManager::Instance();
+// mia::EventManager &mia::event     = mia::EventManager::Instance();
+// mia::Renderer     &mia::renderer  = mia::Renderer::Instance();
+// mia::PhysicsWorld &mia::physics   = mia::PhysicsWorld::Instance();
+// mia::DebugManager &mia::debug     = mia::DebugManager::Instance();

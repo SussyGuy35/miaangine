@@ -1,9 +1,9 @@
 #include "world-object.hpp"
 
+#include "core/engine-components.hpp"
+
 #include "graphic/portrait.hpp"
 #include "physics/body.hpp"
-
-#include "debug/debug-manager.hpp"
 
 namespace mia
 {

@@ -1,8 +1,8 @@
 #include "regular-event-publisher.hpp"
 
-#include <algorithm>
+#include "core/engine-components.hpp"
 
-#include "time/time-manager.hpp"
+#include <algorithm>
 
 namespace mia 
 {

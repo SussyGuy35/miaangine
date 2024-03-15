@@ -2,7 +2,6 @@
 #define _MIA_LOG_SYSTEM_HPP
 
 #include <stdarg.h>
-#include <string>
 
 #include "util/singleton.hpp"
 

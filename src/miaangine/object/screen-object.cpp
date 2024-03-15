@@ -1,8 +1,8 @@
 #include "screen-object.hpp"
 
-#include "graphic/image.hpp"
+#include "core/engine-components.hpp"
 
-#include "debug/debug-manager.hpp"
+#include "graphic/image.hpp"
 
 namespace mia
 {

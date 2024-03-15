@@ -4,8 +4,6 @@
 
 #include <algorithm>
 
-#include "core/camera.hpp"
-
 namespace mia 
 {
     PortraitRenderer *PortraitRenderer::__instance = nullptr;

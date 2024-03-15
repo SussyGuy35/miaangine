@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "util/math.hpp"
-#include "time/time-manager.hpp"
 
 #include "object/world-object.hpp"
 

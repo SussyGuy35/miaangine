@@ -1,5 +1,7 @@
 #include "image-renderer.hpp"
 
+#include "core/engine-components.hpp"
+
 #include <algorithm>
 
 namespace mia 

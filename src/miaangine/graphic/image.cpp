@@ -30,7 +30,7 @@ namespace mia
     {
         if (!_master) 
         {
-            mia::DebugManager::Instance()->Error("[Image] access denied: [master] Null reference"); //FIXME
+            mia::DebugManager::Instance().Error("[Image] access denied: [master] Null reference"); //FIXME
             return nullptr;
         }
 

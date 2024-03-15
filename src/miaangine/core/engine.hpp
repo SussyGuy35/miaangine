@@ -19,7 +19,7 @@ namespace mia
     extern EventManager &event;
     extern Renderer     &renderer;
     extern PhysicsWorld &physics;
-    extern DebugManager *debug;
+    extern DebugManager &debug;
 
     extern int windowWidth, windowHeight;
     extern bool fullscreenMode;

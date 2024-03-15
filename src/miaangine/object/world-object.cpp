@@ -29,7 +29,7 @@ namespace mia
     {
         if (_portraits.empty() || index >= _portraits.size()) 
         {
-            mia::DebugManager::Instance()->Error("[WorldObject] access denied: [portrait(%d)] Null reference", index); //FIXME
+            mia::DebugManager::Instance().Error("[WorldObject] access denied: [portrait(%d)] Null reference", index); //FIXME
             return nullptr;
         }
 
@@ -40,7 +40,7 @@ namespace mia
     {
         if (_bodies.empty() || index >= _bodies.size()) 
         {
-            mia::DebugManager::Instance()->Error("[WorldObject] access denied: [body(%d)] Null reference", index); //FIXME
+            mia::DebugManager::Instance().Error("[WorldObject] access denied: [body(%d)] Null reference", index); //FIXME
             return nullptr;
         }
 

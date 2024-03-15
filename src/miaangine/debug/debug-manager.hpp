@@ -4,23 +4,14 @@
 #include <stdarg.h>
 #include <string>
 
+#include "util/singleton.hpp"
+
 namespace mia
 {
-    class DebugManager
+    class DebugManager : public Singleton<DebugManager>
     {
     private:
-        static DebugManager *__instance;
-    public:
-        static DebugManager* Instance() 
-        {
-            if (!__instance) __instance = new DebugManager(); 
-            return __instance;
-        }
-
-        DebugManager(const DebugManager&) = delete;
-        void operator=(const DebugManager&) = delete;
-
-    private:
+        friend class Singleton<DebugManager>;
         DebugManager();
         ~DebugManager();
 

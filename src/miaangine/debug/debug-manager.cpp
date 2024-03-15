@@ -8,17 +8,13 @@
 
 namespace mia
 {
-    DebugManager *DebugManager::__instance = nullptr;
-
     DebugManager::DebugManager()
     {
 
     }
 
     DebugManager::~DebugManager()
-    {
-        __instance = nullptr;
-    }
+    {}
 
     void DebugManager::Log(const char *format, ...)
     {

@@ -6,15 +6,11 @@
 
 namespace mia
 {
-    SDLHandle *SDLHandle::__instance = nullptr;
-
     SDLHandle::SDLHandle()
     {}
 
     SDLHandle::~SDLHandle()
     {
-        __instance = nullptr;
-        
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(renderer);
     }

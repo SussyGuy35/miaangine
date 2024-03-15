@@ -13,7 +13,7 @@
 
 namespace mia
 {
-    extern SDLHandle    *sdlHandle;
+    extern SDLHandle    &sdlHandle;
     extern TimeManager  *time;
     extern InputManager *input;
     extern EventManager *event;

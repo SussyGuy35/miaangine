@@ -4,23 +4,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include "util/singleton.hpp"
+
 namespace mia
 {
-    class SDLHandle
+    class SDLHandle : public Singleton<SDLHandle>
     {
     private:
-        static SDLHandle *__instance;
-    public:
-        static SDLHandle* Instance() 
-        {
-            if (!__instance) __instance = new SDLHandle(); 
-            return __instance;
-        }
-
-        SDLHandle(const SDLHandle&) = delete;
-        void operator=(const SDLHandle&) = delete;
-
-    private:
+        friend class Singleton<SDLHandle>;
         SDLHandle();
         ~SDLHandle();
 

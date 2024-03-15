@@ -1,6 +1,6 @@
 #include "engine.hpp"
 
-mia::SDLHandle    *mia::sdlHandle (mia::SDLHandle::Instance());
+mia::SDLHandle    &mia::sdlHandle (mia::SDLHandle::Instance());
 mia::TimeManager  *mia::time      (mia::TimeManager::Instance());
 mia::InputManager *mia::input     (mia::InputManager::Instance());
 mia::EventManager *mia::event     (mia::EventManager::Instance());
@@ -18,7 +18,7 @@ void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
     windowHeight = height;
     fullscreenMode = fullscreen;
 
-    sdlHandle->Init(windowWidth, windowHeight, mia::fullscreenMode);
+    sdlHandle.Init(windowWidth, windowHeight, mia::fullscreenMode);
 
     SDL_Log("**MIAANGINE**\n");
 
@@ -27,7 +27,7 @@ void mia::Init(uint32_t width, uint32_t height, bool fullscreen)
 
 void mia::End()
 {
-    sdlHandle->Clear();
+    sdlHandle.Clear();
 }
 
 void mia::NewFrame()
@@ -44,5 +44,5 @@ void mia::NewFrame()
 
 void mia::Render()
 {
-    mia::renderer->Render(sdlHandle->renderer);
+    mia::renderer->Render(sdlHandle.renderer);
 }

@@ -15,8 +15,8 @@ namespace mia
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        portraitHandle->Render(renderer);
-        imageHandle->Render(renderer);
+        portraitHandle.Render(renderer);
+        imageHandle.Render(renderer);
 
         SDL_RenderPresent(renderer);
     }

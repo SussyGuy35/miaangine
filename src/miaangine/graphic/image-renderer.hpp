@@ -6,28 +6,17 @@
 
 #include <vector>
 
+#include "util/singleton.hpp"
+
 #include "image.hpp"
 
 namespace mia 
 {
-    class ImageRenderer
+    class ImageRenderer : public Singleton<ImageRenderer>
     {
     private:
-        static ImageRenderer *__instance;
-    public:
-        static ImageRenderer* Instance() 
-        {
-            if (!__instance) __instance = new ImageRenderer(); 
-            return __instance;
-        }
-
-        ImageRenderer(const ImageRenderer&) = delete;
-        void operator=(const ImageRenderer&) = delete;
-    
-    private:
+        friend class Singleton<ImageRenderer>;
         ImageRenderer();
-
-    public:
         ~ImageRenderer();
 
     private:

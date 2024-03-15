@@ -6,28 +6,17 @@
 
 #include <vector>
 
+#include "util/singleton.hpp"
+
 #include "portrait.hpp"
 
 namespace mia 
 {
-    class PortraitRenderer
+    class PortraitRenderer : public Singleton<PortraitRenderer>
     {
     private:
-        static PortraitRenderer *__instance;
-    public:
-        static PortraitRenderer* Instance() 
-        {
-            if (!__instance) __instance = new PortraitRenderer(); 
-            return __instance;
-        }
-
-        PortraitRenderer(const PortraitRenderer&) = delete;
-        void operator=(const PortraitRenderer&) = delete;
-    
-    private:
+        friend class Singleton<PortraitRenderer>;
         PortraitRenderer();
-
-    public:
         ~PortraitRenderer();
 
     private:

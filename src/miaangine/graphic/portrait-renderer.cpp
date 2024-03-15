@@ -6,15 +6,11 @@
 
 namespace mia 
 {
-    PortraitRenderer *PortraitRenderer::__instance = nullptr;
-
     PortraitRenderer::PortraitRenderer()
     {}
 
     PortraitRenderer::~PortraitRenderer()
-    {
-        __instance = nullptr;
-    }
+    {}
 
     void PortraitRenderer::RegisterPortrait(Portrait *portrait)
     {

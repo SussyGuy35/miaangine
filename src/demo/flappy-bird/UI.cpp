@@ -5,7 +5,7 @@ SImage::SImage():
 
 {
     MakeImage(20, 50, 0, 0);
-    mia::renderer.imageHandle->RegisterImage(image());
+    mia::renderer.imageHandle.RegisterImage(image());
 
     mia::event.primaryUpdate->RegisterListener(this);
 }

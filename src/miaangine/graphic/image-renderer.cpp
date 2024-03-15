@@ -6,15 +6,11 @@
 
 namespace mia 
 {
-    ImageRenderer *ImageRenderer::__instance = nullptr;
-
     ImageRenderer::ImageRenderer()
     {}
 
     ImageRenderer::~ImageRenderer()
-    {
-        __instance = nullptr;
-    }
+    {}
 
     void ImageRenderer::RegisterImage(Image *image)
     {

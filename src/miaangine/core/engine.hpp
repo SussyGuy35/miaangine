@@ -16,7 +16,7 @@ namespace mia
     extern SDLHandle    &sdlHandle;
     extern TimeManager  &time;
     extern InputManager &input;
-    extern EventManager *event;
+    extern EventManager &event;
     extern Renderer     *renderer;
     extern PhysicsWorld *physics;
     extern DebugManager *debug;

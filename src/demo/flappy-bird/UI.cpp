@@ -7,7 +7,7 @@ SImage::SImage():
     MakeImage(20, 50, 0, 0);
     mia::renderer->imageHandle->RegisterImage(image());
 
-    mia::event->primaryUpdate->RegisterListener(this);
+    mia::event.primaryUpdate->RegisterListener(this);
 }
 
 void SImage::Update(uint8_t message)

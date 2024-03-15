@@ -3,25 +3,16 @@
 
 #include <memory>
 
+#include "util/singleton.hpp"
+
 #include "regular-event-publisher.hpp"
 
 namespace mia
 {
-    class EventManager
+    class EventManager : public Singleton<EventManager>
     {
     private:
-        static EventManager *__instance;
-    public:
-        static EventManager* Instance() 
-        {
-            if (!__instance) __instance = new EventManager(); 
-            return __instance;
-        }
-
-        EventManager(const EventManager&) = delete;
-        void operator=(const EventManager&) = delete;
-
-    private:
+        friend class Singleton<EventManager>;
         EventManager();
         ~EventManager();
 

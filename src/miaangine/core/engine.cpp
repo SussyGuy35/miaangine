@@ -3,7 +3,7 @@
 mia::SDLHandle    &mia::sdlHandle (mia::SDLHandle::Instance());
 mia::TimeManager  &mia::time      (mia::TimeManager::Instance());
 mia::InputManager &mia::input     (mia::InputManager::Instance());
-mia::EventManager *mia::event     (mia::EventManager::Instance());
+mia::EventManager &mia::event     (mia::EventManager::Instance());
 mia::Renderer     *mia::renderer  (mia::Renderer::Instance());
 mia::PhysicsWorld *mia::physics   (mia::PhysicsWorld::Instance());
 mia::DebugManager *mia::debug     (mia::DebugManager::Instance());
@@ -32,12 +32,12 @@ void mia::End()
 
 void mia::NewFrame()
 {
-    event->onEnterNewFrame->NotifyListeners();
+    event.onEnterNewFrame->NotifyListeners();
 
     time.Step();
     input.Update();
 
-    event->primaryUpdate->NotifyListeners();
+    event.primaryUpdate->NotifyListeners();
 
     physics->Step(time.elapseTime);
 }

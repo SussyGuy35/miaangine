@@ -14,7 +14,7 @@ PipeManager::PipeManager()
     _pipes[0]->moving = false;
     _pipes[1]->moving = false;
 
-    mia::event->primaryUpdate->RegisterListener(this);
+    mia::event.primaryUpdate->RegisterListener(this);
 }
 
 void PipeManager::Update(uint8_t message)

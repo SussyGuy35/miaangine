@@ -1,7 +1,7 @@
 #include "engine.hpp"
 
 mia::SDLHandle    &mia::sdlHandle (mia::SDLHandle::Instance());
-mia::TimeManager  *mia::time      (mia::TimeManager::Instance());
+mia::TimeManager  &mia::time      (mia::TimeManager::Instance());
 mia::InputManager *mia::input     (mia::InputManager::Instance());
 mia::EventManager *mia::event     (mia::EventManager::Instance());
 mia::Renderer     *mia::renderer  (mia::Renderer::Instance());
@@ -34,12 +34,12 @@ void mia::NewFrame()
 {
     event->onEnterNewFrame->NotifyListeners();
 
-    time->Step();
+    time.Step();
     input->Update();
 
     event->primaryUpdate->NotifyListeners();
 
-    physics->Step(time->elapseTime);
+    physics->Step(time.elapseTime);
 }
 
 void mia::Render()

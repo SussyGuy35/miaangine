@@ -3,23 +3,14 @@
 
 #include <SDL.h>
 
+#include "util/singleton.hpp"
+
 namespace mia
 {
-    class TimeManager
+    class TimeManager : public Singleton<TimeManager>
     {
     private:
-        static TimeManager *__instance;
-    public:
-        static TimeManager* Instance() 
-        {
-            if (!__instance) __instance = new TimeManager(); 
-            return __instance;
-        }
-
-        TimeManager(const TimeManager&) = delete;
-        void operator=(const TimeManager&) = delete;
-
-    private:
+        friend class Singleton<TimeManager>;
         TimeManager();
         ~TimeManager();
 

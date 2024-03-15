@@ -2,8 +2,6 @@
 
 namespace mia
 {
-    TimeManager *TimeManager::__instance = nullptr;
-
     TimeManager::TimeManager():
         _currentTicks(SDL_GetPerformanceCounter()),
         _lastFrameTicks(SDL_GetPerformanceCounter()),
@@ -16,7 +14,7 @@ namespace mia
 
     TimeManager::~TimeManager()
     {
-        __instance = nullptr;
+        
     }
 
     void TimeManager::Step()

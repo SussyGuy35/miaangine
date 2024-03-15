@@ -9,7 +9,6 @@
 #define _MIAANGINE_HPP
 
 #include "core/engine-components.hpp"
-#include "core/engine.hpp"
 
 #include "util/math.hpp"
 #include "util/string.hpp"

@@ -7,7 +7,7 @@
 
 void Game::Run()
 {
-    mia::Init(400, 600, 0);
+    mia::generic.Init(400, 600, 0);
 
     SImage *sImage = new SImage();
 
@@ -18,12 +18,12 @@ void Game::Run()
     
     while (true)
     {
-        mia::NewFrame();
+        mia::generic.NewFrame();
 
         if (mia::input.IsQuit()) break;
 
-        mia::Render();
+        mia::generic.Render();
     }
 
-    mia::End();
+    mia::generic.End();
 }

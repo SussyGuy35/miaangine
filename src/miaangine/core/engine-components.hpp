@@ -1,6 +1,7 @@
 #ifndef _MIA_ENGINE_COMPONENTS_HPP
 #define _MIA_ENGINE_COMPONENTS_HPP
 
+#include "generic-task.hpp"
 #include "sdl-handle.hpp"
 #include "time/time-manager.hpp"
 #include "camera.hpp"
@@ -12,6 +13,7 @@
 
 namespace mia
 {
+    extern Generic      &generic   = mia::Generic::Instance();
     extern SDLHandle    &sdlHandle = mia::SDLHandle::Instance();
     extern TimeManager  &time      = mia::TimeManager::Instance();
     extern Camera       &camera    = mia::Camera::Instance();

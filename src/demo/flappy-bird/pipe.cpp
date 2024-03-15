@@ -18,8 +18,8 @@ Pipe::Pipe():
 
     MakeBody(PIPE_WIDTH, mia::windowHeight, 0, -mia::windowHeight - PIPE_HOLE_RADIUS);
     MakeBody(PIPE_WIDTH, mia::windowHeight, 0, PIPE_HOLE_RADIUS);
-    mia::physics->RegisterBody(body(0));
-    mia::physics->RegisterBody(body(1));
+    mia::physics.RegisterBody(body(0));
+    mia::physics.RegisterBody(body(1));
 
     mia::event.primaryUpdate->RegisterListener(this);
 }

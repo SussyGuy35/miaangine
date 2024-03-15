@@ -3,25 +3,16 @@
 
 #include <vector>
 
+#include "util/singleton.hpp"
+
 #include "body.hpp"
 
 namespace mia
 {
-    class PhysicsWorld
+    class PhysicsWorld : public Singleton<PhysicsWorld>
     {
     private:
-        static PhysicsWorld *__instance;
-    public:
-        static PhysicsWorld* Instance() 
-        {
-            if (!__instance) __instance = new PhysicsWorld(); 
-            return __instance;
-        }
-
-        PhysicsWorld(const PhysicsWorld&) = delete;
-        void operator=(const PhysicsWorld&) = delete;
-
-    private:
+        friend class Singleton<PhysicsWorld>;
         PhysicsWorld();
         ~PhysicsWorld();
 

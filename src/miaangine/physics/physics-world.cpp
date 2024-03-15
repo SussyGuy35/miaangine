@@ -4,16 +4,12 @@
 
 namespace mia
 {
-    PhysicsWorld *PhysicsWorld::__instance = nullptr;
-
     PhysicsWorld::PhysicsWorld():
         _gravity(vector2(0.0, 9.81))
     {}
 
     PhysicsWorld::~PhysicsWorld()
-    {
-        __instance = nullptr;
-    }
+    {}
 
     void PhysicsWorld::RegisterBody(Body *body)
     {

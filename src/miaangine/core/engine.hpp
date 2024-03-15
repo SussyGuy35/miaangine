@@ -18,7 +18,7 @@ namespace mia
     extern InputManager &input;
     extern EventManager &event;
     extern Renderer     &renderer;
-    extern PhysicsWorld *physics;
+    extern PhysicsWorld &physics;
     extern DebugManager *debug;
 
     extern int windowWidth, windowHeight;

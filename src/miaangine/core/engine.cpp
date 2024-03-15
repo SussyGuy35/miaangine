@@ -5,7 +5,7 @@ mia::TimeManager  &mia::time      (mia::TimeManager::Instance());
 mia::InputManager &mia::input     (mia::InputManager::Instance());
 mia::EventManager &mia::event     (mia::EventManager::Instance());
 mia::Renderer     &mia::renderer  (mia::Renderer::Instance());
-mia::PhysicsWorld *mia::physics   (mia::PhysicsWorld::Instance());
+mia::PhysicsWorld &mia::physics   (mia::PhysicsWorld::Instance());
 mia::DebugManager *mia::debug     (mia::DebugManager::Instance());
 
 int mia::windowWidth = 10;
@@ -39,7 +39,7 @@ void mia::NewFrame()
 
     event.primaryUpdate->NotifyListeners();
 
-    physics->Step(time.elapseTime);
+    physics.Step(time.elapseTime);
 }
 
 void mia::Render()

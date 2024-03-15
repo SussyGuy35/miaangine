@@ -3,26 +3,17 @@
 
 #include <memory>
 
+#include "util/singleton.hpp"
+
 #include "portrait-renderer.hpp"
 #include "image-renderer.hpp"
 
 namespace mia
 {
-    class Renderer
+    class Renderer : public Singleton<Renderer>
     {
     private:
-        static Renderer *__instance;
-    public:
-        static Renderer* Instance() 
-        {
-            if (!__instance) __instance = new Renderer(); 
-            return __instance;
-        }
-
-        Renderer(const Renderer&) = delete;
-        void operator=(const Renderer&) = delete;
-    
-    private:
+        friend class Singleton<Renderer>;
         Renderer();
         ~Renderer();
     

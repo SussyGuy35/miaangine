@@ -17,7 +17,7 @@ namespace mia
     extern TimeManager  &time;
     extern InputManager &input;
     extern EventManager &event;
-    extern Renderer     *renderer;
+    extern Renderer     &renderer;
     extern PhysicsWorld *physics;
     extern DebugManager *debug;
 

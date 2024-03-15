@@ -8,7 +8,7 @@ Bird::Bird():
     
 {
     MakePortrait(SIZE);
-    mia::renderer->portraitHandle->RegisterPortrait(portrait());
+    mia::renderer.portraitHandle->RegisterPortrait(portrait());
     portrait()->color = {255, 20, 255, 255};
 
     MakeBody(SIZE);

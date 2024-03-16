@@ -22,7 +22,10 @@ namespace mia
             height,
             SDL_WINDOW_OPENGL
         );
-        if (window == nullptr) return false;
+        if (window == nullptr) 
+        {
+            return false;
+        }
 
         renderer = SDL_CreateRenderer(
             window, 

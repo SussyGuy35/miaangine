@@ -15,6 +15,7 @@ namespace mia
         ~DebugManager();
 
     public:
+        void Message(const char *format, ...);
         void Log(const char *format, ...);
         void Warning(const char *format, ...);
         void Error(const char *format, ...);

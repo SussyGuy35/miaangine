@@ -15,6 +15,17 @@ namespace mia
 
     DebugManager::~DebugManager()
     {}
+    
+    void DebugManager::Message(const char *format, ...)
+    {
+        char out[512];
+        va_list args;
+        va_start(args, format);
+        vsnprintf(out, sizeof(out), format, args);
+        va_end(args);
+
+        printf(out);
+    }
 
     void DebugManager::Log(const char *format, ...)
     {
@@ -30,7 +41,7 @@ namespace mia
 
         strcat(out, str);
 
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, out);
+        printf("LOG: %s\n", out);
     }
 
     void DebugManager::Warning(const char *format, ...)
@@ -47,7 +58,7 @@ namespace mia
 
         strcat(out, str);
 
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_WARN, out);
+        printf("WARING: %s\n", out);
     }
 
     void DebugManager::Error(const char *format, ...)
@@ -64,7 +75,7 @@ namespace mia
 
         strcat(out, str);
 
-        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, out);
+        printf("ERROR: %s\n", out);
     }
 
     void DebugManager::FormatStr(char *out, const char *format, ...)

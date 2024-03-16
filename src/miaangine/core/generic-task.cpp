@@ -21,7 +21,7 @@ namespace mia
 
         sdl.Init(windowWidth, windowHeight, fullscreenMode);
 
-        SDL_Log("**MIAANGINE**\n");
+        debug.Message("\n=== INIT SUCCESSFUL ===\n\n");
 
         input.SetupKeyBind();
     }

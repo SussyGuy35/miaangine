@@ -15,6 +15,7 @@
     {
     public:
         Portrait(const char* dir = "", float scale = 1, vector2 offset = vector2::zero());
+        Portrait(const char* dir, float scale, float ox, float oy);
 
         virtual ~Portrait();
 

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 project(game)
 
 # TAG
-add_compile_options(-w -Wl,-subsystem,windows)
+# add_compile_options(-w -Wl,-subsystem,windows)
 
 # EXECUTABLE
 file(GLOB_RECURSE SOURCES "src/demo/flappy-bird/*.cpp") # <============
@@ -25,7 +25,9 @@ find_package(SDL2_image REQUIRED)
 set(INCLUDES "src/demo/flappy-bird") # <============
 
 list(APPEND INCLUDES "src;src/miaangine")
-list(APPEND INCLUDES "vendor/SDL/include/SDL2")
+#list(APPEND INCLUDES "vendor/SDL/include/SDL2")
+list(APPEND INCLUDES ${SDL2_INCLUDE_DIRS})
+list(APPEND INCLUDES ${SDL2IMAGE_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME} 
     PUBLIC ${INCLUDES} 

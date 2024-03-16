@@ -8,11 +8,7 @@ namespace mia
     class string
     {
     public:
-        string():
-            _content("")
-        {}
-
-        string(const char *content):
+        string(const char *content = ""):
             _content(new char[strlen(content) + 1])
         {
             strcpy(_content, content);
@@ -43,6 +39,8 @@ namespace mia
             delete[](_content);
             _content = new char[strlen(content) + 1];
             strcpy(_content, content);
+
+            return *this;
         }
 
         inline string& operator+=(const string &other) 

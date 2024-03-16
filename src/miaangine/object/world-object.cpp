@@ -51,12 +51,16 @@ namespace mia
     {
         portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
+
+        return *portrait;
     }
 
     Body& WorldObject::AttachBody(Body *body)
     {
         body->ShiftMaster(this);
         _bodies.push_back(body);
+
+        return *body;
     }
 
     Portrait& WorldObject::MakePortrait(const char* dir, float scale, vector2 offset)
@@ -85,6 +89,8 @@ namespace mia
 
         body->ShiftMaster(this);
         _bodies.push_back(body);
+
+        return *body;
     }
     Body& WorldObject::MakeBody(float sx, float sy, float ox, float oy)
     {
@@ -92,5 +98,7 @@ namespace mia
 
         body->ShiftMaster(this);
         _bodies.push_back(body);
+
+        return *body;
     }
 }

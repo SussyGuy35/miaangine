@@ -36,6 +36,8 @@ namespace mia
     {
         image->ShiftMaster(this);
         _images.push_back(image);
+
+        return *image;
     }
 
     Image& ScreenObject::MakeImage(vector2 size, vector2 offset)
@@ -44,6 +46,8 @@ namespace mia
 
         image->ShiftMaster(this);
         _images.push_back(image);
+
+        return *image;
     }
     Image& ScreenObject::MakeImage(float sx, float sy, float ox, float oy)
     {
@@ -51,5 +55,7 @@ namespace mia
 
         image->ShiftMaster(this);
         _images.push_back(image);
+
+        return *image;
     }
 }

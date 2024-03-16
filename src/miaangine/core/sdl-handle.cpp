@@ -44,14 +44,14 @@ namespace mia
         IMG_Quit();
     }
 
-    SDL_Surface* SDLHandle::LoadIMG(const char* file)
+    SDL_Texture* SDLHandle::LoadIMG(const char* file)
     {
         string dir;
         dir.copy(assetDir);
         dir += file;
 
         debug.Log("Image load: %s", dir.str());
-        return IMG_Load(dir.str());
+        return IMG_LoadTexture(sdl.renderer, dir.str());
     }
 
     void SDLHandle::SetAssetDir(const char* directory)

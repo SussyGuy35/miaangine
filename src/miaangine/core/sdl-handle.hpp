@@ -26,7 +26,7 @@ namespace mia
         bool Init(uint32_t width, uint32_t height, bool fullscreen);
         void Clear();
 
-        SDL_Surface* LoadIMG(const char* file);
+        SDL_Texture* LoadIMG(const char* file);
 
         void SetAssetDir(const char* directory);
     };

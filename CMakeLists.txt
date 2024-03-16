@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 3.10)
 project(game)
 
 # TAG
-# add_compile_options(-w -Wl,-subsystem,windows)
+if(CMAKE_GENERATOR STREQUAL "MinGW Makefiles")
+    add_compile_options(-Wall -Wextra)
+endif()
 
 # EXECUTABLE
 file(GLOB_RECURSE SOURCES "src/demo/flappy-bird/*.cpp") # <============

@@ -38,6 +38,13 @@ namespace mia
             return *this;
         }
 
+        string& operator=(const char *content)
+        {
+            delete[](_content);
+            _content = new char[strlen(content) + 1];
+            strcpy(_content, content);
+        }
+
         inline string& operator+=(const string &other) 
         {
             size_t len = strlen(_content) + strlen(other._content);
@@ -132,12 +139,9 @@ namespace mia
 
         inline string& copy(const string &other)
         {
-            if (this != &other)
-            {
-                delete[](_content);
-                _content = new char[strlen(other._content) + 1];
-                strcat(_content, other._content);
-            }
+            delete[](_content);
+            _content = new char[strlen(other._content) + 1];
+            strcpy(_content, other._content);
 
             return *this;
         }

@@ -50,7 +50,6 @@ namespace mia
         dir.copy(assetDir);
         dir += file;
 
-        debug.Log("Image load: %s", dir.str());
         return IMG_LoadTexture(sdl.renderer, dir.str());
     }
 

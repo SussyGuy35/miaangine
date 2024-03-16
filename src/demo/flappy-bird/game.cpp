@@ -8,6 +8,7 @@
 void Game::Run()
 {
     mia::generic.Init(400, 600, 0);
+    mia::sdl.SetAssetDir("D:/SDL/miaangine/asset/flappy-bird");
     
     SImage *sImage = new SImage();
 

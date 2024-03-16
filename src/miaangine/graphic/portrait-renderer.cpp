@@ -31,21 +31,34 @@ namespace mia
     {
         for (Portrait *portrait : _portraits)
         {
-            SDL_Rect rect = RectRenderingCalculate(portrait);
+            SDL_Texture* texture = sdl.LoadIMG(portrait->file.str());
+            int w = 0, h = 0;
+            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h)) 
+            {
+                debug.Error("[PortraitRender] Failed to load texture {%s}", portrait->file.str());
+                continue;
+            }
 
-            SDL_SetRenderDrawColor(renderer, portrait->color.r, portrait->color.b, portrait->color.g, portrait->color.a);
-            SDL_RenderFillRect(renderer, &rect);
+            SDL_SetTextureColorMod(texture, portrait->color.r, portrait->color.b, portrait->color.g);
+            SDL_SetTextureAlphaMod(texture, portrait->color.a);
+            
+            SDL_Rect rect = RectRenderingCalculate(portrait, w, h);
+
+            SDL_RenderCopy(renderer, texture, NULL, &rect);
         }
     }
 
-    SDL_Rect PortraitRenderer::RectRenderingCalculate(Portrait *portrait)
+    SDL_Rect PortraitRenderer::RectRenderingCalculate(Portrait *portrait, int w, int h)
     {
         SDL_Rect rect;
 
+        float displayW = 1.0 * w * portrait->scale * generic.PORTRAIT_PIXEL_SCALE;
+        float displayH = 1.0 * h * portrait->scale * generic.PORTRAIT_PIXEL_SCALE;
+
         rect.x = static_cast<int>(portrait->position().x + portrait->offset.x - camera.position.x);
-        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset.y - portrait->size.y);
-        rect.w = static_cast<int>(portrait->size.x);
-        rect.h = static_cast<int>(portrait->size.y);
+        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset.y - displayH);
+        rect.w = static_cast<int>(displayW);
+        rect.h = static_cast<int>(displayH);
 
         return rect;
     }

@@ -9,12 +9,12 @@ Pipe::Pipe():
 {
     moving = true;
 
-    MakePortrait(PIPE_WIDTH, mia::generic.windowHeight, 0, -mia::generic.windowHeight - PIPE_HOLE_RADIUS);
-    MakePortrait(PIPE_WIDTH, mia::generic.windowHeight, 0, PIPE_HOLE_RADIUS);
-    portrait(0).color = {10, 10, 255, 255};
-    portrait(1).color = {10, 10, 255, 255};
-    mia::renderer.portraitHandle.RegisterPortrait(&portrait(0));
-    mia::renderer.portraitHandle.RegisterPortrait(&portrait(1));
+    // MakePortrait(PIPE_WIDTH, mia::generic.windowHeight, 0, -mia::generic.windowHeight - PIPE_HOLE_RADIUS);
+    // MakePortrait(PIPE_WIDTH, mia::generic.windowHeight, 0, PIPE_HOLE_RADIUS);
+    // portrait(0).color = {10, 10, 255, 255};
+    // portrait(1).color = {10, 10, 255, 255};
+    // mia::renderer.portraitHandle.RegisterPortrait(&portrait(0));
+    // mia::renderer.portraitHandle.RegisterPortrait(&portrait(1));
 
     MakeBody(PIPE_WIDTH, mia::generic.windowHeight, 0, -mia::generic.windowHeight - PIPE_HOLE_RADIUS);
     MakeBody(PIPE_WIDTH, mia::generic.windowHeight, 0, PIPE_HOLE_RADIUS);

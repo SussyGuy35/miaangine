@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "util/math.hpp"
+#include "util/string.hpp"
 
 #include "object/world-object.hpp"
 
@@ -13,8 +14,7 @@
     class mia::Portrait
     {
     public:
-        Portrait(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        Portrait(float sx, float sy, float ox = 0, float oy = 0);
+        Portrait(const char* dir = "", float scale = 1, vector2 offset = vector2::zero());
 
         virtual ~Portrait();
 
@@ -25,7 +25,8 @@
         WorldObject *_master;
 
     public:
-        vector2 size;
+        string file;
+        float scale;
         vector2 offset;
 
         string& name() ;

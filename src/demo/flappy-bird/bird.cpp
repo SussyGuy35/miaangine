@@ -7,9 +7,9 @@ Bird::Bird():
     JUMP_VELOCITY(550)
     
 {
-    MakePortrait(SIZE);
+    MakePortrait("bird-00.png");
     mia::renderer.portraitHandle.RegisterPortrait(&portrait());
-    portrait().color = {255, 20, 255, 255};
+    portrait().color = {255, 255, 255, 255};
 
     MakeBody(SIZE);
     mia::physics.RegisterBody(&body());
@@ -35,7 +35,7 @@ void Bird::Update(uint8_t message)
         }
         else 
         {
-            portrait().color = {255, 20, 255, 255};
+            portrait().color = {255, 255, 255, 255};
         }
 
         break;

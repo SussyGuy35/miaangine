@@ -59,21 +59,14 @@ namespace mia
         _bodies.push_back(body);
     }
 
-    Portrait& WorldObject::MakePortrait(vector2 size, vector2 offset)
+    Portrait& WorldObject::MakePortrait(const char* dir, float scale, vector2 offset)
     {
-        Portrait *portrait = new Portrait(size, offset);
+        Portrait *portrait = new Portrait(dir, scale, offset);
 
         portrait->ShiftMaster(this);
         _portraits.push_back(portrait);
 
         return *portrait;
-    }
-    Portrait& WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
-    {
-        Portrait *portrait = new Portrait(sx, sy, ox, oy);
-
-        portrait->ShiftMaster(this);
-        _portraits.push_back(portrait);
     }
 
     Body& WorldObject::MakeBody(vector2 size, vector2 offset)

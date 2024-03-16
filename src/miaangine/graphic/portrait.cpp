@@ -4,22 +4,14 @@
 
 namespace mia
 {
-    Portrait::Portrait(vector2 size, vector2 offset):
+    Portrait::Portrait(const char* dir, float scale, vector2 offset):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
-        size(size),
+        _master(nullptr),
+        file(dir),
+        scale(scale),
         offset(offset),
-        color({255, 255, 255, 255}),
-        _master(nullptr)
-    {}
-
-    Portrait::Portrait(float sx, float sy, float ox, float oy):
-        _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        size(vector2(sx, sy)),
-        offset(vector2(ox, oy)),
-        color({255, 255, 255, 255}),
-        _master(nullptr)
+        color({255, 255, 255, 255})
     {}
 
     Portrait::~Portrait()

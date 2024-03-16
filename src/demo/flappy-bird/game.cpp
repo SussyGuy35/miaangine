@@ -8,14 +8,14 @@
 void Game::Run()
 {
     mia::generic.Init(400, 600, 0);
-
+    
     SImage *sImage = new SImage();
 
     PipeManager *pipeManager = new PipeManager();
     Bird *bird = new Bird();
     
     pipeManager->Start();
-    
+
     while (true)
     {
         mia::generic.NewFrame();

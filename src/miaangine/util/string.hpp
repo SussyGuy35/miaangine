@@ -31,7 +31,7 @@ namespace mia
         {
             if (this != &other)
             {
-                delete[] _content;
+                delete[](_content);
                 _content = other._content;
             }
 
@@ -128,6 +128,18 @@ namespace mia
             }
 
             return false;
+        }
+
+        inline string& copy(const string &other)
+        {
+            if (this != &other)
+            {
+                delete[](_content);
+                _content = new char[strlen(other._content) + 1];
+                strcat(_content, other._content);
+            }
+
+            return *this;
         }
 
     private:

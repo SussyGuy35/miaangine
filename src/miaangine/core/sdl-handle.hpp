@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 
 #include "util/singleton.hpp"
+#include "util/string.hpp"
 
 namespace mia
 {
@@ -15,12 +16,19 @@ namespace mia
         SDLHandle();
         ~SDLHandle();
 
+    private:
+        string assetDir;
+
     public:
         SDL_Window *window;
         SDL_Renderer *renderer;
 
         bool Init(uint32_t width, uint32_t height, bool fullscreen);
         void Clear();
+
+        SDL_Surface* LoadIMG(const char* file);
+
+        void SetAssetDir(const char* directory);
     };
 }
 

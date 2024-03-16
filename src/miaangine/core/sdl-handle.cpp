@@ -32,7 +32,7 @@ namespace mia
         if (renderer == nullptr) return false;
 
         int imgFlags = IMG_INIT_PNG;
-        if (!(IMG_Init(imgFlags) & imgFlags)) return false;
+        if ((IMG_Init(imgFlags) & imgFlags) != imgFlags) return false;
 
         return true;
     }
@@ -41,5 +41,25 @@ namespace mia
     {
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(renderer);
+        IMG_Quit();
+    }
+
+    SDL_Surface* SDLHandle::LoadIMG(const char* file)
+    {
+        string dir;
+        dir.copy(assetDir);
+        dir += file;
+
+        debug.Log("Image load: %s", dir.str());
+        return IMG_Load(dir.str());
+    }
+
+    void SDLHandle::SetAssetDir(const char* directory)
+    {
+        assetDir = directory;
+        if (directory[strlen(directory) - 1] != '/')
+        {
+            assetDir += "/";
+        }
     }
 }

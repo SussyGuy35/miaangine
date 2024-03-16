@@ -15,6 +15,8 @@ namespace mia
         ~GenericTask();
 
     public:
+        const int GLOBAL_PIXEL_SCALE = 4;
+        
         int windowWidth, windowHeight;
         bool fullscreenMode;
 

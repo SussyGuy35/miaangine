@@ -1,7 +1,7 @@
-.out
-SDL2.dll
-*.exe
-build
 .vscode
-out
 .vs
+.out
+out
+build
+*.exe
+SDL2.dll

@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 # TAG
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    if (NOT CMAKE_GENERATOR STREQUAL "Visual Studio 17 2022" OR NOT CMAKE_GENERATOR STREQUAL "Visual Studio 16 2019")
+    if (CMAKE_GENERATOR STREQUAL "MinGW Makefiles")
         add_compile_options(-Wall -Wextra)
     endif()
 else()

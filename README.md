@@ -4,7 +4,7 @@
 
 ## Overview
 Miaangine is a simple, lightweight 2D game engine using C++ SDL2 by Miaan. <br>
-The engine can work on Windows and Linux
+The engine can work on Windows
 
 ## Demo
 Use CMake to build the CMakeLists.txt:

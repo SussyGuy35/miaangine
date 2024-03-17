@@ -15,8 +15,12 @@ endif()
 
 # SDL
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL/lib/cmake")
+
 find_package(SDL2 REQUIRED)
-find_package(SDL2_image REQUIRED)
+
+set(SDL2IMAGE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL/include")
+set(SDL2IMAGE_LIBRARIES "SDL2_image::SDL2_image")
+find_package(SDL2_IMAGE REQUIRED)
 
 # EXECUTABLE
 file(GLOB_RECURSE SOURCES "src/demo/flappy-bird/*.cpp") # <===== EDIT HERE =====
@@ -33,7 +37,11 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC ${E_INCLUDES}
 )
 
+message(STATUS ${SDL2_LIBRARIES})
+message(STATUS ${SDL2IMAGE_LIBRARIES})
+
 # LINK
 target_link_libraries(${PROJECT_NAME} 
-    -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+    PUBLIC ${SDL2_LIBRARIES} 
+    PUBLIC ${SDL2IMAGE_LIBRARIES}
 )

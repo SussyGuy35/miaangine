@@ -37,9 +37,6 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC ${E_INCLUDES}
 )
 
-message(STATUS ${SDL2_LIBRARIES})
-message(STATUS ${SDL2IMAGE_LIBRARIES})
-
 # LINK
 target_link_libraries(${PROJECT_NAME} 
     PUBLIC ${SDL2_LIBRARIES} 

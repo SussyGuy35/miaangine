@@ -5,11 +5,11 @@ project(m)
 set(CMAKE_CXX_STANDARD 14)
 
 # TAG
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_compile_options(-Wall -Wextra)
-else()
-    add_compile_options(-w)
-endif()
+# if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+#     add_compile_options(-Wall -Wextra)
+# else()
+#     add_compile_options(-w)
+# endif()
 
 # SDL
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")

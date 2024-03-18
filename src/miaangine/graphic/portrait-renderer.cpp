@@ -31,16 +31,16 @@ namespace mia
     {
         for (Portrait *portrait : _portraits)
         {
-            SDL_Texture* texture = sdl.LoadIMG(portrait->file.str());
+            SDL_Texture* texture = portrait->texture();
             int w = 0, h = 0;
             if (SDL_QueryTexture(texture, NULL, NULL, &w, &h)) 
             {
-                debug.Error("[PortraitRender] Failed to load texture {%s}", portrait->file.str());
+                debug.Error("[PortraitRender] Failed to load texture {%s}", portrait->textureDirectory().str()); //FIXME
                 continue;
             }
 
-            SDL_SetTextureColorMod(texture, portrait->color.r, portrait->color.b, portrait->color.g);
-            SDL_SetTextureAlphaMod(texture, portrait->color.a);
+            SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
+            SDL_SetTextureAlphaMod(texture, portrait->color().a);
             
             SDL_Rect rect = RectRenderingCalculate(portrait, w, h);
 
@@ -52,11 +52,11 @@ namespace mia
     {
         SDL_Rect rect;
 
-        float displayW = 1.0 * w * portrait->scale * generic.PORTRAIT_PIXEL_SCALE;
-        float displayH = 1.0 * h * portrait->scale * generic.PORTRAIT_PIXEL_SCALE;
+        float displayW = 1.0 * w * portrait->scale() * generic.PORTRAIT_PIXEL_SCALE;
+        float displayH = 1.0 * h * portrait->scale() * generic.PORTRAIT_PIXEL_SCALE;
 
-        rect.x = static_cast<int>(portrait->position().x + portrait->offset.x - camera.position.x);
-        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset.y - displayH);
+        rect.x = static_cast<int>(portrait->position().x + portrait->offset().x - camera.position.x);
+        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset().y - displayH);
         rect.w = static_cast<int>(displayW);
         rect.h = static_cast<int>(displayH);
 

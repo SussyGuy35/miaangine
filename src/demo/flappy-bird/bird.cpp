@@ -9,7 +9,7 @@ Bird::Bird():
 {
     MakePortrait("bird-00.png");
     mia::renderer.portraitHandle.RegisterPortrait(&portrait());
-    portrait().color = {255, 255, 255, 255};
+    portrait().color() = {255, 255, 255, 255};
 
     MakeBody(SIZE);
     mia::physics.RegisterBody(&body());
@@ -31,11 +31,11 @@ void Bird::Update(uint8_t message)
 
         if (body().colliding) 
         {
-            portrait().color = {255, 0, 0, 255};
+            portrait().color() = {255, 0, 0, 255};
         }
         else 
         {
-            portrait().color = {255, 255, 255, 255};
+            portrait().color() = {255, 255, 255, 255};
         }
 
         break;

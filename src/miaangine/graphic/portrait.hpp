@@ -2,6 +2,7 @@
 #define _MIA_PORTRAIT_HPP
 
 #include <SDL.h>
+#include <SDL_image.h>
 #include <memory>
 
 #include "util/math.hpp"
@@ -23,19 +24,24 @@
         string _ucName;
         vector2 _ucPosition;
 
+        float _scale;
+        vector2 _offset;
+        string _textureDirectory;
+        SDL_Texture *_texture;
+        SDL_Color _color;
+
         WorldObject *_master;
 
     public:
-        string file;
-        float scale;
-        vector2 offset;
-
-        string& name() ;
-        vector2& position() ;
+        string& name();
+        vector2& position();
+        float& scale();
+        vector2& offset();
+        string& textureDirectory();
+        SDL_Texture* texture();
+        SDL_Color& color();
 
         WorldObject* master();
-
-        SDL_Color color;
 
         void ShiftMaster(WorldObject *master);
     };

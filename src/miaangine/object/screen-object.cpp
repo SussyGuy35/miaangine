@@ -40,18 +40,18 @@ namespace mia
         return *image;
     }
 
-    Image& ScreenObject::MakeImage(vector2 size, vector2 offset)
+    Image& ScreenObject::MakeImage(const char* dir, vector2 size, vector2 offset)
     {
-        Image *image = new Image(size, offset);
+        Image *image = new Image(dir, size, offset);
 
         image->ShiftMaster(this);
         _images.push_back(image);
 
         return *image;
     }
-    Image& ScreenObject::MakeImage(float sx, float sy, float ox, float oy)
+    Image& ScreenObject::MakeImage(const char* dir, float sx, float sy, float ox, float oy)
     {
-        Image *image = new Image(sx, sy, ox, oy);
+        Image *image = new Image(dir, sx, sy, ox, oy);
 
         image->ShiftMaster(this);
         _images.push_back(image);

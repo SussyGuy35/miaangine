@@ -31,10 +31,20 @@ namespace mia
     {
         for (Image *image : _images)
         {
+            SDL_Texture* texture = image->texture();
+            int w = 0, h = 0;
+            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h)) 
+            {
+                debug.Error("[PortraitRender] Failed to load texture {%s}", image->textureDirectory().str()); //FIXME
+                continue;
+            }
+
+            SDL_SetTextureColorMod(texture, image->color().r, image->color().b, image->color().g);
+            SDL_SetTextureAlphaMod(texture, image->color().a);
+            
             SDL_Rect rect = RectRenderingCalculate(image);
 
-            SDL_SetRenderDrawColor(renderer, image->color.r, image->color.b, image->color.g, image->color.a);
-            SDL_RenderFillRect(renderer, &rect);
+            SDL_RenderCopy(renderer, texture, NULL, &rect);
         }
     }
 
@@ -42,10 +52,10 @@ namespace mia
     {
         SDL_Rect rect;
 
-        rect.x = static_cast<int>(image->position().x + image->offset.x);
-        rect.y = static_cast<int>(image->position().y + image->offset.y);
-        rect.w = static_cast<int>(image->size.x);
-        rect.h = static_cast<int>(image->size.y);
+        rect.x = static_cast<int>(image->position().x + image->offset().x);
+        rect.y = static_cast<int>(image->position().y + image->offset().y);
+        rect.w = static_cast<int>(image->size().x);
+        rect.h = static_cast<int>(image->size().y);
 
         return rect;
     }

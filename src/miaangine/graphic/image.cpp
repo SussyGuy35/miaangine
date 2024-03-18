@@ -4,10 +4,10 @@
 
 namespace mia
 {
-    Image::Image(const char* dir, float scale, vector2 offset):
+    Image::Image(const char* dir, vector2 size, vector2 offset):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
-        _scale(scale),
+        _size(size),
         _offset(offset),
         _textureDirectory(dir),
         // _texture(nullptr),
@@ -17,10 +17,10 @@ namespace mia
         _texture = sdl.LoadIMG(_textureDirectory.str());
     }
 
-    Image::Image(const char* dir, float scale, float ox, float oy):
+    Image::Image(const char* dir, float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
-        _scale(scale),
+        _size(vector2(sx, sy)),
         _offset(vector2(ox, oy)),
         _textureDirectory(dir),
         // _texture(nullptr),
@@ -43,9 +43,9 @@ namespace mia
     {
         return (!_master ? _ucPosition : _master->position);
     }
-    float& Image::scale()
+    vector2& Image::size()
     {
-        return _scale;
+        return _size;
     }
     vector2& Image::offset()
     {

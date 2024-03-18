@@ -14,8 +14,8 @@
     class mia::Image
     {
     public:
-        Image(const char* dir = "", float scale = 1, vector2 offset = vector2::zero());
-        Image(const char* dir, float scale, float ox, float oy);
+        Image(const char* dir = "", vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Image(const char* dir, float sx, float sy, float ox = 0, float oy = 0);
 
         virtual ~Image();
 
@@ -23,7 +23,7 @@
         string _ucName;
         vector2 _ucPosition;
 
-        float _scale;
+        vector2 _size;
         vector2 _offset;
         string _textureDirectory;
         SDL_Texture *_texture;
@@ -34,7 +34,7 @@
     public:
         string& name();
         vector2& position();
-        float& scale();
+        vector2& size();
         vector2& offset();
         string& textureDirectory();
         SDL_Texture* texture();

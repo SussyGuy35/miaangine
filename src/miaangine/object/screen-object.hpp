@@ -29,8 +29,8 @@ namespace mia
 
         Image& AttachImage(Image *portrait);
 
-        Image& MakeImage(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        Image& MakeImage(float sx, float sy, float ox = 0, float oy = 0);
+        Image& MakeImage(const char* dir = "", vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Image& MakeImage(const char* dir, float sx, float sy, float ox = 0, float oy = 0);
     };
 }
 

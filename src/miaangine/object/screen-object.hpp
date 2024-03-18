@@ -18,13 +18,14 @@ namespace mia
 
         virtual ~ScreenObject();
 
-    public:
-        vector2 position;
-
-    protected:
+    private:
+        vector2 _position;
+        
         std::vector<Image*> _images;
 
     public:
+        vector2& position();
+
         Image& image(int index = 0);
 
         Image& AttachImage(Image *portrait);

@@ -15,7 +15,7 @@ void SImage::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        position.x += .02;
+        position().x += .02;
         break;
     
     default:

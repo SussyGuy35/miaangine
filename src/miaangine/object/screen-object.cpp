@@ -8,17 +8,22 @@ namespace mia
 {
     ScreenObject::ScreenObject(const char* name, vector2 position):
         GameObject(name),
-        position(position)
+        _position(position)
     {}
     ScreenObject::ScreenObject(const char* name, float x, float y):
         GameObject(name),
-        position(vector2(x, y))
+        _position(vector2(x, y))
     {}
 
     ScreenObject::~ScreenObject()
     {
         for (auto& image : _images) delete(image);
         _images.clear();
+    }
+
+    vector2& ScreenObject::position()
+    {
+        return _position;
     }
 
     Image& ScreenObject::image(int index)

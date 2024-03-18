@@ -59,8 +59,8 @@ namespace mia
         {
             Body *body = _bodies[i];
 
-            body->master()->position.x += body->velocity.x * timePass;
-            body->master()->position.y += body->velocity.y * timePass;
+            body->master()->position().x += body->velocity.x * timePass;
+            body->master()->position().y += body->velocity.y * timePass;
         }
     }
 

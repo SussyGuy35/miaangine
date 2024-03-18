@@ -41,7 +41,7 @@ namespace mia
     }
     vector2& Image::position() 
     {
-        return (!_master ? _ucPosition : _master->position);
+        return (!_master ? _ucPosition : _master->position());
     }
     vector2& Image::size()
     {

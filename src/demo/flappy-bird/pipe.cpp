@@ -42,6 +42,6 @@ void Pipe::Reset()
     int spawnBoundMax = mia::generic.windowHeight - 20 - PIPE_HOLE_RADIUS;
     int spawnPos = rand() % (spawnBoundMax - spawnBoundMin + 1) + spawnBoundMin;
 
-    position.x = 400;
-    position.y = spawnPos;
+    position().x = 400;
+    position().y = spawnPos;
 }

@@ -19,14 +19,15 @@ namespace mia
 
         virtual ~WorldObject();
 
-    public:
-        vector2 position;
+    private:
+        vector2 _position;
 
-    protected:
         std::vector<Portrait*> _portraits;
         std::vector<Body*> _bodies;
 
     public:
+        vector2& position();
+
         Portrait& portrait(int index = 0);
         Body& body(int index = 0);
 

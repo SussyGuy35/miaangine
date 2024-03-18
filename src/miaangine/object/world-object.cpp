@@ -9,11 +9,11 @@ namespace mia
 {
     WorldObject::WorldObject(const char* name, vector2 position):
         GameObject(name),
-        position(position)
+        _position(position)
     {}
     WorldObject::WorldObject(const char* name, float x, float y):
         GameObject(name),
-        position(vector2(x, y))
+        _position(vector2(x, y))
     {}
 
     WorldObject::~WorldObject()
@@ -23,6 +23,11 @@ namespace mia
 
         for (auto& portrait : _portraits) delete(portrait);
         _portraits.clear();
+    }
+
+    vector2& WorldObject::position()
+    {
+        return _position;
     }
 
     Portrait& WorldObject::portrait(int index)

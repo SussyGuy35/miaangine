@@ -34,7 +34,7 @@ namespace mia
 
     vector2& Body::position() 
     {
-        return (!_master ? _ucPosition : _master->position);
+        return (!_master ? _ucPosition : _master->position());
     }
 
     WorldObject* Body::master()

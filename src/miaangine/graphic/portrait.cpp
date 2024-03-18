@@ -41,7 +41,7 @@ namespace mia
     }
     vector2& Portrait::position() 
     {
-        return (!_master ? _ucPosition : _master->position);
+        return (!_master ? _ucPosition : _master->position());
     }
     float& Portrait::scale()
     {

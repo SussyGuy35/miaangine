@@ -22,7 +22,7 @@ void PipeManager::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        if (_pipes[_dominantPipe]->position.x < 100) 
+        if (_pipes[_dominantPipe]->position().x < 100) 
         {
             _dominantPipe = 1 - _dominantPipe;
             ResetPipe(_dominantPipe);

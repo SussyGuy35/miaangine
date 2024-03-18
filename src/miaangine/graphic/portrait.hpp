@@ -3,7 +3,6 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <memory>
 
 #include "util/math.hpp"
 #include "util/string.hpp"

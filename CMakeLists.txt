@@ -3,9 +3,6 @@ cmake_minimum_required(VERSION 3.10)
 project(m)
 
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_WIN32_EXECUTABLE TRUE)
 
 # TAG
 # if (CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -16,13 +13,7 @@ set(CMAKE_WIN32_EXECUTABLE TRUE)
 
 # SDL
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
-
-set(SDL2_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL2/include/SDL2")
-set(SDL2_LIBRARIES "SDL2::SDL2" "SDL2::SDL2main")
 find_package(SDL2 REQUIRED)
-
-# set(SDL2IMAGE_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL2_image/include/SDL2")
-set(SDL2IMAGE_LIBRARIES "SDL2_image::SDL2_image")
 find_package(SDL2_IMAGE REQUIRED)
 
 # EXECUTABLE
@@ -42,6 +33,5 @@ target_include_directories(${PROJECT_NAME}
 
 # LINK
 target_link_libraries(${PROJECT_NAME} 
-    PUBLIC ${SDL2_LIBRARIES} 
-    PUBLIC ${SDL2IMAGE_LIBRARIES}
+    -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
 )

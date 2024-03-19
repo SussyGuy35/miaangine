@@ -31,9 +31,19 @@ namespace mia
     {
         for (Portrait *portrait : _portraits)
         {
+            if (portrait->textureDirectory() == string::empty())
+            {
+                SDL_Rect rect = RectRenderingCalculate(portrait, 1, 1);
+
+                SDL_SetRenderDrawColor(renderer, portrait->color().r, portrait->color().b, portrait->color().g, portrait->color().a);
+                SDL_RenderFillRect(renderer, &rect);
+
+                continue;
+            }
+
             SDL_Texture* texture = portrait->texture();
             int w = 0, h = 0;
-            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h)) 
+            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0) 
             {
                 debug.Error("[PortraitRender] Failed to load texture {%s}", portrait->textureDirectory().str()); //FIXME
                 continue;

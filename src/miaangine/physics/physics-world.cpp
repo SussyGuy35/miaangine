@@ -28,9 +28,9 @@ namespace mia
         }
     }
 
-    void PhysicsWorld::Step(double timePass)
+    void PhysicsWorld::Step(double elapsedTime)
     {
-        BodiesVelocityCalculate(timePass);
+        BodiesVelocityCalculate(elapsedTime);
         
         BodiesCollideCheck();
     }
@@ -53,14 +53,14 @@ namespace mia
                 aMaxY >= bMinY);
     }
 
-    void PhysicsWorld::BodiesVelocityCalculate(double timePass)
+    void PhysicsWorld::BodiesVelocityCalculate(double elapsedTime)
     {
-        for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
+        for (Body *body : _bodies)
         {
-            Body *body = _bodies[i];
+            body->velocity() += body->force() / body->mass() * elapsedTime;
+            body->position() += body->velocity() * elapsedTime;
 
-            body->master()->position().x += body->velocity().x * timePass;
-            body->master()->position().y += body->velocity().y * timePass;
+            body->force() = vector2::zero();
         }
     }
 

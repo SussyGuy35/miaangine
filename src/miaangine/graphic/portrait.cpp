@@ -30,6 +30,28 @@ namespace mia
         _texture = sdl.LoadIMG(_textureDirectory.str());
     }
 
+    Portrait::Portrait(vector2 scale, vector2 offset):
+        _ucName("unclaimed"),
+        _ucPosition(vector2::zero()),
+        _scale(scale),
+        _offset(offset),
+        _textureDirectory(""),
+        _texture(nullptr),
+        _master(nullptr),
+        _color({255, 255, 255, 255})
+    {}
+
+    Portrait::Portrait(float sx, float sy, float ox, float oy):
+        _ucName("unclaimed"),
+        _ucPosition(vector2::zero()),
+        _scale(vector2(sx, sy)),
+        _offset(vector2(ox, oy)),
+        _textureDirectory(""),
+        _texture(nullptr),
+        _master(nullptr),
+        _color({255, 255, 255, 255})
+    {}
+
     Portrait::~Portrait()
     {
         SDL_DestroyTexture(_texture);

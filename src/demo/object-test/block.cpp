@@ -26,7 +26,7 @@ void Block::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        position += direction * SPEED * mia::time->elapseTime;
+        position += direction * SPEED * mia::time->deltaTime;
 
         if (position.x < 0) 
         {

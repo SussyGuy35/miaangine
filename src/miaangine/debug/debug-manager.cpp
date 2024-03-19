@@ -31,7 +31,7 @@ namespace mia
     {
         char out[512] = "";
 
-        FormatStr(out, "%.3f - %llu > ", TimeManager::Instance().time, TimeManager::Instance().stepCount);
+        FormatStr(out, "%.3f - %llu > ", TimeManager::Instance().time(), TimeManager::Instance().stepCount());
 
         char str[512];
         va_list args;
@@ -48,7 +48,7 @@ namespace mia
     {
         char out[512] = "";
 
-        FormatStr(out, "%.3f - %llu > ", TimeManager::Instance().time, TimeManager::Instance().stepCount);
+        FormatStr(out, "%.3f - %llu > ", TimeManager::Instance().time(), TimeManager::Instance().stepCount());
 
         char str[512];
         va_list args;
@@ -65,7 +65,7 @@ namespace mia
     {
         char out[512] = "";
 
-        FormatStr(out, "%.3f - %llu > ", TimeManager::Instance().time, TimeManager::Instance().stepCount);
+        FormatStr(out, "%.3f - %llu > ", TimeManager::Instance().time(), TimeManager::Instance().stepCount());
 
         char str[512];
         va_list args;

@@ -40,7 +40,7 @@ namespace mia
 
         event.primaryUpdate.NotifyListeners();
 
-        physics.Step(time.elapseTime);
+        physics.Step(time.deltaTime());
     }
 
     void GenericTask::Render()

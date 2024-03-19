@@ -52,8 +52,8 @@ namespace mia
     {
         SDL_Rect rect;
 
-        float displayW = 1.0 * w * portrait->scale() * generic.PORTRAIT_PIXEL_SCALE;
-        float displayH = 1.0 * h * portrait->scale() * generic.PORTRAIT_PIXEL_SCALE;
+        float displayW = 1.0 * w * portrait->scale().x * generic.PORTRAIT_PIXEL_SCALE;
+        float displayH = 1.0 * h * portrait->scale().y * generic.PORTRAIT_PIXEL_SCALE;
 
         rect.x = static_cast<int>(portrait->position().x + portrait->offset().x - camera.position.x);
         rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset().y - displayH);

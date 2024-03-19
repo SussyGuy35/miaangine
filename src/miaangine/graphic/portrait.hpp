@@ -14,8 +14,8 @@
     class mia::Portrait
     {
     public:
-        Portrait(const char* dir = "", float scale = 1, vector2 offset = vector2::zero());
-        Portrait(const char* dir, float scale, float ox, float oy);
+        Portrait(const char* dir = "", vector2 scale = vector2::one(), vector2 offset = vector2::zero());
+        Portrait(const char* dir, float sx, float sy, float ox, float oy);
 
         virtual ~Portrait();
 
@@ -23,7 +23,7 @@
         string _ucName;
         vector2 _ucPosition;
 
-        float _scale;
+        vector2 _scale;
         vector2 _offset;
         string _textureDirectory;
         SDL_Texture *_texture;
@@ -34,7 +34,7 @@
     public:
         string& name();
         vector2& position();
-        float& scale();
+        vector2& scale();
         vector2& offset();
         string& textureDirectory();
         SDL_Texture* texture();

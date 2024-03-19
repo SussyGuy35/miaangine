@@ -9,8 +9,8 @@ Pipe::Pipe():
 {
     moving = true;
 
-    MakePortrait("pipe-bot.png", 1, 0, -mia::generic.windowHeight - PIPE_HOLE_RADIUS);
-    MakePortrait("pipe-top.png", 1, 0, PIPE_HOLE_RADIUS);
+    MakePortrait("pipe-bot.png", 1, 1, 0, -mia::generic.windowHeight - PIPE_HOLE_RADIUS);
+    MakePortrait("pipe-top.png", 1, 1, 0, PIPE_HOLE_RADIUS);
     mia::renderer.portraitHandle.RegisterPortrait(&portrait(0));
     mia::renderer.portraitHandle.RegisterPortrait(&portrait(1));
 

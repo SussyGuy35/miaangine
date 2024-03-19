@@ -34,8 +34,8 @@ namespace mia
         Portrait& AttachPortrait(Portrait *portrait);
         Body& AttachBody(Body *body);
 
-        Portrait& MakePortrait(const char* dir = "", float scale = 1, vector2 offset = vector2::zero());
-        Portrait& MakePortrait(const char* dir, float scale, float ox, float oy);
+        Portrait& MakePortrait(const char* dir = "", vector2 scale = vector2::one(), vector2 offset = vector2::zero());
+        Portrait& MakePortrait(const char* dir, float sx, float sy, float ox, float oy);
 
         Body& MakeBody(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
         Body& MakeBody(float sx, float sy, float ox = 0, float oy = 0);

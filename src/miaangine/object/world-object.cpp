@@ -68,7 +68,7 @@ namespace mia
         return *body;
     }
 
-    Portrait& WorldObject::MakePortrait(const char* dir, float scale, vector2 offset)
+    Portrait& WorldObject::MakePortrait(const char* dir, vector2 scale, vector2 offset)
     {
         Portrait *portrait = new Portrait(dir, scale, offset);
 
@@ -78,9 +78,9 @@ namespace mia
         return *portrait;
     }
 
-    Portrait& WorldObject::MakePortrait(const char* dir, float scale, float ox, float oy)
+    Portrait& WorldObject::MakePortrait(const char* dir, float sx, float sy, float ox, float oy)
     {
-        Portrait *portrait = new Portrait(dir, scale, ox, oy);
+        Portrait *portrait = new Portrait(dir, sx, sy, ox, oy);
 
         portrait->ShiftMaster(this);
         _portraits.push_back(portrait);

@@ -4,7 +4,7 @@
 
 namespace mia
 {
-    Portrait::Portrait(const char* dir, float scale, vector2 offset):
+    Portrait::Portrait(const char* dir, vector2 scale, vector2 offset):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
         _scale(scale),
@@ -17,10 +17,10 @@ namespace mia
         _texture = sdl.LoadIMG(_textureDirectory.str());
     }
 
-    Portrait::Portrait(const char* dir, float scale, float ox, float oy):
+    Portrait::Portrait(const char* dir, float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
-        _scale(scale),
+        _scale(vector2(sx, sy)),
         _offset(vector2(ox, oy)),
         _textureDirectory(dir),
         // _texture(nullptr),
@@ -43,7 +43,7 @@ namespace mia
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    float& Portrait::scale()
+    vector2& Portrait::scale()
     {
         return _scale;
     }

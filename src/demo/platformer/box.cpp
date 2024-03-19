@@ -6,7 +6,7 @@ Box::Box(int x, int y, int sx, int sy):
     MakePortrait(sx, sy);
     MakeBody();
 
-    mia::renderer.portraitHandle.RegisterPortrait(&portrait());
+    mia::renderer.RegisterPortrait(&portrait());
     mia::physics.RegisterBody(&body());
 
     mia::event.primaryUpdate.RegisterListener(this);

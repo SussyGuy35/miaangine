@@ -15,9 +15,16 @@ namespace mia
         Renderer();
         ~Renderer();
     
+    private:
+        PortraitRenderer &_portraitHandle;
+        ImageRenderer &_imageHandle;
+
     public:
-        PortraitRenderer &portraitHandle;
-        ImageRenderer &imageHandle;
+        void RegisterPortrait(Portrait *portrait);
+        void RemovePortrait(Portrait *portrait);
+
+        void RegisterImage(Image *image);
+        void RemoveImage(Image *image);
 
         void Render(SDL_Renderer *renderer);
     };

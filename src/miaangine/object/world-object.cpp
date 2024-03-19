@@ -9,17 +9,18 @@ namespace mia
 {
     WorldObject::WorldObject(const char* name, vector2 position):
         GameObject(name),
-        _position(position)
+        _position(position),
+        _body(nullptr)
     {}
     WorldObject::WorldObject(const char* name, float x, float y):
         GameObject(name),
-        _position(vector2(x, y))
+        _position(vector2(x, y)),
+        _body(nullptr)
     {}
 
     WorldObject::~WorldObject()
     {
-        for (auto& body : _bodies) delete(body);
-        _bodies.clear();
+        delete(_body);
 
         for (auto& portrait : _portraits) delete(portrait);
         _portraits.clear();
@@ -34,22 +35,22 @@ namespace mia
     {
         if (_portraits.empty() || index >= _portraits.size()) 
         {
-            mia::DebugManager::Instance().Error("[WorldObject] access denied: [portrait(%d)] Null reference", index); //FIXME
+            mia::DebugManager::Instance().Warning("[WorldObject] warning: [Portrait(%d)] Null reference ; New [Portrait] created", index); //FIXME
             return MakePortrait();
         }
 
         return *_portraits[index];
     }
 
-    Body& WorldObject::body(int index)
+    Body& WorldObject::body()
     {
-        if (_bodies.empty() || index >= _bodies.size()) 
+        if (_body == nullptr) 
         {
-            mia::DebugManager::Instance().Error("[WorldObject] access denied: [body(%d)] Null reference", index); //FIXME
+            mia::DebugManager::Instance().Warning("[WorldObject] warning: [Body] Null reference ; New [Body] created"); //FIXME
             return MakeBody();
         }
 
-        return *_bodies[index];
+        return *_body;
     }
 
     Portrait& WorldObject::AttachPortrait(Portrait *portrait)
@@ -63,7 +64,8 @@ namespace mia
     Body& WorldObject::AttachBody(Body *body)
     {
         body->ShiftMaster(this);
-        _bodies.push_back(body);
+        delete(_body);
+        _body = body;
 
         return *body;
     }
@@ -105,22 +107,17 @@ namespace mia
         return *portrait;
     }
 
-    Body& WorldObject::MakeBody(vector2 size, vector2 offset)
+    Body& WorldObject::MakeBody(float mass, vector2 initForce)
     {
-        Body *body = new Body(size, offset);
+        if (_body != nullptr)
+        {
+            mia::DebugManager::Instance().Warning("[WorldObject] warning: [Body] Already existed ; No new [Body] created"); //FIXME
+            return *_body;
+        }
 
-        body->ShiftMaster(this);
-        _bodies.push_back(body);
+        _body = new Body(mass, initForce);
+        _body->ShiftMaster(this);
 
-        return *body;
-    }
-    Body& WorldObject::MakeBody(float sx, float sy, float ox, float oy)
-    {
-        Body *body = new Body(sx, sy, ox, oy);
-
-        body->ShiftMaster(this);
-        _bodies.push_back(body);
-
-        return *body;
+        return *_body;
     }
 }

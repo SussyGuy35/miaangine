@@ -23,13 +23,13 @@ namespace mia
         vector2 _position;
 
         std::vector<Portrait*> _portraits;
-        std::vector<Body*> _bodies;
+        Body *_body;
 
     public:
         vector2& position();
 
         Portrait& portrait(int index = 0);
-        Body& body(int index = 0);
+        Body& body();
 
         Portrait& AttachPortrait(Portrait *portrait);
         Body& AttachBody(Body *body);
@@ -39,8 +39,7 @@ namespace mia
         Portrait& MakePortrait(vector2 scale, vector2 offset = vector2::zero());
         Portrait& MakePortrait(float sx, float sy, float ox = 0, float oy = 0);
 
-        Body& MakeBody(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        Body& MakeBody(float sx, float sy, float ox = 0, float oy = 0);
+        Body& MakeBody(float mass = 1, vector2 initForce = vector2::zero());
     };
 }
 

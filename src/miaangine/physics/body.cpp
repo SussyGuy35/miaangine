@@ -4,7 +4,13 @@
 
 namespace mia
 {
-    Body::Body()
+    Body::Body(float mass, vector2 initForce):
+        _ucName("unclaimed"),
+        _ucPosition(vector2::zero()),
+        _velocity(vector2::zero()),
+        _force(initForce),
+        _mass(mass),
+        _master(nullptr)
     {}
 
     Body::~Body()

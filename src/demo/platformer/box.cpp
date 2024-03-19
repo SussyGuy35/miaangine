@@ -4,7 +4,7 @@ Box::Box(int x, int y, int sx, int sy):
     WorldObject("Box", x, y)
 {
     MakePortrait(sx, sy);
-    MakeBody(sx, sy);
+    MakeBody();
 
     mia::renderer.portraitHandle.RegisterPortrait(&portrait());
     mia::physics.RegisterBody(&body());

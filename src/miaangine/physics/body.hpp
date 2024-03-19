@@ -11,7 +11,7 @@ namespace mia
     class Body
     {
     public:
-        Body();
+        Body(float mass = 1, vector2 initForce = vector2::zero());
 
         virtual ~Body();
 

@@ -34,7 +34,7 @@ namespace mia
             return *this;
         }
 
-        string& operator=(const char *content)
+        inline string& operator=(const char *content)
         {
             delete[](_content);
             _content = new char[strlen(content) + 1];
@@ -86,7 +86,6 @@ namespace mia
 
             return true;
         }
-
         inline bool operator==(const char *content)
         {
             int llen = strlen(_content);
@@ -118,7 +117,6 @@ namespace mia
 
             return false;
         }
-
         inline bool operator!=(const char *content)
         {
             int llen = strlen(_content);
@@ -143,6 +141,12 @@ namespace mia
 
             return *this;
         }
+
+        static const string& empty()
+		{
+			static const string result("");
+			return result;
+		}
 
     private:
         char* _content;

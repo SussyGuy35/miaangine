@@ -20,7 +20,6 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-
     vector2& Body::position() 
     {
         return (!_master ? _ucPosition : _master->position());
@@ -42,7 +41,7 @@ namespace mia
     {
         if (!_master) 
         {
-            mia::DebugManager::Instance().Error("[Body] access denied: [master] Null reference"); //FIXME
+            mia::debug.Error("[Body] access denied: [master] Null reference"); //FIXME
             // return *_master; //FIXME
         }
 

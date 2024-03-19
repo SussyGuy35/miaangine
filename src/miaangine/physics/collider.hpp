@@ -35,6 +35,8 @@ namespace mia
         Body* body();
         WorldObject* master();
         
+        bool CheckColliding(Collider *other);
+
         void ShiftBody(Body *body);
         void ShiftMaster(WorldObject *master);
     };

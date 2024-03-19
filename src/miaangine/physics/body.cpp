@@ -12,8 +12,7 @@ namespace mia
         _velocity(vector2::zero()),
         _force(vector2::zero()),
         _mass(1),
-        _master(nullptr),
-        colliding(false)
+        _master(nullptr)
     {}
 
     Body::Body(float sx, float sy, float ox, float oy):
@@ -24,8 +23,7 @@ namespace mia
         _velocity(vector2::zero()),
         _force(vector2::zero()),
         _mass(1),
-        _master(nullptr),
-        colliding(false)
+        _master(nullptr)
     {}
 
     Body::~Body()
@@ -76,6 +74,11 @@ namespace mia
     {
         _force += force;
         return _force;
+    }
+
+    vector2 Body::AddAcceleration(vector2 acceleration)
+    {
+        return AddForce(acceleration * _mass);
     }
 
     void Body::ShiftMaster(WorldObject *master)

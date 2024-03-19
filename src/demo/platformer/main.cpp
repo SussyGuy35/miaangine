@@ -12,8 +12,6 @@ int main(int argc, char *argv[])
 
     Box *box = new Box(200, 500);
 
-    mia::debug.Log("A");
-
     while (true)
     {
         mia::generic.NewFrame();

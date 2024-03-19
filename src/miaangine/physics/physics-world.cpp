@@ -30,9 +30,7 @@ namespace mia
 
     void PhysicsWorld::Step(double elapsedTime)
     {
-        BodiesVelocityCalculate(elapsedTime);
-        
-        BodiesCollideCheck();
+        BodiesDynamicsHandle(elapsedTime);
     }
 
     bool PhysicsWorld::IsColliding(Body *bodyA, Body *bodyB)
@@ -53,7 +51,7 @@ namespace mia
                 aMaxY >= bMinY);
     }
 
-    void PhysicsWorld::BodiesVelocityCalculate(double elapsedTime)
+    void PhysicsWorld::BodiesDynamicsHandle(double elapsedTime)
     {
         for (Body *body : _bodies)
         {
@@ -61,24 +59,6 @@ namespace mia
             body->position() += body->velocity() * elapsedTime;
 
             body->force() = vector2::zero();
-        }
-    }
-
-    void PhysicsWorld::BodiesCollideCheck() //FIXME
-    {
-        for (int i = 0; i < static_cast<int>(_bodies.size()); i++) _bodies[i]->colliding = false;
-        for (int i = 0; i < static_cast<int>(_bodies.size()); i++)
-        {
-            Body *bodyA = _bodies[i];
-            for (int j = i + 1; j < static_cast<int>(_bodies.size()); j++)
-            {
-                Body *bodyB = _bodies[j];
-
-                if (IsColliding(bodyA, bodyB))
-                {
-                    bodyA->colliding = bodyB->colliding = true;
-                }
-            }
         }
     }
 }

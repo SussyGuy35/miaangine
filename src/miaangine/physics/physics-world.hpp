@@ -25,13 +25,12 @@ namespace mia
         void RegisterBody(Body *body);
         void RemoveBody(Body *body);
 
-        void Step(double timePass);
+        void Step(double elapsedTime);
 
         bool IsColliding(Body *bodyA, Body *bodyB);
     
     private:
-        void BodiesVelocityCalculate(double timePass);
-        void BodiesCollideCheck();
+        void BodiesDynamicsHandle(double elapsedTime);
     };
 }
 

@@ -42,9 +42,8 @@
 
         WorldObject* master();
 
-        bool colliding;
-
         vector2 AddForce(vector2 force);
+        vector2 AddAcceleration(vector2 acceleration);
         
         void ShiftMaster(WorldObject *master);
     };

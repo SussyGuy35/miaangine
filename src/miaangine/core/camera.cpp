@@ -3,7 +3,7 @@
 namespace mia
 {
     Camera::Camera():
-        _size(10),
+        _size(6),
         _position(vector2::zero())
     {}
 

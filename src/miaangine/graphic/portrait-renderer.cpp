@@ -62,15 +62,16 @@ namespace mia
     {
         SDL_Rect rect;
 
-        float scale = (generic.windowWidth / camera.size()) / PIXEL_PER_UNIT;
+        float unitSize = (generic.windowWidth / camera.size());
 
-        float displayW = 1.0 * w * portrait->scale().x * scale;
-        float displayH = 1.0 * h * portrait->scale().y * scale;
+        float displayW = 1.0 * w * portrait->scale().x * unitSize / PIXEL_PER_UNIT;
+        float displayH = 1.0 * h * portrait->scale().y * unitSize / PIXEL_PER_UNIT;
+        float displayX = (portrait->position().x + portrait->offset().x - camera.position().x) * unitSize;
+        float displayY = generic.windowHeight - displayH - (portrait->position().y + portrait->offset().y - camera.position().y) * unitSize;
 
-        debug.Log("%d : %d > %f", w, h, scale);
-
-        rect.x = static_cast<int>(portrait->position().x + portrait->offset().x - camera.position().x);
-        rect.y = static_cast<int>(camera.position().y + generic.windowHeight - portrait->position().y - portrait->offset().y - displayH);
+        //FIXME
+        rect.x = static_cast<int>(displayX);
+        rect.y = static_cast<int>(displayY); 
         rect.w = static_cast<int>(displayW);
         rect.h = static_cast<int>(displayH);
 

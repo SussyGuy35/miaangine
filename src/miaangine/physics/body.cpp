@@ -7,20 +7,24 @@ namespace mia
     Body::Body(vector2 size, vector2 offset):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
-        size(size),
-        offset(offset),
+        _size(size),
+        _offset(offset),
+        _velocity(vector2::zero()),
+        _force(vector2::zero()),
+        _mass(1),
         _master(nullptr),
-        velocity(vector2::zero()),
         colliding(false)
     {}
 
     Body::Body(float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
-        size(vector2(sx, sy)),
-        offset(vector2(ox, oy)),
+        _size(vector2(sx, sy)),
+        _offset(vector2(ox, oy)),
+        _velocity(vector2::zero()),
+        _force(vector2::zero()),
+        _mass(1),
         _master(nullptr),
-        velocity(vector2::zero()),
         colliding(false)
     {}
 
@@ -35,6 +39,26 @@ namespace mia
     vector2& Body::position() 
     {
         return (!_master ? _ucPosition : _master->position());
+    }
+    vector2& Body::size()
+    {
+        return _size;
+    }
+    vector2& Body::offset()
+    {
+        return _offset;
+    }
+    vector2& Body::velocity()
+    {
+        return _velocity;
+    }
+    vector2& Body::force()
+    {
+        return _force;
+    }
+    float& Body::mass()
+    {
+        return _mass;
     }
 
     WorldObject* Body::master()

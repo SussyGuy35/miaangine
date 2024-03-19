@@ -21,18 +21,27 @@
         string _ucName;
         vector2 _ucPosition;
 
+        vector2 _size;
+        vector2 _offset;
+
+        vector2 _velocity;
+        vector2 _force;
+
+        float _mass;
+
         WorldObject *_master;
 
     public:
-        vector2 size;
-        vector2 offset;
-
-        string& name() ;
-        vector2& position() ;
+        string& name();
+        vector2& position();
+        vector2& size();
+        vector2& offset();
+        vector2& velocity();
+        vector2& force();
+        float& mass();
 
         WorldObject* master();
 
-        vector2 velocity;
         bool colliding;
 
         void ShiftMaster(WorldObject *master);

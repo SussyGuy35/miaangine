@@ -27,8 +27,8 @@ void Pipe::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        if (moving) body().velocity.x = -SPEED;
-        else body().velocity.x = 0;
+        if (moving) body().velocity().x = -SPEED;
+        else body().velocity().x = 0;
         break;
     
     default:

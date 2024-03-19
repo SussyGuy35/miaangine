@@ -22,11 +22,11 @@ void Bird::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        body().velocity.y += GRAVITY * mia::time.elapseTime;
+        body().velocity().y += GRAVITY * mia::time.elapseTime;
         
         if (mia::input.GetButtonDown("Jump"))
         {
-            body().velocity.y = JUMP_VELOCITY;
+            body().velocity().y = JUMP_VELOCITY;
         }
 
         if (body().colliding) 

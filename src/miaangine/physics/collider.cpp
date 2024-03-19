@@ -62,7 +62,22 @@ namespace mia
 
     bool Collider::CheckColliding(Collider *other)
     {
+        float aMinX = position().x + _offset.x;
+        float aMinY = position().y + _offset.y;
+        float aMaxX = position().x + _offset.x + _size.x;
+        float aMaxY = position().y + _offset.y + _size.y;
 
+        float bMinX = other->position().x + other->_offset.x;
+        float bMinY = other->position().y + other->_offset.y;
+        float bMaxX = other->position().x + other->_offset.x + other->_size.x;
+        float bMaxY = other->position().y + other->_offset.y + other->_size.y;
+
+        return (
+            aMinX <= bMaxX &&
+            aMaxX >= bMinX &&
+            aMinY <= bMaxY &&
+            aMaxY >= bMinY
+        );
     }
 
     void Collider::ShiftBody(Body *body)

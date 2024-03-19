@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.10)
 project(m)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_WIN32_EXECUTABLE TRUE)
 
 # TAG
 # if (CMAKE_BUILD_TYPE STREQUAL "Debug")

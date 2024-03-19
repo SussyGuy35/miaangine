@@ -44,6 +44,8 @@
 
         bool colliding;
 
+        vector2 AddForce(vector2 force);
+        
         void ShiftMaster(WorldObject *master);
     };
 // }

@@ -72,6 +72,12 @@ namespace mia
         return _master;
     }
 
+    vector2 Body::AddForce(vector2 force)
+    {
+        _force += force;
+        return _force;
+    }
+
     void Body::ShiftMaster(WorldObject *master)
     {
         this->_master = master;

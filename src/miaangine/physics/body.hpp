@@ -20,9 +20,6 @@ namespace mia
         string _ucName;
         vector2 _ucPosition;
 
-        vector2 _size;
-        vector2 _offset;
-
         vector2 _velocity;
         vector2 _force;
 
@@ -33,8 +30,6 @@ namespace mia
     public:
         string& name();
         vector2& position();
-        vector2& size();
-        vector2& offset();
         vector2& velocity();
         vector2& force();
         float& mass();

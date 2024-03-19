@@ -26,8 +26,6 @@ namespace mia
         void RemoveBody(Body *body);
 
         void Step(double elapsedTime);
-
-        bool IsColliding(Body *bodyA, Body *bodyB);
     
     private:
         void BodiesDynamicsHandle(double elapsedTime);

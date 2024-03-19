@@ -33,24 +33,6 @@ namespace mia
         BodiesDynamicsHandle(elapsedTime);
     }
 
-    bool PhysicsWorld::IsColliding(Body *bodyA, Body *bodyB)
-    {
-        float aMinX = bodyA->position().x + bodyA->offset().x; 
-        float aMaxX = bodyA->position().x + bodyA->offset().x + bodyA->size().x; 
-        float aMinY = bodyA->position().y + bodyA->offset().y; 
-        float aMaxY = bodyA->position().y + bodyA->offset().y + bodyA->size().y; 
-
-        float bMinX = bodyB->position().x + bodyB->offset().x; 
-        float bMaxX = bodyB->position().x + bodyB->offset().x + bodyB->size().x; 
-        float bMinY = bodyB->position().y + bodyB->offset().y; 
-        float bMaxY = bodyB->position().y + bodyB->offset().y + bodyB->size().y; 
-
-        return (aMinX <= bMaxX &&
-                aMaxX >= bMinX &&
-                aMinY <= bMaxY &&
-                aMaxY >= bMinY);
-    }
-
     void PhysicsWorld::BodiesDynamicsHandle(double elapsedTime)
     {
         for (Body *body : _bodies)

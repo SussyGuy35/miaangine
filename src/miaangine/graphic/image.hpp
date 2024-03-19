@@ -9,9 +9,9 @@
 
 #include "object/screen-object.hpp"
 
-// namespace mia
-// {
-    class mia::Image
+namespace mia
+{
+    class Image
     {
     public:
         Image(const char* dir = "", vector2 size = vector2::zero(), vector2 offset = vector2::zero());
@@ -44,6 +44,6 @@
 
         void ShiftMaster(ScreenObject *master);
     };  
-// }
+}
 
 #endif

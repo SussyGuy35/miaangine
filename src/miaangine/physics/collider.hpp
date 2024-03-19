@@ -3,18 +3,18 @@
 
 #include "util/math.hpp"
 
+#include "body.hpp"
 #include "object/world-object.hpp"
 
 namespace mia
 {
-    class Collider;
-    class Body
+    class Collider
     {
     public:
-        Body(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        Body(float sx, float sy, float ox = 0, float oy = 0);
+        Collider(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Collider(float sx, float sy, float ox = 0, float oy = 0);
 
-        virtual ~Body();
+        virtual ~Collider();
 
     private:
         string _ucName;
@@ -23,11 +23,7 @@ namespace mia
         vector2 _size;
         vector2 _offset;
 
-        vector2 _velocity;
-        vector2 _force;
-
-        float _mass;
-
+        Body* _body;
         WorldObject *_master;
 
     public:
@@ -35,15 +31,11 @@ namespace mia
         vector2& position();
         vector2& size();
         vector2& offset();
-        vector2& velocity();
-        vector2& force();
-        float& mass();
 
+        Body* body();
         WorldObject* master();
-
-        vector2 AddForce(vector2 force);
-        vector2 AddAcceleration(vector2 acceleration);
         
+        void ShiftBody(Body *body);
         void ShiftMaster(WorldObject *master);
     };
 }

@@ -9,9 +9,9 @@
 
 #include "object/world-object.hpp"
 
-// namespace mia 
-// {
-    class mia::Portrait
+namespace mia 
+{
+    class Portrait
     {
     public:
         Portrait(const char* dir = "", vector2 scale = vector2::one(), vector2 offset = vector2::zero());
@@ -46,6 +46,6 @@
 
         void ShiftMaster(WorldObject *master);
     };
-// }
+}
 
 #endif

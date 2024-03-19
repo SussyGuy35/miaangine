@@ -23,13 +23,13 @@ set(SDL2IMAGE_LIBRARIES "SDL2_image::SDL2_image")
 find_package(SDL2_IMAGE REQUIRED)
 
 # EXECUTABLE
-file(GLOB_RECURSE SOURCES "src/demo/flappy-bird/*.cpp") # <===== EDIT HERE =====
+file(GLOB_RECURSE SOURCES "src/demo/platformer/*.cpp") # <===== EDIT HERE =====
 file(GLOB_RECURSE E_SOURCES "src/miaangine/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${E_SOURCES})
 
 # DIRECTORIES
-set(INCLUDES "src/demo/flappy-bird") # <===== EDIT HERE =====
+set(INCLUDES "src/demo/platformer") # <===== EDIT HERE =====
 set(E_INCLUDES "src" "src/miaangine" ${SDL2_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME} 

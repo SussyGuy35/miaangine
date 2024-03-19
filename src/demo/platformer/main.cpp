@@ -1,0 +1,23 @@
+#include "miaangine.hpp"
+
+#ifndef SDL_MAIN_HANDLED
+#define SDL_MAIN_HANDLED
+#endif
+
+int main(int argc, char *argv[])
+{
+    mia::generic.Init(400, 600, 0);
+
+    while (true)
+    {
+        mia::generic.NewFrame();
+
+        if (mia::input.IsQuit()) break;
+
+        mia::generic.Render();
+    }
+
+    mia::generic.End();
+
+    return 0;
+}

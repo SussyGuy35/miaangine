@@ -45,7 +45,7 @@ namespace mia
     {
         if (!_body) 
         {
-            mia::debug.Error("[Collider] access denied: [body] Null reference"); //FIXME
+            mia::debug.Error("[Collider(%s)] access denied: [body] Null reference; Return null. ", name().str());
         }
 
         return _body;
@@ -54,7 +54,7 @@ namespace mia
     {
         if (!_master) 
         {
-            mia::debug.Error("[Collider] access denied: [master] Null reference"); //FIXME
+            mia::debug.Error("[Collider(%s)] access denied: [master] Null reference;  Return null. ", name().str());
         }
 
         return _master;

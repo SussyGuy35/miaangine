@@ -59,7 +59,7 @@ namespace mia
     {
         if (!_texture)
         {
-            debug.Error("[Image(%s)] Failed to get texture {%s}", name(), _textureDirectory.str()); //FIXME
+            debug.Error("[Image(%s)] Failed to get texture {%s}; Return Null. ", name().str(), _textureDirectory.str());
         }
 
         return _texture;
@@ -73,7 +73,7 @@ namespace mia
     {
         if (!_master) 
         {
-            mia::DebugManager::Instance().Error("[Image] access denied: [master] Null reference"); //FIXME
+            mia::DebugManager::Instance().Error("[Image(%s)] Access denied: [master] Null reference; Return Null. ", name().str());
         }
 
         return _master;

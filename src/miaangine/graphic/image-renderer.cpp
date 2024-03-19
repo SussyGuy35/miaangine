@@ -35,7 +35,7 @@ namespace mia
             int w = 0, h = 0;
             if (SDL_QueryTexture(texture, NULL, NULL, &w, &h)) 
             {
-                debug.Error("[PortraitRender] Failed to load texture {%s}", image->textureDirectory().str()); //FIXME
+                debug.Warning("[PortraitRender] Failed to load texture {%s} of [Image(%s)]; Ignore. ", image->textureDirectory().str(), image->name().str());
                 continue;
             }
 

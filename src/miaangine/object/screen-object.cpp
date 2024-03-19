@@ -30,7 +30,7 @@ namespace mia
     {
         if (_images.empty() || index >= _images.size()) 
         {
-            mia::DebugManager::Instance().Warning("[ScreenObject] access denied: [image(%d)] Null reference", index); //FIXME
+            mia::DebugManager::Instance().Warning("[ScreenObject(%s)] Access denied: [image(%d)] Null reference; Created new [image(%d)]. ", name.str(), index, index);
             return MakeImage();
         }
 

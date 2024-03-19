@@ -35,7 +35,7 @@ namespace mia
     {
         if (_portraits.empty() || index >= _portraits.size()) 
         {
-            mia::DebugManager::Instance().Warning("[WorldObject] warning: [Portrait(%d)] Null reference ; New [Portrait] created", index); //FIXME
+            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Portrait(%d)] Null reference; Created new [Portrait(%d)]", name.str(), index, index);
             return MakePortrait();
         }
 
@@ -46,7 +46,7 @@ namespace mia
     {
         if (_body == nullptr) 
         {
-            mia::DebugManager::Instance().Warning("[WorldObject] warning: [Body] Null reference ; New [Body] created"); //FIXME
+            mia::DebugManager::Instance().Warning("[WorldObject] Warning: [Body] Null reference; Created new [Body]", name.str());
             return MakeBody();
         }
 
@@ -111,7 +111,7 @@ namespace mia
     {
         if (_body != nullptr)
         {
-            mia::DebugManager::Instance().Warning("[WorldObject] warning: [Body] Already existed ; No new [Body] created"); //FIXME
+            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Body] Already existed. ", name.str());
             return *_body;
         }
 

@@ -41,8 +41,7 @@ namespace mia
     {
         if (!_master) 
         {
-            mia::debug.Error("[Body] access denied: [master] Null reference"); //FIXME
-            // return *_master; //FIXME
+            mia::debug.Error("[Body(%s)] Access denied: [master] Null reference; Return null. ", name().str());
         }
 
         return _master;

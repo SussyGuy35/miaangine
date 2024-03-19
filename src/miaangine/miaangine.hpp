@@ -9,6 +9,7 @@
 #define _MIAANGINE_HPP
 
 #include "core/engine-components.hpp"
+#include "miaangine-global-constant.hpp"
 
 #include "util/math.hpp"
 #include "util/string.hpp"

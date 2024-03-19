@@ -11,6 +11,8 @@
 #include "physics/physics-world.hpp"
 #include "debug/debug-manager.hpp"
 
+#include "miaangine-global-constant.hpp"
+
 namespace mia
 {
     extern GenericTask  &generic;

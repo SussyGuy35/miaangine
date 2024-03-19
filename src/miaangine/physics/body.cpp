@@ -4,22 +4,7 @@
 
 namespace mia
 {
-    Body::Body(vector2 size, vector2 offset):
-        _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _velocity(vector2::zero()),
-        _force(vector2::zero()),
-        _mass(1),
-        _master(nullptr)
-    {}
-
-    Body::Body(float sx, float sy, float ox, float oy):
-        _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _velocity(vector2::zero()),
-        _force(vector2::zero()),
-        _mass(1),
-        _master(nullptr)
+    Body::Body()
     {}
 
     Body::~Body()

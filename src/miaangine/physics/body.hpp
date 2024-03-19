@@ -11,8 +11,7 @@ namespace mia
     class Body
     {
     public:
-        Body(vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        Body(float sx, float sy, float ox = 0, float oy = 0);
+        Body();
 
         virtual ~Body();
 

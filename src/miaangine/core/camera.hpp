@@ -13,8 +13,17 @@ namespace mia
         Camera();
         ~Camera();
  
+    private:
+        float _size;
+
+        vector2 _position;
+
     public:
-        vector2 position;
+        float& size();
+
+        vector2& position();
+
+        const float& size() const;
     };
 }
 

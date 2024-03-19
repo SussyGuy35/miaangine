@@ -33,7 +33,7 @@ namespace mia
         {
             if (portrait->textureDirectory() == string::empty())
             {
-                SDL_Rect rect = RectRenderingCalculate(portrait, 1, 1);
+                SDL_Rect rect = RectRenderingCalculate(portrait, PIXEL_PER_UNIT, PIXEL_PER_UNIT);
 
                 SDL_SetRenderDrawColor(renderer, portrait->color().r, portrait->color().b, portrait->color().g, portrait->color().a);
                 SDL_RenderFillRect(renderer, &rect);
@@ -62,11 +62,15 @@ namespace mia
     {
         SDL_Rect rect;
 
-        float displayW = 1.0 * w * portrait->scale().x * generic.PORTRAIT_PIXEL_SCALE;
-        float displayH = 1.0 * h * portrait->scale().y * generic.PORTRAIT_PIXEL_SCALE;
+        float scale = (generic.windowWidth / camera.size()) / PIXEL_PER_UNIT;
 
-        rect.x = static_cast<int>(portrait->position().x + portrait->offset().x - camera.position.x);
-        rect.y = static_cast<int>(camera.position.y + generic.windowHeight - portrait->position().y - portrait->offset().y - displayH);
+        float displayW = 1.0 * w * portrait->scale().x * scale;
+        float displayH = 1.0 * h * portrait->scale().y * scale;
+
+        debug.Log("%d : %d > %f", w, h, scale);
+
+        rect.x = static_cast<int>(portrait->position().x + portrait->offset().x - camera.position().x);
+        rect.y = static_cast<int>(camera.position().y + generic.windowHeight - portrait->position().y - portrait->offset().y - displayH);
         rect.w = static_cast<int>(displayW);
         rect.h = static_cast<int>(displayH);
 

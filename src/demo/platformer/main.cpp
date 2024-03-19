@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     mia::generic.Init(400, 600, 0);
 
-    Box *box = new Box(200, 500);
+    Box *box = new Box(0, 0);
 
     while (true)
     {

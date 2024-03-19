@@ -12,7 +12,7 @@ namespace mia
         _body(nullptr),
         _master(nullptr)
     {}
-    Collider::Collider(float sx, float sy, float ox = 0, float oy = 0):
+    Collider::Collider(float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
         _ucPosition(vector2::zero()),
         _size(vector2(sx, sy)),

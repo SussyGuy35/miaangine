@@ -15,15 +15,14 @@ namespace mia
  
     private:
         float _size;
-
         vector2 _position;
 
     public:
         float& size();
-
         vector2& position();
 
         const float& size() const;
+        const vector2& position() const;
     };
 }
 

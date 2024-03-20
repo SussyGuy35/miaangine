@@ -14,7 +14,6 @@ namespace mia
     {
         return _size;
     }
-
     vector2& Camera::position()
     {
         return _position;
@@ -23,5 +22,9 @@ namespace mia
     const float& Camera::size() const
     {
         return _size;
+    }
+    const vector2& Camera::position() const
+    {
+        return _position;
     }
 }

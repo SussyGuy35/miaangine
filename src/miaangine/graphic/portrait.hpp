@@ -30,7 +30,6 @@ namespace mia
         string _textureDirectory;
         SDL_Texture *_texture;
         SDL_Color _color;
-
         WorldObject *_master;
 
     public:
@@ -41,8 +40,16 @@ namespace mia
         string& textureDirectory();
         SDL_Texture* texture();
         SDL_Color& color();
-
         WorldObject* master();
+
+        const string& name() const;
+        const vector2& position() const;
+        const vector2& scale() const;
+        const vector2& offset() const;
+        const string& textureDirectory() const;
+        const SDL_Texture* texture() const;
+        const SDL_Color& color() const;
+        const WorldObject* master() const;
 
         void ShiftMaster(WorldObject *master);
     };

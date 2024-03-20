@@ -35,6 +35,7 @@ namespace mia
         SDL_DestroyTexture(_texture);
     }
 
+    #pragma region Non-const attributes
     string& Image::name() 
     {
         return (!_master ? _ucName : _master->name);
@@ -68,7 +69,6 @@ namespace mia
     {
         return _color;
     }
-
     ScreenObject* Image::master()
     {
         if (!_master) 
@@ -78,6 +78,52 @@ namespace mia
 
         return _master;
     }
+    #pragma endregion
+    
+    #pragma region Const attributes
+    const string& Image::name() const
+    {
+        return (!_master ? _ucName : _master->name);
+    }
+    const vector2& Image::position() const
+    {
+        return (!_master ? _ucPosition : _master->position());
+    }
+    const vector2& Image::size() const
+    {
+        return _size;
+    }
+    const vector2& Image::offset() const
+    {
+        return _offset;
+    }
+    const string& Image::textureDirectory() const
+    {
+        return _textureDirectory;
+    }
+    const SDL_Texture* Image::texture() const
+    {
+        if (!_texture)
+        {
+            debug.Error("[Image(%s)] Failed to get texture {%s}; Return Null. ", name().str(), _textureDirectory.str());
+        }
+
+        return _texture;
+    }
+    const SDL_Color& Image::color() const
+    {
+        return _color;
+    }
+    const ScreenObject* Image::master() const
+    {
+        if (!_master) 
+        {
+            mia::DebugManager::Instance().Error("[Image(%s)] Access denied: [master] Null reference; Return Null. ", name().str());
+        }
+
+        return _master;
+    }
+    #pragma endregion
 
     void Image::ShiftMaster(ScreenObject *master)
     {

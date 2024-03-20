@@ -24,6 +24,7 @@ namespace mia
     Collider::~Collider()
     {}
 
+    #pragma region Non-const attributes
     string& Collider::name()
     {
         return (!_master ? _ucName : _master->name);
@@ -40,7 +41,6 @@ namespace mia
     {
         return _offset;
     }
-
     Body* Collider::body()
     {
         if (!_body) 
@@ -59,6 +59,44 @@ namespace mia
 
         return _master;
     }
+    #pragma endregion
+
+    #pragma region Const attributes
+    const string& Collider::name() const
+    {
+        return (!_master ? _ucName : _master->name);
+    }
+    const vector2& Collider::position() const
+    {
+        return (!_master ? _ucPosition : _master->position());
+    }
+    const vector2& Collider::size() const
+    {
+        return _size;
+    }
+    const vector2& Collider::offset() const
+    {
+        return _offset;
+    }
+    const Body* Collider::body() const
+    {
+        if (!_body) 
+        {
+            mia::debug.Error("[Collider(%s)] access denied: [body] Null reference; Return null. ", name().str());
+        }
+
+        return _body;
+    }
+    const WorldObject* Collider::master() const
+    {
+        if (!_master) 
+        {
+            mia::debug.Error("[Collider(%s)] access denied: [master] Null reference;  Return null. ", name().str());
+        }
+
+        return _master;
+    }
+    #pragma endregion
 
     bool Collider::CheckColliding(Collider *other)
     {

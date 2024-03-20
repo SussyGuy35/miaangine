@@ -22,7 +22,6 @@ namespace mia
 
         vector2 _size;
         vector2 _offset;
-
         Body* _body;
         WorldObject *_master;
 
@@ -31,9 +30,15 @@ namespace mia
         vector2& position();
         vector2& size();
         vector2& offset();
-
         Body* body();
         WorldObject* master();
+
+        const string& name() const;
+        const vector2& position() const;
+        const vector2& size() const;
+        const vector2& offset() const;
+        const Body* body() const;
+        const WorldObject* master() const;
         
         bool CheckColliding(Collider *other);
 

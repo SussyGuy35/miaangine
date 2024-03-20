@@ -25,8 +25,10 @@ namespace mia
 
     public:
         vector2& position();
-
         Image& image(int index = 0);
+
+        const vector2& position() const;
+        const Image& image(int index = 0) const;
 
         Image& AttachImage(Image *portrait);
 

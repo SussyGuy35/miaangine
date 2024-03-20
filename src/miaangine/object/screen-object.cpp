@@ -25,13 +25,26 @@ namespace mia
     {
         return _position;
     }
-
     Image& ScreenObject::image(int index)
     {
         if (_images.empty() || index >= _images.size()) 
         {
             mia::DebugManager::Instance().Warning("[ScreenObject(%s)] Access denied: [image(%d)] Null reference; Created new [image(%d)]. ", name.str(), index, index);
             return MakeImage();
+        }
+
+        return *_images[index];
+    }
+
+    const vector2& ScreenObject::position() const
+    {
+        return _position;
+    }
+    const Image& ScreenObject::image(int index) const
+    {
+        if (_images.empty() || index >= _images.size()) 
+        {
+            mia::DebugManager::Instance().Warning("[ScreenObject(%s)] Access denied: [image(%d)] Null reference; Return Null. ", name.str(), index, index);
         }
 
         return *_images[index];

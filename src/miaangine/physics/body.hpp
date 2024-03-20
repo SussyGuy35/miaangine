@@ -21,9 +21,7 @@ namespace mia
 
         vector2 _velocity;
         vector2 _force;
-
         float _mass;
-
         WorldObject *_master;
 
     public:
@@ -32,8 +30,14 @@ namespace mia
         vector2& velocity();
         vector2& force();
         float& mass();
-
         WorldObject* master();
+
+        const string& name() const;
+        const vector2& position() const;
+        const vector2& velocity() const;
+        const vector2& force() const;
+        const float& mass() const;
+        const WorldObject* master() const;
 
         vector2 AddForce(vector2 force);
         vector2 AddAcceleration(vector2 acceleration);

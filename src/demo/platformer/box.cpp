@@ -9,7 +9,7 @@ Box::Box(int x, int y, int sx, int sy):
     mia::renderer.RegisterPortrait(&portrait());
     mia::physics.RegisterBody(&body());
 
-    mia::event.primaryUpdate.RegisterListener(this);
+    mia::event.primaryUpdate().RegisterListener(this);
 }
 
 void Box::Update(uint8_t message)

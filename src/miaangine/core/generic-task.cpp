@@ -33,12 +33,12 @@ namespace mia
 
     void GenericTask::NewFrame()
     {
-        event.onEnterNewFrame.NotifyListeners();
+        event.onEnterNewFrame().NotifyListeners();
 
         time.Step();
         input.Update();
 
-        event.primaryUpdate.NotifyListeners();
+        event.primaryUpdate().NotifyListeners();
 
         physics.Step(time.deltaTime());
     }

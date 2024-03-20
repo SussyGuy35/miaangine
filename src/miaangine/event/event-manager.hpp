@@ -14,9 +14,13 @@ namespace mia
         EventManager();
         ~EventManager();
 
+    private:
+        RegularEventPublisher &_onEnterNewFrame;
+        RegularEventPublisher &_primaryUpdate;
+    
     public:
-        RegularEventPublisher &onEnterNewFrame;
-        RegularEventPublisher &primaryUpdate;
+        RegularEventPublisher& onEnterNewFrame();
+        RegularEventPublisher& primaryUpdate();
     };
 }
 

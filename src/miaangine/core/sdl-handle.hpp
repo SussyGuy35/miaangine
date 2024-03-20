@@ -17,7 +17,7 @@ namespace mia
         ~SDLHandle();
 
     private:
-        string assetDir;
+        string _assetDir;
 
     public:
         SDL_Window *window;

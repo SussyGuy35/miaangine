@@ -50,7 +50,7 @@ namespace mia
     SDL_Texture* SDLHandle::LoadIMG(const char* file)
     {
         string dir;
-        dir.copy(assetDir);
+        dir.copy(_assetDir);
         dir += file;
 
         return IMG_LoadTexture(sdl.renderer, dir.str());
@@ -58,10 +58,10 @@ namespace mia
 
     void SDLHandle::SetAssetDir(const char* directory)
     {
-        assetDir = directory;
+        _assetDir = directory;
         if (directory[strlen(directory) - 1] != '/')
         {
-            assetDir += "/";
+            _assetDir += "/";
         }
     }
 }

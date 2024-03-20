@@ -1,9 +1,10 @@
 #include "box.hpp"
 
-Box::Box(int x, int y, int sx, int sy):
+Box::Box(float x, float y, float sx, float sy):
     WorldObject("Box", x, y)
 {
-    MakePortrait(sx, sy);
+    MakePortrait("bird-00.png", sx, sy);
+    portrait().color() = {255, 255, 255, 255};
     MakeBody();
 
     mia::renderer.RegisterPortrait(&portrait());

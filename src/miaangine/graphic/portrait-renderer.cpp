@@ -69,7 +69,6 @@ namespace mia
         float displayX = (portrait->position().x + portrait->offset().x - camera.position().x) * unitSize;
         float displayY = generic.windowHeight - displayH - (portrait->position().y + portrait->offset().y - camera.position().y) * unitSize;
 
-        //FIXME
         rect.x = static_cast<int>(displayX);
         rect.y = static_cast<int>(displayY); 
         rect.w = static_cast<int>(displayW);

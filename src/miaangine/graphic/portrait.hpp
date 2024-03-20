@@ -15,7 +15,7 @@ namespace mia
     {
     public:
         Portrait(const char* dir = "", vector2 scale = vector2::one(), vector2 offset = vector2::zero());
-        Portrait(const char* dir, float sx, float sy, float ox, float oy);
+        Portrait(const char* dir, float sx, float sy, float ox = 0, float oy = 0);
         Portrait(vector2 scale, vector2 offset = vector2::zero());
         Portrait(float sx, float sy, float ox = 0, float oy = 0);
 

@@ -15,7 +15,7 @@ namespace mia
     {
     public:
         Image(const char* dir = "", vector2 size = vector2::zero(), vector2 offset = vector2::zero());
-        Image(const char* dir, float sx, float sy, float ox = 0, float oy = 0);
+        Image(const char* dir, float sx, float sy, float ox, float oy);
 
         virtual ~Image();
 

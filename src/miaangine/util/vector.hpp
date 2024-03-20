@@ -26,19 +26,19 @@ namespace mia
 		}
 
 		// Basic operator
-		inline vector2 operator+(const vector2& _t)
+		inline vector2 operator+(const vector2& _t) const
 		{
 			return vector2(x + _t.x, y + _t.y);
 		}
-		inline vector2 operator-(const vector2& _t)
+		inline vector2 operator-(const vector2& _t) const
 		{
 			return vector2(x - _t.x, y - _t.y);
 		}
-		inline vector2 operator*(const float& _t)
+		inline vector2 operator*(const float& _t) const
 		{
 			return vector2(x * _t, y * _t);
 		}
-		inline vector2 operator/(const float& _t)
+		inline vector2 operator/(const float& _t) const
 		{
 			return vector2(x / _t, y / _t);
 		}
@@ -68,22 +68,22 @@ namespace mia
 		}
 
 		// Product operator
-		inline float Dot(vector2 _t)
+		inline float Dot(const vector2& _t) const
 		{
 			return (x * _t.x) + (y * _t.y);
 		}
-		inline float Cross(vector2 _t)
+		inline float Cross(const vector2& _t) const
 		{
 			return (x * _t.y) - (y * _t.x);
 		}
 
-		inline float Magnitude()
+		inline float Magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 		
 		// Normalize
-		inline vector2 Normalize()
+		inline vector2 Normalize() const
 		{
 			return *this / Magnitude();
 		}
@@ -144,19 +144,19 @@ namespace mia
 		}
 
 		// Basic operator
-		inline vector2double operator+(const vector2double& _t)
+		inline vector2double operator+(const vector2double& _t) const
 		{
 			return vector2double(x + _t.x, y + _t.y);
 		}
-		inline vector2double operator-(const vector2double& _t)
+		inline vector2double operator-(const vector2double& _t) const
 		{
 			return vector2double(x - _t.x, y - _t.y);
 		}
-		inline vector2double operator*(const double& _t)
+		inline vector2double operator*(const double& _t) const
 		{
 			return vector2double(x * _t, y * _t);
 		}
-		inline vector2double operator/(const double& _t)
+		inline vector2double operator/(const double& _t) const
 		{
 			return vector2double(x / _t, y / _t);
 		}
@@ -186,22 +186,22 @@ namespace mia
 		}
 
 		// Product operator
-		inline double Dot(vector2double _t)
+		inline double Dot(const vector2double& _t) const
 		{
 			return (x * _t.x) + (y * _t.y);
 		}
-		inline double Cross(vector2double _t)
+		inline double Cross(const vector2double& _t) const
 		{
 			return (x * _t.y) - (y * _t.x);
 		}
 
-		inline float Magnitude()
+		inline float Magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 		
 		// Normalize
-		inline vector2double Normalize()
+		inline vector2double Normalize() const
 		{
 			return *this / Magnitude();
 		}
@@ -262,19 +262,19 @@ namespace mia
 		}
 
 		// Basic operator
-		inline vector2int operator+(const vector2int& _t)
+		inline vector2int operator+(const vector2int& _t) const
 		{
 			return vector2int(x + _t.x, y + _t.y);
 		}
-		inline vector2int operator-(const vector2int& _t)
+		inline vector2int operator-(const vector2int& _t) const
 		{
 			return vector2int(x - _t.x, y - _t.y);
 		}
-		inline vector2int operator*(const double& _t)
+		inline vector2int operator*(const double& _t) const
 		{
 			return vector2int(x * _t, y * _t);
 		}
-		inline vector2int operator/(const double& _t)
+		inline vector2int operator/(const double& _t) const
 		{
 			return vector2int(x / _t, y / _t);
 		}

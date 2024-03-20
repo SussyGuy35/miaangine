@@ -10,7 +10,7 @@ namespace mia
     class GameObject : public IEventListener
     {
     public:
-        GameObject(const char* name = "object"):
+        GameObject(const char* name = "untitled"):
             name(name)
         {}
 

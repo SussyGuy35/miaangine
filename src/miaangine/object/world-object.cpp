@@ -30,7 +30,6 @@ namespace mia
     {
         return _position;
     }
-
     Portrait& WorldObject::portrait(int index)
     {
         if (_portraits.empty() || index >= _portraits.size()) 
@@ -41,13 +40,35 @@ namespace mia
 
         return *_portraits[index];
     }
-
     Body& WorldObject::body()
     {
         if (_body == nullptr) 
         {
-            mia::DebugManager::Instance().Warning("[WorldObject] Warning: [Body] Null reference; Created new [Body]", name.str());
+            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Body] Null reference; Created new [Body]", name.str());
             return MakeBody();
+        }
+
+        return *_body;
+    }
+
+    const vector2& WorldObject::position() const
+    {
+        return _position;
+    }
+    const Portrait& WorldObject::portrait(int index) const
+    {
+        if (_portraits.empty() || index >= _portraits.size()) 
+        {
+            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Portrait(%d)] Null reference; Return Null", name.str(), index, index);
+        }
+
+        return *_portraits[index];
+    }
+    const Body& WorldObject::body() const
+    {
+        if (_body == nullptr) 
+        {
+            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Body] Null reference; Return Null", name.str());
         }
 
         return *_body;

@@ -27,9 +27,12 @@ namespace mia
 
     public:
         vector2& position();
-
         Portrait& portrait(int index = 0);
         Body& body();
+
+        const vector2& position() const;
+        const Portrait& portrait(int index = 0) const;
+        const Body& body() const;
 
         Portrait& AttachPortrait(Portrait *portrait);
         Body& AttachBody(Body *body);

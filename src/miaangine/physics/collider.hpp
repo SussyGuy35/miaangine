@@ -40,6 +40,9 @@ namespace mia
         const Body* body() const;
         const WorldObject* master() const;
         
+        const vector2 cornerMin() const;
+        const vector2 cornerMax() const;
+
         bool CheckColliding(Collider *other);
 
         void ShiftBody(Body *body);

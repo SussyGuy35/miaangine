@@ -16,8 +16,8 @@ namespace mia
 			x(x), y(y)
 		{}
 
-
 	public:
+		// Operation
 		constexpr Vector2<T>& operator+=(const Vector2<T>& other) noexcept
 		{
 			x += other.x;
@@ -30,72 +30,100 @@ namespace mia
 			y -= other.y;
 			return *this;
 		}
-		inline vector2 operator*=(const float& _t)
+		constexpr Vector2<T>& operator*=(const double& value) noexcept
 		{
-			x *= _t;
-			y *= _t;
+			x = static_cast<T>(value * x);
+			y = static_cast<T>(value * y);
 			return *this;
 		}
-		inline vector2 operator/=(const float& _t)
+		constexpr Vector2<T>& operator/=(const double& value) noexcept
 		{
-			x /= _t;
-			y /= _t;
+			x = static_cast<T>(value * x);
+			y = static_cast<T>(value * y);
 			return *this;
 		}
 
-		// Product operator
-		inline float Dot(const vector2& _t) const
+		constexpr double Dot(const Vector2<T>& other) const noexcept
 		{
-			return (x * _t.x) + (y * _t.y);
+			return (x * other.x) + (y * other.y);
 		}
-		inline float Cross(const vector2& _t) const
+		constexpr double Cross(const Vector2<T>& other) const noexcept
 		{
-			return (x * _t.y) - (y * _t.x);
+			return (x * other.x) + (y * other.y);
 		}
 
-		inline float Magnitude() const
+		// Properties
+		constexpr double Magnitude() const noexcept
 		{
 			return sqrt(x * x + y * y);
 		}
 		
-		// Normalize
-		inline vector2 Normalize() const
+		constexpr Vector2<T>& Normalize() const noexcept
 		{
 			return *this / Magnitude();
 		}
 
-		// Unit vector
-		static const vector2& up()
+		// Static set value
+		static const Vector2<T>& up()
 		{
-			static const vector2 result(0, 1);
+			static const Vector2<T> result(0, 1);
 			return result;
 		}
-		static const vector2& down()
+		static const Vector2<T>& down()
 		{
-			static const vector2 result(0, -1);
+			static const Vector2<T> result(0, -1);
 			return result;
 		}
-		static const vector2& right()
+		static const Vector2<T>& right()
 		{
-			static const vector2 result(1, 0);
+			static const Vector2<T> result(1, 0);
 			return result;
 		}
-		static const vector2& left()
+		static const Vector2<T>& left()
 		{
-			static const vector2 result(-1, 0);
+			static const Vector2<T> result(-1, 0);
 			return result;
 		}
-		static const vector2& zero()
+		static const Vector2<T>& zero()
 		{
-			static const vector2 result(0, 0);
+			static const Vector2<T> result(0, 0);
 			return result;
 		}
-		static const vector2& one()
+		static const Vector2<T>& one()
 		{
-			static const vector2 result(1, 1);
+			static const Vector2<T> result(1, 1);
 			return result;
 		}
 	};
+
+	// Vector2 operation
+	template<typename T = float>
+	constexpr Vector2<T> operator+(Vector2<T> left, const Vector2<T>& right) noexcept
+	{
+		left += right;
+		return left;
+	}
+
+	template<typename T = float>
+	constexpr Vector2<T> operator-(Vector2<T> left, const Vector2<T>& right) noexcept
+	{
+		left -= right;
+		return left;
+	}
+
+	template<typename T = float>
+	constexpr Vector2<T> operator+(Vector2<T> left, const double& right) noexcept
+	{
+		left *= right;
+		return left;
+	}
+
+	template<typename T = float>
+	constexpr Vector2<T> operator-(Vector2<T> left, const double& right) noexcept
+	{
+		left /= right;
+		return left;
+	}
 }
 
 #endif

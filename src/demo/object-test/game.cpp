@@ -25,7 +25,7 @@ void Game::Run()
         if (mia::input->IsQuit()) break;
 
         mia::debug->Log("%f", mia::time->FPS);
-        mia::vector2 dir = mia::vector2::one();
+        mia::Vector2 dir = mia::Vector2::one();
         mia::Camera::Instance()->position = dir.Normalize() * (std::sin(mia::time->time * 2) * 141.421356 - 141.421356);
         // if (mia::time->time > lastSpawn + DELAY)
         // {

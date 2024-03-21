@@ -4,7 +4,7 @@ namespace mia
 {
     Camera::Camera():
         _size(6),
-        _position(vector2::zero())
+        _position(Vector2::zero())
     {}
 
     Camera::~Camera()
@@ -14,7 +14,7 @@ namespace mia
     {
         return _size;
     }
-    vector2& Camera::position()
+    Vector2& Camera::position()
     {
         return _position;
     }
@@ -23,7 +23,7 @@ namespace mia
     {
         return _size;
     }
-    const vector2& Camera::position() const
+    const Vector2& Camera::position() const
     {
         return _position;
     }

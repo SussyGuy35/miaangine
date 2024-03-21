@@ -7,14 +7,14 @@
 
 namespace mia
 {
-    WorldObject::WorldObject(const char* name, vector2 position):
+    WorldObject::WorldObject(const char* name, Vector2 position):
         GameObject(name),
         _position(position),
         _body(nullptr)
     {}
     WorldObject::WorldObject(const char* name, float x, float y):
         GameObject(name),
-        _position(vector2(x, y)),
+        _position(Vector2(x, y)),
         _body(nullptr)
     {}
 
@@ -26,7 +26,7 @@ namespace mia
         _portraits.clear();
     }
 
-    vector2& WorldObject::position()
+    Vector2& WorldObject::position()
     {
         return _position;
     }
@@ -51,7 +51,7 @@ namespace mia
         return *_body;
     }
 
-    const vector2& WorldObject::position() const
+    const Vector2& WorldObject::position() const
     {
         return _position;
     }
@@ -91,7 +91,7 @@ namespace mia
         return *body;
     }
 
-    Portrait& WorldObject::MakePortrait(const char* dir, vector2 scale, vector2 offset)
+    Portrait& WorldObject::MakePortrait(const char* dir, Vector2 scale, Vector2 offset)
     {
         Portrait *portrait = new Portrait(dir, scale, offset);
 
@@ -109,7 +109,7 @@ namespace mia
 
         return *portrait;
     }
-    Portrait& WorldObject::MakePortrait(vector2 scale, vector2 offset)
+    Portrait& WorldObject::MakePortrait(Vector2 scale, Vector2 offset)
     {
         Portrait *portrait = new Portrait(scale, offset);
 
@@ -128,7 +128,7 @@ namespace mia
         return *portrait;
     }
 
-    Body& WorldObject::MakeBody(float mass, vector2 initForce)
+    Body& WorldObject::MakeBody(float mass, Vector2 initForce)
     {
         if (_body != nullptr)
         {

@@ -6,13 +6,13 @@
 
 namespace mia
 {
-    ScreenObject::ScreenObject(const char* name, vector2 position):
+    ScreenObject::ScreenObject(const char* name, Vector2 position):
         GameObject(name),
         _position(position)
     {}
     ScreenObject::ScreenObject(const char* name, float x, float y):
         GameObject(name),
-        _position(vector2(x, y))
+        _position(Vector2(x, y))
     {}
 
     ScreenObject::~ScreenObject()
@@ -21,7 +21,7 @@ namespace mia
         _images.clear();
     }
 
-    vector2& ScreenObject::position()
+    Vector2& ScreenObject::position()
     {
         return _position;
     }
@@ -36,7 +36,7 @@ namespace mia
         return *_images[index];
     }
 
-    const vector2& ScreenObject::position() const
+    const Vector2& ScreenObject::position() const
     {
         return _position;
     }
@@ -58,7 +58,7 @@ namespace mia
         return *image;
     }
 
-    Image& ScreenObject::MakeImage(const char* dir, vector2 size, vector2 offset)
+    Image& ScreenObject::MakeImage(const char* dir, Vector2 size, Vector2 offset)
     {
         Image *image = new Image(dir, size, offset);
 

@@ -4,10 +4,10 @@
 
 namespace mia
 {
-    Body::Body(float mass, vector2 initForce):
+    Body::Body(float mass, Vector2 initForce):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _velocity(vector2::zero()),
+        _ucPosition(Vector2::zero()),
+        _velocity(Vector2::zero()),
         _force(initForce),
         _mass(mass),
         _master(nullptr)
@@ -21,15 +21,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    vector2& Body::position() 
+    Vector2& Body::position() 
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    vector2& Body::velocity()
+    Vector2& Body::velocity()
     {
         return _velocity;
     }
-    vector2& Body::force()
+    Vector2& Body::force()
     {
         return _force;
     }
@@ -53,15 +53,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    const vector2& Body::position() const
+    const Vector2& Body::position() const
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    const vector2& Body::velocity() const
+    const Vector2& Body::velocity() const
     {
         return _velocity;
     }
-    const vector2& Body::force() const
+    const Vector2& Body::force() const
     {
         return _force;
     }
@@ -80,13 +80,13 @@ namespace mia
     }
     #pragma endregion
 
-    vector2 Body::AddForce(vector2 force)
+    Vector2 Body::AddForce(Vector2 force)
     {
         _force += force;
         return _force;
     }
 
-    vector2 Body::AddAcceleration(vector2 acceleration)
+    Vector2 Body::AddAcceleration(Vector2 acceleration)
     {
         return AddForce(acceleration * _mass);
     }

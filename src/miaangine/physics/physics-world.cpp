@@ -7,7 +7,7 @@
 namespace mia
 {
     PhysicsWorld::PhysicsWorld():
-        _gravity(vector2(0.0, 9.81))
+        _gravity(Vector2(0.0, 9.81))
     {}
 
     PhysicsWorld::~PhysicsWorld()
@@ -40,7 +40,7 @@ namespace mia
             body->velocity() += body->force() / body->mass() * elapsedTime;
             body->position() += body->velocity() * elapsedTime;
 
-            body->force() = vector2::zero();
+            body->force() = Vector2::zero();
         }
     }
 }

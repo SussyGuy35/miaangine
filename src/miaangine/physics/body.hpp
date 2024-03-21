@@ -11,36 +11,36 @@ namespace mia
     class Body
     {
     public:
-        Body(float mass = 1, vector2 initForce = vector2::zero());
+        Body(float mass = 1, Vector2 initForce = Vector2::zero());
 
         virtual ~Body();
 
     private:
         string _ucName;
-        vector2 _ucPosition;
+        Vector2 _ucPosition;
 
-        vector2 _velocity;
-        vector2 _force;
+        Vector2 _velocity;
+        Vector2 _force;
         float _mass;
         WorldObject *_master;
 
     public:
         string& name();
-        vector2& position();
-        vector2& velocity();
-        vector2& force();
+        Vector2& position();
+        Vector2& velocity();
+        Vector2& force();
         float& mass();
         WorldObject* master();
 
         const string& name() const;
-        const vector2& position() const;
-        const vector2& velocity() const;
-        const vector2& force() const;
+        const Vector2& position() const;
+        const Vector2& velocity() const;
+        const Vector2& force() const;
         const float& mass() const;
         const WorldObject* master() const;
 
-        vector2 AddForce(vector2 force);
-        vector2 AddAcceleration(vector2 acceleration);
+        Vector2 AddForce(Vector2 force);
+        Vector2 AddAcceleration(Vector2 acceleration);
         
         void ShiftMaster(WorldObject *master);
     };

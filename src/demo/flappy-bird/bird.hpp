@@ -10,7 +10,7 @@ public:
     void Update(uint8_t message) override;
 
 private:
-    const mia::vector2 SIZE;
+    const mia::Vector2 SIZE;
     const float GRAVITY;
     const float JUMP_VELOCITY;
 };

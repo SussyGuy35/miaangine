@@ -14,17 +14,17 @@ namespace mia
     class Image
     {
     public:
-        Image(const char* dir = "", vector2 size = vector2::zero(), vector2 offset = vector2::zero());
+        Image(const char* dir = "", Vector2 size = Vector2::zero(), Vector2 offset = Vector2::zero());
         Image(const char* dir, float sx, float sy, float ox, float oy);
 
         virtual ~Image();
 
     private:
         string _ucName;
-        vector2 _ucPosition;
+        Vector2 _ucPosition;
 
-        vector2 _size;
-        vector2 _offset;
+        Vector2 _size;
+        Vector2 _offset;
         string _textureDirectory;
         SDL_Texture *_texture;
         SDL_Color _color;
@@ -32,18 +32,18 @@ namespace mia
 
     public:
         string& name();
-        vector2& position();
-        vector2& size();
-        vector2& offset();
+        Vector2& position();
+        Vector2& size();
+        Vector2& offset();
         string& textureDirectory();
         SDL_Texture* texture();
         SDL_Color& color();
         ScreenObject* master();
 
         const string& name() const;
-        const vector2& position() const;
-        const vector2& size() const;
-        const vector2& offset() const;
+        const Vector2& position() const;
+        const Vector2& size() const;
+        const Vector2& offset() const;
         const string& textureDirectory() const;
         const SDL_Texture* texture() const;
         const SDL_Color& color() const;

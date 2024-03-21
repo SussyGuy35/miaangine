@@ -18,7 +18,7 @@ void Box::Update(uint8_t message)
     switch (message)
     {
     case mia::_EVENT_PRIMARY_UPDATE:
-        body().AddAcceleration((mia::vector2)mia::vector2::down() * 9.81);
+        body().AddAcceleration((mia::Vector2)mia::Vector2::down() * 9.81);
         break;
     
     default:

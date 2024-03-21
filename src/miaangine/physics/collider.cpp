@@ -4,9 +4,9 @@
 
 namespace mia
 {
-    Collider::Collider(vector2 size, vector2 offset):
+    Collider::Collider(Vector2 size, Vector2 offset):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
+        _ucPosition(Vector2::zero()),
         _size(size),
         _offset(offset),
         _body(nullptr),
@@ -14,9 +14,9 @@ namespace mia
     {}
     Collider::Collider(float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _size(vector2(sx, sy)),
-        _offset(vector2(ox, oy)),
+        _ucPosition(Vector2::zero()),
+        _size(Vector2(sx, sy)),
+        _offset(Vector2(ox, oy)),
         _body(nullptr),
         _master(nullptr)
     {}
@@ -29,15 +29,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    vector2& Collider::position()
+    Vector2& Collider::position()
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    vector2& Collider::size()
+    Vector2& Collider::size()
     {
         return _size;
     }
-    vector2& Collider::offset()
+    Vector2& Collider::offset()
     {
         return _offset;
     }
@@ -66,15 +66,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    const vector2& Collider::position() const
+    const Vector2& Collider::position() const
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    const vector2& Collider::size() const
+    const Vector2& Collider::size() const
     {
         return _size;
     }
-    const vector2& Collider::offset() const
+    const Vector2& Collider::offset() const
     {
         return _offset;
     }
@@ -98,11 +98,11 @@ namespace mia
     }
     #pragma endregion
 
-    const vector2 Collider::cornerMin() const
+    const Vector2 Collider::cornerMin() const
     {
         return position() + _offset;
     }
-    const vector2 Collider::cornerMax() const
+    const Vector2 Collider::cornerMax() const
     {
         return position() + _offset + _size;
     }

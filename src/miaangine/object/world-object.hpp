@@ -14,35 +14,35 @@ namespace mia
     class WorldObject : public GameObject
     {
     public:
-        WorldObject(const char* name = "object", vector2 position = vector2::zero());
+        WorldObject(const char* name = "object", Vector2 position = Vector2::zero());
         WorldObject(const char* name, float x, float y);
 
         virtual ~WorldObject();
 
     private:
-        vector2 _position;
+        Vector2 _position;
 
         std::vector<Portrait*> _portraits;
         Body *_body;
 
     public:
-        vector2& position();
+        Vector2& position();
         Portrait& portrait(int index = 0);
         Body& body();
 
-        const vector2& position() const;
+        const Vector2& position() const;
         const Portrait& portrait(int index = 0) const;
         const Body& body() const;
 
         Portrait& AttachPortrait(Portrait *portrait);
         Body& AttachBody(Body *body);
 
-        Portrait& MakePortrait(const char* dir = "", vector2 scale = vector2::one(), vector2 offset = vector2::zero());
+        Portrait& MakePortrait(const char* dir = "", Vector2 scale = Vector2::one(), Vector2 offset = Vector2::zero());
         Portrait& MakePortrait(const char* dir, float sx, float sy, float ox = 0, float oy = 0);
-        Portrait& MakePortrait(vector2 scale, vector2 offset = vector2::zero());
+        Portrait& MakePortrait(Vector2 scale, Vector2 offset = Vector2::zero());
         Portrait& MakePortrait(float sx, float sy, float ox = 0, float oy = 0);
 
-        Body& MakeBody(float mass = 1, vector2 initForce = vector2::zero());
+        Body& MakeBody(float mass = 1, Vector2 initForce = Vector2::zero());
     };
 }
 

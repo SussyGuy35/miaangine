@@ -4,9 +4,9 @@
 
 namespace mia
 {
-    Portrait::Portrait(const char* dir, vector2 scale, vector2 offset):
+    Portrait::Portrait(const char* dir, Vector2 scale, Vector2 offset):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
+        _ucPosition(Vector2::zero()),
         _scale(scale),
         _offset(offset),
         _textureDirectory(dir),
@@ -19,9 +19,9 @@ namespace mia
 
     Portrait::Portrait(const char* dir, float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _scale(vector2(sx, sy)),
-        _offset(vector2(ox, oy)),
+        _ucPosition(Vector2::zero()),
+        _scale(Vector2(sx, sy)),
+        _offset(Vector2(ox, oy)),
         _textureDirectory(dir),
         // _texture(nullptr),
         _master(nullptr),
@@ -30,9 +30,9 @@ namespace mia
         _texture = sdl.LoadIMG(_textureDirectory.str());
     }
 
-    Portrait::Portrait(vector2 scale, vector2 offset):
+    Portrait::Portrait(Vector2 scale, Vector2 offset):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
+        _ucPosition(Vector2::zero()),
         _scale(scale),
         _offset(offset),
         _textureDirectory(""),
@@ -43,9 +43,9 @@ namespace mia
 
     Portrait::Portrait(float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _scale(vector2(sx, sy)),
-        _offset(vector2(ox, oy)),
+        _ucPosition(Vector2::zero()),
+        _scale(Vector2(sx, sy)),
+        _offset(Vector2(ox, oy)),
         _textureDirectory(""),
         _texture(nullptr),
         _master(nullptr),
@@ -62,15 +62,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    vector2& Portrait::position() 
+    Vector2& Portrait::position() 
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    vector2& Portrait::scale()
+    Vector2& Portrait::scale()
     {
         return _scale;
     }
-    vector2& Portrait::offset()
+    Vector2& Portrait::offset()
     {
         return _offset;
     }
@@ -107,15 +107,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    const vector2& Portrait::position() const
+    const Vector2& Portrait::position() const
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    const vector2& Portrait::scale() const
+    const Vector2& Portrait::scale() const
     {
         return _scale;
     }
-    const vector2& Portrait::offset() const
+    const Vector2& Portrait::offset() const
     {
         return _offset;
     }

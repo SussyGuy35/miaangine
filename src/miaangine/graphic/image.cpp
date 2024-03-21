@@ -4,9 +4,9 @@
 
 namespace mia
 {
-    Image::Image(const char* dir, vector2 size, vector2 offset):
+    Image::Image(const char* dir, Vector2 size, Vector2 offset):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
+        _ucPosition(Vector2::zero()),
         _size(size),
         _offset(offset),
         _textureDirectory(dir),
@@ -19,9 +19,9 @@ namespace mia
 
     Image::Image(const char* dir, float sx, float sy, float ox, float oy):
         _ucName("unclaimed"),
-        _ucPosition(vector2::zero()),
-        _size(vector2(sx, sy)),
-        _offset(vector2(ox, oy)),
+        _ucPosition(Vector2::zero()),
+        _size(Vector2(sx, sy)),
+        _offset(Vector2(ox, oy)),
         _textureDirectory(dir),
         // _texture(nullptr),
         _master(nullptr),
@@ -40,15 +40,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    vector2& Image::position() 
+    Vector2& Image::position() 
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    vector2& Image::size()
+    Vector2& Image::size()
     {
         return _size;
     }
-    vector2& Image::offset()
+    Vector2& Image::offset()
     {
         return _offset;
     }
@@ -85,15 +85,15 @@ namespace mia
     {
         return (!_master ? _ucName : _master->name);
     }
-    const vector2& Image::position() const
+    const Vector2& Image::position() const
     {
         return (!_master ? _ucPosition : _master->position());
     }
-    const vector2& Image::size() const
+    const Vector2& Image::size() const
     {
         return _size;
     }
-    const vector2& Image::offset() const
+    const Vector2& Image::offset() const
     {
         return _offset;
     }

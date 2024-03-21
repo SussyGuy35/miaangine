@@ -13,5 +13,5 @@ private:
     const float SPEED;
     const float DIR;
 
-    mia::vector2 direction;
+    mia::Vector2 direction;
 };

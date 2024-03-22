@@ -12,7 +12,6 @@
 #include "miaangine-global-constant.hpp"
 
 #include "util/math.hpp"
-#include "util/string.hpp"
 
 #include "event/regular-event-publisher.hpp"
 

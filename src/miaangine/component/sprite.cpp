@@ -58,7 +58,7 @@ namespace mia
     { 
         return _isActive; 
     }
-    bool Sprite::setActive(bool newState) 
+    bool Sprite::SetActive(bool newState) 
     { 
         return _isActive = newState; 
     }

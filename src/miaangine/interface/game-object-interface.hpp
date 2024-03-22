@@ -1,10 +1,10 @@
 #ifndef _MIA_GAME_OBJECT_INTERFACE_HPP
 #define _MIA_GAME_OBJECT_INTERFACE_HPP
 
-#include "util/math.hpp"
-
 namespace mia
 {
+    class IObjectComponent;
+
     class IGameObject
     {
     public:

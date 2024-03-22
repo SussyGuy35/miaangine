@@ -2,7 +2,7 @@
 #define _MIA_SPRITE_HPP
 
 #ifndef _MIA_OBJECT_COMPONENT_INTERFACE_HPP
-#include "interface/object-component-interface.hpp" 
+#include "interface/object-component-interface.hpp"
 #endif
 
 #include <SDL.h>
@@ -44,7 +44,7 @@ namespace mia
         // Abstract methods
         Components getType() const;
         bool isActive() const;
-        bool setActive(bool newState);
+        bool SetActive(bool newState);
         IGameObject& master();
         const IGameObject& master() const;
     };

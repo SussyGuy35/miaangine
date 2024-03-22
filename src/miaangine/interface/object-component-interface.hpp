@@ -21,9 +21,11 @@ namespace mia
 
         virtual Components getType() const = 0;
         virtual bool isActive() const = 0;
-        virtual bool setActive(bool newState) = 0;
         virtual IGameObject& master() = 0;
         virtual const IGameObject& master() const = 0;
+
+        virtual bool SetActive(bool newState) = 0;
+        virtual IGameObject* ShiftMaster(IGameObject* newMaster) = 0;
     };
 }
 

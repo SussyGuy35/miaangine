@@ -17,7 +17,7 @@ namespace mia
     class IObjectComponent
     {
     public:
-        virtual ~IObjectComponent() = 0;
+        virtual ~IObjectComponent() {}
 
         virtual const Components getType() const = 0;
         virtual const bool isActive() const = 0;

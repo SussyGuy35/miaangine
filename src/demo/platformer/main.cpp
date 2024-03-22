@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
     srand(std::time(0));
 
-    mia::generic().Init(400, 600, 0);
+    mia::generic().Init(960, 540, 0);
 
     return 0;
 }

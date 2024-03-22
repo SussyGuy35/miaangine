@@ -8,7 +8,7 @@ namespace mia
     class IGameObject
     {
     public:
-        virtual ~IGameObject() = 0;
+        virtual ~IGameObject() {}
         
         virtual const char* getName() const = 0;
     };

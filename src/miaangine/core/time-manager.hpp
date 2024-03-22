@@ -19,6 +19,7 @@ namespace mia
             _currentTicks(SDL_GetPerformanceCounter()),
             _lastFrameTicks(SDL_GetPerformanceCounter()),
             _elapseTicks(SDL_GetPerformanceCounter()),
+            _FPSFrameCount(0),
             _FPSClockCount(0)
         {}
 
@@ -34,12 +35,12 @@ namespace mia
 
         // Variable to solve attributes
         uint64_t _currentTicks, _lastFrameTicks, _elapseTicks;
-        uint32_t _FPSClockCount, _FPSFrameCount;
+        uint32_t _FPSFrameCount; double _FPSClockCount;
 
     public:
         // Attributes accessing
         inline const double& deltaTime() const { return _deltaTime; }
-        inline const float& deltaTime() const { return _FPS; }
+        inline const float& fps() const { return _FPS; }
         inline const double& time() const { return _currentTime; }
         inline const uint64_t& stepCount() const { return _stepCount; }
 
@@ -60,8 +61,8 @@ namespace mia
             _stepCount++;
 
             // FPS
-            _FPSClockCount += _deltaTime;
             _FPSFrameCount++;
+            _FPSClockCount += _deltaTime;
             if (_FPSClockCount >= 1.0)
             {
                 _FPS = _FPSFrameCount;

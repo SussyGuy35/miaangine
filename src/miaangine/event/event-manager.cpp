@@ -13,11 +13,11 @@ namespace mia
     #pragma endregion
 
     #pragma region Event accessing
-    inline RegularEventPublisher& EventManager::onEnterNewFrame()
+    RegularEventPublisher& EventManager::onEnterNewFrame()
     {
         return _onEnterNewFrame;
     }
-    inline RegularEventPublisher& EventManager::primaryUpdate()
+    RegularEventPublisher& EventManager::primaryUpdate()
     {
         return _primaryUpdate;
     }

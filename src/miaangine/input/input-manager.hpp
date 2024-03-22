@@ -28,18 +28,18 @@ namespace mia
     
     public:
         // Setup methods
-        void SetupKeyBind();
+        bool SetupKeyBind();
         void Update();
 
         // Get* methods
-        inline bool isQuit() const;
+        bool isQuit() const;
 
-        inline bool GetButton(const char *button) const;
-        inline bool GetButtonDown(const char *button) const;
-        inline bool GetButtonUp(const char *button) const;
-        inline bool GetKey(int key) const;
-        inline bool GetKeyDown(int key) const;
-        inline bool GetKeyUp(int key) const;
+        bool GetButton(const char *button) const;
+        bool GetButtonDown(const char *button) const;
+        bool GetButtonUp(const char *button) const;
+        bool GetKey(int key) const;
+        bool GetKeyDown(int key) const;
+        bool GetKeyUp(int key) const;
 
     private:
         void UpdateKeyInputEvent();

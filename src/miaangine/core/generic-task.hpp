@@ -24,7 +24,7 @@ namespace mia
         SDL_Renderer *renderer;
 
         // Public methods
-        void Init(uint32_t width, uint32_t height, bool fullscreen);
+        int Init(uint32_t width, uint32_t height, bool fullscreen);
         void End();
 
         void NewFrame();

@@ -1,5 +1,9 @@
 #include "generic-task.hpp"
 
+#ifndef _MIA_ENGINE_COMPONENTS_HPP
+#include "engine-components.hpp"
+#endif
+
 namespace mia
 {
     #pragma region Constructor_Destructor
@@ -14,17 +18,29 @@ namespace mia
     #pragma endregion
 
     #pragma region Public methods
-    void GenericTask::Init(uint32_t width, uint32_t height, bool fullscreen)
+    int GenericTask::Init(uint32_t width, uint32_t height, bool fullscreen)
     {
+        debug().Message("\n=== INITIALIZING...\n");
+
         windowWidth = width;
         windowHeight = height;
         fullscreenMode = fullscreen;
 
-        CreateWindow(windowWidth, windowHeight, fullscreenMode);
+        if (CreateWindow(windowWidth, windowHeight, fullscreenMode) != 0) return -1;
 
-        // debug.Message("\n=== INIT SUCCESSFUL ===\n\n"); // TODO
+        if (!input().SetupKeyBind()) 
+        {
+            debug().Error("Setup keybind failed!");
+            return -1;
+        }
+        else 
+        {
+            debug().Message("=== Setup keybinds successful\n");
+        }
 
-        // input.SetupKeyBind(); 
+        debug().Message("=== INITIALIZE SUCCESSFUL\n\n");
+
+        return 0;
     }
 
     void GenericTask::End()
@@ -32,16 +48,16 @@ namespace mia
         ClearWindow();
     }
 
-    void GenericTask::NewFrame() // TODO
+    void GenericTask::NewFrame()
     {
-        // event.onEnterNewFrame().NotifyListeners();
+        event().onEnterNewFrame().NotifyListeners();
 
-        // time.Step();
-        // input.Update();
+        time().Step();
+        input().Update();
 
-        // event.primaryUpdate().NotifyListeners();
+        event().primaryUpdate().NotifyListeners();
 
-        // physics.Step(time.deltaTime());
+        // physics().Step(time.deltaTime());
     }
 
     void GenericTask::Render() //TODO
@@ -53,7 +69,11 @@ namespace mia
     #pragma region SDL-related methods
     int GenericTask::CreateWindow(int width, int height, bool fullscreen)
     {
-        if(SDL_Init(SDL_INIT_VIDEO) < 0) return false;
+        if(SDL_Init(SDL_INIT_VIDEO) < 0) 
+        {
+            debug().Error("SDL could not initialize! : %s", SDL_GetError());
+            return -1;
+        }
 
         window = SDL_CreateWindow( 
             "MIAANGINE", 
@@ -65,7 +85,7 @@ namespace mia
         );
         if (window == nullptr)
         {
-            //TODO Debug
+            debug().Error("Window could not be created! : %s", SDL_GetError());
             return -1;
         }
 
@@ -76,18 +96,18 @@ namespace mia
         );
         if (renderer == nullptr) 
         {
-            //TODO Debug
+            debug().Error("Renderer could not be created! : %s", SDL_GetError());
             return -1;
         }
 
         int imgFlags = IMG_INIT_PNG;
         if ((IMG_Init(imgFlags) & imgFlags) != imgFlags) 
         {
-            //TODO Debug
+            debug().Error("IMG_PNG could not be created! : %s", SDL_GetError());
             return -1;
         }
 
-        //TODO Debug
+        debug().Message("=== SDL initialize successful\n");
         return 0;
     }
 

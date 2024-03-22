@@ -50,9 +50,9 @@ namespace mia
     #pragma endregion
 
     #pragma region Setup methods
-    void InputManager::SetupKeyBind()
+    bool InputManager::SetupKeyBind()
     {
-        _keyBind->PopulateKeyMap();
+        return _keyBind->PopulateKeyMap();
     }
 
     void InputManager::Update()
@@ -82,39 +82,39 @@ namespace mia
     #pragma endregion
 
     #pragma region Get methods
-    inline bool InputManager::isQuit() const
+    bool InputManager::isQuit() const
     {
         return _isQuit;
     }
 
-    inline bool InputManager::GetButton(const char *button) const
+    bool InputManager::GetButton(const char *button) const
 	{
 		return 
             _keyState[_keyBind->GetMainKeyBind(button)] || 
             _keyState[_keyBind->GetAltKeyBind(button)];
 	}
-	inline bool InputManager::GetButtonDown(const char *button) const
+	bool InputManager::GetButtonDown(const char *button) const
 	{
 		return 
             _keyDownState[_keyBind->GetMainKeyBind(button)] || 
             _keyDownState[_keyBind->GetAltKeyBind(button)];
 	}
-	inline bool InputManager::GetButtonUp(const char *button) const
+	bool InputManager::GetButtonUp(const char *button) const
 	{
 		return  
             _keyUpState[_keyBind->GetMainKeyBind(button)] || 
             _keyUpState[_keyBind->GetAltKeyBind(button)];
 	}
 
-    inline bool InputManager::GetKey(int key) const
+    bool InputManager::GetKey(int key) const
     {
         return _keyState[key];
     }
-    inline bool InputManager::GetKeyDown(int key) const
+    bool InputManager::GetKeyDown(int key) const
     {
         return _keyDownState[key];
     }
-    inline bool InputManager::GetKeyUp(int key) const
+    bool InputManager::GetKeyUp(int key) const
     {
         return _keyUpState[key];
     }

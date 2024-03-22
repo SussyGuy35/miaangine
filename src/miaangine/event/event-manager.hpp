@@ -29,8 +29,8 @@ namespace mia
     
     public:
         // Accessing
-        inline RegularEventPublisher& onEnterNewFrame();
-        inline RegularEventPublisher& primaryUpdate();
+        RegularEventPublisher& onEnterNewFrame();
+        RegularEventPublisher& primaryUpdate();
     };
 }
 

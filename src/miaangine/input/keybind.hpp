@@ -36,7 +36,7 @@ namespace mia
             return _buttonMap[keyName] >> 9;
         }
 
-        void PopulateKeyMap()
+        bool PopulateKeyMap()
         {
             for (auto _button : _keyBind)
             {
@@ -44,7 +44,10 @@ namespace mia
                     _button.first,
                     _button.second.first + _button.second.second * SDL_NUM_SCANCODES
                 ));
+                // TODO safe 
             }
+
+            return true;
         }
     };
 }

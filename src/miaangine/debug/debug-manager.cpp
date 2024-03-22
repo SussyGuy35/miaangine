@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <cstring>
 
-#include "time/time-manager.hpp"
+#include "core/time-manager.hpp"
 
 namespace mia
 {

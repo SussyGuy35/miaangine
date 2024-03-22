@@ -2,7 +2,7 @@
 #define _MIA_OBJECT_COMPONENT_INTERFACE_HPP
 
 #ifndef _MIA_GAME_OBJECT_INTERFACE_HPP
-#include "game-object-interface.hpp";
+#include "game-object-interface.hpp"
 #endif
 
 namespace mia
@@ -19,9 +19,10 @@ namespace mia
     public:
         virtual ~IObjectComponent() {}
 
-        virtual const Components getType() const = 0;
-        virtual const bool isActive() const = 0;
-        virtual IGameObject& master() const = 0;
+        virtual Components getType() const = 0;
+        virtual bool isActive() const = 0;
+        virtual bool setActive(bool newState) = 0;
+        virtual IGameObject& master() = 0;
         virtual const IGameObject& master() const = 0;
     };
 }

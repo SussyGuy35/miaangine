@@ -14,15 +14,15 @@ namespace mia
     class Sprite : public IObjectComponent
     {
     public:
-        Portrait(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
-        Portrait(float sx, float sy, float ox = 0, float oy = 0);
+        Sprite(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
+        Sprite(float sx, float sy, float ox = 0, float oy = 0);
 
-        virtual ~Portrait();
+        virtual ~Sprite();
 
     private:
         // Interface required
-        bool _isActive
-        WorldObject *_master;
+        bool _isActive;
+        IGameObject *_master;
 
         // Attributes
         Vector2<> _scale;
@@ -42,11 +42,11 @@ namespace mia
         Vector2<>& offset();
 
         // Abstract methods
-        Components getType() const { return _COMPONENT_SPRITE; }
-        bool isActive() const { return _isActive; }
-        bool setActive(bool newState) { return _isActive = state; }
-        IGameObject& master() { return *_master; } 
-        const IGameObject& master() const { return *_master; }
+        Components getType() const;
+        bool isActive() const;
+        bool setActive(bool newState);
+        IGameObject& master();
+        const IGameObject& master() const;
     };
 }
 

@@ -25,11 +25,11 @@ namespace mia
         // Attributes accessing
         const char* getName() const;
 
-        inline Vector2<>& position();
-        inline Vector2<>& scale();
-
         const Vector2<>& position() const;
         const Vector2<>& scale() const;
+
+        inline Vector2<>& position();
+        inline Vector2<>& scale();
     };
 }
 

@@ -19,20 +19,20 @@ namespace mia
         return _name.c_str();
     }
 
-    inline Vector2<>& WorldObject::position()
-    {
-        return _position;
-    }
-    inline Vector2<>& WorldObject::scale()
-    {
-        return _scale;
-    }
-
     const Vector2<>& WorldObject::position() const
     {
         return _position;
     }
     const Vector2<>& WorldObject::scale() const
+    {
+        return _scale;
+    }
+
+    inline Vector2<>& WorldObject::position()
+    {
+        return _position;
+    }
+    inline Vector2<>& WorldObject::scale()
     {
         return _scale;
     }

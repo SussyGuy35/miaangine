@@ -2,29 +2,33 @@
 
 namespace mia
 {
+    #pragma region Constructor_Destructor
     Camera::Camera():
-        _size(6),
-        _position(Vector2::zero())
+        _size(10),
+        _position(Vector2<>::zero())
     {}
 
     Camera::~Camera()
     {}
+    #pragma endregion
 
-    float& Camera::size()
-    {
-        return _size;
-    }
-    Vector2& Camera::position()
-    {
-        return _position;
-    }
-
+    #pragma region Attributes accessing
     const float& Camera::size() const
     {
         return _size;
     }
-    const Vector2& Camera::position() const
+    const Vector2<>& Camera::position() const
     {
         return _position;
     }
+
+    inline float& Camera::size()
+    {
+        return _size;
+    }
+    inline Vector2<>& Camera::position()
+    {
+        return _position;
+    }
+    #pragma endregion
 }

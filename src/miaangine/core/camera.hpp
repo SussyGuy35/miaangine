@@ -14,15 +14,17 @@ namespace mia
         ~Camera();
  
     private:
-        float _size;
-        Vector2 _position;
+        // Attributes
+        Vector2<> _position;
+        float _size; // Ammount of unit appear on the width of the screen
 
     public:
-        float& size();
-        Vector2& position();
-
+        // Attributes accessing
         const float& size() const;
-        const Vector2& position() const;
+        const Vector2<>& position() const;
+
+        inline float& size();
+        inline Vector2<>& position();
     };
 }
 

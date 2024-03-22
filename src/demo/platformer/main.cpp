@@ -20,6 +20,8 @@ int main(int argc, char *argv[])
         generic().NewFrame();
 
         if (input().isQuit()) break;
+
+        
     }
 
     generic().End();

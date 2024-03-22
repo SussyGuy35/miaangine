@@ -63,9 +63,9 @@ namespace mia
             // FPS
             _FPSFrameCount++;
             _FPSClockCount += _deltaTime;
-            if (_FPSClockCount >= 1.0)
+            if (_FPSClockCount >= 0.1)
             {
-                _FPS = _FPSFrameCount;
+                _FPS = _FPSFrameCount * 10;
 
                 _FPSClockCount = _FPSFrameCount = 0;
             }

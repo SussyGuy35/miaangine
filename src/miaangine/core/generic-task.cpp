@@ -76,7 +76,7 @@ namespace mia
         }
 
         window = SDL_CreateWindow( 
-            "MIAANGINE", 
+            "", 
             SDL_WINDOWPOS_UNDEFINED, 
             SDL_WINDOWPOS_UNDEFINED, 
             width,

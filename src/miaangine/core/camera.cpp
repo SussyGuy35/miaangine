@@ -22,11 +22,11 @@ namespace mia
         return _position;
     }
 
-    inline float& Camera::size()
+    float& Camera::size()
     {
         return _size;
     }
-    inline Vector2<>& Camera::position()
+    Vector2<>& Camera::position()
     {
         return _position;
     }

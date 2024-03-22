@@ -39,13 +39,13 @@ namespace mia
 
     public:
         // Attributes accessing
-        inline const double& deltaTime() const { return _deltaTime; }
-        inline const float& fps() const { return _FPS; }
-        inline const double& time() const { return _currentTime; }
-        inline const uint64_t& stepCount() const { return _stepCount; }
+        const double& deltaTime() const { return _deltaTime; }
+        const float& fps() const { return _FPS; }
+        const double& time() const { return _currentTime; }
+        const uint64_t& stepCount() const { return _stepCount; }
 
         // Methods
-        inline void Step()
+        void Step()
         {
             _currentTicks = SDL_GetPerformanceCounter();
             _elapseTicks = _currentTicks - _lastFrameTicks;

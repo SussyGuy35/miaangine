@@ -28,8 +28,8 @@ namespace mia
         const Vector2<>& position() const;
         const Vector2<>& scale() const;
 
-        inline Vector2<>& position();
-        inline Vector2<>& scale();
+        Vector2<>& position();
+        Vector2<>& scale();
     };
 }
 

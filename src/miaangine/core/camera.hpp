@@ -23,8 +23,8 @@ namespace mia
         const float& size() const;
         const Vector2<>& position() const;
 
-        inline float& size();
-        inline Vector2<>& position();
+        float& size();
+        Vector2<>& position();
     };
 }
 

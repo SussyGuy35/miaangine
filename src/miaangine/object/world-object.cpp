@@ -28,11 +28,11 @@ namespace mia
         return _scale;
     }
 
-    inline Vector2<>& WorldObject::position()
+    Vector2<>& WorldObject::position()
     {
         return _position;
     }
-    inline Vector2<>& WorldObject::scale()
+    Vector2<>& WorldObject::scale()
     {
         return _scale;
     }

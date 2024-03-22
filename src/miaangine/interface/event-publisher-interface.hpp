@@ -8,8 +8,8 @@ namespace mia
     class IEventPublisher
     {
     public:
-        virtual void RegisterListener(IEventListener *listener) = 0;
-        virtual void RemoveListener(IEventListener *listener) = 0;
+        virtual void RegisterListener(const IEventListener *listener) = 0;
+        virtual void RemoveListener(const IEventListener *listener) = 0;
         virtual void NotifyListeners() = 0;
     };
 }

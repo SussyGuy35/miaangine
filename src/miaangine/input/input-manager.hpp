@@ -25,21 +25,24 @@ namespace mia
         bool _keyUpState[SDL_NUM_SCANCODES];
 
         bool _isQuit;
-
-        void UpdateKeyInputEvent();
     
     public:
+        // Setup methods
         void SetupKeyBind();
         void Update();
 
-        bool IsQuit() { return _isQuit; } //FIXME
+        // Get* methods
+        inline bool isQuit() const;
 
-        bool GetButton(const char *button);
-        bool GetButtonDown(const char *button);
-        bool GetButtonUp(const char *button);
-        bool GetKey(int key);
-        bool GetKeyDown(int key);
-        bool GetKeyUp(int key);
+        inline bool GetButton(const char *button) const;
+        inline bool GetButtonDown(const char *button) const;
+        inline bool GetButtonUp(const char *button) const;
+        inline bool GetKey(int key) const;
+        inline bool GetKeyDown(int key) const;
+        inline bool GetKeyUp(int key) const;
+
+    private:
+        void UpdateKeyInputEvent();
     };
 }
 

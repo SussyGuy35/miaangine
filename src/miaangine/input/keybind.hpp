@@ -26,10 +26,26 @@ namespace mia
         std::map<const char*, uint32_t, cmp_str> _buttonMap;
 
     public:
-        uint16_t GetMainKeyBind(const char *name);
-        uint16_t GetAltKeyBind(const char *name);
+        uint16_t GetMainKeyBind(const char *keyName)
+        {
+            return _buttonMap[keyName] & (SDL_NUM_SCANCODES - 1);
+        }
 
-        void PopulateKeyMap();
+        uint16_t GetAltKeyBind(const char *keyName)
+        {
+            return _buttonMap[keyName] >> 9;
+        }
+
+        void PopulateKeyMap()
+        {
+            for (auto _button : _keyBind)
+            {
+                _buttonMap.insert(std::make_pair(
+                    _button.first,
+                    _button.second.first + _button.second.second * SDL_NUM_SCANCODES
+                ));
+            }
+        }
     };
 }
 

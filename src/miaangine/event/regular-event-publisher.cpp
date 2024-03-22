@@ -10,7 +10,10 @@ namespace mia
     {}
 
     RegularEventPublisher::~RegularEventPublisher()
-    {}
+    {
+        for (IEventListener *listener : _listeners) delete listener;
+        _listeners.clear();
+    }
     #pragma endregion
 
     #pragma region Abstract method

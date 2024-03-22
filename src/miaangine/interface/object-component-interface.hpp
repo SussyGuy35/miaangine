@@ -17,12 +17,12 @@ namespace mia
     class IObjectComponent
     {
     public:
-        IObjectComponent();
-        virtual ~IObjectComponent();
+        virtual ~IObjectComponent() = 0;
 
         virtual const Components getType() const = 0;
         virtual const bool isActive() const = 0;
-        virtual IGameObject* master() const = 0;
+        virtual IGameObject& master() const = 0;
+        virtual const IGameObject& master() const = 0;
     };
 }
 

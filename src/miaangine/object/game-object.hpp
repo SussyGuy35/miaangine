@@ -1,13 +1,14 @@
 #ifndef _MIA_GAME_OBJECT_HPP
 #define _MIA_GAME_OBJECT_HPP
 
+#include "interface/game-object-interface.hpp"
 #include "event/event-listener-interface.hpp"
 
-#include "util/string.hpp"
+#include <string>
 
 namespace mia
 {
-    class GameObject : public IEventListener
+    class GameObject : public IGameObject, public IEventListener
     {
     public:
         GameObject(const char* name = "untitled"):
@@ -16,7 +17,12 @@ namespace mia
 
         virtual ~GameObject() {}
 
-        string name;
+        std::string name;
+
+        const char* getName() const override
+        {
+            return name.c_str();
+        }
     };
 }
 

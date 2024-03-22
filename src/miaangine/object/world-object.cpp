@@ -1,144 +1,38 @@
 #include "world-object.hpp"
 
-#include "core/engine-components.hpp"
-
-#include "graphic/portrait.hpp"
-#include "physics/body.hpp"
-
 namespace mia
 {
-    WorldObject::WorldObject(const char* name, Vector2 position):
-        GameObject(name),
+    WorldObject::WorldObject(const char* name, Vector2<> position, Vector2<> scale):
+        _name(name),
         _position(position),
-        _body(nullptr)
-    {}
-    WorldObject::WorldObject(const char* name, float x, float y):
-        GameObject(name),
-        _position(Vector2(x, y)),
-        _body(nullptr)
+        _scale(scale)
     {}
 
     WorldObject::~WorldObject()
-    {
-        delete(_body);
+    {}
 
-        for (auto& portrait : _portraits) delete(portrait);
-        _portraits.clear();
+    #pragma region Attributes accessing
+    const char* WorldObject::getName() const
+    {
+        return _name.c_str();
     }
 
-    Vector2& WorldObject::position()
-    {
-        return _position;
-    }
-    Portrait& WorldObject::portrait(int index)
-    {
-        if (_portraits.empty() || index >= _portraits.size()) 
-        {
-            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Portrait(%d)] Null reference; Created new [Portrait(%d)]", name.str(), index, index);
-            return MakePortrait();
-        }
-
-        return *_portraits[index];
-    }
-    Body& WorldObject::body()
-    {
-        if (_body == nullptr) 
-        {
-            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Body] Null reference; Created new [Body]", name.str());
-            return MakeBody();
-        }
-
-        return *_body;
-    }
-
-    const Vector2& WorldObject::position() const
+    inline Vector2<>& WorldObject::position()
     {
         return _position;
     }
-    const Portrait& WorldObject::portrait(int index) const
+    inline Vector2<>& WorldObject::scale()
     {
-        if (_portraits.empty() || index >= _portraits.size()) 
-        {
-            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Portrait(%d)] Null reference; Return Null", name.str(), index, index);
-        }
-
-        return *_portraits[index];
-    }
-    const Body& WorldObject::body() const
-    {
-        if (_body == nullptr) 
-        {
-            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Body] Null reference; Return Null", name.str());
-        }
-
-        return *_body;
+        return _scale;
     }
 
-    Portrait& WorldObject::AttachPortrait(Portrait *portrait)
+    const Vector2<>& WorldObject::position() const
     {
-        portrait->ShiftMaster(this);
-        _portraits.push_back(portrait);
-
-        return *portrait;
+        return _position;
     }
-
-    Body& WorldObject::AttachBody(Body *body)
+    const Vector2<>& WorldObject::scale() const
     {
-        body->ShiftMaster(this);
-        delete(_body);
-        _body = body;
-
-        return *body;
+        return _scale;
     }
-
-    Portrait& WorldObject::MakePortrait(const char* dir, Vector2 scale, Vector2 offset)
-    {
-        Portrait *portrait = new Portrait(dir, scale, offset);
-
-        portrait->ShiftMaster(this);
-        _portraits.push_back(portrait);
-
-        return *portrait;
-    }
-    Portrait& WorldObject::MakePortrait(const char* dir, float sx, float sy, float ox, float oy)
-    {
-        Portrait *portrait = new Portrait(dir, sx, sy, ox, oy);
-
-        portrait->ShiftMaster(this);
-        _portraits.push_back(portrait);
-
-        return *portrait;
-    }
-    Portrait& WorldObject::MakePortrait(Vector2 scale, Vector2 offset)
-    {
-        Portrait *portrait = new Portrait(scale, offset);
-
-        portrait->ShiftMaster(this);
-        _portraits.push_back(portrait);
-
-        return *portrait;
-    }
-    Portrait& WorldObject::MakePortrait(float sx, float sy, float ox, float oy)
-    {
-        Portrait *portrait = new Portrait(sx, sy, ox, oy);
-
-        portrait->ShiftMaster(this);
-        _portraits.push_back(portrait);
-
-        return *portrait;
-    }
-
-    Body& WorldObject::MakeBody(float mass, Vector2 initForce)
-    {
-        if (_body != nullptr)
-        {
-            mia::DebugManager::Instance().Warning("[WorldObject(%s)] Warning: [Body] Already existed. ", name.str());
-            return *_body;
-        }
-
-        _body = new Body(mass, initForce);
-        _body->ShiftMaster(this);
-
-        return *_body;
-    }
+    #pragma endregion
 }

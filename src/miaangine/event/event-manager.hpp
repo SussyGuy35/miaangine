@@ -7,6 +7,14 @@
 
 namespace mia
 {
+    typedef enum
+    {
+        // All events
+        _EVENT_ON_ENTER_FRAME,
+        _EVENT_PRIMARY_UPDATE
+
+    } EventTypes;
+
     class EventManager : public Singleton<EventManager>
     {
     private:
@@ -15,12 +23,14 @@ namespace mia
         ~EventManager();
 
     private:
+        // Events
         RegularEventPublisher &_onEnterNewFrame;
         RegularEventPublisher &_primaryUpdate;
     
     public:
-        RegularEventPublisher& onEnterNewFrame();
-        RegularEventPublisher& primaryUpdate();
+        // Accessing
+        inline RegularEventPublisher& onEnterNewFrame();
+        inline RegularEventPublisher& primaryUpdate();
     };
 }
 

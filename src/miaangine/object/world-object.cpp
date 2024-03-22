@@ -2,6 +2,7 @@
 
 namespace mia
 {
+    #pragma region Constructor_Destructor
     WorldObject::WorldObject(const char* name, Vector2<> position, Vector2<> scale):
         _name(name),
         _position(position),
@@ -10,6 +11,7 @@ namespace mia
 
     WorldObject::~WorldObject()
     {}
+    #pragma endregion
 
     #pragma region Attributes accessing
     const char* WorldObject::getName() const

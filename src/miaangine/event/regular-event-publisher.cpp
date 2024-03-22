@@ -1,18 +1,19 @@
 #include "regular-event-publisher.hpp"
 
-#include "core/engine-components.hpp"
-
 #include <algorithm>
 
 namespace mia 
 {
-    RegularEventPublisher::RegularEventPublisher(uint8_t message):
+    #pragma region Constructor_Destructor
+    RegularEventPublisher::RegularEventPublisher(unsigned char message):
         _message(message)
     {}
 
     RegularEventPublisher::~RegularEventPublisher()
     {}
+    #pragma endregion
 
+    #pragma region Abstract method
     void RegularEventPublisher::RegisterListener(IEventListener *listener)
     {
         _listeners.push_back(listener);
@@ -35,4 +36,5 @@ namespace mia
             listener->Update(_message);
         }
     }
+    #pragma endregion
 }

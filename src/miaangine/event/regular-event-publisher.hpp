@@ -1,10 +1,9 @@
 #ifndef _MIA_REGULAR_EVENT_PUBLISHER_HPP
 #define _MIA_REGULAR_EVENT_PUBLISHER_HPP
 
-#include <stdint.h>
 #include <vector>
 
-#include "event-publisher-interface.hpp"
+#include "interface/event-publisher-interface.hpp"
 
 namespace mia 
 {
@@ -12,26 +11,20 @@ namespace mia
     {
     private:
         friend class EventManager;
-        RegularEventPublisher(uint8_t message = 0);
+        RegularEventPublisher(unsigned char message = 0);
         ~RegularEventPublisher();
 
     private:
         std::vector<IEventListener*> _listeners; 
 
-        uint8_t _message;
+        unsigned char _message;
 
     public:
+        // Abstract Method
         void RegisterListener(IEventListener *listener) override;
         void RemoveListener(IEventListener *listener) override;
         void NotifyListeners() override;
     };
-
-    typedef enum
-    {
-        _EVENT_ON_ENTER_FRAME,
-        _EVENT_PRIMARY_UPDATE
-
-    } RegularEventType;
 }
 
 #endif

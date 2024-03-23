@@ -14,7 +14,10 @@ namespace mia
     class Object
     {
     public:
-        Object(const char* name = "object", Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::zero());
+        Object(const char* name = "untitled", Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::one());
+        Object(const char* name, float px, float py, float sx = 1, float sy = 1);
+        Object(Vector2<> position, Vector2<> scale = Vector2<>::one());
+        Object(float px, float py, float sx = 1, float sy = 1);
 
         virtual ~Object();
 

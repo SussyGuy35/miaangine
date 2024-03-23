@@ -1,5 +1,7 @@
 #include "object.hpp"
 
+#include "core/engine-components.hpp"
+
 #include "component/sprite.hpp"
 #include "component/body.hpp"
 
@@ -10,6 +12,30 @@ namespace mia
         _name(name),
         _position(position),
         _scale(scale),
+        _sprite(nullptr),
+        _body(nullptr),
+        _collider(nullptr)
+    {}
+    Object::Object(const char* name, float px, float py, float sx, float sy):
+        _name(name),
+        _position(Vector2<>(px, py)),
+        _scale(Vector2<>(sx, sy)),
+        _sprite(nullptr),
+        _body(nullptr),
+        _collider(nullptr)
+    {}
+    Object::Object(Vector2<> position, Vector2<> scale):
+        _name("untitled"),
+        _position(position),
+        _scale(scale),
+        _sprite(nullptr),
+        _body(nullptr),
+        _collider(nullptr)
+    {}
+    Object::Object(float px, float py, float sx, float sy):
+        _name("untitled"),
+        _position(Vector2<>(px, py)),
+        _scale(Vector2<>(sx, sy)),
         _sprite(nullptr),
         _body(nullptr),
         _collider(nullptr)
@@ -44,18 +70,22 @@ namespace mia
     }
     #pragma endregion
 
-    #pragma region Component methods // TODO Add registeration
+    #pragma region Component methods 
     Sprite& Object::InitSprite(Vector2<> scale, Vector2<> offset)
     {
-        _sprite = new Sprite(scale, offset);
+        _sprite = new Sprite(this, scale, offset);
+
+        renderer().RegisterSprite(_sprite);
     }
     Sprite& Object::InitSprite(float sx, float sy, float ox, float oy)
     {
-        _sprite = new Sprite(sx, sy, ox, oy);
+        _sprite = new Sprite(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
+
+        renderer().RegisterSprite(_sprite);
     }
     Body& Object::InitBody(float mass, Vector2<> initForce)
     {
-        _body = new Body(mass, initForce);
+        _body = new Body(this, mass, initForce);// TODO Add registeration
     }
     Collider& Object::InitCollider()
     {

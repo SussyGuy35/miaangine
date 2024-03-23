@@ -42,7 +42,11 @@ namespace mia
     {}
 
     Object::~Object()
-    {}
+    {
+        delete _sprite;
+        delete _body;
+        delete _collider;
+    }
     #pragma endregion
 
     #pragma region Attributes accessing

@@ -1,14 +1,13 @@
 #ifndef _MIA_PORTRAIT_RENDERER_HPP
 #define _MIA_PORTRAIT_RENDERER_HPP
 
-#include <SDL.h>
-#include <SDL_image.h>
-
-#include <vector>
-
 #include "util/singleton.hpp"
 
-#include "portrait.hpp"
+#include <SDL.h>
+#include <SDL_image.h>
+#include <vector>
+
+#include "component/sprite.hpp"
 
 namespace mia 
 {
@@ -20,16 +19,16 @@ namespace mia
         ~PortraitRenderer();
 
     private:
-        std::vector<Portrait*> _portraits;
+        std::vector<Sprite*> _sprites;
 
     public:
-        void RegisterPortrait(Portrait *portrait);
-        void RemovePortrait(Portrait *portrait);
+        void RegisterPortrait(Sprite *portrait);
+        void RemovePortrait(Sprite *portrait);
 
         void Render(SDL_Renderer *renderer);
 
     private:
-        SDL_Rect RectRenderingCalculate(Portrait *portrait, int w, int h);
+        SDL_Rect RectRenderingCalculate(SDL_Texture *_texture, int w, int h);
     };
 }
 

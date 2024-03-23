@@ -62,7 +62,7 @@ namespace mia
 
     void GenericTask::Render() //TODO
     {
-        // renderer.Render(sdl.renderer);
+        render().Render(renderer);
     }
     #pragma endregion
 

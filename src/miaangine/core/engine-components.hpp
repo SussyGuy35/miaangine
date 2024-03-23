@@ -19,13 +19,13 @@
 
 namespace mia
 {
-    inline GenericTask&  generic()  { return GenericTask::Instance(); }
-    inline InputManager& input()    { return InputManager::Instance(); }
-    inline TimeManager&  time()     { return TimeManager::Instance(); }
-    inline EventManager& event()    { return EventManager::Instance(); }
-    inline DebugManager& debug()    { return DebugManager::Instance(); }
-    inline Renderer&     renderer() { return Renderer::Instance(); }
-    inline Camera&       camera()   { return Camera::Instance(); }
+    inline GenericTask&  generic() { return GenericTask::Instance(); }
+    inline InputManager& input()   { return InputManager::Instance(); }
+    inline TimeManager&  time()    { return TimeManager::Instance(); }
+    inline EventManager& event()   { return EventManager::Instance(); }
+    inline DebugManager& debug()   { return DebugManager::Instance(); }
+    inline Renderer&     render()  { return Renderer::Instance(); }
+    inline Camera&       camera()  { return Camera::Instance(); }
     // extern SDLHandle    &sdl; //TODO
     // extern TimeManager  &time;
     // extern Camera       &camera;

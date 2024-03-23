@@ -75,13 +75,13 @@ namespace mia
     {
         _sprite = new Sprite(this, scale, offset);
 
-        renderer().RegisterSprite(_sprite);
+        render().RegisterSprite(_sprite);
     }
     Sprite& Object::InitSprite(float sx, float sy, float ox, float oy)
     {
         _sprite = new Sprite(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
 
-        renderer().RegisterSprite(_sprite);
+        render().RegisterSprite(_sprite);
     }
     Body& Object::InitBody(float mass, Vector2<> initForce)
     {

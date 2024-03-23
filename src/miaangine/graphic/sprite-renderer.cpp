@@ -37,7 +37,7 @@ namespace mia
     {
         for (Sprite *sprite : _sprites)
         {
-            if (sprite->hasTexture())
+            if (!sprite->hasTexture())
             {
                 SDL_Rect rect = RectRenderingCalculate(sprite, PIXEL_PER_UNIT, PIXEL_PER_UNIT);
 
@@ -51,7 +51,7 @@ namespace mia
             int w = 0, h = 0;
             if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0) 
             {
-                // debug().Error("[SpriteRender] Failed to load texture {%s} of [Sprite(%s)]; Ignore. ", sprite->textureDirectory().str(), sprite->name().str());
+                debug().Error("[SpriteRender] Failed to load texture {%s} of [Sprite(%s)]; Ignore. ", sprite->getTextureDir(), sprite->master().getName());
                 continue;
             }
 

@@ -18,13 +18,13 @@ namespace mia
     #pragma endregion
 
     #pragma region Public methods
-    int GenericTask::Init(uint32_t width, uint32_t height, bool fullscreen)
+    int GenericTask::Init()
     {
         debug().Message("\n=== INITIALIZING...\n");
 
-        windowWidth = width;
-        windowHeight = height;
-        fullscreenMode = fullscreen;
+        windowWidth = WINDOW_WIDTH;
+        windowHeight = WINDOW_HEIGHT;
+        fullscreenMode = FULLSCREEN_MODE;
 
         if (CreateWindow(windowWidth, windowHeight, fullscreenMode) != 0) return -1;
 
@@ -57,10 +57,10 @@ namespace mia
 
         event().primaryUpdate().NotifyListeners();
 
-        // physics().Step(time.deltaTime());
+        // physics().Step(time.deltaTime()); //TODO
     }
 
-    void GenericTask::Render() //TODO
+    void GenericTask::Render()
     {
         render().Render(renderer);
     }

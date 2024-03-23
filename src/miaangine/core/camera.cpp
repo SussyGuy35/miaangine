@@ -1,10 +1,12 @@
 #include "camera.hpp"
 
+#include "miaangine-global-constant.hpp"
+
 namespace mia
 {
     #pragma region Constructor_Destructor
     Camera::Camera():
-        _size(10),
+        _size(CAMERA_SIZE),
         _position(Vector2<>::zero())
     {}
 

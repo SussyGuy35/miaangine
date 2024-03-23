@@ -1,5 +1,7 @@
 #include "sprite.hpp"
 
+#include "core/engine-components.hpp"
+
 namespace mia
 {
     #pragma region Constructor_Destructor
@@ -80,7 +82,7 @@ namespace mia
     {
         _textureDirectory = dir;
 
-        // TODO
+        _texture = IMG_LoadTexture(generic().renderer, dir);
 
         _hasTexture = true;
     }

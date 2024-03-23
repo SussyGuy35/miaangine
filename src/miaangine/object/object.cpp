@@ -68,6 +68,18 @@ namespace mia
     {
         return _scale;
     }
+    Sprite& Object::sprite()
+    {
+        return *_sprite;
+    }
+    Body& Object::body()
+    {
+        return *_body;
+    }
+    Collider& Object::collider()
+    {
+        return *_collider;
+    }
     #pragma endregion
 
     #pragma region Component methods 
@@ -76,12 +88,16 @@ namespace mia
         _sprite = new Sprite(this, scale, offset);
 
         render().RegisterSprite(_sprite);
+
+        return *_sprite;
     }
     Sprite& Object::InitSprite(float sx, float sy, float ox, float oy)
     {
         _sprite = new Sprite(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
 
         render().RegisterSprite(_sprite);
+
+        return *_sprite;
     }
     Body& Object::InitBody(float mass, Vector2<> initForce)
     {

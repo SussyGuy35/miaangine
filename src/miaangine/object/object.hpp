@@ -41,6 +41,9 @@ namespace mia
 
         Vector2<>& position();
         Vector2<>& scale();
+        Sprite& sprite();
+        Body& body();
+        Collider& collider();
 
         // Component methods
         Sprite& InitSprite(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());

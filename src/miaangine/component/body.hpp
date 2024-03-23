@@ -3,9 +3,7 @@
 
 #include "object/object.hpp"
 
-#include <SDL.h>
 #include "util/math.hpp"
-#include <string>
 
 namespace mia
 {

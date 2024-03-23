@@ -12,7 +12,7 @@ namespace mia
     private:
         friend class Object;
         
-        Collider(Object *master, Vector2<> scale, Vector2<> offset);
+        Collider(Object *master, Vector2<> size, Vector2<> offset);
 
         virtual ~Collider();
 

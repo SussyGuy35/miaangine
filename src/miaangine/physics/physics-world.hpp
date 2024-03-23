@@ -9,7 +9,7 @@
 
 namespace mia
 {
-    class PhysicWorld : public Singleton<PhysicWorld>
+    class PhysicsWorld : public Singleton<PhysicsWorld>
     {
     private:
         friend class Singleton<PhysicsWorld>;
@@ -19,7 +19,7 @@ namespace mia
     private:
         std::vector<Body*> _bodies;
 
-        Vector2 _gravity;
+        Vector2<> _gravity; //TODO
 
     public:
         void RegisterBody(Body *body);

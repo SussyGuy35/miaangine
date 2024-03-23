@@ -4,6 +4,7 @@
 
 #include "component/sprite.hpp"
 #include "component/body.hpp"
+#include "component/collider.hpp"
 
 namespace mia
 {

@@ -1,10 +1,6 @@
 #ifndef _MIA_SPRITE_HPP
 #define _MIA_SPRITE_HPP
 
-#ifndef _MIA_OBJECT_COMPONENT_INTERFACE_HPP
-#include "interface/object-component-interface.hpp"
-#endif
-
 #include <SDL.h>
 #include "util/math.hpp"
 #include <string>

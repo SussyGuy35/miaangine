@@ -1,17 +1,17 @@
-#ifndef _MIA_WORLD_OBJECT_HPP
-#define _MIA_WORLD_OBJECT_HPP
+#ifndef _MIA_OBJECT_HPP
+#define _MIA_OBJECT_HPP
 
 #include <string>
 #include "util/math.hpp"
 
 namespace mia 
 {
-    class WorldObject
+    class Object
     {
     public:
-        WorldObject(const char* name = "object", Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::zero());
+        Object(const char* name = "object", Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::zero());
 
-        virtual ~WorldObject();
+        virtual ~Object();
 
     private: 
         // Attributes
@@ -20,7 +20,7 @@ namespace mia
         Vector2<> _scale;
 
         // Components
-
+        
 
     public:
         // Attributes accessing

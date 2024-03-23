@@ -1,38 +1,38 @@
-#include "world-object.hpp"
+#include "object.hpp"
 
 namespace mia
 {
     #pragma region Constructor_Destructor
-    WorldObject::WorldObject(const char* name, Vector2<> position, Vector2<> scale):
+    Object::Object(const char* name, Vector2<> position, Vector2<> scale):
         _name(name),
         _position(position),
         _scale(scale)
     {}
 
-    WorldObject::~WorldObject()
+    Object::~Object()
     {}
     #pragma endregion
 
     #pragma region Attributes accessing
-    const char* WorldObject::getName() const
+    const char* Object::getName() const
     {
         return _name.c_str();
     }
 
-    const Vector2<>& WorldObject::position() const
+    const Vector2<>& Object::position() const
     {
         return _position;
     }
-    const Vector2<>& WorldObject::scale() const
+    const Vector2<>& Object::scale() const
     {
         return _scale;
     }
 
-    Vector2<>& WorldObject::position()
+    Vector2<>& Object::position()
     {
         return _position;
     }
-    Vector2<>& WorldObject::scale()
+    Vector2<>& Object::scale()
     {
         return _scale;
     }

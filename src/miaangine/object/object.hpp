@@ -6,6 +6,11 @@
 
 namespace mia 
 {
+    // Forward decleration
+    class Sprite;
+    class Body;
+    class Collider;
+
     class Object
     {
     public:
@@ -20,7 +25,9 @@ namespace mia
         Vector2<> _scale;
 
         // Components
-        
+        Sprite _sprite;
+        Body _body;
+        Collider _collider;
 
     public:
         // Attributes accessing
@@ -33,7 +40,9 @@ namespace mia
         Vector2<>& scale();
 
         // Methods
-
+        Sprite& InitSprite();
+        Body& InitBody();
+        Collider& InitCollider();
     };
 }
 

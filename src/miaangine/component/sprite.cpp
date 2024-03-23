@@ -26,6 +26,14 @@ namespace mia
     #pragma endregion
 
     #pragma region Attributes accessing
+    bool Sprite::isActive() const 
+    { 
+        return _isActive; 
+    }
+    const IGameObject& Sprite::master() const 
+    { 
+        return *_master; 
+    }
     const Vector2<>& Sprite::scale() const 
     {
         return _scale;
@@ -39,25 +47,6 @@ namespace mia
         return _textureDirectory.c_str();
     }
 
-    Vector2<>& Sprite::scale()
-    {
-        return _scale;
-    }
-    Vector2<>& Sprite::offset()
-    {
-        return _offset;
-    }
-    #pragma endregion
-
-    #pragma region Abstract methods
-    Components Sprite::getType() const 
-    { 
-        return _COMPONENT_SPRITE; 
-    }
-    bool Sprite::isActive() const 
-    { 
-        return _isActive; 
-    }
     bool Sprite::SetActive(bool newState) 
     { 
         return _isActive = newState; 
@@ -65,10 +54,14 @@ namespace mia
     IGameObject& Sprite::master() 
     { 
         return *_master; 
-    } 
-    const IGameObject& Sprite::master() const 
-    { 
-        return *_master; 
+    }
+    Vector2<>& Sprite::scale()
+    {
+        return _scale;
+    }
+    Vector2<>& Sprite::offset()
+    {
+        return _offset;
     }
     #pragma endregion
 }

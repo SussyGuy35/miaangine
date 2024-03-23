@@ -1,13 +1,15 @@
 #ifndef _MIA_SPRITE_HPP
 #define _MIA_SPRITE_HPP
 
+#include "object/object.hpp"
+
 #include <SDL.h>
 #include "util/math.hpp"
 #include <string>
 
 namespace mia
 {
-    class Sprite : public IObjectComponent
+    class Sprite
     {
     public:
         Sprite(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
@@ -16,11 +18,10 @@ namespace mia
         virtual ~Sprite();
 
     private:
-        // Interface required
-        bool _isActive;
-        IGameObject *_master;
-
         // Attributes
+        bool _isActive;
+        Object *_master;
+
         Vector2<> _scale;
         Vector2<> _offset;
         std::string _textureDirectory;
@@ -30,19 +31,16 @@ namespace mia
     
     public:
         // Attributes accessing
+        bool isActive() const;
+        const Object& master() const;
         const Vector2<>& scale() const;
         const Vector2<>& offset() const;
         const char* getTextureDir() const;
 
+        bool SetActive(bool newState);
+        Object& master();
         Vector2<>& scale();
         Vector2<>& offset();
-
-        // Abstract methods
-        Components getType() const;
-        bool isActive() const;
-        bool SetActive(bool newState);
-        IGameObject& master();
-        const IGameObject& master() const;
     };
 }
 

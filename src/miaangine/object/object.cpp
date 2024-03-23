@@ -1,6 +1,7 @@
 #include "object.hpp"
 
 #include "component/sprite.hpp"
+#include "component/body.hpp"
 
 namespace mia
 {
@@ -8,7 +9,10 @@ namespace mia
     Object::Object(const char* name, Vector2<> position, Vector2<> scale):
         _name(name),
         _position(position),
-        _scale(scale)
+        _scale(scale),
+        _sprite(nullptr),
+        _body(nullptr),
+        _collider(nullptr)
     {}
 
     Object::~Object()
@@ -49,7 +53,7 @@ namespace mia
     {
         _sprite = new Sprite(sx, sy, ox, oy);
     }
-    Body& Object::InitBody(float mass = 1, vector2<> initForce)
+    Body& Object::InitBody(float mass, Vector2<> initForce)
     {
         _body = new Body(mass, initForce);
     }

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "interface/event-publisher-interface.hpp"
+#include "event-publisher-interface.hpp"
 
 namespace mia 
 {
@@ -15,14 +15,14 @@ namespace mia
         ~RegularEventPublisher();
 
     private:
-        std::vector<IEventListener*> _listeners; 
+        std::vector<EventListener*> _listeners; 
 
         unsigned char _message;
 
     public:
         // Abstract Method
-        void RegisterListener(IEventListener *listener) override;
-        void RemoveListener(IEventListener *listener) override;
+        void RegisterListener(EventListener *listener) override;
+        void RemoveListener(EventListener *listener) override;
         void NotifyListeners() override;
     };
 }

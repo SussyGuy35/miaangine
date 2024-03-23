@@ -35,13 +35,13 @@ namespace mia
 
         bool SetActive(bool newState);
         Object& master();
-        float& mass() const;
+        float& mass();
         Vector2<>& velocity();
         Vector2<>& force();
 
         // Methods
-        Vector2 AddForce(Vector2<> force);
-        Vector2 AddAcceleration(Vector2<> acceleration);
+        const Vector2<>& AddForce(Vector2<> force);
+        const Vector2<>& AddAcceleration(Vector2<> acceleration);
     };
 }
 

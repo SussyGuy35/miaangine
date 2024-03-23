@@ -30,7 +30,7 @@ namespace mia
     { 
         return _isActive; 
     }
-    const IGameObject& Sprite::master() const 
+    const Object& Sprite::master() const 
     { 
         return *_master; 
     }
@@ -51,7 +51,7 @@ namespace mia
     { 
         return _isActive = newState; 
     }
-    IGameObject& Sprite::master() 
+    Object& Sprite::master() 
     { 
         return *_master; 
     }

@@ -25,9 +25,9 @@ namespace mia
         Vector2<> _scale;
 
         // Components
-        Sprite _sprite;
-        Body _body;
-        Collider _collider;
+        Sprite *_sprite;
+        Body *_body;
+        Collider *_collider;
 
     public:
         // Attributes accessing
@@ -42,7 +42,7 @@ namespace mia
         // Component methods
         Sprite& InitSprite(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
         Sprite& InitSprite(float sx, float sy, float ox = 0, float oy = 0);
-        Body& InitBody(float mass = 1, vector2<> initForce = vector2::zero());
+        Body& InitBody(float mass = 1, Vector2<> initForce = Vector2<>::zero());
         Collider& InitCollider();
     };
 }

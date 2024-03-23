@@ -112,14 +112,14 @@ namespace mia
 	}
 
 	template<typename T = float>
-	constexpr Vector2<T> operator+(Vector2<T> left, const double& right) noexcept
+	constexpr Vector2<T> operator*(Vector2<T> left, const double& right) noexcept
 	{
 		left *= right;
 		return left;
 	}
 
 	template<typename T = float>
-	constexpr Vector2<T> operator-(Vector2<T> left, const double& right) noexcept
+	constexpr Vector2<T> operator/(Vector2<T> left, const double& right) noexcept
 	{
 		left /= right;
 		return left;

@@ -11,18 +11,18 @@ namespace mia
 
     RegularEventPublisher::~RegularEventPublisher()
     {
-        for (IEventListener *listener : _listeners) delete listener;
+        for (EventListener *listener : _listeners) delete listener;
         _listeners.clear();
     }
     #pragma endregion
 
     #pragma region Abstract method
-    void RegularEventPublisher::RegisterListener(IEventListener *listener)
+    void RegularEventPublisher::RegisterListener(EventListener *listener)
     {
         _listeners.push_back(listener);
     }
 
-    void RegularEventPublisher::RemoveListener(IEventListener *listener)
+    void RegularEventPublisher::RemoveListener(EventListener *listener)
     {
         auto listenerIterator = std::find(_listeners.begin(), _listeners.end(), listener);
 
@@ -34,7 +34,7 @@ namespace mia
 
     void RegularEventPublisher::NotifyListeners()
     {
-        for (IEventListener *listener : _listeners)
+        for (EventListener *listener : _listeners)
         {
             listener->Update(_message);
         }

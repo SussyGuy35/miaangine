@@ -1,5 +1,7 @@
 #include "object.hpp"
 
+#include "component/sprite.hpp"
+
 namespace mia
 {
     #pragma region Constructor_Destructor
@@ -35,6 +37,25 @@ namespace mia
     Vector2<>& Object::scale()
     {
         return _scale;
+    }
+    #pragma endregion
+
+    #pragma region Component methods // TODO Add registeration
+    Sprite& Object::InitSprite(Vector2<> scale, Vector2<> offset)
+    {
+        _sprite = new Sprite(scale, offset);
+    }
+    Sprite& Object::InitSprite(float sx, float sy, float ox, float oy)
+    {
+        _sprite = new Sprite(sx, sy, ox, oy);
+    }
+    Body& Object::InitBody(float mass = 1, vector2<> initForce)
+    {
+        _body = new Body(mass, initForce);
+    }
+    Collider& Object::InitCollider()
+    {
+
     }
     #pragma endregion
 }

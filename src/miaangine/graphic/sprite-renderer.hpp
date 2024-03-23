@@ -28,7 +28,7 @@ namespace mia
         void Render(SDL_Renderer *renderer);
 
     private:
-        SDL_Rect RectRenderingCalculate(SDL_Texture *_texture, int w, int h);
+        SDL_Rect RectRenderingCalculate(Sprite *sprite, int w, int h);
     };
 }
 

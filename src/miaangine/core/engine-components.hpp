@@ -6,9 +6,9 @@
 #include "time-manager.hpp"
 #include "event/event-manager.hpp"
 #include "debug/debug-manager.hpp"
+#include "camera.hpp"
 // #include "sdl-handle.hpp" //TODO
 // #include "time/time-manager.hpp"
-// #include "camera.hpp"
 // #include "input/input-manager.hpp"
 // #include "event/event-manager.hpp"
 // #include "graphic/renderer.hpp"
@@ -24,6 +24,7 @@ namespace mia
     inline TimeManager&  time()    { return TimeManager::Instance(); }
     inline EventManager& event()   { return EventManager::Instance(); }
     inline DebugManager& debug()   { return DebugManager::Instance(); }
+    inline Camera&       camera()  { return Camera::Instance(); }
     // extern SDLHandle    &sdl; //TODO
     // extern TimeManager  &time;
     // extern Camera       &camera;

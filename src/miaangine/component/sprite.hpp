@@ -38,7 +38,6 @@ namespace mia
         const Vector2<>& scale() const;
         const Vector2<>& offset() const;
         const char* getTextureDir() const;
-        const SDL_Texture* getTexture() const;
         const SDL_Color& color() const;
         bool hasTexture() const;
 
@@ -46,6 +45,7 @@ namespace mia
         Object& master();
         Vector2<>& scale();
         Vector2<>& offset();
+        SDL_Texture* texture();
         SDL_Color& color();
 
         // Methods

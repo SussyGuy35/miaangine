@@ -50,10 +50,6 @@ namespace mia
     {
         return _textureDirectory.c_str();
     }
-    const SDL_Texture* Sprite::getTexture() const
-    {
-        return _texture;
-    }
     const SDL_Color& Sprite::color() const
     {
         return _color;
@@ -78,6 +74,10 @@ namespace mia
     Vector2<>& Sprite::offset()
     {
         return _offset;
+    }
+    SDL_Texture* Sprite::texture()
+    {
+        return _texture;
     }
     SDL_Color& Sprite::color()
     {

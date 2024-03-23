@@ -1,25 +1,26 @@
 #ifndef _MIA_WORLD_OBJECT_HPP
 #define _MIA_WORLD_OBJECT_HPP
 
-#include "interface/game-object-interface.hpp"
-
 #include <string>
 #include "util/math.hpp"
 
 namespace mia 
 {
-    class WorldObject : public IGameObject
+    class WorldObject
     {
     public:
         WorldObject(const char* name = "object", Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::zero());
 
         virtual ~WorldObject();
 
-    // Attributes
     private: 
+        // Attributes
         std::string _name;
         Vector2<> _position;
         Vector2<> _scale;
+
+        // Components
+
 
     public:
         // Attributes accessing
@@ -30,6 +31,9 @@ namespace mia
 
         Vector2<>& position();
         Vector2<>& scale();
+
+        // Methods
+
     };
 }
 

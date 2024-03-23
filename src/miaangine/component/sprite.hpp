@@ -28,6 +28,8 @@ namespace mia
 
         SDL_Texture *_texture;
         SDL_Color _color;
+
+        bool _hasTexture;
     
     public:
         // Attributes accessing
@@ -36,11 +38,18 @@ namespace mia
         const Vector2<>& scale() const;
         const Vector2<>& offset() const;
         const char* getTextureDir() const;
+        const SDL_Texture* getTexture() const;
+        const SDL_Color& color() const;
+        bool hasTexture() const;
 
         bool SetActive(bool newState);
         Object& master();
         Vector2<>& scale();
         Vector2<>& offset();
+        SDL_Color& color();
+
+        // Methods
+        SDL_Texture* Load(const char* dir);
     };
 }
 

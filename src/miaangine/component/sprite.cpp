@@ -9,7 +9,8 @@ namespace mia
         _scale(scale),
         _offset(offset),
         _textureDirectory(""),
-        _color({255, 255, 255, 255})
+        _color({255, 255, 255, 255}),
+        _hasTexture(false)
     {}
 
     Sprite::Sprite(float sx, float sy, float ox, float oy):
@@ -18,11 +19,14 @@ namespace mia
         _scale(Vector2<>(sx, sy)),
         _offset(Vector2<>(ox, oy)),
         _textureDirectory(""),
-        _color({255, 255, 255, 255})
+        _color({255, 255, 255, 255}),
+        _hasTexture(false)
     {}
 
     Sprite::~Sprite()
-    {}
+    {
+        SDL_DestroyTexture(_texture);
+    }
     #pragma endregion
 
     #pragma region Attributes accessing
@@ -46,6 +50,18 @@ namespace mia
     {
         return _textureDirectory.c_str();
     }
+    const SDL_Texture* Sprite::getTexture() const
+    {
+        return _texture;
+    }
+    const SDL_Color& Sprite::color() const
+    {
+        return _color;
+    }
+    bool Sprite::hasTexture() const
+    {
+        return _hasTexture;
+    }
 
     bool Sprite::SetActive(bool newState) 
     { 
@@ -62,6 +78,21 @@ namespace mia
     Vector2<>& Sprite::offset()
     {
         return _offset;
+    }
+    SDL_Color& Sprite::color()
+    {
+        return _color;
+    }
+    #pragma endregion
+
+    #pragma region Methods
+    SDL_Texture* Sprite::Load(const char* dir)
+    {
+        _textureDirectory = dir;
+
+        // TODO
+
+        _hasTexture = true;
     }
     #pragma endregion
 }

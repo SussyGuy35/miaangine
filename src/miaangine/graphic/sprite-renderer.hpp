@@ -1,5 +1,5 @@
-#ifndef _MIA_PORTRAIT_RENDERER_HPP
-#define _MIA_PORTRAIT_RENDERER_HPP
+#ifndef _MIA_SPRITE_RENDERER_HPP
+#define _MIA_SPRITE_RENDERER_HPP
 
 #include "util/singleton.hpp"
 
@@ -11,19 +11,19 @@
 
 namespace mia 
 {
-    class PortraitRenderer : public Singleton<PortraitRenderer>
+    class SpriteRenderer : public Singleton<SpriteRenderer>
     {
     private:
-        friend class Singleton<PortraitRenderer>;
-        PortraitRenderer();
-        ~PortraitRenderer();
+        friend class Singleton<SpriteRenderer>;
+        SpriteRenderer();
+        ~SpriteRenderer();
 
     private:
         std::vector<Sprite*> _sprites;
 
     public:
-        void RegisterPortrait(Sprite *portrait);
-        void RemovePortrait(Sprite *portrait);
+        void RegisterSprite(Sprite *sprite);
+        void RemoveSprite(Sprite *sprite);
 
         void Render(SDL_Renderer *renderer);
 

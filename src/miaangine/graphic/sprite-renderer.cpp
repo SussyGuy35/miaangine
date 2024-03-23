@@ -8,20 +8,20 @@
 namespace mia 
 {
     #pragma region Constructor_Destructor
-    PortraitRenderer::PortraitRenderer()
+    SpriteRenderer::SpriteRenderer()
     {}
 
-    PortraitRenderer::~PortraitRenderer()
+    SpriteRenderer::~SpriteRenderer()
     {}
     #pragma endregion
 
     #pragma region Registration methods
-    void PortraitRenderer::RegisterPortrait(Sprite *sprite)
+    void SpriteRenderer::RegisterSprite(Sprite *sprite)
     {
         _sprites.push_back(sprite);
     }
 
-    void PortraitRenderer::RemovePortrait(Sprite *sprite)
+    void SpriteRenderer::RemoveSprite(Sprite *sprite)
     {
         auto listenerIterator = std::find(_sprites.begin(), _sprites.end(), sprite);
 
@@ -33,7 +33,7 @@ namespace mia
     #pragma endregion
 
     #pragma region Update methods
-    void PortraitRenderer::Render(SDL_Renderer *renderer)
+    void SpriteRenderer::Render(SDL_Renderer *renderer)
     {
         for (Sprite *sprite : _sprites)
         {
@@ -51,7 +51,7 @@ namespace mia
             int w = 0, h = 0;
             if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0) 
             {
-                // debug().Error("[PortraitRender] Failed to load texture {%s} of [Sprite(%s)]; Ignore. ", sprite->textureDirectory().str(), sprite->name().str());
+                // debug().Error("[SpriteRender] Failed to load texture {%s} of [Sprite(%s)]; Ignore. ", sprite->textureDirectory().str(), sprite->name().str());
                 continue;
             }
 
@@ -66,7 +66,7 @@ namespace mia
     #pragma endregion
 
     #pragma region Internal methods
-    SDL_Rect PortraitRenderer::RectRenderingCalculate(Sprite *sprite, int w, int h)
+    SDL_Rect SpriteRenderer::RectRenderingCalculate(Sprite *sprite, int w, int h)
     {
         SDL_Rect rect;
 

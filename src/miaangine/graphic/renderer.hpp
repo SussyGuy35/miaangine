@@ -3,8 +3,7 @@
 
 #include "util/singleton.hpp"
 
-#include "portrait-renderer.hpp"
-#include "image-renderer.hpp"
+#include "sprite-renderer.hpp"
 
 namespace mia
 {
@@ -16,15 +15,11 @@ namespace mia
         ~Renderer();
     
     private:
-        PortraitRenderer &_portraitHandle;
-        ImageRenderer &_imageHandle;
+        SpriteRenderer &_spriteHandle;
 
     public:
-        void RegisterPortrait(Portrait *portrait);
-        void RemovePortrait(Portrait *portrait);
-
-        void RegisterImage(Image *image);
-        void RemoveImage(Image *image);
+        void RegisterSprite(Sprite *sprite);
+        void RemoveSprite(Sprite *sprite);
 
         void Render(SDL_Renderer *renderer);
     };

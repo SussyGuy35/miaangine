@@ -3,21 +3,11 @@
 namespace mia
 {
     #pragma region Constructor_Destructor
-    Sprite::Sprite(Vector2<> scale, Vector2<> offset):
+    Sprite::Sprite(Object *master, Vector2<> scale, Vector2<> offset):
         _isActive(true),
-        _master(nullptr),
+        _master(master),
         _scale(scale),
         _offset(offset),
-        _textureDirectory(""),
-        _color({255, 255, 255, 255}),
-        _hasTexture(false)
-    {}
-
-    Sprite::Sprite(float sx, float sy, float ox, float oy):
-        _isActive(true),
-        _master(nullptr),
-        _scale(Vector2<>(sx, sy)),
-        _offset(Vector2<>(ox, oy)),
         _textureDirectory(""),
         _color({255, 255, 255, 255}),
         _hasTexture(false)

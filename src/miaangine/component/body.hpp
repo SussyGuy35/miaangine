@@ -11,8 +11,10 @@ namespace mia
 {
     class Body
     {
-    public:
-        Body(float mass = 1, Vector2<> initForce = Vector2<>::zero());
+    private:
+        friend class Object;
+        
+        Body(Object *master, float mass, Vector2<> initForce);
 
         virtual ~Body();
 

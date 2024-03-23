@@ -11,9 +11,10 @@ namespace mia
 {
     class Sprite
     {
-    public:
-        Sprite(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
-        Sprite(float sx, float sy, float ox = 0, float oy = 0);
+    private:
+        friend class Object;
+        
+        Sprite(Object *master, Vector2<> scale, Vector2<> offset);
 
         virtual ~Sprite();
 

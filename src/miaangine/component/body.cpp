@@ -3,9 +3,9 @@
 namespace mia
 {
     #pragma region Constructor_Destructor
-    Body::Body(float mass, Vector2<> initForce):
+    Body::Body(Object *master, float mass, Vector2<> initForce):
         _isActive(true),
-        _master(nullptr),
+        _master(master),
         _mass(mass),
         _velocity(Vector2<>::zero()),
         _force(initForce)

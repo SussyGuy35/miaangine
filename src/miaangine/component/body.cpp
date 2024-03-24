@@ -65,9 +65,20 @@ namespace mia
         _force += force;
         return _force;
     }
+    const Vector2<>& Body::AddForce(float x, float y)
+    {
+        _force += Vector2<>(x, y);
+        return _force;
+    }
+
     const Vector2<>& Body::AddAcceleration(Vector2<> acceleration)
     {
         _force += acceleration * _mass;
+        return _force;
+    }
+    const Vector2<>& Body::AddAcceleration(float x, float y)
+    {
+        _force += Vector2<>(x, y) * _mass;
         return _force;
     }
     #pragma endregion

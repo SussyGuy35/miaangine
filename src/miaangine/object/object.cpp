@@ -106,7 +106,11 @@ namespace mia
     }
     Body& Object::InitBody(float mass, Vector2<> initForce)
     {
-        _body = new Body(this, mass, initForce);// TODO Add registeration
+        _body = new Body(this, mass, initForce);
+
+        physics().RegisterBody(_body);
+
+        return *_body;
     }
     Collider& Object::InitCollider()
     {

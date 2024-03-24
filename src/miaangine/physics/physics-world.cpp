@@ -38,8 +38,8 @@ namespace mia
     {
         for (Body *body : _bodies)
         {
-            body->velocity() += body->force() / body->mass() * elapsedTime;
-            
+            body->velocity() += body->force() / body->mass();
+
             body->master().position() += body->velocity() * elapsedTime;
 
             body->force() = Vector2<>::zero();

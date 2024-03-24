@@ -41,7 +41,9 @@ namespace mia
 
         // Methods
         const Vector2<>& AddForce(Vector2<> force);
+        const Vector2<>& AddForce(float x, float y);
         const Vector2<>& AddAcceleration(Vector2<> acceleration);
+        const Vector2<>& AddAcceleration(float x, float y);
     };
 }
 

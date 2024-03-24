@@ -8,6 +8,7 @@
 #include "debug/debug-manager.hpp"
 #include "graphic/renderer.hpp"
 #include "camera.hpp"
+#include "physics/physics-world.hpp"
 
 #include "miaangine-global-constant.hpp"
 
@@ -20,6 +21,7 @@ namespace mia
     inline DebugManager& debug()   { return DebugManager::Instance(); }
     inline Renderer&     render()  { return Renderer::Instance(); }
     inline Camera&       camera()  { return Camera::Instance(); }
+    inline PhysicsWorld& physics() { return PhysicsWorld::Instance(); }
 }
 
 #endif

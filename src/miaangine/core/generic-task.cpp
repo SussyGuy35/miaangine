@@ -40,6 +40,8 @@ namespace mia
 
         debug().Message("=== INITIALIZE SUCCESSFUL\n\n");
 
+        time().Step();
+
         return 0;
     }
 
@@ -57,7 +59,7 @@ namespace mia
 
         event().primaryUpdate().NotifyListeners();
 
-        // physics().Step(time.deltaTime()); //TODO
+        physics().Step(time().deltaTime());
     }
 
     void GenericTask::Render()

@@ -104,7 +104,7 @@ namespace mia
 
         return *_sprite;
     }
-    Body& Object::InitBody(float mass, Vector2<> initForce)
+    Body& Object::InitBody(float mass, Vector2<> initForce) //FIXME add guard
     {
         _body = new Body(this, mass, initForce);
 

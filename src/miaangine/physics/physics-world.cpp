@@ -7,13 +7,16 @@
 
 namespace mia
 {
+    #pragma region Constructor_Destructor
     PhysicsWorld::PhysicsWorld():
         _gravity(Vector2<>(0.0, 9.81))
     {}
 
     PhysicsWorld::~PhysicsWorld()
     {}
+    #pragma endregion
 
+    #pragma region Public methods
     void PhysicsWorld::RegisterBody(Body *body)
     {
         _bodies.push_back(body);
@@ -32,8 +35,11 @@ namespace mia
     void PhysicsWorld::Step(double elapsedTime)
     {
         BodiesDynamicsHandle(elapsedTime);
+        CollisionDetectionHandle();
     }
+    #pragma endregion
 
+    #pragma region Private methods
     void PhysicsWorld::BodiesDynamicsHandle(double elapsedTime)
     {
         for (Body *body : _bodies)
@@ -45,4 +51,9 @@ namespace mia
             body->force() = Vector2<>::zero();
         }
     }
+    void PhysicsWorld::CollisionDetectionHandle()
+    {
+        
+    }
+    #pragma endregion
 }

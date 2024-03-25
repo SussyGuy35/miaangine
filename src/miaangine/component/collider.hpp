@@ -23,6 +23,8 @@ namespace mia
 
         Vector2<> _size;
         Vector2<> _offset;
+
+        bool _isColliding;
     
     public:
         // Attributes accessing
@@ -35,6 +37,13 @@ namespace mia
         Object& master();
         Vector2<>& size();
         Vector2<>& offset();
+
+        // Properties
+        Vector2<> minX() const;
+        Vector2<> maxX() const;
+        Vector2<> minY() const;
+        Vector2<> minY() const;
+        bool isColliding() const;
 
         // Methods
     };

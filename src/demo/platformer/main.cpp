@@ -21,15 +21,17 @@ int main(int argc, char *argv[])
     bird->InitBody(1, Vector2<>(10, 10));
     // bird->body().AddForce(Vector2<>(100, 1000));
 
-    debug().Log("%p", &bird->body());
-
     while (true)
     {
         generic().NewFrame();
 
+        // debug().Log("%f", time().fps());
+
         if (input().isQuit()) break;
 
         generic().Render();
+
+        // SDL_Delay(1);
     }
 
     generic().End();

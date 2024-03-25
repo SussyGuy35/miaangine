@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "component/body.hpp"
+#include "component/collider.hpp"
 
 namespace mia
 {
@@ -22,13 +23,18 @@ namespace mia
         Vector2<> _gravity; //TODO
 
     public:
+
         void RegisterBody(Body *body);
         void RemoveBody(Body *body);
+
+        void RegisterCollider(Collider *collider);
+        void RemoveCollider(Collider *collider);
 
         void Step(double elapsedTime);
     
     private:
         void BodiesDynamicsHandle(double elapsedTime);
+        void CollisionDetectionHandle();
     };
 }
 

@@ -20,15 +20,15 @@ namespace mia
     {
         return _isActive;
     }
-    const Collider::Object& master() const
+    const Object& Collider::master() const
     {
         return *_master;
     }
-    const Collider::Vector2<>& size() const
+    const Vector2<>& Collider::size() const
     {
         return _size;
     }
-    const Collider::Vector2<>& offset() const
+    const Vector2<>& Collider::offset() const
     {
         return _offset;
     }
@@ -53,7 +53,7 @@ namespace mia
     {
         return _offset;
     }
-    bool Collider::SetColiding(bool newState)
+    bool Collider::SetColliding(bool newState)
     {
         return _isColliding = newState;
     }

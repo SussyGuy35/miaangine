@@ -49,7 +49,8 @@ namespace mia
         Sprite& InitSprite(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
         Sprite& InitSprite(float sx, float sy, float ox = 0, float oy = 0);
         Body& InitBody(float mass = 1, Vector2<> initForce = Vector2<>::zero());
-        Collider& InitCollider();
+        Collider& InitCollider(Vector2<> scale = Vector2<>::zero(), Vector2<> offset = Vector2<>::zero());
+        Collider& InitCollider(float sx, float sy, float ox = 0, float oy = 0);
     };
 }
 

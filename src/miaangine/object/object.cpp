@@ -112,9 +112,21 @@ namespace mia
 
         return *_body;
     }
-    Collider& Object::InitCollider()
+    Collider& Object::InitCollider(Vector2<> scale, Vector2<> offset)
     {
+        _collider = new Collider(this, scale, offset);
 
+        physics().RegisterCollider(_collider);
+
+        return *_collider;
+    }
+    Collider& Object::InitCollider(float sx, float sy, float ox, float oy)
+    {
+        _collider = new Collider(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
+
+        physics().RegisterCollider(_collider);
+
+        return *_collider;
     }
     #pragma endregion
 }

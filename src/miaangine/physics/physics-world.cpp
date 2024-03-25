@@ -32,6 +32,21 @@ namespace mia
         }
     }
 
+    void PhysicsWorld::RegisterCollider(Collider *collider)
+    {
+        _colliders.push_back(collider);
+    }
+
+    void PhysicsWorld::RemoveCollider(Collider *collider)
+    {
+        auto listenerIterator = std::find(_colliders.begin(), _colliders.end(), collider);
+
+        if (listenerIterator != _colliders.end())
+        {
+            _colliders.erase(listenerIterator);
+        }
+    }
+
     void PhysicsWorld::Step(double elapsedTime)
     {
         BodiesDynamicsHandle(elapsedTime);

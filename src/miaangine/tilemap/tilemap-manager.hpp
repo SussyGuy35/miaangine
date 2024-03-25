@@ -21,9 +21,9 @@ namespace mia
 
     public:
         int AddTilemap(TilemapData* data);
-        void RemoveTilemap(TilemapData* data)
+        void RemoveTilemap(TilemapData* data);
 
-        bool Load(int index, Vector<int> position = Vector<int>::zero());
+        bool Load(int index, Vector2<int> position = Vector2<int>::zero());
         bool Load(int index, int x, int y);
     };
 }

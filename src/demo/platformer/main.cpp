@@ -26,6 +26,8 @@ int main(int argc, char *argv[])
     box->InitBody(1);
     box->InitCollider(1, 1);
 
+    TilemapData *tm = new TilemapData("D:/SDL/miaangine/asset/platformer/map01.txt");
+
     while (true)
     {
         generic().NewFrame();

@@ -16,18 +16,19 @@ namespace mia
         TilemapData():
             _width(0),
             _height(0),
-            _data(new int[0][0]),
+            _data(new int[0]),
             _tileDirs(std::vector<const char*>())
         {}
-        TilemapData(const char* dataDir):
+
+        TilemapData(const char* dataDir)
         {
             std::ifstream input;
-            input.open("dataDir");
+            input.open(dataDir);
 
             if (!input.is_open()) throw;
 
             input >> _width >> _height;
-            _data = new int[_width * _height]
+            _data = new int[_width * _height];
             for (int i = 0; i < _height; i++)
             {
                 for (int j = 0; j < _width; j++)
@@ -66,7 +67,7 @@ namespace mia
         }
         const char* getDir(int index) const
         {
-            return tileDirs[index];
+            return _tileDirs[index];
         }
     };
 }

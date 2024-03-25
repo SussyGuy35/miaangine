@@ -9,6 +9,8 @@
 #include "graphic/renderer.hpp"
 #include "camera.hpp"
 #include "physics/physics-world.hpp"
+#include "tilemap/tilemap-manager.hpp"
+#include "tilemap/tilemap-data.hpp"
 
 #include "miaangine-global-constant.hpp"
 

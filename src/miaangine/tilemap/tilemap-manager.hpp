@@ -5,16 +5,16 @@
 
 #include <vector>
 
-#include "tilemap-data.hpp"
-
 namespace mia
 {
-    class TileMap : public Singleton<TileMap>
+    class TilemapData;
+
+    class TilemapManager : public Singleton<TilemapManager>
     {
     private:
-        friend class Singleton<TileMap>;
-        TileMap();
-        ~TileMap();
+        friend class Singleton<TilemapManager>;
+        TilemapManager();
+        ~TilemapManager();
 
     private:
         std::vector<TilemapData> _tilemapList;

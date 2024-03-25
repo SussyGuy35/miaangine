@@ -62,19 +62,19 @@ namespace mia
     #pragma region Properties
     float Collider::minX() const
     {
-        return _master->position().x; 
+        return _master->position().x + _offset.x; 
     }
     float Collider::maxX() const
     {
-        return _master->position().x + _offset.x;
+        return _master->position().x + _offset.x + _size.x;
     }
     float Collider::minY() const
     {
-        return _master->position().y; 
+        return _master->position().y + _offset.x; 
     }
     float Collider::maxY() const
     {
-        return _master->position().y + _offset.y;
+        return _master->position().y + _offset.y + _size.y;
     }
     #pragma endregion
 }

@@ -21,17 +21,30 @@ int main(int argc, char *argv[])
     bird->InitBody(1);
     bird->InitCollider(1, 1);
 
+    Object *box = new Object("Box", 5, 3);
+    box->InitSprite(1, 1);
+    box->InitBody(1);
+    box->InitCollider(1, 1);
+
     while (true)
     {
         generic().NewFrame();
 
-        // debug().Log("%f", time().fps());
+        bird->body().velocity() = Vector2<>::zero();
+        if (input().GetButton("Up")) bird->body().velocity().y = 3;
+        if (input().GetButton("Down")) bird->body().velocity().y = -3;
+        if (input().GetButton("Left")) bird->body().velocity().x = -3;
+        if (input().GetButton("Right")) bird->body().velocity().x = 3;
+
+        if (bird->collider().isColliding()) bird->sprite().color() = {255, 0, 0, 255};
+        else bird->sprite().color() = {255, 255, 255, 255};
+
+        if (box->collider().isColliding()) box->sprite().color() = {0, 255, 0, 255};
+        else box->sprite().color() = {255, 255, 255, 255};
 
         if (input().isQuit()) break;
 
         generic().Render();
-
-        // SDL_Delay(1);
     }
 
     generic().End();

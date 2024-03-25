@@ -3,6 +3,8 @@
 
 #include "util/singleton.hpp"
 
+#include <vector>
+
 #include "tilemap-data.hpp"
 
 namespace mia
@@ -14,7 +16,15 @@ namespace mia
         TileMap();
         ~TileMap();
 
+    private:
+        std::vector<TilemapData> _tilemapList;
 
+    public:
+        int AddTilemap(TilemapData* data);
+        void RemoveTilemap(TilemapData* data)
+
+        bool Load(int index, Vector<int> position = Vector<int>::zero());
+        bool Load(int index, int x, int y);
     };
 }
 

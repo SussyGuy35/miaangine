@@ -19,6 +19,7 @@ namespace mia
 
     private:
         std::vector<Body*> _bodies;
+        std::vector<Collider*> _colliders;
 
         Vector2<> _gravity; //TODO
 

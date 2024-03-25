@@ -32,18 +32,19 @@ namespace mia
         const Object& master() const;
         const Vector2<>& size() const;
         const Vector2<>& offset() const;
+        bool isColliding() const;
 
         bool SetActive(bool newState);
         Object& master();
         Vector2<>& size();
         Vector2<>& offset();
+        bool SetColliding(bool newState);
 
         // Properties
-        Vector2<> minX() const;
-        Vector2<> maxX() const;
-        Vector2<> minY() const;
-        Vector2<> minY() const;
-        bool isColliding() const;
+        float minX() const;
+        float maxX() const;
+        float minY() const;
+        float maxY() const;
 
         // Methods
     };

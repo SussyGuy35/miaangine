@@ -53,7 +53,23 @@ namespace mia
     }
     void PhysicsWorld::CollisionDetectionHandle()
     {
-        
+        for (Collider *lCollider : _colliders)
+        {
+            for (Collider *rCollider : _colliders)
+            {
+                if (lCollider == rCollider) continue;
+
+                bool result = (
+                    lCollider->minX() <= rCollider->maxX() &&
+                    lCollider->maxX() >= rCollider->minX() &&
+                    lCollider->minY() <= rCollider->maxY() &&
+                    lCollider->maxY() >= rCollider->minY()
+                );
+
+                lCollider->SetColliding(result);
+                rCollider->SetColliding(result);
+            }
+        }
     }
     #pragma endregion
 }

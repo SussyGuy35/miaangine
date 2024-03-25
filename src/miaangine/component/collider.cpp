@@ -32,6 +32,10 @@ namespace mia
     {
         return _offset;
     }
+    bool Collider::isColliding() const
+    {
+        return _isColliding;
+    }
 
     bool Collider::SetActive(bool newState)
     {
@@ -49,28 +53,28 @@ namespace mia
     {
         return _offset;
     }
+    bool Collider::SetColiding(bool newState)
+    {
+        return _isColliding = newState;
+    }
     #pragma endregion
 
     #pragma region Properties
-    Vector2<> Collider::minX() const
+    float Collider::minX() const
     {
         return _master->position().x; 
     }
-    Vector2<> Collider::maxX() const
+    float Collider::maxX() const
     {
         return _master->position().x + _offset.x;
     }
-    Vector2<> Collider::minY() const
+    float Collider::minY() const
     {
         return _master->position().y; 
     }
-    Vector2<> Collider::maxY() const
+    float Collider::maxY() const
     {
         return _master->position().y + _offset.y;
-    }
-    bool Collider::isColliding() const
-    {
-        return _isColliding;
     }
     #pragma endregion
 }

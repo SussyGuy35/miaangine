@@ -90,6 +90,16 @@ namespace mia
     #pragma region Component methods 
     Sprite& Object::InitSprite(Vector2<> scale, Vector2<> offset)
     {
+        if (_sprite != nullptr)
+        {
+            debug().Warning("[Object(%s)] Its [Sprite] already exist; Re-created. ", _name.c_str());
+
+            delete _sprite;
+            _sprite = new Sprite(this, scale, offset);
+
+            return *_sprite;
+        }
+
         _sprite = new Sprite(this, scale, offset);
 
         render().RegisterSprite(_sprite);
@@ -98,14 +108,34 @@ namespace mia
     }
     Sprite& Object::InitSprite(float sx, float sy, float ox, float oy)
     {
+        if (_sprite != nullptr)
+        {
+            debug().Warning("[Object(%s)] Its [Sprite] already exist; Re-created. ", _name.c_str());
+
+            delete _sprite;
+            _sprite = new Sprite(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
+
+            return *_sprite;
+        }
+
         _sprite = new Sprite(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
 
         render().RegisterSprite(_sprite);
 
         return *_sprite;
     }
-    Body& Object::InitBody(float mass, Vector2<> initForce) //FIXME add guard
+    Body& Object::InitBody(float mass, Vector2<> initForce)
     {
+        if (_body != nullptr)
+        {
+            debug().Warning("[Object(%s)] Its [Body] already exist; Re-created. ", _name.c_str());
+
+            delete _body;
+            _body = new Body(this, mass, initForce);
+
+            return *_body;
+        }
+
         _body = new Body(this, mass, initForce);
 
         physics().RegisterBody(_body);
@@ -114,6 +144,16 @@ namespace mia
     }
     Collider& Object::InitCollider(Vector2<> scale, Vector2<> offset)
     {
+        if (_collider != nullptr)
+        {
+            debug().Warning("[Object(%s)] Its [Collider] already exist; Re-created. ", _name.c_str());
+
+            delete _collider;
+            _collider = new Collider(this, scale, offset);
+
+            return *_collider;
+        }
+
         _collider = new Collider(this, scale, offset);
 
         physics().RegisterCollider(_collider);
@@ -122,6 +162,16 @@ namespace mia
     }
     Collider& Object::InitCollider(float sx, float sy, float ox, float oy)
     {
+        if (_collider != nullptr)
+        {
+            debug().Warning("[Object(%s)] Its [Collider] already exist; Re-created. ", _name.c_str());
+
+            delete _collider;
+            _collider = new Collider(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
+
+            return *_collider;
+        }
+
         _collider = new Collider(this, Vector2<>(sx, sy), Vector2<>(ox, oy));
 
         physics().RegisterCollider(_collider);

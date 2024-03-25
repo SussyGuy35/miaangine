@@ -4,6 +4,7 @@
 #include "tilemap-manager.hpp"
 
 #include <vector>
+#include <fstream> 
 
 namespace mia
 {
@@ -12,9 +13,28 @@ namespace mia
         friend class TilemapManager;
     
     public:
-        TilemapData(const char* dataDir = ""):
+        TilemapData():
+            _width(0),
+            _height(0),
+            _data(new int[0][0]),
+            _tileDirs(std::vector<const char*>())
+        {}
+        TilemapData(const char* dataDir):
         {
-            // TODO Read input from .txt
+            std::ifstream input;
+            input.open("dataDir");
+
+            if (!input.is_open()) throw;
+
+            input >> _width >> _height;
+            _data = new int[_width * _height]
+            for (int i = 0; i < _height; i++)
+            {
+                for (int j = 0; j < _width; j++)
+                {
+                    input >> _data[(_height - i - 1) * _width + j];
+                }
+            }
         }
 
         ~TilemapData()

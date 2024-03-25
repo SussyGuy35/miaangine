@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <fstream> 
+#include <string>
 
 namespace mia
 {
@@ -17,7 +18,7 @@ namespace mia
             _width(0),
             _height(0),
             _data(new int[0]),
-            _tileDirs(std::vector<const char*>())
+            _tileDirs(std::vector<std::string>())
         {}
 
         TilemapData(const char* dataDir)
@@ -36,12 +37,19 @@ namespace mia
                     input >> _data[(_height - i - 1) * _width + j];
                 }
             }
-        }
+
+            std::string temp;
+            while (getline(input, temp)) 
+            {
+                _tileDirs.push_back(temp);
+                temp.erase();
+            }
+        }   
 
         ~TilemapData()
         {
             delete _data;
-            for (const char* t : _tileDirs) delete t;
+            
             _tileDirs.clear();
         }
 
@@ -49,7 +57,7 @@ namespace mia
         // Attributes
         int _width, _height;
         int *_data;
-        std::vector<const char*> _tileDirs;
+        std::vector<std::string> _tileDirs;
 
     public:
         // Attributes accessing
@@ -67,7 +75,7 @@ namespace mia
         }
         const char* getDir(int index) const
         {
-            return _tileDirs[index];
+            return _tileDirs[index].c_str();
         }
     };
 }

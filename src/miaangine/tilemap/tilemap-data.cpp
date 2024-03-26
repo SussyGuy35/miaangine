@@ -9,6 +9,23 @@ namespace mia
         _data(new int[0]),
         _tileDirs(std::vector<std::string>())
     {}
+    TilemapLayout::TilemapLayout(const char* layoutDir)
+    {
+        std::ifstream input;
+        input.open(dataDir);
+
+        if (!input.is_open()) throw;
+
+        input >> _width >> _height;
+        _data = new int[_width * _height];
+        for (int i = 0; i < _height; i++)
+        {
+            for (int j = 0; j < _width; j++)
+            {
+                input >> _data[(_height - i - 1) * _width + j];
+            }
+        }
+    }   
 
     TilemapLayout::~TilemapLayout()
     {

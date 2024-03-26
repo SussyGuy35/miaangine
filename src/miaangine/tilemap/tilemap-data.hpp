@@ -9,19 +9,14 @@
 
 namespace mia
 {
-    class TilemapData
+    class TilemapLayout
     {
         friend class TilemapManager;
     
     public:
-        TilemapData():
-            _width(0),
-            _height(0),
-            _data(new int[0]),
-            _tileDirs(std::vector<std::string>())
-        {}
+        TilemapLayout();
 
-        TilemapData(const char* dataDir)
+        TilemapLayout(const char* dataDir)
         {
             std::ifstream input;
             input.open(dataDir);
@@ -46,12 +41,7 @@ namespace mia
             }
         }   
 
-        ~TilemapData()
-        {
-            delete _data;
-            
-            _tileDirs.clear();
-        }
+        ~TilemapLayout();
 
     private:
         // Attributes
@@ -61,22 +51,15 @@ namespace mia
 
     public:
         // Attributes accessing
-        int getWidth() const 
-        { 
-            return _width; 
-        }
-        int getHeight() const 
-        { 
-            return _height; 
-        }
-        int getData(int x, int y) const 
-        { 
-            return _data[x * _width + y]; 
-        }
-        const char* getDir(int index) const
-        {
-            return _tileDirs[index].c_str();
-        }
+        int getWidth() const;
+        int getHeight() const;
+        int getData(int x, int y) const;
+        const char* getDir(int index) const;
+    };
+
+    class TilemapPalette
+    {
+
     };
 }
 

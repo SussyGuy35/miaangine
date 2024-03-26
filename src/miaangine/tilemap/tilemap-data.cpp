@@ -6,8 +6,7 @@ namespace mia
     TilemapLayout::TilemapLayout():
         _width(0),
         _height(0),
-        _data(new int[0]),
-        _tileDirs(std::vector<std::string>())
+        _data(new int[0])
     {}
     TilemapLayout::TilemapLayout(const char* layoutDir)
     {
@@ -30,8 +29,6 @@ namespace mia
     TilemapLayout::~TilemapLayout()
     {
         delete _data;
-        
-        _tileDirs.clear();
     }
 
     int TilemapLayout::getWidth() const
@@ -53,5 +50,31 @@ namespace mia
     #pragma endregion
 
     #pragma region Palette
+    TilemapPalette::TilemapPalette():
+        _tileDirs(std::vector<std::string>())
+    {}
+    TilemapPalette::TilemapPalette(const char* layoutDir)
+    {
+        std::ifstream input;
+        input.open(dataDir);
+
+        if (!input.is_open()) throw;
+
+        std::string temp;
+        while (getline(input, temp))
+        {
+            _tileDirs.push_back(temp);
+        }
+    }
+
+    TilemapPalette::~TilemapPalette()
+    {
+        _tileDirs.clear();
+    }
+
+    const char* TilemapPalette::getDir(int index) const
+    {
+        return _tileDirs[index].c_str();
+    }
     #pragma endregion
 }

@@ -3,6 +3,7 @@
 
 #include "tilemap-manager.hpp"
 
+#include <SDL_image.h>
 #include <vector>
 #include <fstream> 
 #include <string>
@@ -11,8 +12,6 @@ namespace mia
 {
     class TilemapLayout
     {
-        friend class TilemapManager;
-    
     public:
         TilemapLayout();
         TilemapLayout(const char* layoutDir);
@@ -29,12 +28,14 @@ namespace mia
         int getWidth() const;
         int getHeight() const;
         int getData(int x, int y) const;
+
+        int setWidth(int value);
+        int setHeight(int value);
+        int setData(int x, int y, int value)
     };
 
     class TilemapPalette
     {
-        friend class TilemapManager;
-    
     public:
         TilemapPalette();
         TilemapPalette(const char* paletteDir);
@@ -44,10 +45,14 @@ namespace mia
     private:
         // Attributes
         std::vector<std::string> _tileDirs;
+        std::vector<SDL_Texture*> _textures;
 
     public:
         // Attributes accessing
         const char* getDir(int index) const;
+        const SDL_Texture& getTexture(int index);
+
+        SDL_Texture& setTexture(const char* dir);
     };
 }
 

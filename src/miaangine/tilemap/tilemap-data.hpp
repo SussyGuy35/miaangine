@@ -25,12 +25,12 @@ namespace mia
 
     public:
         // Attributes accessing
-        int getWidth() const;
-        int getHeight() const;
+        int width() const;
+        int height() const;
         int getData(int x, int y) const;
 
-        int setWidth(int value);
-        int setHeight(int value);
+        int width(int value);
+        int height(int value);
         int setData(int x, int y, int value);
     };
 
@@ -45,14 +45,13 @@ namespace mia
     private:
         // Attributes
         std::vector<std::string> _tileDirs;
-        std::vector<SDL_Texture*> _textures;
+        std::vector<SDL_Texture*> _tileTextures;
 
     public:
         // Attributes accessing
         const char* getDir(int index) const;
-        const SDL_Texture& getTexture(int index);
 
-        SDL_Texture& setTexture(const char* dir);
+        SDL_Texture* texture(int index);
     };
 }
 

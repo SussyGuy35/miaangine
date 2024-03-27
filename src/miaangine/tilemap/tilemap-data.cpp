@@ -31,17 +31,30 @@ namespace mia
         delete _data;
     }
 
-    int TilemapLayout::getWidth() const
+    int TilemapLayout::width() const
     { 
         return _width; 
     }
-    int TilemapLayout::getHeight() const 
+    int TilemapLayout::height() const 
     { 
         return _height; 
     }
     int TilemapLayout::getData(int x, int y) const 
     { 
         return _data[x * _width + y]; 
+    }
+
+    int TilemapLayout::width(int value)
+    {
+        _width = value;
+    }
+    int TilemapLayout::height(int value)
+    {
+        _height = value;
+    }
+    int TilemapLayout::setData(int x, int y, int value)
+    {
+        _data[x * _width + y] = value;
     }
     #pragma endregion
 
@@ -71,6 +84,11 @@ namespace mia
     const char* TilemapPalette::getDir(int index) const
     {
         return _tileDirs[index].c_str();
+    }
+
+    SDL_Texture* TilemapPalette::texture(int index)
+    {
+        return _tileTextures[index];
     }
     #pragma endregion
 }

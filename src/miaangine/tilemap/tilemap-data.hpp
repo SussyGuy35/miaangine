@@ -31,7 +31,7 @@ namespace mia
 
         int setWidth(int value);
         int setHeight(int value);
-        int setData(int x, int y, int value)
+        int setData(int x, int y, int value);
     };
 
     class TilemapPalette

@@ -12,9 +12,10 @@ set(CMAKE_CXX_STANDARD 14)
 # endif()
 
 # SDL
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
-find_package(SDL2 REQUIRED)
-find_package(SDL2_IMAGE REQUIRED)
+# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
+# find_package(SDL2 REQUIRED)
+# find_package(SDL2_IMAGE REQUIRED)
+set(SDL2_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL2/include" "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL2/include/SDL2")
 
 # EXECUTABLE
 file(GLOB_RECURSE SOURCES "src/demo/platformer/*.cpp") # <===== EDIT HERE =====

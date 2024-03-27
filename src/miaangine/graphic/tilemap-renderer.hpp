@@ -11,6 +11,13 @@
 
 namespace mia
 {
+    struct TilemapData
+    {
+        TilemapLayout *layout;
+        TilemapPalette *palette;
+        Vector2<> position;
+    };
+
     class TilemapRenderer : public Singleton<TilemapRenderer>
     {
     private:
@@ -19,17 +26,15 @@ namespace mia
         ~TilemapRenderer();
 
     private:
-        std::vector<TilemapLayout*> _tilemapLayouts;
-        std::vector<TilemapPalette*> _tilemapPalettes;
-        std::vector<Vector2<int>> _tilemapDatas;
+        std::vector<TilemapData> _tilemapData;
 
     public:
-        void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette);
+        void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette, const Vector2<> &position);
         // TODO
         void Render(SDL_Renderer *renderer);
 
     private:
-        void RenderATilemap(Vector2<int> data);
+        void RenderATilemap(TilemapData &data);
     };
 }
 

@@ -16,6 +16,11 @@ namespace mia
         TilemapLayout *layout;
         TilemapPalette *palette;
         Vector2<> position;
+        Vector2<> size;
+
+        TilemapData(TilemapLayout *layout, TilemapPalette *palette, const Vector2<> &position, const Vector2<> &size): 
+            layout(layout), palette(palette), position(position), size(size)
+        {}
     };
 
     class TilemapRenderer : public Singleton<TilemapRenderer>
@@ -29,12 +34,13 @@ namespace mia
         std::vector<TilemapData> _tilemapDatas;
 
     public:
-        void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette, const Vector2<> &position);
+        void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette, const Vector2<> &position, const Vector2<> &size);
         // TODO
         void Render(SDL_Renderer *renderer);
 
     private:
-        void RenderATilemap(TilemapData &data);
+        void RenderATilemap(SDL_Renderer *renderer, TilemapData &data);
+        void RenderATile(SDL_Renderer *renderer, SDL_Texture *texture, Vector2<> position, Vector2<> size);
     };
 }
 

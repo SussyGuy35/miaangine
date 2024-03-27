@@ -14,12 +14,12 @@ namespace mia
 
     int TilemapManager::AddTilemap(TilemapLayout *layout, TilemapPalette *palette)
     {
-        _tilemapList.push_back(std::make_pair<TilemapLayout*, TilemapPalette*>(layout, palette));
+        _tilemapList.push_back(std::make_pair(layout, palette));
     }
 
-    bool TilemapManager::Load(int index, Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::one())
+    bool TilemapManager::Load(int index, Vector2<> position, Vector2<> size)
     {
-        TilemapRenderer::Instance().RegisterTilemap(_tilemapList[index].first, _tilemapList[index].second, position, scale)
+        TilemapRenderer::Instance().RegisterTilemap(_tilemapList[index].first, _tilemapList[index].second, position, size);
     }
     bool TilemapManager::Load(int index, float px, float py, float sx, float sy)
     {

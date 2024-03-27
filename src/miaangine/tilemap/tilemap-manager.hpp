@@ -4,6 +4,7 @@
 #include "util/singleton.hpp"
 
 #include <vector>
+#include <utility>
 #include "util/math.hpp"
 
 #include "tilemap-data.hpp"
@@ -24,7 +25,7 @@ namespace mia
         int AddTilemap(TilemapLayout *layout, TilemapPalette *palette);
         // void RemoveTilemap(TilemapLayout* data); //TODO
 
-        bool Load(int index, Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::one());
+        bool Load(int index, Vector2<> position = Vector2<>::zero(), Vector2<> size = Vector2<>::one());
         bool Load(int index, float px, float py, float sx = 1, float sy = 1);
     };
 }

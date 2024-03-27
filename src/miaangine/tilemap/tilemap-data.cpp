@@ -1,5 +1,7 @@
 #include "tilemap-data.hpp"
 
+#include "core/engine-components.hpp"
+
 namespace mia
 {
     #pragma region Layout
@@ -59,8 +61,7 @@ namespace mia
     #pragma endregion
 
     #pragma region Palette
-    TilemapPalette::TilemapPalette():
-        _tileDirs(std::vector<std::string>())
+    TilemapPalette::TilemapPalette()
     {}
     TilemapPalette::TilemapPalette(const char* layoutDir)
     {
@@ -73,6 +74,7 @@ namespace mia
         while (getline(input, temp))
         {
             _tileDirs.push_back(temp);
+            _tileTextures.push_back(IMG_LoadTexture(generic().renderer, _tileDirs.back().c_str()));
         }
     }
 

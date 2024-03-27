@@ -26,7 +26,9 @@ int main(int argc, char *argv[])
     box->InitBody(1);
     box->InitCollider(1, 1);
 
-    TilemapLayout *tm = new TilemapLayout("D:/SDL/miaangine/asset/platformer/map01.txt");
+    // TilemapLayout *tm = new TilemapLayout("D:/SDL/miaangine/asset/platformer/map01.txt");
+    tilemap().AddTilemap(new TilemapLayout("D:/SDL/miaangine/asset/platformer/map-layout.txt"), new TilemapPalette("D:/SDL/miaangine/asset/platformer/map-palette.txt"));
+    tilemap().Load(0);
 
     while (true)
     {

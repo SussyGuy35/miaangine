@@ -25,7 +25,7 @@ namespace mia
         // void RemoveTilemap(TilemapLayout* data); //TODO
 
         bool Load(int index, Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::one());
-        bool Load(int index, float px, float py, float sx, float sy);
+        bool Load(int index, float px, float py, float sx = 1, float sy = 1);
     };
 }
 

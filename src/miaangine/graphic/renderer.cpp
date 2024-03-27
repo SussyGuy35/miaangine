@@ -3,7 +3,8 @@
 namespace mia
 {
     Renderer::Renderer():
-        _spriteHandle(SpriteRenderer::Instance())
+        _spriteHandle(SpriteRenderer::Instance()),
+        _tilemapHandle(TilemapRenderer::Instance())
     {}
 
     Renderer::~Renderer()
@@ -24,6 +25,7 @@ namespace mia
         SDL_RenderClear(renderer);
 
         _spriteHandle.Render(renderer);
+        _tilemapHandle.Render(renderer);
 
         SDL_RenderPresent(renderer);
     }

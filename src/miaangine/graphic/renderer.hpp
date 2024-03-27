@@ -4,6 +4,7 @@
 #include "util/singleton.hpp"
 
 #include "sprite-renderer.hpp"
+#include "tilemap-renderer.hpp"
 
 namespace mia
 {
@@ -16,6 +17,7 @@ namespace mia
     
     private:
         SpriteRenderer &_spriteHandle;
+        TilemapRenderer &_tilemapHandle;
 
     public:
         void RegisterSprite(Sprite *sprite);

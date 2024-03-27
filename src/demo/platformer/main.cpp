@@ -46,6 +46,8 @@ int main(int argc, char *argv[])
         if (box->collider().isColliding()) box->sprite().color() = {0, 255, 0, 255};
         else box->sprite().color() = {255, 255, 255, 255};
 
+        camera().position() -= Vector2<>(.001, .001);
+
         if (input().isQuit()) break;
 
         generic().Render();

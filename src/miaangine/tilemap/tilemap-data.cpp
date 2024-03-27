@@ -75,6 +75,11 @@ namespace mia
         {
             _tileDirs.push_back(temp);
             _tileTextures.push_back(IMG_LoadTexture(generic().renderer, _tileDirs.back().c_str()));
+
+            if (SDL_QueryTexture(_tileTextures.back(), NULL, NULL, NULL, NULL) != 0) 
+            {
+                debug().Error("[TilemapPalette] Failed to load texture {%s}. ", _tileDirs.back().c_str());
+            }
         }
     }
 
@@ -90,7 +95,12 @@ namespace mia
 
     SDL_Texture* TilemapPalette::texture(int index)
     {
-        return _tileTextures[index];
+        if (index > _tileTextures.size() || SDL_QueryTexture(_tileTextures[index - 1], NULL, NULL, NULL, NULL) != 0)
+        {
+            debug().Error("[TilemapPalette] Failed to load texture (%d). ", index);
+        }
+
+        return _tileTextures[index - 1];
     }
     #pragma endregion
 }

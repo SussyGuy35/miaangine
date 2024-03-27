@@ -49,7 +49,9 @@ namespace mia
         {
             for (int j = 0; j < width; j++)
             {
-                // RenderATile(renderer, palette->texture(layout->getData(i, j)), position + Vector2<>(size.x * j, size.y * i), size);
+                if (layout->getData(i, j) <= 0) continue;
+
+                RenderATile(renderer, palette->texture(layout->getData(i, j)), position + Vector2<>(size.x * j, size.y * i), size);
             }
         }
     }
@@ -59,8 +61,11 @@ namespace mia
 
         float unitSize = (generic().windowWidth / camera().size());
 
-        float displayW = 1.0 * size.x * unitSize / PIXEL_PER_UNIT;
-        float displayH = 1.0 * size.y * unitSize / PIXEL_PER_UNIT;
+        int w = 0, h = 0;
+        SDL_QueryTexture(texture, NULL, NULL, &w, &h);
+
+        float displayW = 1.0 * w * unitSize / PIXEL_PER_UNIT;
+        float displayH = 1.0 * h * unitSize / PIXEL_PER_UNIT;
         float displayX = (position.x - camera().position().x) * unitSize;
         float displayY = generic().windowHeight - displayH - (position.y - camera().position().y) * unitSize;
 

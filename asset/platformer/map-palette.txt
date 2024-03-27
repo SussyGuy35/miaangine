@@ -1,5 +1,4 @@
-abcd 
-efgh
-ij
-klm
-n
+D:\SDL\miaangine\asset\platformer\01.png
+D:\SDL\miaangine\asset\platformer\02.png
+D:\SDL\miaangine\asset\platformer\03.png
+D:\SDL\miaangine\asset\platformer\04.png

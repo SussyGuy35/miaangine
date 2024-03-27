@@ -3,19 +3,14 @@
 
 #include "util/singleton.hpp"
 
+#include <SDL.h>
+
 #include <vector>
 #include "util/math.hpp"
 #include "tilemap/tilemap-data.hpp"
 
 namespace mia
 {
-    struct TilemapHandle
-    {
-        Vector<int> position;
-        TilemapData data;
-        bool isRender = false;
-    };
-
     class TilemapRenderer : public Singleton<TilemapRenderer>
     {
     private:
@@ -24,13 +19,15 @@ namespace mia
         ~TilemapRenderer();
 
     private:
-        std::vector<TilemapHandle*> _tilemaps;
+        std::vector<TilemapLayout*> _tilemaps;
 
     public:
-        int AddTilemap(TilemapData& data);
-        bool LoadTilemap(int index);
+        void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette);
+        // TODO
+        void Render(SDL_Renderer *renderer);
 
-    
+    private:
+        void RenderATilemap(TilemapLayout &data);
     };
 }
 

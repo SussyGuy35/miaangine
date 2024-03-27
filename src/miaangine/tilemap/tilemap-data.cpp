@@ -11,7 +11,7 @@ namespace mia
     TilemapLayout::TilemapLayout(const char* layoutDir)
     {
         std::ifstream input;
-        input.open(dataDir);
+        input.open(layoutDir);
 
         if (!input.is_open()) throw;
 
@@ -43,10 +43,6 @@ namespace mia
     { 
         return _data[x * _width + y]; 
     }
-    const char* TilemapLayout::getDir(int index) const
-    {
-        return _tileDirs[index].c_str();
-    }
     #pragma endregion
 
     #pragma region Palette
@@ -56,7 +52,7 @@ namespace mia
     TilemapPalette::TilemapPalette(const char* layoutDir)
     {
         std::ifstream input;
-        input.open(dataDir);
+        input.open(layoutDir);
 
         if (!input.is_open()) throw;
 

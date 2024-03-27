@@ -4,10 +4,11 @@
 #include "util/singleton.hpp"
 
 #include <vector>
+#include "util/math.hpp"
 
 namespace mia
 {
-    class TilemapData;
+    class TilemapLayout;
 
     class TilemapManager : public Singleton<TilemapManager>
     {
@@ -17,11 +18,11 @@ namespace mia
         ~TilemapManager();
 
     private:
-        std::vector<TilemapData> _tilemapList;
+        std::vector<TilemapLayout> _tilemapList;
 
     public:
-        int AddTilemap(TilemapData* data);
-        void RemoveTilemap(TilemapData* data);
+        int AddTilemap(TilemapLayout* data);
+        void RemoveTilemap(TilemapLayout* data);
 
         bool Load(int index, Vector2<int> position = Vector2<int>::zero());
         bool Load(int index, int x, int y);

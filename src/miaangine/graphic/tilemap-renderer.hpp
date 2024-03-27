@@ -19,7 +19,9 @@ namespace mia
         ~TilemapRenderer();
 
     private:
-        std::vector<TilemapLayout*> _tilemaps;
+        std::vector<TilemapLayout*> _tilemapLayouts;
+        std::vector<TilemapPalette*> _tilemapPalettes;
+        std::vector<Vector2<int>> _tilemapDatas;
 
     public:
         void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette);
@@ -27,7 +29,7 @@ namespace mia
         void Render(SDL_Renderer *renderer);
 
     private:
-        void RenderATilemap(TilemapLayout &data);
+        void RenderATilemap(Vector2<int> data);
     };
 }
 

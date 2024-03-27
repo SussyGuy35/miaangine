@@ -6,10 +6,10 @@
 #include <vector>
 #include "util/math.hpp"
 
+#include "tilemap-data.hpp"
+
 namespace mia
 {
-    class TilemapLayout;
-
     class TilemapManager : public Singleton<TilemapManager>
     {
     private:
@@ -18,14 +18,14 @@ namespace mia
         ~TilemapManager();
 
     private:
-        std::vector<TilemapLayout> _tilemapList;
+        std::vector<std::pair<TilemapLayout*, TilemapPalette*>> _tilemapList;
 
     public:
-        int AddTilemap(TilemapLayout* data);
-        void RemoveTilemap(TilemapLayout* data);
+        int AddTilemap(TilemapLayout *layout, TilemapPalette *palette);
+        // void RemoveTilemap(TilemapLayout* data); //TODO
 
-        bool Load(int index, Vector2<int> position = Vector2<int>::zero());
-        bool Load(int index, int x, int y);
+        bool Load(int index, Vector2<> position = Vector2<>::zero(), Vector2<> scale = Vector2<>::one());
+        bool Load(int index, float px, float py, float sx, float sy);
     };
 }
 

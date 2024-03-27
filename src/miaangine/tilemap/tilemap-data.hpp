@@ -1,8 +1,6 @@
 #ifndef _MIA_TILEMAP_DATA_HPP
 #define _MIA_TILEMAP_DATA_HPP
 
-#include "tilemap-manager.hpp"
-
 #include <SDL_image.h>
 #include <vector>
 #include <fstream> 

@@ -26,7 +26,7 @@ namespace mia
         ~TilemapRenderer();
 
     private:
-        std::vector<TilemapData> _tilemapData;
+        std::vector<TilemapData> _tilemapDatas;
 
     public:
         void RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette, const Vector2<> &position);

@@ -18,9 +18,9 @@ namespace mia
     #pragma endregion
 
     #pragma region Registration methods
-    void TilemapRenderer::RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette)
+    void TilemapRenderer::RegisterTilemap(TilemapLayout *layout, TilemapPalette *palette, const Vector2<> &position)
     {
-        // _tilemaps.push_back(data); //TODO
+        _tilemapDatas.push_back({layout, palette, position});
     }
     // TODO
     #pragma endregion
@@ -28,11 +28,21 @@ namespace mia
     #pragma region Update methods
     void TilemapRenderer::Render(SDL_Renderer *renderer)
     {
-        
+        for (TilemapData &data : _tilemapDatas)
+        {
+            RenderATilemap(data);
+        }
     }
     #pragma endregion
 
     #pragma region Internal methods
+    void TilemapRenderer::RenderATilemap(TilemapData &data)
+    {
+        TilemapLayout *layout = data.layout; 
+        TilemapPalette *palette = data.palette; 
+        Vector2<> position = data.position;
 
+        //TODO
+    }
     #pragma endregion
 }

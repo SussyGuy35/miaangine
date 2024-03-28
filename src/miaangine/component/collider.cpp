@@ -36,6 +36,10 @@ namespace mia
     {
         return _isColliding;
     }
+    bool Collider::isDynamic() const 
+    {
+        return _dynamic;
+    }
 
     bool Collider::SetActive(bool newState)
     {
@@ -56,6 +60,10 @@ namespace mia
     bool Collider::SetColliding(bool newState)
     {
         return _isColliding = newState;
+    }
+    bool Collider::SetDynamic(bool newState)
+    {
+        return _dynamic = newState;
     }
     #pragma endregion
 

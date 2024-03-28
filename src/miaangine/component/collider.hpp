@@ -26,6 +26,8 @@ namespace mia
 
         bool _isColliding;
     
+        bool _dynamic;
+
     public:
         // Attributes accessing
         bool isActive() const;
@@ -33,12 +35,14 @@ namespace mia
         const Vector2<>& size() const;
         const Vector2<>& offset() const;
         bool isColliding() const;
+        bool isDynamic() const;
 
         bool SetActive(bool newState);
         Object& master();
         Vector2<>& size();
         Vector2<>& offset();
         bool SetColliding(bool newState);
+        bool SetDynamic(bool newState);
 
         // Properties
         float minX() const;

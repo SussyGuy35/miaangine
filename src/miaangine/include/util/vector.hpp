@@ -12,53 +12,70 @@ namespace mia
 		float x; 
 		float y;
 
-		constexpr v2f(float x = 0, float y = 0): 
+		inline v2f(float x = 0, float y = 0): 
 			x(x), y(y)
 		{}
 
 	public:
-		constexpr v2f& operator+=(const v2f& other)
+		inline v2f& operator+=(const v2f& other)
 		{
 			x += other.x;
 			y += other.y;
 			return *this;
 		}
-		constexpr v2f& operator-=(const v2f& other)
+		inline v2f& operator-=(const v2f& other)
 		{
 			x -= other.x;
 			y -= other.y;
 			return *this;
 		}
-		constexpr v2f& operator*=(const double& value)
+		inline v2f& operator*=(const double value)
 		{
 			x = static_cast<float>(value * x);
 			y = static_cast<float>(value * y);
 			return *this;
 		}
-		constexpr v2f& operator/=(const double& value)
+		inline v2f& operator/=(const double value)
 		{
 			x = static_cast<float>(value * x);
 			y = static_cast<float>(value * y);
 			return *this;
 		}
 
-		constexpr double Dot(const v2f& other) const
+		inline v2f operator+=(const v2f& other) const
+		{
+			return v2f(x + other.x, y + other.y);
+		}
+		inline v2f operator-=(const v2f& other) const
+		{
+			return v2f(x + other.x, y + other.y);
+		}
+		inline v2f operator*(const double value) const
+		{
+			return v2f(x * value, y * value); 
+		}
+		inline v2f operator/(const double value) const
+		{
+			return v2f(x / value, y / value); 
+		}
+
+		inline double dot(const v2f& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
-		constexpr double Cross(const v2f& other) const
+		inline double cross(const v2f& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
 
-		constexpr double Magnitude() const
+		inline double magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 		
-		constexpr v2f& Normalize()
+		inline v2f normalize()
 		{
-			return *this / Magnitude();
+			return *this / magnitude();
 		}
 
 		static const v2f& up() noexcept
@@ -92,86 +109,83 @@ namespace mia
 			return result;
 		}
 	};
-
-	constexpr v2f operator+(v2f& left, const v2f& right)
+	inline v2f operator*(double left, v2f right)
 	{
-		left += right;
-		return left;
-	}
-
-	constexpr v2f operator-(v2f& left, const v2f& right)
-	{
-		left -= right;
-		return left;
-	}
-
-	constexpr v2f operator*(v2f& left, const double& right)
-	{
-		left *= right;
-		return left;
-	}
-
-	constexpr v2f operator/(v2f& left, const double& right)
-	{
-		left /= right;
-		return left;
+		return v2f(right.x * left, right.y * left); 
 	}
 	#pragma endregion
 
 	#pragma region double_v2d
-	class v2d
+    class v2d
 	{
 	public:
 		double x; 
 		double y;
 
-		constexpr v2d(double x = 0, double y = 0): 
+		inline v2d(double x = 0, double y = 0): 
 			x(x), y(y)
 		{}
 
 	public:
-		constexpr v2d& operator+=(const v2d& other)
+		inline v2d& operator+=(const v2d& other)
 		{
 			x += other.x;
 			y += other.y;
 			return *this;
 		}
-		constexpr v2d& operator-=(const v2d& other)
+		inline v2d& operator-=(const v2d& other)
 		{
 			x -= other.x;
 			y -= other.y;
 			return *this;
 		}
-		constexpr v2d& operator*=(const double& value)
+		inline v2d& operator*=(const double value)
 		{
-			x = static_cast<double>(value * x);
-			y = static_cast<double>(value * y);
+			x = value * x;
+			y = value * y;
 			return *this;
 		}
-		constexpr v2d& operator/=(const double& value)
+		inline v2d& operator/=(const double value)
 		{
-			x = static_cast<double>(value * x);
-			y = static_cast<double>(value * y);
+			x = value * x;
+			y = value * y;
 			return *this;
 		}
 
-		constexpr double Dot(const v2d& other) const
+		inline v2d operator+=(const v2d& other) const
+		{
+			return v2d(x + other.x, y + other.y);
+		}
+		inline v2d operator-=(const v2d& other) const
+		{
+			return v2d(x + other.x, y + other.y);
+		}
+		inline v2d operator*(const double value) const
+		{
+			return v2d(x * value, y * value); 
+		}
+		inline v2d operator/(const double value) const
+		{
+			return v2d(x / value, y / value); 
+		}
+
+		inline double dot(const v2d& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
-		constexpr double Cross(const v2d& other) const
+		inline double cross(const v2d& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
 
-		constexpr double Magnitude() const
+		inline double magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 		
-		constexpr v2d& Normalize()
+		inline v2d normalize()
 		{
-			return *this / Magnitude();
+			return *this / magnitude();
 		}
 
 		static const v2d& up() noexcept
@@ -205,67 +219,64 @@ namespace mia
 			return result;
 		}
 	};
-
-	constexpr v2d operator+(v2d left, const v2d& right)
+	inline v2d operator*(double left, v2d right)
 	{
-		left += right;
-		return left;
-	}
-
-	constexpr v2d operator-(v2d left, const v2d& right)
-	{
-		left -= right;
-		return left;
-	}
-
-	constexpr v2d operator*(v2d left, const double& right)
-	{
-		left *= right;
-		return left;
-	}
-
-	constexpr v2d operator/(v2d left, const double& right)
-	{
-		left /= right;
-		return left;
+		return v2d(right.x * left, right.y * left); 
 	}
 	#pragma endregion
 
 	#pragma region int_v2i
-	class v2i
+    class v2i
 	{
 	public:
 		int x; 
 		int y;
 
-		constexpr v2i(int x = 0, int y = 0): 
+		inline v2i(int x = 0, int y = 0): 
 			x(x), y(y)
 		{}
 
 	public:
-		constexpr v2i& operator+=(const v2i& other)
+		inline v2i& operator+=(const v2i& other)
 		{
 			x += other.x;
 			y += other.y;
 			return *this;
 		}
-		constexpr v2i& operator-=(const v2i& other)
+		inline v2i& operator-=(const v2i& other)
 		{
 			x -= other.x;
 			y -= other.y;
 			return *this;
 		}
-		constexpr v2i& operator*=(const double& value)
+		inline v2i& operator*=(const int value)
 		{
-			x = static_cast<int>(value * x);
-			y = static_cast<int>(value * y);
+			x = value * x;
+			y = value * y;
 			return *this;
 		}
-		constexpr v2i& operator/=(const double& value)
+		inline v2i& operator/=(const int value)
 		{
-			x = static_cast<int>(value * x);
-			y = static_cast<int>(value * y);
+			x = value * x;
+			y = value * y;
 			return *this;
+		}
+
+		inline v2i operator+=(const v2i& other) const
+		{
+			return v2i(x + other.x, y + other.y);
+		}
+		inline v2i operator-=(const v2i& other) const
+		{
+			return v2i(x + other.x, y + other.y);
+		}
+		inline v2i operator*(const int value) const
+		{
+			return v2i(x * value, y * value); 
+		}
+		inline v2i operator/(const int value) const
+		{
+			return v2i(x / value, y / value); 
 		}
 
 		static const v2i& up() noexcept
@@ -299,29 +310,9 @@ namespace mia
 			return result;
 		}
 	};
-
-	constexpr v2i operator+(v2i left, const v2i& right)
+	inline v2i operator*(int left, v2i right)
 	{
-		left += right;
-		return left;
-	}
-
-	constexpr v2i operator-(v2i left, const v2i& right)
-	{
-		left -= right;
-		return left;
-	}
-
-	constexpr v2i operator*(v2i left, const double& right)
-	{
-		left *= right;
-		return left;
-	}
-
-	constexpr v2i operator/(v2i left, const double& right)
-	{
-		left /= right;
-		return left;
+		return v2i(right.x * left, right.y * left); 
 	}
 	#pragma endregion
 }

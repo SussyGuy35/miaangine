@@ -13,4 +13,13 @@
 
 #define SDL_MAIN_HANDLED
 #include "util/util.hpp"
+
+namespace mia
+{
+    const int WINDOW_WIDTH = 800;
+    const int WINDOW_HEIGHT = 600;
+
+    const int PPU = 16;
+}
+
 #endif

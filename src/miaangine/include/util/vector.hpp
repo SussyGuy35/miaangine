@@ -12,51 +12,51 @@ namespace mia
 		float x; 
 		float y;
 
-		constexpr v2f(float x = 0, float y = 0) noexcept: 
+		constexpr v2f(float x = 0, float y = 0): 
 			x(x), y(y)
 		{}
 
 	public:
-		constexpr v2f& operator+=(const v2f& other) noexcept
+		constexpr v2f& operator+=(const v2f& other)
 		{
 			x += other.x;
 			y += other.y;
 			return *this;
 		}
-		constexpr v2f& operator-=(const v2f& other) noexcept
+		constexpr v2f& operator-=(const v2f& other)
 		{
 			x -= other.x;
 			y -= other.y;
 			return *this;
 		}
-		constexpr v2f& operator*=(const double& value) noexcept
+		constexpr v2f& operator*=(const double& value)
 		{
 			x = static_cast<float>(value * x);
 			y = static_cast<float>(value * y);
 			return *this;
 		}
-		constexpr v2f& operator/=(const double& value) noexcept
+		constexpr v2f& operator/=(const double& value)
 		{
 			x = static_cast<float>(value * x);
 			y = static_cast<float>(value * y);
 			return *this;
 		}
 
-		constexpr double Dot(const v2f& other) const noexcept
+		constexpr double Dot(const v2f& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
-		constexpr double Cross(const v2f& other) const noexcept
+		constexpr double Cross(const v2f& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
 
-		constexpr double Magnitude() const noexcept
+		constexpr double Magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 		
-		constexpr v2f& Normalize() const noexcept
+		constexpr v2f& Normalize() const
 		{
 			return *this / Magnitude();
 		}
@@ -93,25 +93,25 @@ namespace mia
 		}
 	};
 
-	constexpr v2f operator+(v2f left, const v2f& right) noexcept
+	constexpr v2f operator+(v2f left, const v2f& right)
 	{
 		left += right;
 		return left;
 	}
 
-	constexpr v2f operator-(v2f left, const v2f& right) noexcept
+	constexpr v2f operator-(v2f left, const v2f& right)
 	{
 		left -= right;
 		return left;
 	}
 
-	constexpr v2f operator*(v2f left, const double& right) noexcept
+	constexpr v2f operator*(v2f left, const double& right)
 	{
 		left *= right;
 		return left;
 	}
 
-	constexpr v2f operator/(v2f left, const double& right) noexcept
+	constexpr v2f operator/(v2f left, const double& right)
 	{
 		left /= right;
 		return left;
@@ -125,51 +125,51 @@ namespace mia
 		double x; 
 		double y;
 
-		constexpr v2d(double x = 0, double y = 0) noexcept: 
+		constexpr v2d(double x = 0, double y = 0): 
 			x(x), y(y)
 		{}
 
 	public:
-		constexpr v2d& operator+=(const v2d& other) noexcept
+		constexpr v2d& operator+=(const v2d& other)
 		{
 			x += other.x;
 			y += other.y;
 			return *this;
 		}
-		constexpr v2d& operator-=(const v2d& other) noexcept
+		constexpr v2d& operator-=(const v2d& other)
 		{
 			x -= other.x;
 			y -= other.y;
 			return *this;
 		}
-		constexpr v2d& operator*=(const double& value) noexcept
+		constexpr v2d& operator*=(const double& value)
 		{
 			x = static_cast<double>(value * x);
 			y = static_cast<double>(value * y);
 			return *this;
 		}
-		constexpr v2d& operator/=(const double& value) noexcept
+		constexpr v2d& operator/=(const double& value)
 		{
 			x = static_cast<double>(value * x);
 			y = static_cast<double>(value * y);
 			return *this;
 		}
 
-		constexpr double Dot(const v2d& other) const noexcept
+		constexpr double Dot(const v2d& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
-		constexpr double Cross(const v2d& other) const noexcept
+		constexpr double Cross(const v2d& other) const
 		{
 			return (x * other.x) + (y * other.y);
 		}
 
-		constexpr double Magnitude() const noexcept
+		constexpr double Magnitude() const
 		{
 			return sqrt(x * x + y * y);
 		}
 		
-		constexpr v2d& Normalize() const noexcept
+		constexpr v2d& Normalize() const
 		{
 			return *this / Magnitude();
 		}
@@ -206,25 +206,25 @@ namespace mia
 		}
 	};
 
-	constexpr v2d operator+(v2d left, const v2d& right) noexcept
+	constexpr v2d operator+(v2d left, const v2d& right)
 	{
 		left += right;
 		return left;
 	}
 
-	constexpr v2d operator-(v2d left, const v2d& right) noexcept
+	constexpr v2d operator-(v2d left, const v2d& right)
 	{
 		left -= right;
 		return left;
 	}
 
-	constexpr v2d operator*(v2d left, const double& right) noexcept
+	constexpr v2d operator*(v2d left, const double& right)
 	{
 		left *= right;
 		return left;
 	}
 
-	constexpr v2d operator/(v2d left, const double& right) noexcept
+	constexpr v2d operator/(v2d left, const double& right)
 	{
 		left /= right;
 		return left;
@@ -238,30 +238,30 @@ namespace mia
 		int x; 
 		int y;
 
-		constexpr v2i(int x = 0, int y = 0) noexcept: 
+		constexpr v2i(int x = 0, int y = 0): 
 			x(x), y(y)
 		{}
 
 	public:
-		constexpr v2i& operator+=(const v2i& other) noexcept
+		constexpr v2i& operator+=(const v2i& other)
 		{
 			x += other.x;
 			y += other.y;
 			return *this;
 		}
-		constexpr v2i& operator-=(const v2i& other) noexcept
+		constexpr v2i& operator-=(const v2i& other)
 		{
 			x -= other.x;
 			y -= other.y;
 			return *this;
 		}
-		constexpr v2i& operator*=(const double& value) noexcept
+		constexpr v2i& operator*=(const double& value)
 		{
 			x = static_cast<int>(value * x);
 			y = static_cast<int>(value * y);
 			return *this;
 		}
-		constexpr v2i& operator/=(const double& value) noexcept
+		constexpr v2i& operator/=(const double& value)
 		{
 			x = static_cast<int>(value * x);
 			y = static_cast<int>(value * y);
@@ -300,25 +300,25 @@ namespace mia
 		}
 	};
 
-	constexpr v2i operator+(v2i left, const v2i& right) noexcept
+	constexpr v2i operator+(v2i left, const v2i& right)
 	{
 		left += right;
 		return left;
 	}
 
-	constexpr v2i operator-(v2i left, const v2i& right) noexcept
+	constexpr v2i operator-(v2i left, const v2i& right)
 	{
 		left -= right;
 		return left;
 	}
 
-	constexpr v2i operator*(v2i left, const double& right) noexcept
+	constexpr v2i operator*(v2i left, const double& right)
 	{
 		left *= right;
 		return left;
 	}
 
-	constexpr v2i operator/(v2i left, const double& right) noexcept
+	constexpr v2i operator/(v2i left, const double& right)
 	{
 		left /= right;
 		return left;

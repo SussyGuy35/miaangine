@@ -1,23 +1,37 @@
 #ifndef _MIA_ENTITY_HPP
 #define _MIA_ENTITY_HPP
 
+#include "util/util.hpp"
+
 namespace mia
 {
     class Entity
     {
     public:
-        int ID;
-        bool active;
-
-        Entity():
-            ID(0),
-            active(false)
-        {}
-        
-        virtual ~Entity()
+        Entity(int ID = EntityID::None):
+            _ID(ID)
         {}
 
-        virtual void ToString() = 0;
+        ~Entity()
+        {}
+
+    protected:
+        int _ID;
+
+    public:
+        virtual int getID() const
+        {
+            return _ID;
+        }
+
+        virtual mia::string ToStr() = 0;
+    };
+
+    enum EntityID
+    {
+        None = -1,
+        Entity = 0
+        //TODO
     };
 }
 

@@ -35,12 +35,16 @@ namespace mia
             strcpy(val, other.val);
             len = other.len;
         }
-
         string(string&& other) noexcept
         {
             val = other.val;
             len = other.len;
             other.val = nullptr;
+        }
+
+        ~string()
+        {
+            delete val;
         }
 
         operator const char* () const

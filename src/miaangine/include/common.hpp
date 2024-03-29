@@ -12,5 +12,5 @@
 #include <memory>
 
 #define SDL_MAIN_HANDLED
-
+#include "util/util.hpp"
 #endif

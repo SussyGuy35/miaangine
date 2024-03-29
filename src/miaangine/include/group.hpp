@@ -1,8 +1,8 @@
 #ifndef _MIA_GROUP_HPP
 #define _MIA_GROUP_HPP
 
-#include "Common.hpp"
-#include "Entity.hpp"
+#include "common.hpp"
+#include "entity.hpp"
 
 namespace mia
 {

@@ -5,7 +5,7 @@ namespace mia
 {
     class Component
     {
-
+        
     };
 }
 

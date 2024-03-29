@@ -8,7 +8,7 @@ namespace mia
     class Object : public Entity
     {
     public:
-        Object(); //TODO add constructor
+        Object(); //TODO constructor
         ~Object();
 
     private:
@@ -19,7 +19,7 @@ namespace mia
         int scene;
 
     public:
-        const mia::string& name() const;
+        mia::string name() const;
         bool isActive() const;
         uint32_t getTag() const;
         const Object* parent() const;

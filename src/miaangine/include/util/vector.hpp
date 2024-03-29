@@ -56,62 +56,62 @@ namespace mia
 			return sqrt(x * x + y * y);
 		}
 		
-		constexpr v2f& Normalize() const
+		constexpr v2f& Normalize()
 		{
 			return *this / Magnitude();
 		}
 
-		static const v2f& up()
+		static const v2f& up() noexcept
 		{
 			static const v2f result(0, 1);
 			return result;
 		}
-		static const v2f& down()
+		static const v2f& down() noexcept
 		{
 			static const v2f result(0, -1);
 			return result;
 		}
-		static const v2f& right()
+		static const v2f& right() noexcept
 		{
 			static const v2f result(1, 0);
 			return result;
 		}
-		static const v2f& left()
+		static const v2f& left() noexcept
 		{
 			static const v2f result(-1, 0);
 			return result;
 		}
-		static const v2f& zero()
+		static const v2f& zero() noexcept
 		{
 			static const v2f result(0, 0);
 			return result;
 		}
-		static const v2f& one()
+		static const v2f& one() noexcept
 		{
 			static const v2f result(1, 1);
 			return result;
 		}
 	};
 
-	constexpr v2f operator+(v2f left, const v2f& right)
+	constexpr v2f operator+(v2f& left, const v2f& right)
 	{
 		left += right;
 		return left;
 	}
 
-	constexpr v2f operator-(v2f left, const v2f& right)
+	constexpr v2f operator-(v2f& left, const v2f& right)
 	{
 		left -= right;
 		return left;
 	}
 
-	constexpr v2f operator*(v2f left, const double& right)
+	constexpr v2f operator*(v2f& left, const double& right)
 	{
 		left *= right;
 		return left;
 	}
 
-	constexpr v2f operator/(v2f left, const double& right)
+	constexpr v2f operator/(v2f& left, const double& right)
 	{
 		left /= right;
 		return left;
@@ -169,37 +169,37 @@ namespace mia
 			return sqrt(x * x + y * y);
 		}
 		
-		constexpr v2d& Normalize() const
+		constexpr v2d& Normalize()
 		{
 			return *this / Magnitude();
 		}
 
-		static const v2d& up()
+		static const v2d& up() noexcept
 		{
 			static const v2d result(0, 1);
 			return result;
 		}
-		static const v2d& down()
+		static const v2d& down() noexcept
 		{
 			static const v2d result(0, -1);
 			return result;
 		}
-		static const v2d& right()
+		static const v2d& right() noexcept
 		{
 			static const v2d result(1, 0);
 			return result;
 		}
-		static const v2d& left()
+		static const v2d& left() noexcept
 		{
 			static const v2d result(-1, 0);
 			return result;
 		}
-		static const v2d& zero()
+		static const v2d& zero() noexcept
 		{
 			static const v2d result(0, 0);
 			return result;
 		}
-		static const v2d& one()
+		static const v2d& one() noexcept
 		{
 			static const v2d result(1, 1);
 			return result;
@@ -268,32 +268,32 @@ namespace mia
 			return *this;
 		}
 
-		static const v2i& up()
+		static const v2i& up() noexcept
 		{
 			static const v2i result(0, 1);
 			return result;
 		}
-		static const v2i& down()
+		static const v2i& down() noexcept
 		{
 			static const v2i result(0, -1);
 			return result;
 		}
-		static const v2i& right()
+		static const v2i& right() noexcept
 		{
 			static const v2i result(1, 0);
 			return result;
 		}
-		static const v2i& left()
+		static const v2i& left() noexcept
 		{
 			static const v2i result(-1, 0);
 			return result;
 		}
-		static const v2i& zero()
+		static const v2i& zero() noexcept
 		{
 			static const v2i result(0, 0);
 			return result;
 		}
-		static const v2i& one()
+		static const v2i& one() noexcept
 		{
 			static const v2i result(1, 1);
 			return result;

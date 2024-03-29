@@ -15,7 +15,7 @@ namespace mia
         size_t len;
 
     public:
-        string(const char *value)
+        string(const char *value = "")
         {
             if (value == nullptr)
             {
@@ -29,14 +29,32 @@ namespace mia
             strcpy(val, value);
         }
 
-        // operator const char* () const
-        // {
-        //     return val;
-        // }
+        string(const string& other) 
+        {
+            val = (char*)malloc(other.len + 1);
+            strcpy(val, other.val);
+            len = other.len;
+        }
+
+        string(string&& other) noexcept
+        {
+            val = other.val;
+            len = other.len;
+            other.val = nullptr;
+        }
+
+        operator const char* () const
+        {
+            return val;
+        }
         const char* str() const 
         {
             return val;
 	    }
+        int length() const
+        {
+            return len;
+        }
 
         bool empty() const
         {
@@ -60,8 +78,8 @@ namespace mia
         {
             return strcmp(val, value) != 0;
         }
-	
-        const char* operator+=(const char* value) //TODO
+
+        const char* operator+=(const char* value)
         {
             size_t valueLen = strlen(value);
             size_t newLen = len + valueLen;
@@ -69,11 +87,31 @@ namespace mia
             char* newStr = (char*)malloc(newLen);
             memcpy(newStr, val, len + 1);
             memcpy(&newStr[len], value, valueLen);
+            
+            delete val;
+
             val = newStr;
-            
             val[newLen] = '\0';
-            
             len = newLen;
+
+            return val;
+        }
+        const char* append(const char* value)
+        {
+            size_t valueLen = strlen(value);
+            size_t newLen = len + valueLen;
+
+            char* newStr = (char*)malloc(newLen);
+            memcpy(newStr, val, len + 1);
+            memcpy(&newStr[len], value, valueLen);
+            
+            delete val;
+            
+            val = newStr;
+            val[newLen] = '\0';
+            len = newLen;
+
+            return val;
         }
     };
 }

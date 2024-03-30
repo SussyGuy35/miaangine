@@ -7,7 +7,7 @@ namespace mia
 {
     class Transform : public Object
     {
-    public:
+    protected:
     #pragma region Contructor Destructor
         Transform(); //TODO constructor
         virtual ~Transform();

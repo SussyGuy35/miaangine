@@ -9,7 +9,7 @@ namespace mia
 
     class Object : public Entity
     {
-    public:
+    protected:
     #pragma region Contructor Destructor
         Object(mia::string name = "unnamed");
         virtual ~Object();

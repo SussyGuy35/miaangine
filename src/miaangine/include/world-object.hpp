@@ -15,8 +15,6 @@ namespace mia
 
     private:
     #pragma region Attribute
-        mia::v2f _localPos;
-        float _scale;
     #pragma endregion
 
     public:

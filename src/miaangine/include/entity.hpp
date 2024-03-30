@@ -7,16 +7,16 @@ namespace mia
 {
     enum EntityID
     {
-        ENTITY_NONE = -1,
-        ENTITY_ENTITY = 0,
-        ENTITY_OBJECT
+        _ENTITY_NONE = -1,
+        _ENTITY_ENTITY = 0,
+        _ENTITY_OBJECT
         //TODO
     };
 
     class Entity
     {
     public:
-        Entity(int ID = ENTITY_ENTITY):
+        Entity(int ID = _ENTITY_ENTITY):
             _ID(ID)
         {}
 

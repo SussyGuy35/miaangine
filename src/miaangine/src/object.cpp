@@ -4,7 +4,7 @@ namespace mia
 {
 #pragma region Contructor Destructor
     Object::Object(const char *name):
-        Entity(ENTITY_OBJECT),
+        Entity(_ENTITY_OBJECT),
         _name(name),
         _active(true),
         _scene(-1) //TODO scene

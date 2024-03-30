@@ -3,8 +3,8 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    WorldObject::WorldObject(const char *name, mia::v2f position, float scale):
-        Transform(name, position, scale)
+    WorldObject::WorldObject(const char *name, mia::v2f position, float scale, Transform* parent):
+        Transform(name, position, scale, parent)
     {}
 
     WorldObject::~WorldObject()

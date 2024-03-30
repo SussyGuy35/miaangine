@@ -9,7 +9,7 @@ namespace mia
     {
     #pragma region Contructor Destructor
     public:
-        WorldObject(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1);
+        WorldObject(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1, Transform* parent = nullptr);
         ~WorldObject();
     #pragma endregion
 

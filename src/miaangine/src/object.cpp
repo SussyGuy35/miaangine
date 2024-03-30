@@ -2,17 +2,20 @@
 
 namespace mia
 {
+#pragma region Contructor Destructor
     Object::Object(mia::string name):
         Entity(ENTITY_OBJECT),
         _name(name),
         _active(true),
         _parent(nullptr),
-        _scene(-1) //TODO
+        _scene(-1) //TODO scene
     {}
 
     Object::~Object()
     {}
+#pragma endregion
 
+#pragma region Get-method
     mia::string Object::name() const 
     {
         return _name;
@@ -34,7 +37,9 @@ namespace mia
     {
         return _scene;
     }
+#pragma endregion
 
+#pragma region Set-method
     mia::string& Object::name()
     {
         return _name;
@@ -44,7 +49,9 @@ namespace mia
         // TODO add warn null
         return _parent;
     }
+#pragma endregion
 
+#pragma region Public method
     bool Object::SetActive(bool newState)
     {
         _active = newState;
@@ -62,9 +69,12 @@ namespace mia
     {
         _tag &= ~(1 << tag);
     }
+#pragma endregion
 
+#pragma region Inherited method
     mia::string Object::ToStr() 
     {
         return mia::string("Object");
     }
+#pragma endregion
 }

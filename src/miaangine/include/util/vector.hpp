@@ -42,11 +42,11 @@ namespace mia
 			return *this;
 		}
 
-		inline v2f operator+=(const v2f& other) const
+		inline v2f operator+(const v2f& other) const
 		{
 			return v2f(x + other.x, y + other.y);
 		}
-		inline v2f operator-=(const v2f& other) const
+		inline v2f operator-(const v2f& other) const
 		{
 			return v2f(x + other.x, y + other.y);
 		}
@@ -152,11 +152,11 @@ namespace mia
 			return *this;
 		}
 
-		inline v2d operator+=(const v2d& other) const
+		inline v2d operator+(const v2d& other) const
 		{
 			return v2d(x + other.x, y + other.y);
 		}
-		inline v2d operator-=(const v2d& other) const
+		inline v2d operator-(const v2d& other) const
 		{
 			return v2d(x + other.x, y + other.y);
 		}
@@ -262,11 +262,11 @@ namespace mia
 			return *this;
 		}
 
-		inline v2i operator+=(const v2i& other) const
+		inline v2i operator+(const v2i& other) const
 		{
 			return v2i(x + other.x, y + other.y);
 		}
-		inline v2i operator-=(const v2i& other) const
+		inline v2i operator-(const v2i& other) const
 		{
 			return v2i(x + other.x, y + other.y);
 		}

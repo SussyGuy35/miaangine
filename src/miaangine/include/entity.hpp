@@ -32,7 +32,7 @@ namespace mia
             return _ID;
         }
 
-        virtual mia::string ToStr() = 0;
+        virtual const char* ToStr() const = 0;
     };
 }
 

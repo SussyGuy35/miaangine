@@ -15,7 +15,7 @@ namespace mia
         ~Object();
     #pragma endregion
 
-    private:
+    protected:
     #pragma region Attribute
         mia::string _name;
         bool _active;
@@ -46,7 +46,7 @@ namespace mia
     #pragma endregion
 
     #pragma region Inherited method
-        mia::string ToStr() override;
+        const char* ToStr() const override;
     #pragma endregion
     };
 }

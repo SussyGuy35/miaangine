@@ -9,14 +9,15 @@ namespace mia
 
     class Object : public Entity
     {
-    protected:
     #pragma region Contructor Destructor
+    protected:
         Object(mia::string name = "unnamed");
+    public:
         virtual ~Object();
     #pragma endregion
 
-    protected:
     #pragma region Attribute
+    protected:
         mia::string _name;
         bool _active;
         uint32_t _tag;
@@ -24,8 +25,8 @@ namespace mia
         int _scene;
     #pragma endregion
 
-    public:
     #pragma region Get-method
+    public:
         mia::string name() const;
         bool isActive() const;
         uint32_t getTag() const;
@@ -34,11 +35,13 @@ namespace mia
     #pragma endregion
 
     #pragma region Set-method
+    public:
         mia::string& name();
         Object* parent();
     #pragma endregion
 
     #pragma region Public method
+    public:
         bool SetActive(bool newState);
         bool IsContainTag(int tag);
         uint32_t AddTag(int tag);
@@ -46,6 +49,7 @@ namespace mia
     #pragma endregion
 
     #pragma region Inherited method
+    public:
         const char* ToStr() const override;
     #pragma endregion
     };

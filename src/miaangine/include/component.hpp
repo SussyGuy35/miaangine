@@ -7,30 +7,33 @@ namespace mia
 {
     class mia::Component : public Entity
     {
-    public:
     #pragma region Contructor Destructor
+    protected:
         Component();
+    public:
         virtual ~Component();
     #pragma endregion
 
-    protected:
     #pragma region Attribute
+    protected:
         bool _active;
         Object *_master;
     #pragma endregion
 
-    public:
     #pragma region Get-method
+    public:
         bool isActive() const;
         const Object* master() const;
     #pragma endregion
 
     #pragma region Set-method
+    public:
         bool SetActive();
         Object* SetMaster();
     #pragma endregion
 
     #pragma region Inherited method
+    public:
         const char* ToStr() const override;
     #pragma endregion
     };

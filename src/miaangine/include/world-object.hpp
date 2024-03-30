@@ -7,18 +7,18 @@ namespace mia
 {
     class WorldObject : public Transform
     {
-    public:
     #pragma region Contructor Destructor
+    public:
         WorldObject(); //TODO constructor
         ~WorldObject();
     #pragma endregion
 
-    private:
     #pragma region Attribute
+    private:
     #pragma endregion
 
-    public:
     #pragma region Inherited method
+    public:
         mia::v2f GetScreenPosition() const override;
     #pragma endregion
     };

@@ -7,32 +7,35 @@ namespace mia
 {
     class Transform : public Object
     {
-    protected:
     #pragma region Contructor Destructor
+    protected:
         Transform(); //TODO constructor
+    public:
         virtual ~Transform();
     #pragma endregion
 
-    private:
     #pragma region Attribute
+    private:
         mia::v2f _localPos;
         float _scale;
     #pragma endregion
 
-    public:
     #pragma region Get-method
+    public:
         mia::v2f localPosition() const;
         mia::v2f globalPosition() const;
         float scale() const;
     #pragma endregion
 
     #pragma region Set-method
+    public:
         mia::v2f& localPosition();
         mia::v2f& globalPosition();
         float& scale();
     #pragma endregion
 
     #pragma region Public method
+    public:
         virtual mia::v2f GetScreenPosition() const;
     #pragma endregion
     };

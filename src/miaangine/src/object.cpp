@@ -72,7 +72,7 @@ namespace mia
 #pragma endregion
 
 #pragma region Inherited method
-    mia::string Object::ToStr() 
+    const char* Object::ToStr() const
     {
         return mia::string("Object");
     }

@@ -1,6 +1,7 @@
 #ifndef _MIAANGINE__
 #define _MIAANGINE__
 
-#include "include/common.hpp"
+#include "common.hpp"
+#include "game.hpp"
 
 #endif

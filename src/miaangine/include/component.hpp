@@ -7,9 +7,8 @@ namespace mia
 {
     class mia::Component : public Entity
     {
-    protected:
-        Component();
     public:
+        Component();
         virtual ~Component();
 
     protected:
@@ -20,8 +19,8 @@ namespace mia
         bool isActive() const;
         const Object* master() const;
 
-        bool SetActive();
-        Object* SetMaster();
+        bool SetActive(bool newState);
+        Object* SetMaster(Object* newMaster);
 
     public:
         const char* ToStr() const override;

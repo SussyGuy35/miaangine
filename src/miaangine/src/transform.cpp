@@ -3,11 +3,11 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Transform::Transform(const char *name, mia::v2f position, float scale):
+    Transform::Transform(const char *name, mia::v2f position, float scale, Transform* parent):
         Object(name),
-        _localPos(position),
+        _position(position),
         _scale(scale),
-        _parent(nullptr)
+        _parent(parent)
     {}
 
     Transform::~Transform()
@@ -15,15 +15,13 @@ namespace mia
 #pragma endregion
 
 #pragma region Get-method
-    mia::v2f Transform::localPosition() const 
+    mia::v2f Transform::position() const 
     {
-        return _scale;
+        return _position;
     }
-    mia::v2f Transform::globalPosition() const
+    mia::v2f Transform::localPosition() const
     {
-        if (!_parent) return _localPos;
-
-        return _parent->globalPosition() + _localPos;
+        return _position - _parent->_position;
     }
     float Transform::scale() const 
     {
@@ -37,17 +35,13 @@ namespace mia
 #pragma endregion
 
 #pragma region Set-method
-    mia::v2f& Transform::localPosition()
+    mia::v2f& Transform::position()
     {
-        return _localPos;
+        return _position;
     }
-    mia::v2f Transform::SetGlobalPosition(mia::v2f newPosition)
+    mia::v2f Transform::SetLocalPosition(mia::v2f newPosition)
     {
-        // TODO
-
-        if (!_parent) return _localPos;
-
-        return _parent->globalPosition() + _localPos;
+        return _position = _parent->_position + newPosition;
     }
     float& Transform::scale()
     {

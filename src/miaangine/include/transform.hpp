@@ -31,8 +31,8 @@ namespace mia
 
     #pragma region Set-method
     public:
-        mia::v2f position();
-        mia::v2f& SetLocalPosition(mia::v2f newPosition);
+        mia::v2f& position();
+        mia::v2f SetLocalPosition(mia::v2f newPosition);
         float& scale();
         Transform* parent();
     #pragma endregion

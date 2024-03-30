@@ -14,7 +14,7 @@ namespace mia
     {}
 #pragma endregion
 
-#pragma region Get-method
+#pragma region GetSet-method
     mia::string Object::name() const 
     {
         return _name;
@@ -31,9 +31,7 @@ namespace mia
     {
         return _scene;
     }
-#pragma endregion
-
-#pragma region Set-method
+    
     mia::string& Object::name()
     {
         return _name;

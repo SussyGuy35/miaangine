@@ -14,7 +14,7 @@ namespace mia
     {}
 #pragma endregion
 
-#pragma region Get-method
+#pragma region GetSet-method
     mia::v2f Transform::position() const 
     {
         return _position;
@@ -32,9 +32,7 @@ namespace mia
         // TODO safety
         return _parent;
     }
-#pragma endregion
 
-#pragma region Set-method
     mia::v2f& Transform::position()
     {
         return _position;
@@ -52,9 +50,6 @@ namespace mia
         // TODO safety
         return _parent;
     }
-#pragma endregion
-
-#pragma region Public method
 #pragma endregion
 
 #pragma region Inherited method

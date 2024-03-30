@@ -24,14 +24,16 @@ namespace mia
     #pragma endregion
 
     #pragma region Public method
+    public:
         void Update();
 
-        bool GetKey(int key) const;
-        bool GetKeyDown(int key) const;
-        bool GetKeyUp(int key) const;
+        bool getKey(int key) const;
+        bool getKeyDown(int key) const;
+        bool getKeyUp(int key) const;
     #pragma endregion
 
     #pragma region Private method
+    private:
         void UpdateKeyInputEvent();
     #pragma endregion
     };

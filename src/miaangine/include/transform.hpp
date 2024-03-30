@@ -8,9 +8,8 @@ namespace mia
     class Transform : public Object
     {
     #pragma region Contructor Destructor
-    protected:
-        Transform(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1, Transform* parent = nullptr);
     public:
+        Transform(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1, Transform* parent = nullptr);
         virtual ~Transform();
     #pragma endregion
 

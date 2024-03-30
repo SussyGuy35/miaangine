@@ -10,9 +10,8 @@ namespace mia
     class Object : public Entity
     {
     #pragma region Contructor Destructor
-    protected:
-        Object(const char *name = "unnamed");
     public:
+        Object(const char *name = "unnamed");
         virtual ~Object();
     #pragma endregion
 

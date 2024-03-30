@@ -9,7 +9,7 @@ namespace mia
     {
     #pragma region Contructor Destructor
     protected:
-        Transform(); //TODO constructor
+        Transform(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1);
     public:
         virtual ~Transform();
     #pragma endregion
@@ -36,8 +36,12 @@ namespace mia
 
     #pragma region Public method
     public:
-        virtual mia::v2f GetScreenPosition() const;
+        virtual mia::v2f GetScreenPosition() const = 0;
     #pragma endregion
+    
+    #pragma region Inherited method
+        const char* ToStr() const override;
+    #pragma endregion;
     };
 }
 

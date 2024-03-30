@@ -11,7 +11,7 @@ namespace mia
     {
     #pragma region Contructor Destructor
     protected:
-        Object(mia::string name = "unnamed");
+        Object(const char *name = "unnamed");
     public:
         virtual ~Object();
     #pragma endregion

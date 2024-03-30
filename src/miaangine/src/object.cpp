@@ -3,7 +3,7 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(mia::string name):
+    Object::Object(const char *name):
         Entity(ENTITY_OBJECT),
         _name(name),
         _active(true),

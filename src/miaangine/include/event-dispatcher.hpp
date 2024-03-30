@@ -22,7 +22,7 @@ namespace mia
         ~EventDispatcher();
 
     private:
-        std::vector<Observer*> _listeners;
+        std::vector<Observer*> _observers;
 
     public:
         void RegisterObserver(Observer *observer);

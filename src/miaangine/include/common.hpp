@@ -10,6 +10,7 @@
 #include <random>
 #include <cmath>
 #include <memory>
+#include <algorithm>
 
 #define SDL_MAIN_HANDLED
 #include "util/util.hpp"

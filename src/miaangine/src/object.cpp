@@ -7,7 +7,6 @@ namespace mia
         Entity(ENTITY_OBJECT),
         _name(name),
         _active(true),
-        _parent(nullptr),
         _scene(-1) //TODO scene
     {}
 
@@ -28,11 +27,6 @@ namespace mia
     {
         return _tag;
     }
-    const Object* Object::parent() const
-    {
-        // TODO add warn null
-        return _parent;
-    }
     int Object::getScene() const
     {
         return _scene;
@@ -43,11 +37,6 @@ namespace mia
     mia::string& Object::name()
     {
         return _name;
-    }
-    Object* Object::parent()
-    {
-        // TODO add warn null
-        return _parent;
     }
 #pragma endregion
 

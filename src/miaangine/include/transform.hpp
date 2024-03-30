@@ -18,6 +18,7 @@ namespace mia
     private:
         mia::v2f _localPos;
         float _scale;
+        Transform *_parent;
     #pragma endregion
 
     #pragma region Get-method
@@ -25,6 +26,7 @@ namespace mia
         mia::v2f localPosition() const;
         mia::v2f globalPosition() const;
         float scale() const;
+        const Transform* parent() const; 
     #pragma endregion
 
     #pragma region Set-method
@@ -32,6 +34,7 @@ namespace mia
         mia::v2f& localPosition();
         mia::v2f& globalPosition();
         float& scale();
+        Transform* parent();
     #pragma endregion
 
     #pragma region Public method

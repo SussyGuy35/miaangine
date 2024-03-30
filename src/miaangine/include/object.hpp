@@ -21,7 +21,6 @@ namespace mia
         mia::string _name;
         bool _active;
         uint32_t _tag;
-        Object *_parent;
         int _scene;
     #pragma endregion
 
@@ -30,14 +29,12 @@ namespace mia
         mia::string name() const;
         bool isActive() const;
         uint32_t getTag() const;
-        const Object* parent() const;
         int getScene() const;
     #pragma endregion
 
     #pragma region Set-method
     public:
         mia::string& name();
-        Object* parent();
     #pragma endregion
 
     #pragma region Public method

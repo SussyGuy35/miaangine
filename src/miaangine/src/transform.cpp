@@ -6,7 +6,8 @@ namespace mia
     Transform::Transform(const char *name, mia::v2f position, float scale):
         Object(name),
         _localPos(position),
-        _scale(scale)
+        _scale(scale),
+        _parent(nullptr)
     {}
 
     Transform::~Transform()
@@ -26,6 +27,10 @@ namespace mia
     {
         return _scale;
     }
+    const Transform* Transform::parent() const
+    {
+        return _parent;
+    }
 #pragma endregion
 
 #pragma region Set-method
@@ -40,6 +45,10 @@ namespace mia
     float& Transform::scale()
     {
         return _scale;
+    }
+    Transform* Transform::parent()
+    {
+        return _parent;
     }
 #pragma endregion
 

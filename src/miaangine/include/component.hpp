@@ -19,8 +19,8 @@ namespace mia
         bool isActive() const;
         const Object* master() const;
 
-        bool SetActive(bool newState);
-        Object* SetMaster(Object* newMaster);
+        virtual bool SetActive(bool newState);
+        virtual Object* SetMaster(Object* newMaster);
 
     public:
         const char* ToStr() const override;

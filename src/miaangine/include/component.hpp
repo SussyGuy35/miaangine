@@ -10,7 +10,7 @@ namespace mia
     public:
     #pragma region Contructor Destructor
         Component();
-        ~Component();
+        virtual ~Component();
     #pragma endregion
 
     protected:

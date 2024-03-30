@@ -12,7 +12,7 @@ namespace mia
     public:
     #pragma region Contructor Destructor
         Object(mia::string name = "unnamed");
-        ~Object();
+        virtual ~Object();
     #pragma endregion
 
     protected:

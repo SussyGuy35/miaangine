@@ -1,30 +1,28 @@
 #ifndef _MIA_WORLD_OBJECT_HPP
 #define _MIA_WORLD_OBJECT_HPP
 
-#include "object.hpp"
+#include "transform.hpp"
 
 namespace mia
 {
-    class WorldObject : public Object
+    class WorldObject : public Transform
     {
     public:
+    #pragma region Contructor Destructor
         WorldObject(); //TODO constructor
         ~WorldObject();
+    #pragma endregion
 
     private:
+    #pragma region Attribute
         mia::v2f _localPos;
         float _scale;
+    #pragma endregion
 
     public:
-        mia::v2f localPosition() const;
-        mia::v2f globalPosition() const;
-        float scale() const;
-
-        mia::v2f& localPosition();
-        mia::v2f& globalPosition();
-        float& scale();
-
-        mia::v2f GetScreenPosition();
+    #pragma region Inherited method
+        mia::v2f GetScreenPosition() const override;
+    #pragma endregion
     };
 }
 

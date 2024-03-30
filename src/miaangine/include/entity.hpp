@@ -1,7 +1,7 @@
 #ifndef _MIA_ENTITY_HPP
 #define _MIA_ENTITY_HPP
 
-#include "util/util.hpp"
+#include "common.hpp"
 
 namespace mia
 {
@@ -20,7 +20,7 @@ namespace mia
             _ID(ID)
         {}
 
-        ~Entity()
+        virtual ~Entity()
         {}
 
     protected:

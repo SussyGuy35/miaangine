@@ -19,6 +19,8 @@ namespace mia
     public:
         int InitWindow();
         int ClearWindow();
+
+        int Step();
     };
 }
 

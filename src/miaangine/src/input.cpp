@@ -52,6 +52,11 @@ namespace mia
     {
         return _keysUpState[key];
     }
+
+    bool Input::isQuit() const 
+    {
+        return _isQuit;
+    }
 #pragma endregion
 
 #pragma region Private method

@@ -26,6 +26,8 @@ namespace mia
         bool getKeyDown(int key) const;
         bool getKeyUp(int key) const;
 
+        bool isQuit() const;
+
     private:
         void UpdateKeyInputEvent();
     };

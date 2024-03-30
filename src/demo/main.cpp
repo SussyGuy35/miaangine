@@ -3,14 +3,18 @@
 
 int main(int argc, char* argv[])
 {
-    mia::Game::Instance().InitWindow();
+    mia::_Game().InitWindow();
 
-    mia::WorldObject *obj = new mia::WorldObject("no");
-    std::cout << obj->name();
-    obj->name() = "1280312";
-    std::cout << obj->name();
+    while (true)
+    {
+        mia::_Game().Step();
 
-    SDL_Delay(1000);
+        
+
+        if (mia::_Input().isQuit()) break;
+    }
+
+    mia::_Game().ClearWindow();
 
     return 0;
 }

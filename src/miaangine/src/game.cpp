@@ -1,5 +1,7 @@
 #include "game.hpp"
 
+#include "input.hpp"
+
 namespace mia
 {
     Game::Game()
@@ -56,5 +58,10 @@ namespace mia
         SDL_DestroyRenderer(renderer);
         IMG_Quit();
         SDL_Quit();
+    }
+
+    int Game::Step()
+    {
+        Input::Instance().Update();
     }
 }

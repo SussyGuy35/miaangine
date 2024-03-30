@@ -4,6 +4,6 @@
 #include "common.hpp"
 #include "game.hpp"
 
-#include "object.hpp"
+#include "world-object.hpp"
 
 #endif

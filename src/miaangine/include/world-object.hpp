@@ -9,7 +9,7 @@ namespace mia
     {
     #pragma region Contructor Destructor
     public:
-        WorldObject(); //TODO constructor
+        WorldObject(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1);
         ~WorldObject();
     #pragma endregion
 
@@ -20,6 +20,8 @@ namespace mia
     #pragma region Inherited method
     public:
         mia::v2f GetScreenPosition() const override;
+
+        const char* ToStr() const override;
     #pragma endregion
     };
 }

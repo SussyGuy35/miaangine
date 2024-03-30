@@ -8,15 +8,15 @@ namespace mia
     class Object : public Entity
     {
     public:
-        Object(); //TODO constructor
+        Object(mia::string name = "unnamed");
         ~Object();
 
     private:
         mia::string _name;
-        bool active;
-        uint32_t tag;
-        Object *parent;
-        int scene;
+        bool _active;
+        uint32_t _tag;
+        Object *_parent;
+        int _scene;
 
     public:
         mia::string name() const;
@@ -33,6 +33,7 @@ namespace mia
         uint32_t AddTag(int tag);
         uint32_t RemoveTag(int tag);
         
+        mia::string ToStr() override;
     };
 }
 

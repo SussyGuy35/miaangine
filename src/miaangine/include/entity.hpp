@@ -5,10 +5,18 @@
 
 namespace mia
 {
+    enum EntityID
+    {
+        ENTITY_NONE = -1,
+        ENTITY_ENTITY = 0,
+        ENTITY_OBJECT
+        //TODO
+    };
+
     class Entity
     {
     public:
-        Entity(int ID = EntityID::None):
+        Entity(int ID = ENTITY_ENTITY):
             _ID(ID)
         {}
 
@@ -25,13 +33,6 @@ namespace mia
         }
 
         virtual mia::string ToStr() = 0;
-    };
-
-    enum EntityID
-    {
-        None = -1,
-        Entity = 0
-        //TODO
     };
 }
 

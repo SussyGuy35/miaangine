@@ -59,10 +59,40 @@ namespace mia
         {
             return len;
         }
-
         bool empty() const
         {
             return len == 0;
+        }
+
+        string& operator= (const string& other) 
+        {
+            val = (char*)malloc(other.len + 1);
+            strcpy(val, other.val);
+            len = other.len;
+            return *this;
+        }
+        string& operator= (string&& other) noexcept
+        {
+            val = other.val;
+            len = other.len;
+            other.val = nullptr;
+            return *this;
+        }
+        string& operator= (const char* value)
+        {
+            delete val;
+
+            if (value == nullptr)
+            {
+                len = 0;
+                val = (char*)calloc(1, sizeof(char));
+                return *this;
+            }
+
+            len = strlen(value);
+            val = (char*)malloc(len + 1);
+            strcpy(val, value);
+            return *this;
         }
 
         bool operator== (const string& value) 

@@ -19,9 +19,11 @@ namespace mia
     {
         return _scale;
     }
-    mia::v2f Transform::globalPosition() const //TODO
+    mia::v2f Transform::globalPosition() const
     {
-        // return _parent
+        if (!_parent) return _localPos;
+
+        return _parent->globalPosition() + _localPos;
     }
     float Transform::scale() const 
     {
@@ -29,6 +31,7 @@ namespace mia
     }
     const Transform* Transform::parent() const
     {
+        // TODO safety
         return _parent;
     }
 #pragma endregion
@@ -38,9 +41,11 @@ namespace mia
     {
         return _localPos;
     }
-    mia::v2f& Transform::globalPosition()//TODO
+    mia::v2f& Transform::globalPosition()
     {
+        if (!_parent) return _localPos;
 
+        return _parent->globalPosition() + _localPos;
     }
     float& Transform::scale()
     {
@@ -48,6 +53,7 @@ namespace mia
     }
     Transform* Transform::parent()
     {
+        // TODO safety
         return _parent;
     }
 #pragma endregion

@@ -10,7 +10,7 @@ namespace mia
     class Portrait : public Component
     {
     public:
-        Portrait();
+        Portrait(Sprite* sprite, mia::v2f offset = mia::v2f::zero(), SDL_Color color = {255, 255, 255, 255});
         virtual ~Portrait();
 
     private:

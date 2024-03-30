@@ -47,15 +47,17 @@ namespace mia
     }
     bool Object::IsContainTag(int tag)
     {
-        // TODO Add safety check
+        // TODO safety
         return ((_tag >> tag) & 1);
     }
     uint32_t Object::AddTag(int tag)
     {
+        // TODO safety
         _tag |= (1 << tag);
     }
     uint32_t Object::RemoveTag(int tag)
     {
+        // TODO safety
         _tag &= ~(1 << tag);
     }
 #pragma endregion

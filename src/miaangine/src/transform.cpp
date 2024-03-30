@@ -41,8 +41,10 @@ namespace mia
     {
         return _localPos;
     }
-    mia::v2f& Transform::globalPosition()
+    mia::v2f Transform::SetGlobalPosition(mia::v2f newPosition)
     {
+        // TODO
+
         if (!_parent) return _localPos;
 
         return _parent->globalPosition() + _localPos;

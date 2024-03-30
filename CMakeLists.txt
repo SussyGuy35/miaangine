@@ -19,13 +19,13 @@ set(SDL2_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/vendor/SDL2/include" "${CMAKE
 
 # EXECUTABLE
 file(GLOB_RECURSE SOURCES "src/demo/*.cpp") # <===== EDIT HERE =====
-file(GLOB_RECURSE E_SOURCES "src/miaangine/*.cpp")
+file(GLOB_RECURSE E_SOURCES "src/miaangine/src/*.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${E_SOURCES})
 
 # DIRECTORIES
 set(INCLUDES "src/demo") # <===== EDIT HERE =====
-set(E_INCLUDES "src" "src/miaangine" ${SDL2_INCLUDE_DIRS})
+set(E_INCLUDES "src/miaangine/include" ${SDL2_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME} 
     PRIVATE ${INCLUDES}

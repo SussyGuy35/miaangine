@@ -25,6 +25,8 @@ namespace mia
 
     private:
         void RenderPortraits(SDL_Renderer *renderer);
+
+        SDL_Rect PortraitRectCalculate(Portrait &portrait, int w, int h);
     };
 }
 

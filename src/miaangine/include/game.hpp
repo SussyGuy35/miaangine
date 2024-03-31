@@ -12,11 +12,18 @@ namespace mia
         Game();
         ~Game();
 
+    private:
+        int _windowWidth;
+        int _windowHeight;
+
     public:
         SDL_Window *window;
         SDL_Renderer *renderer;
 
     public:
+        int getWindowWidth() const;
+        int getWindowHeight() const;
+
         int InitWindow();
         int ClearWindow();
 

@@ -1,5 +1,8 @@
 #include "renderer.hpp"
 
+#include "game.hpp"
+#include "camera.hpp"
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -46,19 +49,33 @@ namespace mia
                 continue;
             }
 
-            mia::v2f position = portrait->master()->GetScreenPosition() + (portrait->offset() * PPU);
-
-            SDL_Rect rect; // TODO Add more scaling base on camera
-            rect.w = w;
-            rect.h = h;
-            rect.x = position.x - w * portrait->pivot().x;
-            rect.y = position.y - h * portrait->pivot().y;
+            SDL_Rect rect = PortraitRectCalculate(*portrait, w, h);
         
             SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
             SDL_SetTextureAlphaMod(texture, portrait->color().a);
 
             SDL_RenderCopy(renderer, texture, NULL, &rect);
         }
+    }
+
+    SDL_Rect Renderer::PortraitRectCalculate(Portrait &portrait, int w, int h)
+    {
+        SDL_Rect rect;
+
+        float unitSize = Game::Instance().getWindowWidth() / Camera::Instance().size();
+        float displayUnitScaler = unitSize / PPU; 
+
+        float displayW = w * displayUnitScaler;
+        float displayH = h * displayUnitScaler;
+        float displayX = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).x - portrait.pivot().x * displayW;
+        float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - portrait.pivot().y * displayH;
+
+        rect.w = static_cast<int>(displayW);
+        rect.h = static_cast<int>(displayH);
+        rect.x = static_cast<int>(displayX);
+        rect.y = static_cast<int>(displayY);
+
+        return rect;
     }
 #pragma endregion
 }

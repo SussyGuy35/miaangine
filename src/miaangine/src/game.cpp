@@ -49,7 +49,19 @@ namespace mia
             return -1;
         }
 
+        _windowWidth = WINDOW_WIDTH;
+        _windowHeight = WINDOW_HEIGHT;
+
         return 0;
+    }
+
+    int Game::getWindowWidth() const
+    {
+        return _windowWidth;
+    }
+    int Game::getWindowHeight() const
+    {
+        return _windowHeight;
     }
 
     int Game::ClearWindow()

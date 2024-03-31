@@ -37,10 +37,27 @@ namespace mia
     {
         for (Portrait *portrait : _portraits)
         {
-            Sprite *sprite = portrait->sprite();
-            mia::v2f position = portrait->master()->GetScreenPosition();
+            SDL_Texture *texture = portrait->sprite()->texture;
 
-            // TODO
+            int w = 0, h = 0;
+            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0)
+            {
+                // TODO Add Error
+                continue;
+            }
+
+            mia::v2f position = portrait->master()->GetScreenPosition() + (portrait->offset() * PPU);
+
+            SDL_Rect rect; // TODO Add more scaling base on camera
+            rect.w = w;
+            rect.h = h;
+            rect.x = position.x - w * portrait->pivot().x;
+            rect.y = position.y - h * portrait->pivot().y;
+        
+            SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
+            SDL_SetTextureAlphaMod(texture, portrait->color().a);
+
+            SDL_RenderCopy(renderer, texture, NULL, &rect);
         }
     }
 #pragma endregion

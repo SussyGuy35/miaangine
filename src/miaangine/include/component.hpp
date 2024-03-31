@@ -1,7 +1,7 @@
 #ifndef _MIA_COMPONENT_HPP
 #define _MIA_COMPONENT_HPP
 
-#include "object.hpp"
+#include "transform.hpp"
 
 namespace mia
 {
@@ -13,14 +13,14 @@ namespace mia
 
     protected:
         bool _active;
-        Object *_master;
+        Transform *_master;
 
     public:
         bool isActive() const;
-        const Object* master() const;
+        const Transform* master() const;
 
         virtual bool SetActive(bool newState);
-        virtual Object* SetMaster(Object* newMaster);
+        virtual Transform* SetMaster(Transform* newMaster);
 
     public:
         const char* ToStr() const override;

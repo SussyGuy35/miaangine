@@ -17,7 +17,7 @@ namespace mia
     {
         return _active;
     }
-    const Object* Component::master() const
+    const Transform* Component::master() const
     {
         return _master;
     }
@@ -26,7 +26,7 @@ namespace mia
     {
         _active = newState;
     }
-    Object* Component::SetMaster(Object* newMaster)
+    Transform* Component::SetMaster(Transform* newMaster)
     {
         _master = newMaster;
     }

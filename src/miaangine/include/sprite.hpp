@@ -3,32 +3,30 @@
 
 #include "common.hpp"
 
-#include "game.hpp"
-
 namespace mia
 {
     class Sprite
     {
     public:
-        Sprite(const char *source, mia::v2f position, mia::v2f size, mia::v2f pivot):
-            source(source),
+        Sprite(SDL_Texture *texture, mia::v2i position, mia::v2i size, mia::v2f pivot):
+            texture(texture),
             position(position),
             size(size),
             pivot(pivot)
-        {
-            texture = IMG_LoadTexture(Game::Instance().renderer, source); //TODO safety
-        }
+        {}
 
-        virtual ~Sprite()
+        ~Sprite()
+        {}
+
+        SDL_Texture *texture;
+        mia::v2i position;
+        mia::v2i size;
+        mia::v2f pivot;
+
+        void DestroyTexture()
         {
             SDL_DestroyTexture(texture);
         }
-
-        mia::string source;
-        mia::v2f position;
-        mia::v2f size;
-        mia::v2f pivot;
-        SDL_Texture *texture;
     };
 }
 

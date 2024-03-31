@@ -1,5 +1,7 @@
 #include "portrait.hpp"
 
+#include "renderer.hpp"
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -45,6 +47,11 @@ namespace mia
     const char* Portrait::ToStr() const
     {
         return "Portrait(Component)";
+    }
+
+    bool Portrait::Init()
+    {
+        Renderer::Instance().RegisterPortrait(this);
     }
 #pragma endregion
 }

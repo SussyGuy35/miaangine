@@ -22,6 +22,8 @@ namespace mia
         virtual bool SetActive(bool newState);
         virtual Transform* SetMaster(Transform* newMaster);
 
+        virtual bool Init() = 0;
+
     public:
         const char* ToStr() const override;
     };

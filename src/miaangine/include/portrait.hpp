@@ -10,22 +10,25 @@ namespace mia
     class Portrait : public Component
     {
     public:
-        Portrait(Sprite* sprite, mia::v2f offset = mia::v2f::zero(), SDL_Color color = {255, 255, 255, 255});
+        Portrait(Sprite* sprite, mia::v2f offset = mia::v2f::zero(), SDL_Color color = {255, 255, 255, 255}, mia::v2f pivot = mia::v2f(0.5, 0.5));
         virtual ~Portrait();
 
     private:
         Sprite *_sprite;
         mia::v2f _offset;
         SDL_Color _color;
+        mia::v2f _pivot;
 
     public:
         const Sprite* sprite() const;
         mia::v2f offset() const;
         SDL_Color color() const;
+        mia::v2f pivot() const;
 
         Sprite* sprite();
         mia::v2f& offset();
         SDL_Color& color();
+        mia::v2f& pivot();
 
     public:
         const char* ToStr() const override;

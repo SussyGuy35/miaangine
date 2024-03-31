@@ -5,10 +5,11 @@
 namespace mia
 {
 #pragma region Constructor Destructor
-    Portrait::Portrait(Sprite* sprite, mia::v2f offset, SDL_Color color):
+    Portrait::Portrait(Sprite* sprite, mia::v2f offset, SDL_Color color, mia::v2f pivot):
         _sprite(sprite),
         _offset(offset),
-        _color(color)
+        _color(color),
+        _pivot(pivot)
     {}
 
     Portrait::~Portrait()
@@ -28,6 +29,10 @@ namespace mia
     {
         return _color;
     }
+    mia::v2f Portrait::pivot() const
+    {
+        return _pivot;
+    }
 
     Sprite* Portrait::sprite()
     {
@@ -40,6 +45,10 @@ namespace mia
     SDL_Color& Portrait::color()
     {
         return _color;
+    }
+    mia::v2f& Portrait::pivot()
+    {
+        return _pivot;
     }
 #pragma endregion
 

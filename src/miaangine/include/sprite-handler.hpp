@@ -27,7 +27,7 @@ namespace mia
 
         void ChangeTexture(const char *newSource);
 
-        void MakeCut(mia::v2i position, mia::v2i size, mia::v2f pivot = mia::v2f(0.5, 0.5));
+        void MakeCut(mia::v2i position, mia::v2i size);
         // TODO ADd remove cut
         void DestroyCuts(); 
     };

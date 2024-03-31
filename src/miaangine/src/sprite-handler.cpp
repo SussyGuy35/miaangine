@@ -38,9 +38,9 @@ namespace mia
         }
     }
 
-    void SpriteHandler::MakeCut(mia::v2i position, mia::v2i size, mia::v2f pivot)
+    void SpriteHandler::MakeCut(mia::v2i position, mia::v2i size)
     {
-        Sprite *sprite = new Sprite(_texture, position, size, pivot);
+        Sprite *sprite = new Sprite(_texture, position, size);
         _sprites.push_back(sprite);
     }
 

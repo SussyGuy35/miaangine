@@ -5,7 +5,98 @@
 
 namespace mia 
 {
-	#pragma region float_v2f
+#pragma region int_v2i
+    class v2i
+	{
+	public:
+		int x; 
+		int y;
+
+		inline v2i(int x = 0, int y = 0): 
+			x(x), y(y)
+		{}
+
+	public:
+		inline v2i& operator+=(const v2i& other)
+		{
+			x += other.x;
+			y += other.y;
+			return *this;
+		}
+		inline v2i& operator-=(const v2i& other)
+		{
+			x -= other.x;
+			y -= other.y;
+			return *this;
+		}
+		inline v2i& operator*=(const int value)
+		{
+			x = value * x;
+			y = value * y;
+			return *this;
+		}
+		inline v2i& operator/=(const int value)
+		{
+			x = value * x;
+			y = value * y;
+			return *this;
+		}
+
+		inline v2i operator+(const v2i& other) const
+		{
+			return v2i(x + other.x, y + other.y);
+		}
+		inline v2i operator-(const v2i& other) const
+		{
+			return v2i(x + other.x, y + other.y);
+		}
+		inline v2i operator*(const int value) const
+		{
+			return v2i(x * value, y * value); 
+		}
+		inline v2i operator/(const int value) const
+		{
+			return v2i(x / value, y / value); 
+		}
+
+		static const v2i& up() noexcept
+		{
+			static const v2i result(0, 1);
+			return result;
+		}
+		static const v2i& down() noexcept
+		{
+			static const v2i result(0, -1);
+			return result;
+		}
+		static const v2i& right() noexcept
+		{
+			static const v2i result(1, 0);
+			return result;
+		}
+		static const v2i& left() noexcept
+		{
+			static const v2i result(-1, 0);
+			return result;
+		}
+		static const v2i& zero() noexcept
+		{
+			static const v2i result(0, 0);
+			return result;
+		}
+		static const v2i& one() noexcept
+		{
+			static const v2i result(1, 1);
+			return result;
+		}
+	};
+	inline v2i operator*(int left, v2i right)
+	{
+		return v2i(right.x * left, right.y * left); 
+	}
+#pragma endregion
+
+#pragma region float_v2f
     class v2f
 	{
 	public:
@@ -17,14 +108,7 @@ namespace mia
 		{}
 
 	public:
-		operator v2i() const
-		{
-			return v2i(x, y);
-		}
-		operator v2d() const
-		{
-			return v2d(x, y);
-		}
+		operator v2i() const;
 
 		inline v2f& operator+=(const v2f& other)
 		{
@@ -122,20 +206,14 @@ namespace mia
 	{
 		return v2f(right.x * left, right.y * left); 
 	}
-	#pragma endregion
+#pragma endregion
 
-	#pragma region double_v2d
+#pragma region double_v2d
     class v2d
 	{
 	public:
-		operator v2i() const
-		{
-			return v2i(x, y);
-		}
-		operator v2f() const
-		{
-			return v2f(x, y);
-		}
+		operator v2i() const;
+		operator v2f() const;
 
 		double x; 
 		double y;
@@ -241,107 +319,13 @@ namespace mia
 	{
 		return v2d(right.x * left, right.y * left); 
 	}
-	#pragma endregion
+#pragma endregion
 
-	#pragma region int_v2i
-    class v2i
-	{
-	public:
-		int x; 
-		int y;
-
-		inline v2i(int x = 0, int y = 0): 
-			x(x), y(y)
-		{}
-
-	public:
-		operator v2f() const
-		{
-			return v2f(x, y);
-		}
-		operator v2d() const
-		{
-			return v2d(x, y);
-		}
-
-		inline v2i& operator+=(const v2i& other)
-		{
-			x += other.x;
-			y += other.y;
-			return *this;
-		}
-		inline v2i& operator-=(const v2i& other)
-		{
-			x -= other.x;
-			y -= other.y;
-			return *this;
-		}
-		inline v2i& operator*=(const int value)
-		{
-			x = value * x;
-			y = value * y;
-			return *this;
-		}
-		inline v2i& operator/=(const int value)
-		{
-			x = value * x;
-			y = value * y;
-			return *this;
-		}
-
-		inline v2i operator+(const v2i& other) const
-		{
-			return v2i(x + other.x, y + other.y);
-		}
-		inline v2i operator-(const v2i& other) const
-		{
-			return v2i(x + other.x, y + other.y);
-		}
-		inline v2i operator*(const int value) const
-		{
-			return v2i(x * value, y * value); 
-		}
-		inline v2i operator/(const int value) const
-		{
-			return v2i(x / value, y / value); 
-		}
-
-		static const v2i& up() noexcept
-		{
-			static const v2i result(0, 1);
-			return result;
-		}
-		static const v2i& down() noexcept
-		{
-			static const v2i result(0, -1);
-			return result;
-		}
-		static const v2i& right() noexcept
-		{
-			static const v2i result(1, 0);
-			return result;
-		}
-		static const v2i& left() noexcept
-		{
-			static const v2i result(-1, 0);
-			return result;
-		}
-		static const v2i& zero() noexcept
-		{
-			static const v2i result(0, 0);
-			return result;
-		}
-		static const v2i& one() noexcept
-		{
-			static const v2i result(1, 1);
-			return result;
-		}
-	};
-	inline v2i operator*(int left, v2i right)
-	{
-		return v2i(right.x * left, right.y * left); 
-	}
-	#pragma endregion
+#pragma region Convert definition
+	v2f::operator v2i() const { return v2i(x, y); }
+	v2d::operator v2f() const { return v2f(x, y); }
+	v2d::operator v2i() const { return v2i(x, y); }
+#pragma endregion
 }
 
 #endif

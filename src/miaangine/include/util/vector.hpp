@@ -17,6 +17,15 @@ namespace mia
 		{}
 
 	public:
+		operator v2i() const
+		{
+			return v2i(x, y);
+		}
+		operator v2d() const
+		{
+			return v2d(x, y);
+		}
+
 		inline v2f& operator+=(const v2f& other)
 		{
 			x += other.x;
@@ -119,6 +128,15 @@ namespace mia
     class v2d
 	{
 	public:
+		operator v2i() const
+		{
+			return v2i(x, y);
+		}
+		operator v2f() const
+		{
+			return v2f(x, y);
+		}
+
 		double x; 
 		double y;
 
@@ -237,6 +255,15 @@ namespace mia
 		{}
 
 	public:
+		operator v2f() const
+		{
+			return v2f(x, y);
+		}
+		operator v2d() const
+		{
+			return v2d(x, y);
+		}
+
 		inline v2i& operator+=(const v2i& other)
 		{
 			x += other.x;

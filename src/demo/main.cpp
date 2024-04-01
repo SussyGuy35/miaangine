@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     {
         mia::_Game().Update();
 
-        printf("%f %f\n", mia::_Camera().ScreenToWorldPoint(mia::_Input().getMousePosition()).x, mia::_Camera().ScreenToWorldPoint(mia::_Input().getMousePosition()).y);
+        mia::_Camera().ScreenToWorldPoint(mia::v2i(10, 10));
 
         if (mia::_Input().isQuit()) break;
     }

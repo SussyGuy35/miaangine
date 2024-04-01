@@ -70,7 +70,7 @@ namespace mia
     v2f Camera::ScreenToWorldPoint(v2f point)
     {
         point.y *= -1;
-        point /= unitSize();
+        point /= 1.0 * unitSize();
         point += _position;
 
         return point;

@@ -27,7 +27,7 @@ namespace mia
     }
     float Camera::getCameraHeight() const
     {
-        return _size * _screenHeight / _screenWidth;
+        return 1.0 * _size * _screenHeight / _screenWidth;
     }
     float Camera::size() const
     {

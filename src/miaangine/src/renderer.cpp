@@ -70,7 +70,7 @@ namespace mia
         SDL_Rect rect;
 
         Sprite *sprite = portrait.sprite();
-        float displayUnitScaler = Camera::Instance().unitSize() / PPU; 
+        float displayUnitScaler = 1.0 * Camera::Instance().unitSize() / PPU; 
 
         float displayW = sprite->size.x * displayUnitScaler;
         float displayH = sprite->size.y * displayUnitScaler;

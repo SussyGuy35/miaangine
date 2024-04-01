@@ -84,8 +84,6 @@ namespace mia
         rect.x = static_cast<int>(displayX);
         rect.y = static_cast<int>(displayY);
 
-        printf("%d %d %d %d", rect.x, rect.y, rect.w, rect.h);
-
         return rect;
     }
 #pragma endregion

@@ -8,11 +8,12 @@
 namespace mia
 {
     class Component;
+    class Transform;
 
     class Object : public Entity
     {
     public:
-        Object(const char *name = "unnamed");
+        Object(const char *name, Transform *transform);
         virtual ~Object();
 
     protected:
@@ -20,6 +21,7 @@ namespace mia
         bool _active;
         uint32_t _tag;
         int _scene;
+        Transform* _transform;
         std::vector<Component*> _components;
 
     public:
@@ -27,9 +29,11 @@ namespace mia
         bool isActive() const;
         uint32_t getTag() const;
         int getScene() const;
+        const Transform* transform() const;
 
         mia::string& name();
         bool SetActive(bool newState);
+        Transform* transform();
         
         bool IsContainTag(int tag);
         uint32_t AddTag(int tag);

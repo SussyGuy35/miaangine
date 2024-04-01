@@ -5,11 +5,12 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(const char *name):
+    Object::Object(const char *name, Transform *transform):
         Entity(_ENTITY_OBJECT),
         _name(name),
         _active(true),
-        _scene(-1) //TODO scene
+        _scene(-1), //TODO scene
+        _transform(transform)
     {}
 
     Object::~Object()
@@ -33,6 +34,10 @@ namespace mia
     {
         return _scene;
     }
+    const Transform* Object::transform() const
+    {
+        return _transform;
+    }
     
     mia::string& Object::name()
     {
@@ -41,6 +46,10 @@ namespace mia
     bool Object::SetActive(bool newState)
     {
         _active = newState;
+    }
+    Transform* Object::transform() 
+    {
+        return _transform;
     }
 #pragma endregion
 
@@ -64,6 +73,7 @@ namespace mia
     {
         _components.push_back(newComponent);
         newComponent->Init();
+        newComponent->SetMaster(_transform);
     }
 #pragma endregion
 

@@ -14,9 +14,9 @@
 
 namespace mia
 {
-    inline Game&  _Game()  { return Game::Instance(); }
+    inline Game& _Game()  { return Game::Instance(); }
     inline Input& _Input() { return Input::Instance(); }
-    // inline Sprite
+    inline SpriteHandler& _SpriteHandler() { return SpriteHandler::Instance(); }
 }
 
 #endif

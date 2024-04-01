@@ -31,7 +31,12 @@ namespace mia
 
     void Renderer::Render(SDL_Renderer *renderer)
     {
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
         RenderPortraits(renderer);
+
+        SDL_RenderPresent(renderer);
     }
 #pragma endregion
 
@@ -40,7 +45,8 @@ namespace mia
     {
         for (Portrait *portrait : _portraits)
         {
-            SDL_Texture *texture = portrait->sprite()->texture;
+            Sprite *sprite = portrait->sprite();
+            SDL_Texture *texture = sprite->texture;
 
             int w = 0, h = 0;
             if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0)
@@ -49,24 +55,27 @@ namespace mia
                 continue;
             }
 
-            SDL_Rect rect = PortraitRectCalculate(*portrait, w, h);
         
             SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
             SDL_SetTextureAlphaMod(texture, portrait->color().a);
 
-            SDL_RenderCopy(renderer, texture, NULL, &rect);
+            SDL_Rect dstrect = PortraitRectCalculate(*portrait);
+            SDL_Rect srcrect = { sprite->position.x, sprite->position.y, sprite->size.x, sprite->size.y };
+
+            SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
         }
     }
 
-    SDL_Rect Renderer::PortraitRectCalculate(Portrait &portrait, int w, int h)
+    SDL_Rect Renderer::PortraitRectCalculate(Portrait &portrait)
     {
         SDL_Rect rect;
 
+        Sprite *sprite = portrait.sprite();
         float unitSize = Game::Instance().getWindowWidth() / Camera::Instance().size();
         float displayUnitScaler = unitSize / PPU; 
 
-        float displayW = w * displayUnitScaler;
-        float displayH = h * displayUnitScaler;
+        float displayW = sprite->size.x * displayUnitScaler;
+        float displayH = sprite->size.y * displayUnitScaler;
         float displayX = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).x - portrait.pivot().x * displayW;
         float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - portrait.pivot().y * displayH;
 
@@ -74,6 +83,8 @@ namespace mia
         rect.h = static_cast<int>(displayH);
         rect.x = static_cast<int>(displayX);
         rect.y = static_cast<int>(displayY);
+
+        printf("%d %d %d %d", rect.x, rect.y, rect.w, rect.h);
 
         return rect;
     }

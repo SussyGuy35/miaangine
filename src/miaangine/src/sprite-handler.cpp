@@ -26,12 +26,12 @@ namespace mia
 #pragma endregion
 
 #pragma region Public method
-    void SpriteHandler::SetSource(const char *newSource)
+    void SpriteHandler::SetSource(const char *source)
     {
         // TODO safety
-
+        
         SDL_DestroyTexture(_texture);
-        _texture = IMG_LoadTexture(Game::Instance().renderer, newSource);
+        _texture = IMG_LoadTexture(Game::Instance().renderer, source);
 
         for (Sprite *sprite : _sprites) 
         {

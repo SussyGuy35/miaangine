@@ -25,7 +25,7 @@ namespace mia
         const char* getSource() const;
         const SDL_Texture* getTexture() const;
 
-        void SetSource(const char *newSource);
+        void SetSource(const char *source);
 
         Sprite* MakeCut(mia::v2i position, mia::v2i size);
         void DestroyCut(Sprite *sprite);

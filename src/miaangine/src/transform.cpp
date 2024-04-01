@@ -4,7 +4,7 @@ namespace mia
 {
 #pragma region Contructor Destructor
     Transform::Transform(const char *name, mia::v2f position, float scale, Transform* parent):
-        Object(name),
+        Object(name, this),
         _position(position),
         _scale(scale),
         _parent(parent)

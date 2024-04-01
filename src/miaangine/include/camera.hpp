@@ -13,18 +13,27 @@ namespace mia
         ~Camera();
  
     private:
-        mia::v2f _position;
+        int _screenWidth;
+        int _screenHeight;
         float _size; // Ammount of unit appear on the width of the screen
+        v2f _position;
 
     public:
-        mia::v2f position() const;
+        int getScreenWidth() const;
+        int getScreenHeight() const;
+        float getCameraWidth() const;
+        float getCameraHeight() const;
         float size() const;
+        v2f position() const;
+        int unitSize() const;
 
-        mia::v2f& position();
         float& size();
+        v2f& position();
+
+        v2f SetCenter(v2f position);
     
-        mia::v2f WorldToScreenPoint(mia::v2f point);
-        mia::v2f ScreenToWorldPoint(mia::v2f point);
+        v2f WorldToScreenPoint(v2f point);
+        v2f ScreenToWorldPoint(v2f point);
     };
 }
 

@@ -1,5 +1,6 @@
 #include "game.hpp"
 
+#include "camera.hpp"
 #include "input.hpp"
 #include "renderer.hpp"
 
@@ -22,8 +23,8 @@ namespace mia
             "",
             SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
-            WINDOW_WIDTH,
-            WINDOW_HEIGHT,
+            INIT_WINDOW_WIDTH,
+            INIT_WINDOW_HEIGHT,
             SDL_WINDOW_SHOWN
         );
         if (window == NULL) 
@@ -50,19 +51,10 @@ namespace mia
             return -1;
         }
 
-        _windowWidth = WINDOW_WIDTH;
-        _windowHeight = WINDOW_HEIGHT;
+        Camera::Instance()._screenWidth = INIT_WINDOW_WIDTH;
+        Camera::Instance()._screenHeight = INIT_WINDOW_HEIGHT;
 
         return 0;
-    }
-
-    int Game::getWindowWidth() const
-    {
-        return _windowWidth;
-    }
-    int Game::getWindowHeight() const
-    {
-        return _windowHeight;
     }
 
     int Game::ClearWindow()

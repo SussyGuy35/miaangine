@@ -3,12 +3,15 @@
 
 #include "common.hpp"
 
+#include "game.hpp" //FIXME
+
 namespace mia
 {
     class Camera : public Singleton<Camera>
     {
     private:
         friend class Singleton<Camera>;
+        friend class Game;
         Camera();
         ~Camera();
  

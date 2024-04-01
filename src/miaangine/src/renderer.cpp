@@ -1,6 +1,5 @@
 #include "renderer.hpp"
 
-#include "game.hpp"
 #include "camera.hpp"
 
 namespace mia
@@ -71,8 +70,7 @@ namespace mia
         SDL_Rect rect;
 
         Sprite *sprite = portrait.sprite();
-        float unitSize = Game::Instance().getWindowWidth() / Camera::Instance().size();
-        float displayUnitScaler = unitSize / PPU; 
+        float displayUnitScaler = Camera::Instance().unitSize() / PPU; 
 
         float displayW = sprite->size.x * displayUnitScaler;
         float displayH = sprite->size.y * displayUnitScaler;

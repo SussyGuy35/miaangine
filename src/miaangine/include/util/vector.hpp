@@ -5,6 +5,7 @@
 
 namespace mia 
 {
+	//TODO Conversion
 #pragma region int_v2i
     class v2i
 	{
@@ -108,8 +109,6 @@ namespace mia
 		{}
 
 	public:
-		operator v2i() const;
-
 		inline v2f& operator+=(const v2f& other)
 		{
 			x += other.x;
@@ -319,12 +318,6 @@ namespace mia
 	{
 		return v2d(right.x * left, right.y * left); 
 	}
-#pragma endregion
-
-#pragma region Convert definition
-	v2f::operator v2i() const { return v2i(x, y); }
-	v2d::operator v2f() const { return v2f(x, y); }
-	v2d::operator v2i() const { return v2i(x, y); }
 #pragma endregion
 }
 

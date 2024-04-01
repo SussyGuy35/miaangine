@@ -5,6 +5,7 @@
 
 #include "game.hpp"
 #include "input.hpp"
+#include "sprite-handler.hpp"
 
 #include "world-object.hpp"
 #include "portrait.hpp"
@@ -15,6 +16,7 @@ namespace mia
 {
     inline Game&  _Game()  { return Game::Instance(); }
     inline Input& _Input() { return Input::Instance(); }
+    // inline Sprite
 }
 
 #endif

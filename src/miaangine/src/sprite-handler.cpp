@@ -3,14 +3,13 @@
 namespace mia
 {
 #pragma region Constructor
-    SpriteHandler::SpriteHandler(const char *source):
-        _source(source)
-    {
-        _texture = IMG_LoadTexture(Game::Instance().renderer, source); //TODO safety
-    }
+    SpriteHandler::SpriteHandler()
+    {}
+
     SpriteHandler::~SpriteHandler()
     {
         SDL_DestroyTexture(_texture);
+        DestroyAllCuts();
         _sprites.clear();
     }
 #pragma endregion
@@ -27,8 +26,10 @@ namespace mia
 #pragma endregion
 
 #pragma region Public method
-    void SpriteHandler::ChangeTexture(const char *newSource)
+    void SpriteHandler::SetSource(const char *newSource)
     {
+        // TODO safety
+
         SDL_DestroyTexture(_texture);
         _texture = IMG_LoadTexture(Game::Instance().renderer, newSource);
 
@@ -38,13 +39,25 @@ namespace mia
         }
     }
 
-    void SpriteHandler::MakeCut(mia::v2i position, mia::v2i size)
+    Sprite* SpriteHandler::MakeCut(mia::v2i position, mia::v2i size)
     {
         Sprite *sprite = new Sprite(_texture, position, size);
         _sprites.push_back(sprite);
+
+        return sprite;
     }
 
-    void SpriteHandler::DestroyCuts()
+    void SpriteHandler::DestroyCut(Sprite *sprite)
+    {
+        auto spriteIterator = std::find(_sprites.begin(), _sprites.end(), sprite);
+
+        if (spriteIterator != _sprites.end())
+        {
+            _sprites.erase(spriteIterator);
+        }
+    }
+
+    void SpriteHandler::DestroyAllCuts()
     {
         for (Sprite *sprite : _sprites) delete sprite;
         _sprites.clear();

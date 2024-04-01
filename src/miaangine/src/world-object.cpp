@@ -1,5 +1,7 @@
 #include "world-object.hpp"
 
+#include "component.hpp"
+
 namespace mia
 {
 #pragma region Contructor Destructor

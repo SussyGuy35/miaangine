@@ -5,7 +5,7 @@
 
 namespace mia
 {
-    class mia::Component : public Entity
+    class Component : public Entity
     {
     public:
         Component();

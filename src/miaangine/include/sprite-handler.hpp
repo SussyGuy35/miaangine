@@ -8,12 +8,12 @@
 
 namespace mia
 {
-    class SpriteHandler
+    class SpriteHandler : public Singleton<SpriteHandler>
     {
-    public:
-        SpriteHandler(const char *source = "");
-
-        virtual ~SpriteHandler();
+    private:
+        friend class Singleton<SpriteHandler>;
+        SpriteHandler();
+        ~SpriteHandler();
 
     private:
         mia::string _source;
@@ -25,11 +25,11 @@ namespace mia
         const char* getSource() const;
         const SDL_Texture* getTexture() const;
 
-        void ChangeTexture(const char *newSource);
+        void SetSource(const char *newSource);
 
-        void MakeCut(mia::v2i position, mia::v2i size);
-        // TODO ADd remove cut
-        void DestroyCuts(); 
+        Sprite* MakeCut(mia::v2i position, mia::v2i size);
+        void DestroyCut(Sprite *sprite);
+        void DestroyAllCuts(); 
     };
 }
 

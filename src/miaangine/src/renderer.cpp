@@ -21,11 +21,11 @@ namespace mia
 
     void Renderer::RemovePortrait(Portrait *portrait)
     {
-        auto listenerIterator = std::find(_portraits.begin(), _portraits.end(), portrait);
+        auto portraitIterator = std::find(_portraits.begin(), _portraits.end(), portrait);
 
-        if (listenerIterator != _portraits.end())
+        if (portraitIterator != _portraits.end())
         {
-            _portraits.erase(listenerIterator);
+            _portraits.erase(portraitIterator);
         }
     }
 

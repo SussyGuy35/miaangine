@@ -32,14 +32,14 @@ namespace mia
 		}
 		inline v2i& operator*=(const int value)
 		{
-			x = value * x;
-			y = value * y;
+			x = x * value;
+			y = y * value;
 			return *this;
 		}
 		inline v2i& operator/=(const int value)
 		{
-			x = value * x;
-			y = value * y;
+			x = x / value;
+			y = y / value;
 			return *this;
 		}
 
@@ -123,14 +123,14 @@ namespace mia
 		}
 		inline v2f& operator*=(const double value)
 		{
-			x = static_cast<float>(value * x);
-			y = static_cast<float>(value * y);
+			x = static_cast<float>(x * value);
+			y = static_cast<float>(y * value);
 			return *this;
 		}
 		inline v2f& operator/=(const double value)
 		{
-			x = static_cast<float>(value * x);
-			y = static_cast<float>(value * y);
+			x = static_cast<float>(x / value);
+			y = static_cast<float>(y / value);
 			return *this;
 		}
 
@@ -236,14 +236,14 @@ namespace mia
 		}
 		inline v2d& operator*=(const double value)
 		{
-			x = value * x;
-			y = value * y;
+			x = x * value;
+			y = y * value;
 			return *this;
 		}
 		inline v2d& operator/=(const double value)
 		{
-			x = value * x;
-			y = value * y;
+			x = x / value;
+			y = y / value;
 			return *this;
 		}
 

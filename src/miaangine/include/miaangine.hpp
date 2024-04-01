@@ -7,6 +7,9 @@
 #include "input.hpp"
 
 #include "world-object.hpp"
+#include "portrait.hpp"
+
+#include "sprite.hpp"
 
 namespace mia
 {

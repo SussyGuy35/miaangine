@@ -5,9 +5,12 @@ int main(int argc, char* argv[])
 {
     mia::_Game().InitWindow();
 
+    // mia::WorldObject *obj = new mia::WorldObject();
+    // obj->AddComponent(new mia::Portrait());
+
     while (true)
     {
-        mia::_Game().Step();
+        mia::_Game().Update();
 
         if (mia::_Input().isQuit()) break;
     }

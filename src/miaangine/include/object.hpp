@@ -1,6 +1,8 @@
 #ifndef _MIA_OBJECT_HPP
 #define _MIA_OBJECT_HPP
 
+#include "common.hpp"
+
 #include "entity.hpp"
 
 namespace mia
@@ -18,6 +20,7 @@ namespace mia
         bool _active;
         uint32_t _tag;
         int _scene;
+        std::vector<Component*> _components;
 
     public:
         mia::string name() const;
@@ -27,9 +30,11 @@ namespace mia
 
         mia::string& name();
         bool SetActive(bool newState);
+        
         bool IsContainTag(int tag);
         uint32_t AddTag(int tag);
         uint32_t RemoveTag(int tag);
+        void AddComponent(Component *newComponent);
 
     public:
         const char* ToStr() const override;

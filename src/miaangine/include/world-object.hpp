@@ -12,7 +12,6 @@ namespace mia
         ~WorldObject();
 
     public:
-        mia::v2f GetScreenPosition() const override;
 
     public:
         const char* ToStr() const override;

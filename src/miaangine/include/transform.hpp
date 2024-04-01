@@ -28,8 +28,6 @@ namespace mia
         float& scale();
         Transform* parent();
 
-        virtual mia::v2f GetScreenPosition() const = 0;
-
     public:
         const char* ToStr() const override;
     };

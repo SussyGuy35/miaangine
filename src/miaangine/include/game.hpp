@@ -27,7 +27,7 @@ namespace mia
         int InitWindow();
         int ClearWindow();
 
-        int Step();
+        int Update();
     };
 }
 

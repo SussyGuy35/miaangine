@@ -1,5 +1,7 @@
 #include "object.hpp"
 
+#include "component.hpp"
+
 namespace mia
 {
 #pragma region Contructor Destructor
@@ -36,13 +38,13 @@ namespace mia
     {
         return _name;
     }
-#pragma endregion
-
-#pragma region Public method
     bool Object::SetActive(bool newState)
     {
         _active = newState;
     }
+#pragma endregion
+
+#pragma region Public method
     bool Object::IsContainTag(int tag)
     {
         // TODO safety
@@ -57,6 +59,11 @@ namespace mia
     {
         // TODO safety
         _tag &= ~(1 << tag);
+    }
+    void Object::AddComponent(Component *newComponent)
+    {
+        _components.push_back(newComponent);
+        newComponent->Init();
     }
 #pragma endregion
 

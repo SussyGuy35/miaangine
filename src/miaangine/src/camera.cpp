@@ -55,21 +55,25 @@ namespace mia
 #pragma region Public method
     v2f Camera::SetCenter(v2f position)
     {
-        v2f newPos = position - v2f(getCameraWidth(), getCameraHeight()) / 2;
+        v2f newPos = position + v2f(-getCameraWidth(), getCameraHeight()) / 2;
         return _position = newPos;
     }
 
     v2f Camera::WorldToScreenPoint(v2f point)
     {
-        v2f result = point - _position;
-        result.y *= -1;
-        return result;
+        point -= _position;
+        point.y *= -1;
+        point *= unitSize();
+
+        return point;
     }
     v2f Camera::ScreenToWorldPoint(v2f point)
     {
         point.y *= -1;
-        v2f result = _position + point;
-        return result;
+        point /= unitSize();
+        point += _position;
+
+        return point;
     }
 #pragma endregion
 }

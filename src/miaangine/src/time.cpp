@@ -1,0 +1,64 @@
+#include "time.hpp"
+
+namespace mia
+{
+#pragma region Constructor Destructor
+    Time::Time():
+        _deltaTime(0),
+        _FPS(0),
+        _currentTime(0),
+        _stepCount(0),
+        _currentTicks(SDL_GetPerformanceCounter()),
+        _lastFrameTicks(SDL_GetPerformanceCounter()),
+        _elapseTicks(SDL_GetPerformanceCounter()),
+        _FPSFrameCount(0),
+        _FPSClockCount(0)
+    {}
+
+    Time::~Time()
+    {}
+#pragma endregion
+
+#pragma region GetSet method
+    double Time::deltaTime() const
+    {
+        return _deltaTime;
+    }
+    float Time::fps() const
+    {
+        return _FPS;
+    }
+    double Time::time() const
+    {
+        return _currentTime;
+    }
+    uint64_t Time::stepCount() const
+    {
+        return _stepCount;
+    }
+#pragma endregion
+
+#pragma region Public method
+    void Time::Step()
+    {
+        _currentTicks = SDL_GetPerformanceCounter();
+        _elapseTicks = _currentTicks - _lastFrameTicks;
+        _lastFrameTicks = _currentTicks;
+
+        _deltaTime = static_cast<double>(_elapseTicks) / static_cast<double>(SDL_GetPerformanceFrequency());
+
+        _currentTime += _deltaTime;
+
+        _stepCount++;
+
+        _FPSFrameCount++;
+        _FPSClockCount += _deltaTime;
+        if (_FPSClockCount >= 0.1)
+        {
+            _FPS = _FPSFrameCount * 10;
+
+            _FPSClockCount = _FPSFrameCount = 0;
+        }
+    }
+#pragma endregion
+}

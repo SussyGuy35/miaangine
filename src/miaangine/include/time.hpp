@@ -18,7 +18,6 @@ namespace mia
         double _currentTime;
         uint64_t _stepCount;
 
-        // Variable to solve attributes
         uint64_t _currentTicks, _lastFrameTicks, _elapseTicks;
         uint32_t _FPSFrameCount; double _FPSClockCount;
 

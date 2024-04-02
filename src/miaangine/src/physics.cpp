@@ -37,8 +37,6 @@ namespace mia
     {
         for (Body *body : _bodies)
         {
-            printf("%f\n", body->velocity().magnitude());
-
             body->velocity() += body->force() / body->mass();
 
             body->master()->position() += body->velocity() * elapsedTime;

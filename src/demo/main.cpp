@@ -13,12 +13,9 @@ int main(int argc, char* argv[])
     );
     obj->AddComponent(prt);
     mia::Body *bdy = new mia::Body(
-        1, mia::v2f(10, 10)
+        1, mia::v2f(.5, .5)
     );
     obj->AddComponent(bdy);
-
-    // printf("%f %f\n", mia::_Camera().getCameraHeight(), mia::_Camera().getCameraWidth());
-    // printf("%d", mia::_Camera().unitSize());
 
     prt->pivot() = mia::v2f(0, 0);
     prt->offset() = mia::v2f(.5, 1);
@@ -29,12 +26,16 @@ int main(int argc, char* argv[])
     {
         mia::_Game().Update();
 
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_D)) mia::_Camera().position().x += 1;
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_A)) mia::_Camera().position().x -= 1;
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_W)) mia::_Camera().position().y += 1;
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_S)) mia::_Camera().position().y -= 1;
+        if (mia::_Input().getKey(SDL_SCANCODE_D)) mia::_Camera().position().x += 1 * mia::_Time().deltaTime();
+        if (mia::_Input().getKey(SDL_SCANCODE_A)) mia::_Camera().position().x -= 1 * mia::_Time().deltaTime();
+        if (mia::_Input().getKey(SDL_SCANCODE_W)) mia::_Camera().position().y += 1 * mia::_Time().deltaTime();
+        if (mia::_Input().getKey(SDL_SCANCODE_S)) mia::_Camera().position().y -= 1 * mia::_Time().deltaTime();
 
         if (mia::_Input().isQuit()) break;
+
+        mia::_Game().Render();
+
+        SDL_Delay(1);
     }
 
     mia::_Game().ClearWindow();

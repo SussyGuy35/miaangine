@@ -17,7 +17,7 @@ namespace mia
     {
         return _active;
     }
-    const Transform* Component::master() const
+    Transform* Component::master() const
     {
         return _master;
     }

@@ -18,11 +18,11 @@ namespace mia
 
     void Physics::RemoveBody(Body *body)
     {
-        auto listenerIterator = std::find(_bodies.begin(), _bodies.end(), body);
+        auto bodyIterator = std::find(_bodies.begin(), _bodies.end(), body);
 
-        if (listenerIterator != _bodies.end())
+        if (bodyIterator != _bodies.end())
         {
-            _bodies.erase(listenerIterator);
+            _bodies.erase(bodyIterator);
         }
     }
 
@@ -37,6 +37,8 @@ namespace mia
     {
         for (Body *body : _bodies)
         {
+            printf("%f\n", body->velocity().magnitude());
+
             body->velocity() += body->force() / body->mass();
 
             body->master()->position() += body->velocity() * elapsedTime;

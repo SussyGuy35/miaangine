@@ -23,6 +23,7 @@ namespace mia
         int ClearWindow();
 
         int Update();
+        int Render();
     };
 }
 

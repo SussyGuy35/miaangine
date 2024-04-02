@@ -79,5 +79,14 @@ namespace mia
         EventDispatcher::Instance().Notify(_EVENT_PRIMARY_UPDATE);
 
         Physics::Instance().Update(Time::Instance().deltaTime());
+
+        return 0;
+    }
+
+    int Game::Render()
+    {
+        Renderer::Instance().Render(renderer);
+
+        return 0;
     }
 }

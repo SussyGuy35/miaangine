@@ -12,7 +12,8 @@ namespace mia
         _ENTITY_TRANSFORM,
         _ENTITY_WORLDOBJECT,
         _ENTITY_COMPONENT,
-        _ENTITY_PORTRAIT
+        _ENTITY_PORTRAIT,
+        _ENTITY_BODY
         //TODO
     };
 

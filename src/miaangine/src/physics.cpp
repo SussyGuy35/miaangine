@@ -1,22 +1,22 @@
-#include "physics-world.hpp"
+#include "physics.hpp"
 
 namespace mia
 {
 #pragma region Constructor Destructor
-    PhysicsWorld::PhysicsWorld()
+    Physics::Physics()
     {}
 
-    PhysicsWorld::~PhysicsWorld()
+    Physics::~Physics()
     {}
 #pragma endregion
 
 #pragma region Public method
-    void PhysicsWorld::RegisterBody(Body *body)
+    void Physics::RegisterBody(Body *body)
     {
         _bodies.push_back(body);
     }
 
-    void PhysicsWorld::RemoveBody(Body *body)
+    void Physics::RemoveBody(Body *body)
     {
         auto listenerIterator = std::find(_bodies.begin(), _bodies.end(), body);
 
@@ -26,14 +26,14 @@ namespace mia
         }
     }
 
-    void PhysicsWorld::Step(double elapsedTime)
+    void Physics::Update(double elapsedTime)
     {
         BodiesDynamicsHandle(elapsedTime);
     }
 #pragma endregion
 
 #pragma region Private method
-    void PhysicsWorld::BodiesDynamicsHandle(double elapsedTime)
+    void Physics::BodiesDynamicsHandle(double elapsedTime)
     {
         for (Body *body : _bodies)
         {

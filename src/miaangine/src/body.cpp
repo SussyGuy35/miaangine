@@ -1,5 +1,7 @@
 #include "body.hpp"
 
+#include "physics.hpp"
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -76,7 +78,7 @@ namespace mia
     }
     bool Body::Init()
     {
-        // TODO
+        Physics::Instance().RegisterBody(this);
     }
 #pragma endregion
 }

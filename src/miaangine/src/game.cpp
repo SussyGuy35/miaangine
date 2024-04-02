@@ -1,7 +1,10 @@
 #include "game.hpp"
 
+#include "event-dispatcher.hpp"
+#include "time.hpp"
 #include "camera.hpp"
 #include "input.hpp"
+#include "physics.hpp"
 #include "renderer.hpp"
 
 namespace mia
@@ -67,8 +70,14 @@ namespace mia
 
     int Game::Update()
     {
+        EventDispatcher::Instance().Notify(_EVENT_ON_ENTER_FRAME);
+
+        Time::Instance().Step();
+
         Input::Instance().Update();
 
-        Renderer::Instance().Render(renderer);
+        EventDispatcher::Instance().Notify(_EVENT_PRIMARY_UPDATE);
+
+        Physics::Instance().Update(Time::Instance().deltaTime());
     }
 }

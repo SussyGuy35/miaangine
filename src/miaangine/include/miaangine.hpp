@@ -12,6 +12,7 @@
 #include "object.hpp"
 #include "transform.hpp"
 #include "portrait.hpp"
+#include "body.hpp"
 
 #include "sprite.hpp"
 

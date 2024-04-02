@@ -12,6 +12,10 @@ int main(int argc, char* argv[])
         mia::_SpriteHandler().MakeCut(mia::v2i(0, 0), mia::v2i(16, 16))
     );
     obj->AddComponent(prt);
+    mia::Body *bdy = new mia::Body(
+        1, mia::v2f(10, 10)
+    );
+    obj->AddComponent(bdy);
 
     // printf("%f %f\n", mia::_Camera().getCameraHeight(), mia::_Camera().getCameraWidth());
     // printf("%d", mia::_Camera().unitSize());

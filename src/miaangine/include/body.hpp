@@ -9,7 +9,7 @@ namespace mia
     class Body : public Component
     {
     public:
-        Body(float mass, v2f initForce = v2f::zero());
+        Body(float mass = 1, v2f initForce = v2f::zero());
         virtual ~Body();
 
     private:

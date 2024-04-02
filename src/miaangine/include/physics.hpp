@@ -7,12 +7,12 @@
 
 namespace mia
 {
-    class PhysicsWorld : public Singleton<PhysicsWorld>
+    class Physics : public Singleton<Physics>
     {
     private:
-        friend class Singleton<PhysicsWorld>;
-        PhysicsWorld();
-        ~PhysicsWorld();
+        friend class Singleton<Physics>;
+        Physics();
+        ~Physics();
 
     private:
         std::vector<Body*> _bodies;
@@ -21,7 +21,7 @@ namespace mia
         void RegisterBody(Body *body);
         void RemoveBody(Body *body);
 
-        void Step(double elapsedTime);
+        void Update(double elapsedTime);
 
     private:
         void BodiesDynamicsHandle(double elapsedTime);

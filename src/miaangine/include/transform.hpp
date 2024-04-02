@@ -8,23 +8,26 @@ namespace mia
     class Transform : public Entity
     {
     public:
-        Transform(Object* master, v2f position, float scale);
+        Transform(v2f position, float scale, Transform *parent, Object *master);
         virtual ~Transform();
 
     private:
         v2f _position;
         float _scale;
-        Object* _master;
+        Transform *_parent;
+        Object *_master;
         
     public:
         v2f position() const;
         v2f localPosition() const;
         float scale() const;
+        const Transform& parent() const;
         const Object* master() const;
 
         v2f& position();
         v2f SetLocalPosition(v2f newPosition);
         float& scale();
+        Transform& parent();
         Object* master();
 
     public:

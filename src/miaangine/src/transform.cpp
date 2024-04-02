@@ -3,9 +3,11 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Transform::Transform(Object* master, v2f position, float scale):
+    Transform::Transform(v2f position, float scale, Transform *parent, Object *master):
         _position(position),
-        _scale(scale)
+        _scale(scale),
+        _parent(parent),
+        _master(master)
     {}
 
     Transform::~Transform()
@@ -25,6 +27,14 @@ namespace mia
     {
         return _scale;
     }
+    const Transform& Transform::parent() const
+    {
+        return *_parent;
+    }
+    const Object* Transform::master() const
+    {
+        return _master;
+    }
 
     v2f& Transform::position()
     {
@@ -37,6 +47,14 @@ namespace mia
     float& Transform::scale()
     {
         return _scale;
+    }
+    Transform& Transform::parent()
+    {
+        return *_parent;
+    }
+    Object* Transform::master()
+    {
+        return _master;
     }
 #pragma endregion
 

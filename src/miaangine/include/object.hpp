@@ -15,8 +15,8 @@ namespace mia
     public:
         Object(const char *name = "Untitled", v2f position = v2f::zero(), float scale = 1);
         Object(const char *name, float x, float y, float scale = 1);
-        Object(const char *name, Object* parent, v2f position = v2f::zero(), float scale = 1);
-        Object(const char *name, Object* parent, float x, float y, float scale = 1);
+        Object(const char *name, Transform* parent, v2f position = v2f::zero(), float scale = 1);
+        Object(const char *name, Transform* parent, float x, float y, float scale = 1);
         virtual ~Object();
 
     protected:
@@ -24,9 +24,8 @@ namespace mia
         bool _active;
         uint32_t _tag;
         int _scene;
-        Transform _transform;
+        Transform *_transform;
         std::vector<Component*> _components;
-        Object *_parent;
 
     public:
         string name() const;
@@ -34,12 +33,10 @@ namespace mia
         uint32_t getTag() const;
         int getScene() const;
         const Transform& transform() const;
-        const Object* parent() const;
 
         string& name();
         bool SetActive(bool newState);
         Transform& transform();
-        Object* parent();
         
         bool IsContainTag(int tag);
         uint32_t AddTag(int tag);

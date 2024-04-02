@@ -10,33 +10,31 @@ namespace mia
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(this, position, scale)),
-        _parent(nullptr)
+        _transform(new Transform(position, scale, nullptr, this))
     {}
     Object::Object(const char *name, float x, float y, float scale):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(this, v2f(x, y), scale)),
-        _parent(nullptr)
+        _transform(new Transform(v2f(x, y), scale, nullptr, this))
     {}
-    Object::Object(const char *name, Object* parent, mia::v2f position, float scale):
+    Object::Object(const char *name, Transform* parent, mia::v2f position, float scale):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(this, position, scale)),
-        _parent(parent)
+        _transform(new Transform(position, scale, parent, this))
     {}
-    Object::Object(const char *name, Object* parent, float x, float y, float scale):
+    Object::Object(const char *name, Transform* parent, float x, float y, float scale):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(this, v2f(x, y), scale)),
-        _parent(nullptr)
+        _transform(new Transform(v2f(x, y), scale, parent, this))
     {}
 
     Object::~Object()
-    {}
+    {
+        delete _transform;
+    }
 #pragma endregion
 
 #pragma region GetSet-method
@@ -58,11 +56,7 @@ namespace mia
     }
     const Transform& Object::transform() const
     {
-        return _transform;
-    }
-    const Object* Object::parent() const 
-    {
-        return _parent;
+        return *_transform;
     }
     
     mia::string& Object::name()
@@ -75,11 +69,7 @@ namespace mia
     }
     Transform& Object::transform() 
     {
-        return _transform;
-    }
-    Object* Object::parent()
-    {
-        return _parent;
+        return *_transform;
     }
 #pragma endregion
 
@@ -103,7 +93,7 @@ namespace mia
     {
         _components.push_back(newComponent);
         newComponent->Init();
-        // newComponent->SetMaster(this); //FIXME
+        newComponent->SetMaster(_transform); //FIXME
     }
 #pragma endregion
 

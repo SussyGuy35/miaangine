@@ -7,7 +7,7 @@ int main(int argc, char* argv[])
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/SpriteTest.png");
 
-    mia::WorldObject *obj = new mia::WorldObject();
+    mia::Object *obj = new mia::Object();
     mia::Portrait *prt = new mia::Portrait(
         mia::_SpriteHandler().MakeCut(mia::v2i(0, 0), mia::v2i(16, 16))
     );

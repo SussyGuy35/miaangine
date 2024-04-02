@@ -13,14 +13,14 @@ namespace mia
     class Object : public Entity
     {
     public:
-        Object(const char *name = "Untitled", mia::v2f position = mia::v2f::zero(), float scale = 1);
+        Object(const char *name = "Untitled", v2f position = v2f::zero(), float scale = 1);
         Object(const char *name, float x, float y, float scale = 1);
-        Object(const char *name, Object* parent, mia::v2f position = mia::v2f::zero(), float scale = 1);
+        Object(const char *name, Object* parent, v2f position = v2f::zero(), float scale = 1);
         Object(const char *name, Object* parent, float x, float y, float scale = 1);
         virtual ~Object();
 
     protected:
-        mia::string _name;
+        string _name;
         bool _active;
         uint32_t _tag;
         int _scene;
@@ -29,14 +29,14 @@ namespace mia
         Object *_parent;
 
     public:
-        mia::string name() const;
+        string name() const;
         bool isActive() const;
         uint32_t getTag() const;
         int getScene() const;
         const Transform& transform() const;
         const Object* parent() const;
 
-        mia::string& name();
+        string& name();
         bool SetActive(bool newState);
         Transform& transform();
         Object* parent();

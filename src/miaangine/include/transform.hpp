@@ -5,28 +5,27 @@
 
 namespace mia
 {
-    class Transform : public Object
+    class Transform : public Entity
     {
     public:
-        Transform(const char *name = "unnamed", mia::v2f position = mia::v2f::zero(), float scale = 1, Transform* parent = nullptr);
+        Transform(Object* master, v2f position, float scale);
         virtual ~Transform();
 
     private:
-        mia::v2f _position;
+        v2f _position;
         float _scale;
-        Transform *_parent;
+        Object* _master;
         
     public:
-        mia::v2f position() const;
-        mia::v2f localPosition() const;
+        v2f position() const;
+        v2f localPosition() const;
         float scale() const;
-        const Transform* parent() const; 
+        const Object* master() const;
 
-    public:
-        mia::v2f& position();
-        mia::v2f SetLocalPosition(mia::v2f newPosition);
+        v2f& position();
+        v2f SetLocalPosition(v2f newPosition);
         float& scale();
-        Transform* parent();
+        Object* master();
 
     public:
         int getID() const override;

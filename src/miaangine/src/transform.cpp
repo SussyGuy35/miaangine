@@ -3,11 +3,9 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Transform::Transform(const char *name, mia::v2f position, float scale, Transform* parent):
-        Object(name, this),
+    Transform::Transform(Object* master, v2f position, float scale):
         _position(position),
-        _scale(scale),
-        _parent(parent)
+        _scale(scale)
     {}
 
     Transform::~Transform()
@@ -15,40 +13,30 @@ namespace mia
 #pragma endregion
 
 #pragma region GetSet-method
-    mia::v2f Transform::position() const 
+    v2f Transform::position() const 
     {
         return _position;
     }
-    mia::v2f Transform::localPosition() const
+    v2f Transform::localPosition() const
     {
-        return _position - _parent->_position;
+        return _position - master()->transform().position();
     }
     float Transform::scale() const 
     {
         return _scale;
     }
-    const Transform* Transform::parent() const
-    {
-        // TODO safety
-        return _parent;
-    }
 
-    mia::v2f& Transform::position()
+    v2f& Transform::position()
     {
         return _position;
     }
-    mia::v2f Transform::SetLocalPosition(mia::v2f newPosition)
+    v2f Transform::SetLocalPosition(v2f newPosition)
     {
-        return _position = _parent->_position + newPosition;
+        return _position = master()->transform().position() + newPosition;
     }
     float& Transform::scale()
     {
         return _scale;
-    }
-    Transform* Transform::parent()
-    {
-        // TODO safety
-        return _parent;
     }
 #pragma endregion
 
@@ -59,7 +47,7 @@ namespace mia
     }
     const char* Transform::ToStr() const
     {
-        return mia::string("Transform");
+        return string("Transform");
     }
 #pragma endregion
 }

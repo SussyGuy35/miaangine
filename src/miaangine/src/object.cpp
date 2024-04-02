@@ -10,28 +10,28 @@ namespace mia
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(position, scale)),
+        _transform(Transform(this, position, scale)),
         _parent(nullptr)
     {}
     Object::Object(const char *name, float x, float y, float scale):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(v2f(x, y), scale)),
+        _transform(Transform(this, v2f(x, y), scale)),
         _parent(nullptr)
     {}
     Object::Object(const char *name, Object* parent, mia::v2f position, float scale):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(position, scale)),
+        _transform(Transform(this, position, scale)),
         _parent(parent)
     {}
     Object::Object(const char *name, Object* parent, float x, float y, float scale):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(Transform(v2f(x, y), scale)),
+        _transform(Transform(this, v2f(x, y), scale)),
         _parent(nullptr)
     {}
 

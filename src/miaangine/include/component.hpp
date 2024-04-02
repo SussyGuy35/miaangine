@@ -1,7 +1,7 @@
 #ifndef _MIA_COMPONENT_HPP
 #define _MIA_COMPONENT_HPP
 
-#include "transform.hpp"
+#include "Object.hpp"
 
 namespace mia
 {

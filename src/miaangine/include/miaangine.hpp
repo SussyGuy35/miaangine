@@ -9,7 +9,8 @@
 #include "sprite-handler.hpp"
 #include "camera.hpp"
 
-#include "world-object.hpp"
+#include "object.hpp"
+#include "transform.hpp"
 #include "portrait.hpp"
 
 #include "sprite.hpp"

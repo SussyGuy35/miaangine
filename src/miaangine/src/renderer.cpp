@@ -53,7 +53,6 @@ namespace mia
                 // TODO Add Error
                 continue;
             }
-
         
             SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
             SDL_SetTextureAlphaMod(texture, portrait->color().a);

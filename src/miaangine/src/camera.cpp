@@ -37,7 +37,7 @@ namespace mia
     {
         return _position;
     }
-    int Camera::unitSize() const
+    float Camera::unitSize() const
     {
         return 1.0 * _screenWidth / _size;
     }
@@ -57,6 +57,17 @@ namespace mia
     {
         v2f newPos = position + v2f(-getCameraWidth(), getCameraHeight()) / 2;
         return _position = newPos;
+    }
+
+    float Camera::Resize(float newSize, v2f pivot)
+    {
+        v2f pivotPos = v2f(
+            _position.x + pivot.x * getCameraWidth(),
+            _position.y - pivot.y * getCameraHeight()
+        );
+
+        _position = pivotPos + ((_position - pivotPos) * (newSize / _size));
+        _size = newSize;
     }
 
     v2f Camera::WorldToScreenPoint(v2f point)

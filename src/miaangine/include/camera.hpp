@@ -28,12 +28,13 @@ namespace mia
         float getCameraHeight() const;
         float size() const;
         v2f position() const;
-        int unitSize() const;
+        float unitSize() const;
 
         float& size();
         v2f& position();
 
         v2f SetCenter(v2f position);
+        float Resize(float newSize, v2f pivot = v2f::zero());
     
         v2f WorldToScreenPoint(v2f point);
         v2f ScreenToWorldPoint(v2f point);

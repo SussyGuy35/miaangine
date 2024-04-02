@@ -61,12 +61,12 @@ namespace mia
 
     float Camera::Resize(float newSize, v2f pivot)
     {
-        v2f pivotPos = v2f(
-            _position.x + pivot.x * getCameraWidth(),
-            _position.y - pivot.y * getCameraHeight()
+        v2f delta = v2f(
+            pivot.x * getCameraWidth() * (1 - newSize / _size),
+            -pivot.y * getCameraHeight() * (1 - newSize / _size)
         );
 
-        _position = pivotPos + ((_position - pivotPos) * (newSize / _size));
+        _position += delta;
         _size = newSize;
     }
 

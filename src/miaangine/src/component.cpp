@@ -33,6 +33,10 @@ namespace mia
 #pragma endregion
 
 #pragma region Inherited method
+    int Component::getID() const
+    {
+        return _ENTITY_COMPONENT;
+    }
     const char* Component::ToStr() const
     {
         return "Component";

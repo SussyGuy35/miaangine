@@ -5,33 +5,24 @@
 
 namespace mia
 {
-    enum EntityID
+    enum EntityID //TODO remove this
     {
-        _ENTITY_NONE = -1,
-        _ENTITY_ENTITY = 0,
-        _ENTITY_OBJECT
+        _ENTITY_NONE,
+        _ENTITY_OBJECT,
+        _ENTITY_TRANSFORM,
+        _ENTITY_WORLDOBJECT,
+        _ENTITY_COMPONENT,
+        _ENTITY_PORTRAIT
         //TODO
     };
 
     class Entity
     {
     public:
-        Entity(int ID = _ENTITY_ENTITY):
-            _ID(ID)
-        {}
+        Entity() {}
+        virtual ~Entity() {}
 
-        virtual ~Entity()
-        {}
-
-    protected:
-        int _ID;
-
-    public:
-        virtual int getID() const
-        {
-            return _ID;
-        }
-
+        virtual int getID() const = 0;
         virtual const char* ToStr() const = 0;
     };
 }

@@ -53,6 +53,10 @@ namespace mia
 #pragma endregion
 
 #pragma region Inherited method
+    int Transform::getID() const
+    {
+        return _ENTITY_TRANSFORM;
+    }
     const char* Transform::ToStr() const
     {
         return mia::string("Transform");

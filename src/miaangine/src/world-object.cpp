@@ -21,7 +21,10 @@ namespace mia
     // {
     //     //TODO
     // }
-
+    int WorldObject::getID() const
+    {
+        return _ENTITY_WORLDOBJECT;
+    }
     const char* WorldObject::ToStr() const
     {
         return mia::string("WorldObject");

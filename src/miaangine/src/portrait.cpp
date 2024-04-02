@@ -53,6 +53,10 @@ namespace mia
 #pragma endregion
 
 #pragma region Inherited method
+    int Portrait::getID() const 
+    {
+        return _ENTITY_PORTRAIT;
+    }
     const char* Portrait::ToStr() const
     {
         return "Portrait(Component)";

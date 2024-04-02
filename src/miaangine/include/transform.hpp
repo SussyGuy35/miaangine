@@ -29,6 +29,7 @@ namespace mia
         Transform* parent();
 
     public:
+        int getID() const override;
         const char* ToStr() const override;
     };
 }

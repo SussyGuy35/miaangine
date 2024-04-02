@@ -41,6 +41,7 @@ namespace mia
         void AddComponent(Component *newComponent);
 
     public:
+        int getID() const override;
         const char* ToStr() const override;
     };
 }

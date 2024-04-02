@@ -6,7 +6,6 @@ namespace mia
 {
 #pragma region Contructor Destructor
     Object::Object(const char *name, Transform *transform):
-        Entity(_ENTITY_OBJECT),
         _name(name),
         _active(true),
         _scene(-1), //TODO scene
@@ -78,6 +77,10 @@ namespace mia
 #pragma endregion
 
 #pragma region Inherited method
+    int Object::getID() const 
+    {
+        return _ENTITY_OBJECT;
+    }
     const char* Object::ToStr() const
     {
         return mia::string("Object");

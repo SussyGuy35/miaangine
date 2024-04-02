@@ -25,6 +25,7 @@ namespace mia
         virtual bool Init() = 0;
 
     public:
+        int getID() const override;
         const char* ToStr() const override;
     };
 }

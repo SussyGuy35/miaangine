@@ -14,6 +14,7 @@ namespace mia
     public:
 
     public:
+        int getID() const override;
         const char* ToStr() const override;
     };
 }

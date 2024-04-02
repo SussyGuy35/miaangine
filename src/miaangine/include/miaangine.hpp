@@ -5,6 +5,7 @@
 
 #include "game.hpp"
 #include "input.hpp"
+#include "time.hpp"
 #include "sprite-handler.hpp"
 #include "camera.hpp"
 
@@ -17,6 +18,7 @@ namespace mia
 {
     inline Game& _Game()  { return Game::Instance(); }
     inline Input& _Input() { return Input::Instance(); }
+    inline Time& _Time() { return Time::Instance(); }
     inline SpriteHandler& _SpriteHandler() { return SpriteHandler::Instance(); }
     inline Camera& _Camera() { return Camera::Instance(); }
 }

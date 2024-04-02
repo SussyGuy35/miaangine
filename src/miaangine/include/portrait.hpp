@@ -31,6 +31,7 @@ namespace mia
         mia::v2f& pivot();
 
     public:
+        int getID() const override;
         const char* ToStr() const override;
         bool Init() override;
         // bool SetActive(bool newState) override;

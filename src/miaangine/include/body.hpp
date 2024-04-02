@@ -20,9 +20,11 @@ namespace mia
     public:
         float mass() const;
         v2f velocity() const;
+        v2f force() const;
 
         float& mass();
         v2f& velocity();
+        v2f& force();
 
         v2f AddForce(v2f force);
         v2f AddForce(float x, float y);

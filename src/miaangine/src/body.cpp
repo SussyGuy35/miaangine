@@ -22,6 +22,10 @@ namespace mia
     {
         return _velocity;
     }
+    v2f Body::force() const
+    {
+        return _force;
+    }
 
     float& Body::mass()
     {
@@ -30,6 +34,10 @@ namespace mia
     v2f& Body::velocity()
     {
         return _velocity;
+    }
+    v2f& Body::force()
+    {
+        return _force;
     }
 #pragma endregion
 

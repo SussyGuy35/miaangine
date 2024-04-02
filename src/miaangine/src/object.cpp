@@ -1,15 +1,38 @@
 #include "object.hpp"
 
+#include "transform.hpp"
 #include "component.hpp"
 
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(const char *name, Transform *transform):
+    Object::Object(const char *name, mia::v2f position, float scale):
         _name(name),
         _active(true),
-        _scene(-1), //TODO scene
-        _transform(transform)
+        _scene(-1),
+        _transform(Transform(position, scale)),
+        _parent(nullptr)
+    {}
+    Object::Object(const char *name, float x, float y, float scale):
+        _name(name),
+        _active(true),
+        _scene(-1),
+        _transform(Transform(v2f(x, y), scale)),
+        _parent(nullptr)
+    {}
+    Object::Object(const char *name, Object* parent, mia::v2f position, float scale):
+        _name(name),
+        _active(true),
+        _scene(-1),
+        _transform(Transform(position, scale)),
+        _parent(parent)
+    {}
+    Object::Object(const char *name, Object* parent, float x, float y, float scale):
+        _name(name),
+        _active(true),
+        _scene(-1),
+        _transform(Transform(v2f(x, y), scale)),
+        _parent(nullptr)
     {}
 
     Object::~Object()
@@ -33,9 +56,13 @@ namespace mia
     {
         return _scene;
     }
-    const Transform* Object::transform() const
+    const Transform& Object::transform() const
     {
         return _transform;
+    }
+    const Object* Object::parent() const 
+    {
+        return _parent;
     }
     
     mia::string& Object::name()
@@ -46,9 +73,13 @@ namespace mia
     {
         _active = newState;
     }
-    Transform* Object::transform() 
+    Transform& Object::transform() 
     {
         return _transform;
+    }
+    Object* Object::parent()
+    {
+        return _parent;
     }
 #pragma endregion
 
@@ -72,7 +103,7 @@ namespace mia
     {
         _components.push_back(newComponent);
         newComponent->Init();
-        newComponent->SetMaster(_transform);
+        // newComponent->SetMaster(this); //FIXME
     }
 #pragma endregion
 

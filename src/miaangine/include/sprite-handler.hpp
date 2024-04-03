@@ -16,7 +16,7 @@ namespace mia
         ~SpriteHandler();
 
     private:
-        mia::string _source;
+        string _source;
         SDL_Texture *_texture;
 
         std::vector<Sprite*> _sprites;
@@ -27,7 +27,7 @@ namespace mia
 
         void SetSource(const char *source);
 
-        Sprite* MakeCut(mia::v2i position, mia::v2i size);
+        Sprite* MakeCut(v2i position, v2i size);
         void DestroyCut(Sprite *sprite);
         void DestroyAllCuts(); 
     };

@@ -8,7 +8,7 @@ namespace mia
     class Sprite
     {
     public:
-        Sprite(SDL_Texture *texture, mia::v2i position, mia::v2i size):
+        Sprite(SDL_Texture *texture, v2i position, v2i size):
             texture(texture),
             position(position),
             size(size)
@@ -18,8 +18,8 @@ namespace mia
         {}
 
         SDL_Texture *texture;
-        mia::v2i position;
-        mia::v2i size;
+        v2i position;
+        v2i size;
         
         void DestroyTexture()
         {

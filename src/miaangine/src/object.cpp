@@ -6,7 +6,7 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(const char *name, mia::v2f position, float scale):
+    Object::Object(const char *name, v2f position, float scale):
         _name(name),
         _active(true),
         _scene(-1),
@@ -18,7 +18,7 @@ namespace mia
         _scene(-1),
         _transform(new Transform(v2f(x, y), scale, nullptr, this))
     {}
-    Object::Object(const char *name, Transform* parent, mia::v2f position, float scale):
+    Object::Object(const char *name, Transform* parent, v2f position, float scale):
         _name(name),
         _active(true),
         _scene(-1),
@@ -38,7 +38,7 @@ namespace mia
 #pragma endregion
 
 #pragma region GetSet-method
-    mia::string Object::name() const 
+    string Object::name() const 
     {
         return _name;
     }
@@ -59,7 +59,7 @@ namespace mia
         return *_transform;
     }
     
-    mia::string& Object::name()
+    string& Object::name()
     {
         return _name;
     }
@@ -104,7 +104,7 @@ namespace mia
     }
     const char* Object::ToStr() const
     {
-        return mia::string("Object");
+        return string("Object");
     }
 #pragma endregion
 }

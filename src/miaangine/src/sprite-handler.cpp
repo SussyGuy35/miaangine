@@ -39,7 +39,7 @@ namespace mia
         }
     }
 
-    Sprite* SpriteHandler::MakeCut(mia::v2i position, mia::v2i size)
+    Sprite* SpriteHandler::MakeCut(v2i position, v2i size)
     {
         Sprite *sprite = new Sprite(_texture, position, size);
         _sprites.push_back(sprite);

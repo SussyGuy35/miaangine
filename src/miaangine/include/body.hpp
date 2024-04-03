@@ -13,6 +13,8 @@ namespace mia
         virtual ~Body();
 
     private:
+        v2f _offset;
+
         float _mass;
         v2f _velocity;
         v2f _force;

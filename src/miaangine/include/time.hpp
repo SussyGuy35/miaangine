@@ -19,7 +19,6 @@ namespace mia
         uint64_t _stepCount;
 
         uint64_t _currentTicks, _lastFrameTicks, _elapseTicks;
-        uint32_t _FPSFrameCount; double _FPSClockCount;
 
     public:
         double deltaTime() const;

@@ -43,7 +43,7 @@ namespace mia
     void Renderer::RenderPortraits(SDL_Renderer *renderer)
     {
         for (Portrait *portrait : _portraits)
-        {
+        { 
             Sprite *sprite = portrait->sprite();
             SDL_Texture *texture = sprite->texture;
 

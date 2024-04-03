@@ -10,9 +10,7 @@ namespace mia
         _stepCount(0),
         _currentTicks(SDL_GetPerformanceCounter()),
         _lastFrameTicks(SDL_GetPerformanceCounter()),
-        _elapseTicks(SDL_GetPerformanceCounter()),
-        _FPSFrameCount(0),
-        _FPSClockCount(0)
+        _elapseTicks(SDL_GetPerformanceCounter())
     {}
 
     Time::~Time()
@@ -51,14 +49,8 @@ namespace mia
 
         _stepCount++;
 
-        _FPSFrameCount++;
-        _FPSClockCount += _deltaTime;
-        if (_FPSClockCount >= 0.1)
-        {
-            _FPS = _FPSFrameCount * 10;
-
-            _FPSClockCount = _FPSFrameCount = 0;
-        }
+        if (_deltaTime == 0) _FPS = 0;
+        else _FPS = 1 / _deltaTime;
     }
 #pragma endregion
 }

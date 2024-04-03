@@ -2,8 +2,10 @@
 #define _MIA_RENDERER_HPP
 
 #include "common.hpp"
+#include "util/quadtree.hpp"
 
 #include "portrait.hpp"
+
 
 namespace mia
 {

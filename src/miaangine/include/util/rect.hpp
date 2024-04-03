@@ -36,7 +36,7 @@ namespace mia
             );
         }
 
-        inline bool contain(const rect& other) const
+        inline bool overlap(const rect& other) const
         {
             return (
                 position.x          < other.position.x + other.size.x && 

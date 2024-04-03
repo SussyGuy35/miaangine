@@ -37,8 +37,8 @@ namespace mia
     {
         rect res = rect();
         res.pos = _master->position() + _offset;
-        res.siz.x = 1.0 * _sprite->size.x * _master->scale() / PPU;
-        res.siz.y = 1.0 * _sprite->size.y * _master->scale() / PPU;
+        res.siz.x = 1.0 * _sprite->size.x * _master->scale().x / PPU;
+        res.siz.y = 1.0 * _sprite->size.y * _master->scale().y / PPU;
         return res;
     }
 

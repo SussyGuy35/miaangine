@@ -59,7 +59,7 @@ namespace mia
                 // TODO Add Error
                 continue;
             }
-        
+
             SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
             SDL_SetTextureAlphaMod(texture, portrait->color().a);
 
@@ -80,7 +80,7 @@ namespace mia
         float displayW = sprite->size.x * displayUnitScaler;
         float displayH = sprite->size.y * displayUnitScaler;
         float displayX = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).x - portrait.pivot().x * displayW;
-        float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - portrait.pivot().y * displayH;
+        float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - (1 - portrait.pivot().y) * displayH;
 
         rect.w = static_cast<int>(displayW);
         rect.h = static_cast<int>(displayH);

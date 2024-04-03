@@ -16,6 +16,26 @@ namespace mia
 #pragma endregion
 
 #pragma region GetSet method
+    v2f Body::offset() const
+    {
+        return _offset;
+    }
+    v2f Body::size() const
+    {
+        return _size;
+    }
+    v2f Body::pivot() const
+    {
+        return _pivot;
+    }
+    bool Body::isTrigger() const
+    {
+        return _trigger;
+    }
+    bool Body::isStatic() const
+    {
+        return _static;
+    }
     float Body::mass() const
     {
         return _mass;
@@ -27,6 +47,14 @@ namespace mia
     v2f Body::force() const
     {
         return _force;
+    }
+    rect Body::getRect() const
+    {
+        // rect res = rect();
+        // res.pos = _master->position() + _offset;
+        // res.siz.x = 1.0 * _sprite->size.x * _master->scale().x / PPU;
+        // res.siz.y = 1.0 * _sprite->size.y * _master->scale().y / PPU;
+        // return res;
     }
 
     float& Body::mass()

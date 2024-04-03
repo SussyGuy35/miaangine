@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() - 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
         if (mia::_Input().getKey(SDL_SCANCODE_Q)) mia::_Camera().Resize(mia::_Camera().size() + 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
 
-        // printf("%f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
+        printf("%f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 
         if (mia::_Input().isQuit()) break;
 

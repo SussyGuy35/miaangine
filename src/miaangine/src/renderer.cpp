@@ -73,8 +73,8 @@ namespace mia
         Sprite *sprite = portrait.sprite();
         float displayUnitScaler = 1.0 * Camera::Instance().unitSize() / PPU; 
 
-        float displayW = sprite->size.x * displayUnitScaler;
-        float displayH = sprite->size.y * displayUnitScaler;
+        float displayW = sprite->size.x * portrait.master()->scale().x * displayUnitScaler;
+        float displayH = sprite->size.y * portrait.master()->scale().y * displayUnitScaler;
         float displayX = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).x - portrait.pivot().x * displayW;
         float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - (1 - portrait.pivot().y) * displayH;
 

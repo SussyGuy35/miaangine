@@ -15,21 +15,18 @@ namespace mia
 #pragma region Public method
     void Renderer::RegisterPortrait(Portrait *portrait)
     {
-        _portraits.push_back(portrait);
-
-        //FIXME
-        _qt.insert(portrait, portrait->getRect());
+        _portraitContainer.insert(portrait, portrait->getRect());
     }
 
-    void Renderer::RemovePortrait(Portrait *portrait)
-    {
-        auto portraitIterator = std::find(_portraits.begin(), _portraits.end(), portrait);
+    // void Renderer::RemovePortrait(Portrait *portrait)
+    // {
+    //     // auto portraitIterator = std::find(_portraits.begin(), _portraits.end(), portrait);
 
-        if (portraitIterator != _portraits.end())
-        {
-            _portraits.erase(portraitIterator);
-        }
-    }
+    //     // if (portraitIterator != _portraits.end())
+    //     // {
+    //     //     _portraits.erase(portraitIterator);
+    //     // }
+    // }
 
     void Renderer::Render(SDL_Renderer *renderer)
     {
@@ -45,11 +42,10 @@ namespace mia
 #pragma region Private method
     void Renderer::RenderPortraits(SDL_Renderer *renderer)
     {
-        std::list<Portrait*> prl = _qt.search(Camera::Instance().getRect());
+        std::list<Portrait*> portraitRenderList = _portraitContainer.search(Camera::Instance().getRect());
 
-        // for (Portrait *portrait : _portraits)
-        for (Portrait *portrait : prl)
-        { 
+        for (Portrait *portrait : portraitRenderList)
+        {
             Sprite *sprite = portrait->sprite();
             SDL_Texture *texture = sprite->texture;
 

@@ -16,12 +16,11 @@ namespace mia
         ~Renderer();
 
     private:
-        std::vector<Portrait*> _portraits;
-        Quadtree<Portrait*> _qt = Quadtree<Portrait*>({{-1000, -1000}, {2000, 2000}}); //FIXME
+        Quadtree<Portrait*> _portraitContainer = Quadtree<Portrait*>({{0, 0}, {1000, 1000}}); //FIXME
 
     public:
         void RegisterPortrait(Portrait *portrait);
-        void RemovePortrait(Portrait *portrait);
+        // void RemovePortrait(Portrait *portrait); //TODO
 
         void Render(SDL_Renderer *renderer);
 

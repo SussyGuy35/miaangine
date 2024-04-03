@@ -36,9 +36,9 @@ namespace mia
     rect Portrait::getRect() const
     {
         rect res = rect();
-        res.position = _master->position() + _offset;
-        res.size.x = 1.0 * _sprite->size.x * _master->scale() / PPU;
-        res.size.y = 1.0 * _sprite->size.y * _master->scale() / PPU;
+        res.pos = _master->position() + _offset;
+        res.siz.x = 1.0 * _sprite->size.x * _master->scale() / PPU;
+        res.siz.y = 1.0 * _sprite->size.y * _master->scale() / PPU;
         return res;
     }
 

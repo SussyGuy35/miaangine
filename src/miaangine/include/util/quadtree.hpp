@@ -32,13 +32,13 @@ namespace mia
         {
             clear();
             _rect = area;
-            v2f childSize = _rect.size / 2;
+            v2f childSize = _rect.siz / 2;
 
             _rchild = {
-                rect(_rect.position, childSize),
-                rect({_rect.position.x + childSize.x, _rect.position.y}, childSize),
-                rect({_rect.position.x, _rect.position.y - childSize.y}, childSize),
-                rect({_rect.position.x + childSize.x, _rect.position.y - childSize.y}, childSize),
+                rect(_rect.pos, childSize),
+                rect({_rect.pos.x + childSize.x, _rect.pos.y}, childSize),
+                rect({_rect.pos.x, _rect.pos.y - childSize.y}, childSize),
+                rect({_rect.pos.x + childSize.x, _rect.pos.y - childSize.y}, childSize),
             };
         }
 
@@ -76,7 +76,7 @@ namespace mia
                     return;
                 }
             }
-            _items.push_back({item, itemRect});
+            _items.push_back({item, itemRect}); 
         }
 
         std::list<T> search(const rect area) const

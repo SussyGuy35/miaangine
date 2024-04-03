@@ -13,10 +13,10 @@ namespace mia
     class Object : public Entity
     {
     public:
-        Object(const char *name = "Untitled", v2f position = v2f::zero(), float scale = 1);
-        Object(const char *name, float x, float y, float scale = 1);
-        Object(const char *name, Transform* parent, v2f position = v2f::zero(), float scale = 1);
-        Object(const char *name, Transform* parent, float x, float y, float scale = 1);
+        Object(const char *name = "Untitled", v2f position = v2f::zero(), v2f scale = v2f::one());
+        Object(const char *name, float x, float y, float sx = 1, float sy = 1);
+        Object(const char *name, Transform* parent, v2f position = v2f::zero(), v2f scale = v2f::one());
+        Object(const char *name, Transform* parent, float x, float y, float sx = 1, float sy = 1);
         virtual ~Object();
 
     protected:

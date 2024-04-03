@@ -6,29 +6,29 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(const char *name, v2f position, float scale):
+    Object::Object(const char *name, v2f position, v2f scale):
         _name(name),
         _active(true),
         _scene(-1),
         _transform(new Transform(position, scale, nullptr, this))
     {}
-    Object::Object(const char *name, float x, float y, float scale):
+    Object::Object(const char *name, float x, float y, float sx, float sy):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(new Transform(v2f(x, y), scale, nullptr, this))
+        _transform(new Transform(v2f(x, y), v2f(sx, sy), nullptr, this))
     {}
-    Object::Object(const char *name, Transform* parent, v2f position, float scale):
+    Object::Object(const char *name, Transform* parent, v2f position, v2f scale):
         _name(name),
         _active(true),
         _scene(-1),
         _transform(new Transform(position, scale, parent, this))
     {}
-    Object::Object(const char *name, Transform* parent, float x, float y, float scale):
+    Object::Object(const char *name, Transform* parent, float x, float y, float sx, float sy):
         _name(name),
         _active(true),
         _scene(-1),
-        _transform(new Transform(v2f(x, y), scale, parent, this))
+        _transform(new Transform(v2f(x, y), v2f(sx, sy), parent, this))
     {}
 
     Object::~Object()

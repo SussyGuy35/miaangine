@@ -6,7 +6,6 @@
 
 #include "portrait.hpp"
 
-
 namespace mia
 {
     class Renderer : public Singleton<Renderer>
@@ -18,6 +17,7 @@ namespace mia
 
     private:
         std::vector<Portrait*> _portraits;
+        Quadtree<Portrait*> _qt = Quadtree<Portrait*>({{-1000, -1000}, {2000, 2000}}); //FIXME
 
     public:
         void RegisterPortrait(Portrait *portrait);

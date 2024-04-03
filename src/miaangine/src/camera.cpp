@@ -41,6 +41,10 @@ namespace mia
     {
         return 1.0 * _screenWidth / _size;
     }
+    rect Camera::getRect() const
+    {
+        return rect(_position + v2f::down() * getCameraHeight(), {getCameraWidth(), getCameraHeight()});
+    }
 
     float& Camera::size()
     {

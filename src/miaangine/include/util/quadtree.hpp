@@ -36,9 +36,9 @@ namespace mia
 
             _rchild = {
                 rect(_rect.position, childSize),
-                rect({_rect.position.x + _rect.size.x, _rect.position.y}, childSize),
-                rect({_rect.position.x, _rect.position.y + _rect.size.y}, childSize),
-                rect({_rect.position.x + _rect.size.x, _rect.position.y + _rect.size.y}, childSize),
+                rect({_rect.position.x + childSize.x, _rect.position.y}, childSize),
+                rect({_rect.position.x, _rect.position.y - childSize.y}, childSize),
+                rect({_rect.position.x + childSize.x, _rect.position.y - childSize.y}, childSize),
             };
         }
 
@@ -76,7 +76,6 @@ namespace mia
                     return;
                 }
             }
-
             _items.push_back({item, itemRect});
         }
 
@@ -105,7 +104,7 @@ namespace mia
                     {
                         _pchild[i]->additemsto(itemList);
                     }
-                    else if (area.overlap(_rchild[i])) 
+                    else if (area.overlap(_rchild[i]))
                     {
                         _pchild[i]->search(area, itemList);
                     }

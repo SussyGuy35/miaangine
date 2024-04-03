@@ -24,6 +24,7 @@ namespace mia
         mia::v2f offset() const;
         SDL_Color color() const;
         mia::v2f pivot() const;
+        rect getRect() const;
 
         Sprite* sprite();
         mia::v2f& offset();

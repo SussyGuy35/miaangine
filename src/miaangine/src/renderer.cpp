@@ -16,6 +16,9 @@ namespace mia
     void Renderer::RegisterPortrait(Portrait *portrait)
     {
         _portraits.push_back(portrait);
+
+        //FIXME
+        _qt.insert(portrait, portrait->getRect());
     }
 
     void Renderer::RemovePortrait(Portrait *portrait)
@@ -42,7 +45,10 @@ namespace mia
 #pragma region Private method
     void Renderer::RenderPortraits(SDL_Renderer *renderer)
     {
-        for (Portrait *portrait : _portraits)
+        std::list<Portrait*> prl = _qt.search(Camera::Instance().getRect());
+
+        // for (Portrait *portrait : _portraits)
+        for (Portrait *portrait : prl)
         { 
             Sprite *sprite = portrait->sprite();
             SDL_Texture *texture = sprite->texture;

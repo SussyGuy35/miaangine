@@ -7,13 +7,13 @@ int main(int argc, char* argv[])
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/Character.png");
 
-    for (int i = 0 ; i < 100; i++)
+    for (int i = 0 ; i < 1000; i++)
     {
         for (int j = 0 ; j < 100; j++)
         {
             mia::Object *obj = new mia::Object(
                 "A",
-                j * 1.1, i * 1.1
+                j * 1, i * 1
             );
             mia::Portrait *prt = new mia::Portrait(
                 mia::_SpriteHandler().MakeCut(mia::v2i(32 * 0, 32 * 3), mia::v2i(32, 32))
@@ -23,6 +23,7 @@ int main(int argc, char* argv[])
     }
 
     mia::_Camera().SetCenter(mia::v2f(0, 0));
+
 
     while (true)
     {
@@ -35,7 +36,7 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() - 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
         if (mia::_Input().getKey(SDL_SCANCODE_Q)) mia::_Camera().Resize(mia::_Camera().size() + 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
 
-        printf("%f\n", mia::_Time().fps());
+        // printf("%f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 
         if (mia::_Input().isQuit()) break;
 

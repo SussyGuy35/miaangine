@@ -29,6 +29,7 @@ namespace mia
         float size() const;
         v2f position() const;
         float unitSize() const;
+        rect getRect() const;
 
         float& size();
         v2f& position();

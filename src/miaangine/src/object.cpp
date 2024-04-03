@@ -92,8 +92,8 @@ namespace mia
     void Object::AddComponent(Component *newComponent)
     {
         _components.push_back(newComponent);
-        newComponent->Init();
         newComponent->SetMaster(_transform); //FIXME
+        newComponent->Init();
     }
 #pragma endregion
 

@@ -21,6 +21,7 @@ namespace mia
         }
 
     protected:
+        const int MAX_DEPTH = 8;
         size_t _depth = 0;
         rect _rect;
         std::array<rect, 4> _rchild{};
@@ -65,7 +66,7 @@ namespace mia
         {
             for (int i = 0; i < 4; i++)
             {
-                if (_depth + 1 < 8 && _rchild[i].contain(itemRect)) // TODO add maxdepth
+                if (_depth + 1 < MAX_DEPTH && _rchild[i].contain(itemRect))
                 {
                     if (!_pchild[i])
                     {
@@ -77,6 +78,29 @@ namespace mia
                 }
             }
             _items.push_back({item, itemRect}); 
+        }
+
+        void remove(const T &item, const rect &itemRect)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (_depth + 1 < MAX_DEPTH && _rchild[i].contain(itemRect))
+                {
+                    if (_pchild[i])
+                    {                        
+                        _pchild[i]->remove(item, itemRect);
+                    }
+
+                    return;
+                }
+            }
+            for (auto p = _items.begin(); p < _items.end(); p++)
+            {
+                if (p->first == item)
+                {
+                    _items.erase(p);
+                }
+            }
         }
 
         std::list<T> search(const rect area) const

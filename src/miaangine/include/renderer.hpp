@@ -2,7 +2,8 @@
 #define _MIA_RENDERER_HPP
 
 #include "common.hpp"
-#include "util/quadtree.hpp"
+#include <functional>
+#include "Quadtree.h"
 
 #include "portrait.hpp"
 
@@ -16,7 +17,10 @@ namespace mia
         ~Renderer();
 
     private:
-        Quadtree<Portrait*> _portraitContainer = Quadtree<Portrait*>({{0, 0}, {1000, 1000}}); //FIXME
+        // Quadtree<Portrait*> _portraitContainer = Quadtree<Portrait*>({{0, 0}, {1000, 1000}}); //FIXME
+        const std::function<quadtree::Box<float>(Portrait* p)> getBox = [](Portrait* p) { return p->getRect(); };
+
+        quadtree::Quadtree<Portrait*, decltype(getBox)> _portraitTree;
 
     public:
         void RegisterPortrait(Portrait *portrait);

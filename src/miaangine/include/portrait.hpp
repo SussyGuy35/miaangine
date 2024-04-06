@@ -4,6 +4,7 @@
 #include "component.hpp"
 
 #include "sprite.hpp"
+#include "Box.h"
 
 namespace mia
 {
@@ -24,7 +25,7 @@ namespace mia
         v2f offset() const;
         SDL_Color color() const;
         v2f pivot() const;
-        rect getRect() const;
+        quadtree::Box<float> getRect() const;
 
         Sprite* sprite();
         v2f& offset();

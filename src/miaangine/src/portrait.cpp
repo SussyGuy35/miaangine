@@ -33,13 +33,13 @@ namespace mia
     {
         return _pivot;
     }
-    rect Portrait::getRect() const
+    quadtree::Box<float> Portrait::getRect() const
     {
-        rect res = rect();
-        res.siz.x = 1.0 * _sprite->size.x / PPU * _master->scale().x;
-        res.siz.y = 1.0 * _sprite->size.y / PPU * _master->scale().y;
-        res.pos.x = _master->position().x + _offset.x - (_pivot.x * res.siz.x); 
-        res.pos.y = _master->position().y + _offset.y - (_pivot.y * res.siz.y); 
+        quadtree::Box<float> res;
+        res.width = 1.0 * _sprite->size.x / PPU * _master->scale().x;
+        res.height = 1.0 * _sprite->size.y / PPU * _master->scale().y;
+        res.left = _master->position().x + _offset.x - (_pivot.x * res.width); 
+        res.top = _master->position().y + _offset.y + ((1 - _pivot.y) * res.height); 
         return res;
     }
 

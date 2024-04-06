@@ -5,7 +5,8 @@
 namespace mia
 {
 #pragma region Constructor Destructor
-    Renderer::Renderer()
+    Renderer::Renderer():
+        _portraitTree(quadtree::Quadtree<Portrait*, decltype(getBox)>({0, 100, 100, 100}, getBox)) //FIXME
     {}
 
     Renderer::~Renderer()
@@ -15,7 +16,8 @@ namespace mia
 #pragma region Public method
     void Renderer::RegisterPortrait(Portrait *portrait)
     {
-        _portraitContainer.insert(portrait, portrait->getRect());
+        // _portraitTree.insert(portrait, portrait->getRect());
+        _portraitTree.add(portrait);
     }
 
     // void Renderer::RemovePortrait(Portrait *portrait)
@@ -42,7 +44,8 @@ namespace mia
 #pragma region Private method
     void Renderer::RenderPortraits(SDL_Renderer *renderer)
     {
-        std::list<Portrait*> portraitRenderList = _portraitContainer.search(Camera::Instance().getRect());
+        std::vector<Portrait*> portraitRenderList = _portraitTree.query(Camera::Instance().getRect());
+        // std::list<Portrait*> portraitRenderList = _portraitContainer.search(Camera::Instance().getRect());
 
         for (Portrait *portrait : portraitRenderList)
         {

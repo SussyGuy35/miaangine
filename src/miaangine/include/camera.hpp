@@ -4,6 +4,7 @@
 #include "common.hpp"
 
 #include "game.hpp" //FIXME
+#include "Box.h"
 
 namespace mia
 {
@@ -29,7 +30,7 @@ namespace mia
         float size() const;
         v2f position() const;
         float unitSize() const;
-        rect getRect() const;
+        quadtree::Box<float> getRect() const;
 
         float& size();
         v2f& position();

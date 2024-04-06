@@ -1,0 +1,3 @@
+[submodule "src/miaangine/vendor/Quadtree"]
+	path = src/miaangine/vendor/Quadtree
+	url = https://github.com/pvigier/Quadtree.git

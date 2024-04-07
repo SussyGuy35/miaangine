@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 {
     mia::_Game().InitWindow();
 
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/Character.png");
+    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/SpriteTest.png");
 
     for (int i = 0 ; i < 1000; i++)
     {
@@ -16,14 +16,14 @@ int main(int argc, char* argv[])
                 j * 1, i * 1
             );
             mia::Portrait *prt = new mia::Portrait(
-                mia::_SpriteHandler().MakeCut(mia::v2i(32 * 0, 32 * 3), mia::v2i(32, 32))
+                mia::_SpriteHandler().MakeCut(mia::v2i(0, 0), mia::v2i(32, 32))
             );
+
             obj->AddComponent(prt);
         }
     }
 
-    mia::_Camera().SetCenter(mia::v2f(0, 0));
-
+    mia::_Camera().position() = (mia::v2f(0, 0));
 
     while (true)
     {

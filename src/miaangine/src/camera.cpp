@@ -47,7 +47,7 @@ namespace mia
         res.width = getCameraWidth();
         res.height = getCameraHeight();
         res.left = _position.x;
-        res.top = _position.y + getCameraHeight();
+        res.top = _position.y;
         return res;
     }
 
@@ -64,7 +64,7 @@ namespace mia
 #pragma region Public method
     v2f Camera::SetCenter(v2f position)
     {
-        v2f newPos = position + v2f(-getCameraWidth(), getCameraHeight()) / 2;
+        v2f newPos = position - v2f(getCameraWidth(), getCameraHeight()) / 2;
         return _position = newPos;
     }
 
@@ -72,7 +72,7 @@ namespace mia
     {
         v2f delta = v2f(
             pivot.x * getCameraWidth() * (1 - newSize / _size),
-            -pivot.y * getCameraHeight() * (1 - newSize / _size)
+            pivot.y * getCameraHeight() * (1 - newSize / _size)
         );
 
         _position += delta;
@@ -81,19 +81,21 @@ namespace mia
 
     v2f Camera::WorldToScreenPoint(v2f point)
     {
-        point -= _position;
-        point.y *= -1;
-        point *= unitSize();
+        v2f res = v2f();
+        res.x = point.x - _position.x;
+        res.y = _position.y + getCameraHeight() - point.y;
+        res *= unitSize();
 
-        return point;
+        return res;
     }
     v2f Camera::ScreenToWorldPoint(v2f point)
     {
-        point.y *= -1;
+        v2f res = v2f();
         point /= 1.0 * unitSize();
-        point += _position;
-
-        return point;
+        res.x = _position.x + point.x;
+        res.y = _position.y + getCameraHeight() - point.y;
+        
+        return res;
     }
 #pragma endregion
 }

@@ -6,7 +6,8 @@ namespace mia
 {
 #pragma region Constructor Destructor
     Renderer::Renderer():
-        _portraitTree(quadtree::Quadtree<Portrait*, decltype(getBox)>({0, 100, 100, 100}, getBox)) //FIXME
+        getBox([](Portrait* p) { return p->getRect(); }),
+        _portraitTree(quadtree::Quadtree<Portrait*, decltype(getBox)>({-200, -200, 1500, 1500}, getBox)) //FIXME
     {}
 
     Renderer::~Renderer()
@@ -16,19 +17,8 @@ namespace mia
 #pragma region Public method
     void Renderer::RegisterPortrait(Portrait *portrait)
     {
-        // _portraitTree.insert(portrait, portrait->getRect());
         _portraitTree.add(portrait);
     }
-
-    // void Renderer::RemovePortrait(Portrait *portrait)
-    // {
-    //     // auto portraitIterator = std::find(_portraits.begin(), _portraits.end(), portrait);
-
-    //     // if (portraitIterator != _portraits.end())
-    //     // {
-    //     //     _portraits.erase(portraitIterator);
-    //     // }
-    // }
 
     void Renderer::Render(SDL_Renderer *renderer)
     {
@@ -45,7 +35,6 @@ namespace mia
     void Renderer::RenderPortraits(SDL_Renderer *renderer)
     {
         std::vector<Portrait*> portraitRenderList = _portraitTree.query(Camera::Instance().getRect());
-        // std::list<Portrait*> portraitRenderList = _portraitContainer.search(Camera::Instance().getRect());
 
         for (Portrait *portrait : portraitRenderList)
         {
@@ -80,6 +69,8 @@ namespace mia
         float displayH = sprite->size.y * portrait.master()->scale().y * displayUnitScaler;
         float displayX = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).x - portrait.pivot().x * displayW;
         float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - (1 - portrait.pivot().y) * displayH;
+
+        // printf(">>> %f %f : %f %f\n", displayX, displayY, displayW, displayH);
 
         rect.w = static_cast<int>(displayW);
         rect.h = static_cast<int>(displayH);

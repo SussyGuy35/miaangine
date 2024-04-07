@@ -17,10 +17,11 @@ namespace mia
         ~Renderer();
 
     private:
-        // Quadtree<Portrait*> _portraitContainer = Quadtree<Portrait*>({{0, 0}, {1000, 1000}}); //FIXME
-        const std::function<quadtree::Box<float>(Portrait* p)> getBox = [](Portrait* p) { return p->getRect(); };
+        std::function<quadtree::Box<float>(Portrait* p)> getBox;
 
         quadtree::Quadtree<Portrait*, decltype(getBox)> _portraitTree;
+
+        decltype(getBox) a = getBox;
 
     public:
         void RegisterPortrait(Portrait *portrait);

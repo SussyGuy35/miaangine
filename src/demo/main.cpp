@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
     mia::Body *bod[100][100];
     for (int i = 0 ; i < 100; i++)
     {
-        for (int j = 0; j < 2; j++)
+        for (int j = 0; j < 100; j++)
         {
             obj[i][j] = new mia::Object(
                 "A",

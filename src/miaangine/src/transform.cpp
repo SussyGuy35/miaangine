@@ -5,7 +5,6 @@ namespace mia
 #pragma region Contructor Destructor
     Transform::Transform(v2f position, v2f scale, Transform *parent, Object *master):
         _position(position),
-        _scale(scale),
         _parent(parent),
         _master(master)
     {}
@@ -23,10 +22,6 @@ namespace mia
     {
         return _position - master()->transform().position();
     }
-    v2f Transform::scale() const 
-    {
-        return _scale;
-    }
     const Transform& Transform::parent() const
     {
         return *_parent;
@@ -43,10 +38,6 @@ namespace mia
     v2f Transform::SetLocalPosition(v2f newPosition)
     {
         return _position = master()->transform().position() + newPosition;
-    }
-    v2f& Transform::scale()
-    {
-        return _scale;
     }
     Transform& Transform::parent()
     {

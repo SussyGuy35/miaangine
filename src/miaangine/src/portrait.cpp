@@ -36,8 +36,8 @@ namespace mia
     quadtree::Box<float> Portrait::getRect() const
     {
         quadtree::Box<float> res;
-        res.width = 1.0 * _sprite->size.x / PPU * _master->scale().x;
-        res.height = 1.0 * _sprite->size.y / PPU * _master->scale().y;
+        res.width = 1.0 * _sprite->size.x / PPU;
+        res.height = 1.0 * _sprite->size.y / PPU;
         res.left = _master->position().x + _offset.x - (_pivot.x * res.width); 
         res.top = _master->position().y + _offset.y - ( _pivot.y * res.height); 
         return res;

@@ -51,8 +51,8 @@ namespace mia
     rect Body::getRect() const
     {
         rect res = rect();
-        res.siz.x = _size.x * _master->scale().x;
-        res.siz.y = _size.y * _master->scale().y;
+        res.siz.x = _size.x;
+        res.siz.y = _size.y;
         res.pos.x = _master->position().x + _offset.x - (_pivot.x * res.siz.x); 
         res.pos.y = _master->position().y + _offset.y - (_pivot.y * res.siz.y); 
         return res;

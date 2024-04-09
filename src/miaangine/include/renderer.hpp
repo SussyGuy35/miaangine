@@ -3,7 +3,7 @@
 
 #include "common.hpp"
 #include <functional>
-#include "Quadtree.h"
+#include "Quadtree/Quadtree.h"
 
 #include "portrait.hpp"
 

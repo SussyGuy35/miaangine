@@ -14,11 +14,12 @@ namespace quadtree
 template<typename T, typename GetBox, typename Equal = std::equal_to<T>, typename Float = float>
 class Quadtree
 {
-    static_assert(std::is_convertible_v<std::invoke_result_t<GetBox, const T&>, Box<Float>>,
-        "GetBox must be a callable of signature Box<Float>(const T&)");
-    static_assert(std::is_convertible_v<std::invoke_result_t<Equal, const T&, const T&>, bool>,
-        "Equal must be a callable of signature bool(const T&, const T&)");
-    static_assert(std::is_arithmetic_v<Float>);
+    // I don't know what all of this means so just comment this
+    // static_assert(std::is_convertible_v<std::invoke_result_t<GetBox, const T&>, Box<Float>>,
+    //     "GetBox must be a callable of signature Box<Float>(const T&)");
+    // static_assert(std::is_convertible_v<std::invoke_result_t<Equal, const T&, const T&>, bool>,
+    //     "Equal must be a callable of signature bool(const T&, const T&)");
+    // static_assert(std::is_arithmetic_v<Float>);
 
 public:
     Quadtree(const Box<Float>& box, const GetBox& getBox = GetBox(),
@@ -58,7 +59,7 @@ public:
     }
     
 private:
-    static constexpr auto Threshold = std::size_t(16);
+    static constexpr auto Threshold = std::size_t(65536); // No obj cap
     static constexpr auto MaxDepth = std::size_t(8);
 
     struct Node

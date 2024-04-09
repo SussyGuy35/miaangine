@@ -25,7 +25,7 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${E_SOURCES})
 
 # DIRECTORIES
 set(INCLUDES "src/demo") # <===== EDIT HERE =====
-set(E_INCLUDES "src/miaangine/include" "src/miaangine/vendor/Quadtree/include" ${SDL2_INCLUDE_DIRS})
+set(E_INCLUDES "src/miaangine/include" "src/miaangine/vendor" ${SDL2_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME} 
     PRIVATE ${INCLUDES}

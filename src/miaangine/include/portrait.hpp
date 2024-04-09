@@ -4,7 +4,7 @@
 #include "component.hpp"
 
 #include "sprite.hpp"
-#include "Box.h"
+#include "Quadtree/Box.h"
 
 namespace mia
 {

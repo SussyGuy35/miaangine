@@ -4,7 +4,7 @@
 #include "common.hpp"
 
 #include "game.hpp" //FIXME
-#include "Box.h"
+#include "Quadtree/Box.h"
 
 namespace mia
 {

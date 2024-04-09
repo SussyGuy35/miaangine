@@ -18,14 +18,11 @@ namespace mia
 
     private:
         std::function<quadtree::Box<float>(Portrait* p)> getBox;
-
         quadtree::Quadtree<Portrait*, decltype(getBox)> _portraitTree;
-
-        decltype(getBox) a = getBox;
 
     public:
         void RegisterPortrait(Portrait *portrait);
-        // void RemovePortrait(Portrait *portrait); //TODO
+        void RemovePortrait(Portrait *portrait);
 
         void Render(SDL_Renderer *renderer);
 

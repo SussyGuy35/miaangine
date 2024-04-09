@@ -19,6 +19,10 @@ namespace mia
     {
         _portraitTree.add(portrait);
     }
+    void Renderer::RemovePortrait(Portrait *portrait)
+    {
+        _portraitTree.remove(portrait);
+    }
 
     void Renderer::Render(SDL_Renderer *renderer)
     {

@@ -5,6 +5,7 @@
 #include <SDL_image.h>
 #include <iostream>
 #include <vector>
+#include <list>
 #include <map>
 #include <chrono>
 #include <random>

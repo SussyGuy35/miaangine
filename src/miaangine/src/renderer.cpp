@@ -6,8 +6,8 @@ namespace mia
 {
 #pragma region Constructor Destructor
     Renderer::Renderer():
-        getBox([](Portrait* p) { return p->getRect(); }),
-        _portraitTree(quadtree::Quadtree<Portrait*, decltype(getBox)>({-300, -300, 600, 600}, getBox)) //FIXME
+        _getBox([](Portrait* p) { return p->getRect(); }),
+        _portraitTree(quadtree::Quadtree<Portrait*, decltype(_getBox)>({-300, -300, 600, 600}, _getBox)) //FIXME
     {}
 
     Renderer::~Renderer()

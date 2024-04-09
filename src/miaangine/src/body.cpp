@@ -5,7 +5,12 @@
 namespace mia
 {
 #pragma region Constructor Destructor
-    Body::Body(float mass, v2f initForce):
+    Body::Body(BodyType type, v2f size, v2f offset, float mass, v2f initForce):
+        _type(type),
+        _size(size),
+        _offset(offset),
+        _pivot(v2f::zero()),
+        _trigger(false),
         _mass(mass),
         _velocity(v2f::zero()),
         _force(initForce)
@@ -34,7 +39,7 @@ namespace mia
     }
     bool Body::isStatic() const
     {
-        return _static;
+        return _type == _BODY_STATIC;
     }
     float Body::mass() const
     {
@@ -48,16 +53,42 @@ namespace mia
     {
         return _force;
     }
-    rect Body::getRect() const
+    quadtree::Box<float> Body::getRect() const
     {
-        rect res = rect();
-        res.siz.x = _size.x;
-        res.siz.y = _size.y;
-        res.pos.x = _master->position().x + _offset.x - (_pivot.x * res.siz.x); 
-        res.pos.y = _master->position().y + _offset.y - (_pivot.y * res.siz.y); 
+        quadtree::Box<float> res;
+        res.width = _size.x;
+        res.height = _size.y;
+        res.left = _master->position().x + _offset.x - (_pivot.x * res.width); 
+        res.top = _master->position().y + _offset.y - ( _pivot.y * res.height); 
         return res;
     }
 
+    int& Body::setType(bool newState)
+    {
+        if (_type == _BODY_DYNAMIC && newState == _BODY_STATIC)
+        {
+            Physics::Instance().RemoveBody(this);
+            Physics::Instance().RegisterBody(this); // FIXME
+        }
+
+        return _type = newState;
+    }
+    v2f& Body::offset()
+    {
+        return _offset;
+    }
+    v2f& Body::size()
+    {
+        return _size;
+    }
+    v2f& Body::pivot()
+    {
+        return _pivot;
+    }
+    bool& Body::setTrigger(int newState)
+    {
+        return _trigger = newState;
+    }
     float& Body::mass()
     {
         return _mass;

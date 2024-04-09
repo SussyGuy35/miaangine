@@ -12,9 +12,9 @@ int main(int argc, char* argv[])
     mia::Object *obj[100][100];
     mia::Portrait *prt[100][100];
     mia::Body *bod[100][100];
-    for (int i = 0 ; i < 100; i++)
+    for (int i = 0 ; i < 50; i++)
     {
-        for (int j = 0; j < 100; j++)
+        for (int j = 0; j < 50; j++)
         {
             obj[i][j] = new mia::Object(
                 "A",
@@ -27,7 +27,8 @@ int main(int argc, char* argv[])
             obj[i][j]->AddComponent(prt[i][j]);
 
             bod[i][j] = new mia::Body(
-                1, {1, -1}
+                mia::_BODY_STATIC,
+                mia::v2f::one()
             );
             obj[i][j]->AddComponent(bod[i][j]);
         }
@@ -46,7 +47,7 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() - 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
         if (mia::_Input().getKey(SDL_SCANCODE_Q)) mia::_Camera().Resize(mia::_Camera().size() + 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
 
-        // printf("%f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
+        printf("%f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 
         if (mia::_Input().isQuit()) break;
 

@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
         for (int j = 0; j < num; j++)
         {
             obj[i][j] = new mia::Object(
-                i * 3, j * 3 + 2
+                i * 3, j * 3
             );
 
             prt[i][j] = new mia::Portrait(
@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
                 1, 1
             );
             mia::_Physics().RegisterBody(bod[i][j]);
-            bod[i][j]->AddForce({.5, -.5});
+            // bod[i][j]->AddForce({.5, -.5});
         }
     }
 

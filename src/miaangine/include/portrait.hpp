@@ -5,12 +5,14 @@
 
 #include "sprite.hpp"
 
+#include "util/rect.hpp"
+
 namespace mia
 {
     class Portrait : public Entity
     {
     public:
-        Portrait(Object *master, Sprite* sprite, v2f offset = v2f::zero(), SDL_Color color = {255, 255, 255, 255}, v2f pivot = v2f::zero());
+        Portrait(Object *master, Sprite* sprite, v2f pivot = v2f::zero(), v2f offset = v2f::zero(), SDL_Color color = {255, 255, 255, 255});
         virtual ~Portrait();
 
     private:
@@ -35,6 +37,8 @@ namespace mia
         v2f& pivot();
 
         Object& ChangeMaster(Object *newMaster);
+
+        rect GetRect() const;
 
     public:
         int getID() const override;

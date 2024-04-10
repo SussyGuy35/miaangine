@@ -47,8 +47,7 @@ namespace mia
             Sprite &sprite = portrait->sprite();
             SDL_Texture *texture = sprite.tex;
 
-            int w = 0, h = 0;
-            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0)
+            if (SDL_QueryTexture(texture, NULL, NULL, NULL, NULL) != 0)
             {
                 // TODO Add Error
                 continue;
@@ -66,22 +65,16 @@ namespace mia
 
     SDL_Rect Renderer::PortraitRectCalculate(Portrait &portrait)
     {
-        SDL_Rect rect;
+        SDL_Rect screenRect;
+        rect worldRect = portrait.GetRect();
 
-        Sprite sprite = portrait.sprite();
-        float displayUnitScaler = Camera::Instance().unitSize() / PPU; 
+        v2f topleft = Camera::Instance().WorldToScreenPoint(worldRect.pos + v2f::up() * worldRect.siz.y);
+        screenRect.w = static_cast<int>(worldRect.siz.x * Camera::Instance().unitSize());
+        screenRect.h = static_cast<int>(worldRect.siz.y * Camera::Instance().unitSize());
+        screenRect.x = static_cast<int>(topleft.x);
+        screenRect.y = static_cast<int>(topleft.y);
 
-        float displayW = sprite.siz.x * displayUnitScaler;
-        float displayH = sprite.siz.y * displayUnitScaler;
-        float displayX = Camera::Instance().WorldToScreenPoint(portrait.master().position() + portrait.offset()).x - portrait.pivot().x * displayW;
-        float displayY = Camera::Instance().WorldToScreenPoint(portrait.master().position() + portrait.offset()).y - (1 - portrait.pivot().y) * displayH;
-
-        rect.w = static_cast<int>(displayW);
-        rect.h = static_cast<int>(displayH);
-        rect.x = static_cast<int>(displayX);
-        rect.y = static_cast<int>(displayY);
-
-        return rect;
+        return screenRect;
     }
 #pragma endregion
 }

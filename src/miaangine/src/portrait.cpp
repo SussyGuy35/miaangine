@@ -3,7 +3,7 @@
 namespace mia
 {
 #pragma region Constructor Destructor
-    Portrait::Portrait(Object *master, Sprite* sprite, v2f offset, SDL_Color color, v2f pivot):
+    Portrait::Portrait(Object *master, Sprite* sprite, v2f pivot, v2f offset, SDL_Color color):
         _master(master),
         _sprite(sprite),
         _offset(offset),
@@ -89,6 +89,15 @@ namespace mia
 
         _master = newMaster;
         return *_master;
+    }
+
+    rect Portrait::GetRect() const
+    {
+        rect res = rect();
+        res.siz.x = 1.0 * sprite().siz.x / PPU;
+        res.siz.y = 1.0 * sprite().siz.y / PPU;
+        res.pos = master().position() + _offset - v2f(_pivot.x * res.siz.x, _pivot.y * res.siz.y);
+        return res;
     }
 #pragma endregion
 

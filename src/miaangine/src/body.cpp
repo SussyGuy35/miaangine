@@ -3,7 +3,7 @@
 namespace mia
 {
 #pragma region Constructor Destructor
-    Body::Body(Object *master, int type, v2f size, v2f offset, v2f pivot):
+    Body::Body(Object *master, int type, v2f size, v2f pivot, v2f offset):
         _master(master),
         _type(type),
         _size(size),
@@ -106,6 +106,14 @@ namespace mia
         
         _master = newMaster;
         return *_master;
+    }
+
+    rect Body::GetRect() const
+    {
+        rect res = rect();
+        res.siz = _size;
+        res.pos = master().position() + _offset - v2f(_pivot.x * res.siz.x, _pivot.y * res.siz.y);
+        return res;
     }
 
     v2f Body::AddForce(v2f force)

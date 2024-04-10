@@ -3,6 +3,8 @@
 
 #include "object.hpp"
 
+#include "util/rect.hpp"
+
 namespace mia
 {
     enum BodyType
@@ -15,7 +17,7 @@ namespace mia
     class Body : public Entity
     {
     public:
-        Body(Object *master, int type = _BODY_DYNAMIC, v2f size = v2f::one(), v2f offset = v2f::zero(), v2f pivot = v2f::zero());
+        Body(Object *master, int type = _BODY_DYNAMIC, v2f size = v2f::one(), v2f pivot = v2f::zero(), v2f offset = v2f::zero());
         virtual ~Body();
 
     private:
@@ -24,8 +26,8 @@ namespace mia
         int _type;
 
         v2f _size;
-        v2f _offset;
         v2f _pivot;
+        v2f _offset;
         
         float _mass;
         v2f _velocity;
@@ -51,6 +53,8 @@ namespace mia
         v2f& force();
 
         Object& ChangeMaster(Object *newMaster);
+        
+        rect GetRect() const;
         
         v2f AddForce(v2f force);
         v2f AddForce(float x, float y);

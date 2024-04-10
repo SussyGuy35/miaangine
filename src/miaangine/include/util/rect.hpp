@@ -19,30 +19,30 @@ namespace mia
         inline bool contain(const v2f& point) const
         {
             return (
-                pos.x          <= point.x && 
-                pos.x + siz.x >  point.x &&
-                pos.y          <= point.y && 
-                pos.y + siz.y >  point.y
+                pos.x         < point.x && 
+                pos.x + siz.x > point.x &&
+                pos.y         < point.y && 
+                pos.y + siz.y > point.y
             );
         }
 
         inline bool contain(const rect& other) const
         {
             return (
-                pos.x          <= other.pos.x                && 
-                pos.x + siz.x >  other.pos.x + other.siz.x &&
-                pos.y          <= other.pos.y                && 
-                pos.y + siz.y >  other.pos.y + other.siz.y
+                pos.x         < other.pos.x               && 
+                pos.x + siz.x > other.pos.x + other.siz.x &&
+                pos.y         < other.pos.y               && 
+                pos.y + siz.y > other.pos.y + other.siz.y
             );
         }
 
         inline bool overlap(const rect& other) const
         {
             return (
-                pos.x          <  other.pos.x + other.siz.x && 
-                pos.x + siz.x >= other.pos.x                &&
-                pos.y          <  other.pos.y + other.siz.y && 
-                pos.y + siz.y >= other.pos.y
+                pos.x         < other.pos.x + other.siz.x && 
+                pos.x + siz.x > other.pos.x               &&
+                pos.y         < other.pos.y + other.siz.y && 
+                pos.y + siz.y > other.pos.y
             );
         }
     };

@@ -28,6 +28,7 @@ namespace mia
         const SDL_Color& color() const;
         const v2f& pivot() const;
 
+        Object& master();
         Sprite& sprite();
         v2f& offset();
         SDL_Color& color();

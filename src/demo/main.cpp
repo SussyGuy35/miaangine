@@ -9,28 +9,31 @@ int main(int argc, char* argv[])
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/SpriteTest.png");
 
-    mia::Object *obj[100][100];
-    mia::Portrait *prt[100][100];
-    mia::Body *bod[100][100];
-    for (int i = 0 ; i < 50; i++)
+    const int num = 50;
+    mia::Object *obj[num][num];
+    mia::Portrait *prt[num][num];
+    mia::Body *bod[num][num];
+    for (int i = 0 ; i < num; i++)
     {
-        for (int j = 0; j < 50; j++)
+        for (int j = 0; j < num; j++)
         {
             obj[i][j] = new mia::Object(
-                "A",
                 i * 3, j * 3 + 2
             );
 
             prt[i][j] = new mia::Portrait(
+                obj[i][j],
                 mia::_SpriteHandler().MakeCut(mia::v2i(0, 0), mia::v2i(32, 32))
             );
-            obj[i][j]->AddComponent(prt[i][j]);
+            mia::_Renderer().RegisterPortrait(prt[i][j]);
 
             bod[i][j] = new mia::Body(
+                obj[i][j],
                 mia::_BODY_STATIC,
-                mia::v2f::one()
+                1, 1
             );
-            obj[i][j]->AddComponent(bod[i][j]);
+            mia::_Physics().RegisterBody(bod[i][j]);
+            bod[i][j]->AddForce({.5, -.5});
         }
     }
 

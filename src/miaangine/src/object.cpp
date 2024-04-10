@@ -6,7 +6,7 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(const char *name = "Untitled", v2f position = v2f::zero()):
+    Object::Object(const char *name, v2f position):
         _name(name),
         _tag(0),
         _position(position),

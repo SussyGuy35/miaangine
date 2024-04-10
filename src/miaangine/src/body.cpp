@@ -21,6 +21,11 @@ namespace mia
 #pragma region GetSet method
     const Object& Body::master() const
     {
+        if (!_master)
+        {
+            // FIXME
+        }
+        
         return *_master;
     }
     int Body::getType() const
@@ -52,6 +57,15 @@ namespace mia
         return _force;
     }
 
+    Object& Body::master()
+    {
+        if (!_master)
+        {
+            // FIXME
+        }
+        
+        return *_master;
+    }
     int Body::setType(int newType)
     {
         return _type;
@@ -85,6 +99,11 @@ namespace mia
 #pragma region Public method
     Object& Body::ChangeMaster(Object *newMaster)
     {
+        if (!newMaster)
+        {
+            // FIXME
+        }
+        
         _master = newMaster;
         return *_master;
     }

@@ -3,9 +3,6 @@
 
 #include "common.hpp"
 
-#include <functional>
-#include "Quadtree/Quadtree.h"
-
 #include "body.hpp"
 
 namespace mia
@@ -18,21 +15,16 @@ namespace mia
         ~Physics();
 
     private:
-        std::vector<Body*> _dynamicBodies;
-
-        std::function<quadtree::Box<float>(Body* p)> _getBox;
-        quadtree::Quadtree<Body*, decltype(_getBox)> _bodyTree;
-
-        const int COLLISION_RESOLVE_TRY = 3;
+        std::vector<Body*> _bodiesList;
 
     public:
         void RegisterBody(Body *body);
-        void RemoveBody(Body *body);
+        void UnregisterBody(Body *body);
 
         void Update(double elapsedTime);
 
-        std::vector<Body*> GetColliding(Body *body);
-        void ResolveCollision(Body *lbody, Body *rbody);
+        std::vector<Body*> GetColliding(Body &body);
+        void ResolveCollision(Body &lbody, Body &rbody);
 
     private:
         void BodiesDynamicsHandle(double elapsedTime);

@@ -20,7 +20,7 @@ namespace mia
     }
     void Renderer::UnregisterPortrait(Portrait *portrait)
     {
-        auto portraitIterator = std::find(_portraitsList.begin(), _portraitsList.end(), _portraitsList);
+        auto portraitIterator = std::find(_portraitsList.begin(), _portraitsList.end(), portrait);
 
         if (portraitIterator != _portraitsList.end())
         {
@@ -73,10 +73,8 @@ namespace mia
 
         float displayW = sprite.siz.x * displayUnitScaler;
         float displayH = sprite.siz.y * displayUnitScaler;
-        float displayX = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).x - portrait.pivot().x * displayW;
-        float displayY = Camera::Instance().WorldToScreenPoint(portrait.master()->position() + portrait.offset()).y - (1 - portrait.pivot().y) * displayH;
-
-        // printf(">>> %f %f : %f %f\n", displayX, displayY, displayW, displayH);
+        float displayX = Camera::Instance().WorldToScreenPoint(portrait.master().position() + portrait.offset()).x - portrait.pivot().x * displayW;
+        float displayY = Camera::Instance().WorldToScreenPoint(portrait.master().position() + portrait.offset()).y - (1 - portrait.pivot().y) * displayH;
 
         rect.w = static_cast<int>(displayW);
         rect.h = static_cast<int>(displayH);

@@ -18,6 +18,11 @@ namespace mia
 #pragma region GetSet method
     const Object& Portrait::master() const
     {
+        if (!_master)
+        {
+            // FIXME
+        }
+
         return *_master;
     }
     const Sprite& Portrait::sprite() const
@@ -42,6 +47,15 @@ namespace mia
         return _pivot;
     }
 
+    Object& Portrait::master()
+    {
+        if (!_master)
+        {
+            // FIXME
+        }
+
+        return *_master;
+    }
     Sprite& Portrait::sprite()
     {
         if (!_sprite)
@@ -68,6 +82,11 @@ namespace mia
 #pragma region Public method
     Object& Portrait::ChangeMaster(Object *newMaster)
     {
+        if (!newMaster)
+        {
+            // FIXME
+        }
+
         _master = newMaster;
         return *_master;
     }

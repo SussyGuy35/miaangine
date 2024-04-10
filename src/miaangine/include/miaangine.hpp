@@ -8,9 +8,10 @@
 #include "time.hpp"
 #include "sprite-handler.hpp"
 #include "camera.hpp"
+#include "renderer.hpp"
+#include "physics.hpp"
 
 #include "object.hpp"
-#include "transform.hpp"
 #include "portrait.hpp"
 #include "body.hpp"
 
@@ -23,6 +24,8 @@ namespace mia
     inline Time& _Time() { return Time::Instance(); }
     inline SpriteHandler& _SpriteHandler() { return SpriteHandler::Instance(); }
     inline Camera& _Camera() { return Camera::Instance(); }
+    inline Renderer& _Renderer() { return Renderer::Instance(); }
+    inline Physics& _Physics() { return Physics::Instance(); }
 }
 
 #endif

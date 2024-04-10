@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
     mia::_Physics().RegisterBody(bod[1]);
     mia::_Physics().RegisterBody(bod[2]);
 
-    bod[1]->AddForce({0, -2});
+    // bod[1]->AddForce({0, -2});
 
     while (true)
     {

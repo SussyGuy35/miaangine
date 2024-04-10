@@ -28,9 +28,15 @@ namespace mia
         const std::vector<Body*> GetBodiesList();
 
     private:
-        void BodiesDynamicsHandle(Body *body, double &remainTime, int index);
+        void ApplyForceToBody(Body *body);
+        void StaticBodyHandle(Body *body, double elapsedTime);
+        void DynamicBodyHandle(Body *body, double elapsedTime);
+        void TriggerBodyHandle(Body *body, double elapsedTime);
 
-        void QueryCollisionResolusion(Body *body, Body *other, double &collisionTime, int &collisionFaces);
+        double QueryCollisionTimeResolution(Body *body, Body *other, double maxResTime);
+        int QueryCollisionTouchResolution(Body *body, Body *other);
+
+        inline bool IsIn(float x, float l, float r);
     };
 }
 

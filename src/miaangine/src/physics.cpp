@@ -36,137 +36,103 @@ namespace mia
     {
         for (Body *body : _bodiesList)
         {
-            if (body->getType() == _BODY_STATIC) continue;
+            ApplyForceToBody(body);
 
-            // Force
-            body->velocity() += body->force() / body->mass();
-            body->force() = v2f::zero();
-
-            // Dynamic
-            if (body->getType() == _BODY_DYNAMIC)
-            {
-                double time = elapsedTime;
-                BodiesDynamicsHandle(body, time, 0);
-            }
-
-            // Trigger
-            if (body->getType() == _BODY_TRIGGER)
-            {
-                for (Body* other : _bodiesList)
-                {
-                    if (body == other || body->getType() == _BODY_STATIC) continue;
-                    if (body->GetRect().overlap(other->GetRect()))
-                    {
-                        // TODO TRIGGER
-                    }
-                }
-            }
+            if (body->getType() == _BODY_STATIC) StaticBodyHandle(body, elapsedTime);
+            if (body->getType() == _BODY_DYNAMIC) DynamicBodyHandle(body, elapsedTime);
+            if (body->getType() == _BODY_TRIGGER) TriggerBodyHandle(body, elapsedTime);
         }
     }
 #pragma endregion
 
 #pragma region Private method
-    void Physics::BodiesDynamicsHandle(Body *body, double &remainTime, int index)
+    void Physics::ApplyForceToBody(Body *body)
     {
-        int collisionFaces = 0;
+        body->velocity() += body->force() / body->mass();
+        body->force() = v2f::zero();
+    }
+    void Physics::StaticBodyHandle(Body *body, double elapsedTime)
+    {
+        body->master().position() += body->velocity() * elapsedTime;
+    }
+    void Physics::DynamicBodyHandle(Body *body, double elapsedTime)
+    {
+        int touchedFaces = 0;
         for (int i = 0; i < MAX_COLLISION_RESOLUTION; i++)
         {
-            double updateTime = remainTime;
+            double updateTime = elapsedTime;
 
             for (Body* other : _bodiesList)
             {
-                if (body == other) continue;
+                if (body == other || body->getType() == _BODY_TRIGGER) continue;
 
-                double collisionTime = 0;
-                QueryCollisionResolusion(body, other, collisionTime, collisionFaces);
-                updateTime = std::min(updateTime, collisionTime);
+                updateTime = QueryCollisionTimeResolution(body, other, updateTime);
+                touchedFaces |= QueryCollisionTouchResolution(body, other);
             }
-
-            printf("%d %d %d %d\n", ((collisionFaces >> 1) & 1),((collisionFaces >> 2) & 1),((collisionFaces >> 3) & 1),((collisionFaces >> 4) & 1));
             
-            if ( ((collisionFaces >> 2) & 1) || ((collisionFaces >> 4) & 1) ) body->velocity().x = 0;
-            if ( ((collisionFaces >> 1) & 1) || ((collisionFaces >> 3) & 1) ) body->velocity().y = 0;
+            if ( ((touchedFaces >> 1) & 1) || ((touchedFaces >> 3) & 1) ) body->velocity().x = 0;
+            if ( ((touchedFaces >> 2) & 1) || ((touchedFaces >> 4) & 1) ) body->velocity().y = 0;
 
             body->master().position() += body->velocity() * updateTime;
 
-            remainTime -= updateTime;
-            if (remainTime <= 0) break;
+            elapsedTime -= updateTime;
+            if (elapsedTime <= 0) break;
         }
+            printf("%d %d %d %d\n", ((touchedFaces >> 1) & 1),((touchedFaces >> 2) & 1),((touchedFaces >> 3) & 1),((touchedFaces >> 4) & 1));
+    }
+    void Physics::TriggerBodyHandle(Body *body, double elapsedTime)
+    {
+        // TODO
+        body->master().position() += body->velocity() * elapsedTime;
     }
 
-    void Physics::QueryCollisionResolusion(Body *body, Body *other, double &collisionTime, int &collisionFaces)
+    double Physics::QueryCollisionTimeResolution(Body *body, Body *other, double maxResTime)
     {
-        rect lrect = body->GetRect();
-        rect rrect = other->GetRect();
+        rect thisRect = body->GetRect();
+        rect otherRect = other->GetRect();
 
         if (body->velocity().x == 0 && body->velocity().y == 0) 
         {
-            collisionTime = std::numeric_limits<double>::infinity();
-            return;
+            return maxResTime;
         }
         else if (body->velocity().x == 0)
         {
             if (
-                lrect.pos.x + lrect.siz.x <= rrect.pos.x ||
-                lrect.pos.x               >= rrect.pos.x + rrect.siz.x
+                thisRect.pos.x + thisRect.siz.x <= otherRect.pos.x ||
+                thisRect.pos.x                  >= otherRect.pos.x + otherRect.siz.x
             )
-            {
-                collisionTime = std::numeric_limits<double>::infinity();
-                return;
-            }
+                return maxResTime;
 
             float dyEnter, tyEnter;
+
             if (body->velocity().y > 0)
-                dyEnter =  rrect.pos.y                - (lrect.pos.y + lrect.siz.y);
+                dyEnter =  otherRect.pos.y                    - (thisRect.pos.y + thisRect.siz.y);
             else 
-                dyEnter = (rrect.pos.y + rrect.siz.y) -  lrect.pos.y;
+                dyEnter = (otherRect.pos.y + otherRect.siz.y) -  thisRect.pos.y;
 
             tyEnter = dyEnter / body->velocity().y;
 
-            if (tyEnter < 0) 
-            {
-                collisionTime = std::numeric_limits<double>::infinity();
-            }
-            else 
-            {
-                collisionTime = tyEnter;
-                if (tyEnter == 0)
-                {
-                    collisionFaces |= (body->velocity().y > 0 ? (1 << 1) : (1 << 3));
-                }
-            }
+            if (tyEnter < 0 || tyEnter > maxResTime) return maxResTime;
+            return tyEnter;
         }
         else if (body->velocity().y == 0)
         {
             if (
-                lrect.pos.y + lrect.siz.y <= rrect.pos.y ||
-                lrect.pos.y               >= rrect.pos.y + rrect.siz.y
+                thisRect.pos.y + thisRect.siz.y <= otherRect.pos.y ||
+                thisRect.pos.y                  >= otherRect.pos.y + otherRect.siz.y
             )
-            {
-                collisionTime = std::numeric_limits<double>::infinity();
-                return;
-            }
+                return maxResTime;
 
             float dxEnter, txEnter;
             if (body->velocity().x > 0)
-                dxEnter =  rrect.pos.x                - (lrect.pos.x + lrect.siz.x);
+                dxEnter =  otherRect.pos.x                    - (thisRect.pos.x + thisRect.siz.x);
             else 
-                dxEnter = (rrect.pos.x + rrect.siz.x) -  lrect.pos.x;
+                dxEnter = (otherRect.pos.x + otherRect.siz.x) -  thisRect.pos.x;
 
             txEnter = dxEnter / body->velocity().x;
 
-            if (txEnter < 0) 
-            {
-                collisionTime = std::numeric_limits<double>::infinity();
-            }
-            else 
-            {
-                collisionTime = txEnter;
-                if (txEnter == 0)
-                {
-                    collisionFaces |= (body->velocity().x > 0 ? (1 << 2) : (1 << 4));
-                }
-            }
+            if (txEnter < 0 || txEnter > maxResTime) return maxResTime;
+            return txEnter;
         }
         else 
         {
@@ -175,53 +141,90 @@ namespace mia
 
             if (body->velocity().x > 0)
             {
-                dxEnter =  rrect.pos.x                - (lrect.pos.x + lrect.siz.x);
-                dxExit  = (rrect.pos.x + rrect.siz.x) -  lrect.pos.x;
+                dxEnter =  otherRect.pos.x                    - (thisRect.pos.x + thisRect.siz.x);
+                dxExit  = (otherRect.pos.x + otherRect.siz.x) -  thisRect.pos.x;
             }
             else 
             {
-                dxEnter = (rrect.pos.x + rrect.siz.x) -  lrect.pos.x;
-                dxExit  =  rrect.pos.x                - (lrect.pos.x + lrect.siz.x);
+                dxEnter = (otherRect.pos.x + otherRect.siz.x) -  thisRect.pos.x;
+                dxExit  =  otherRect.pos.x                    - (thisRect.pos.x + thisRect.siz.x);
             }
 
             if (body->velocity().y > 0)
             {
-                dyEnter =  rrect.pos.y                - (lrect.pos.y + lrect.siz.y);
-                dyExit  = (rrect.pos.y + rrect.siz.y) -  lrect.pos.y;
+                dyEnter =  otherRect.pos.y                    - (thisRect.pos.y + thisRect.siz.y);
+                dyExit  = (otherRect.pos.y + otherRect.siz.y) -  thisRect.pos.y;
             }
             else 
             {
-                dyEnter = (rrect.pos.y + rrect.siz.y) -  lrect.pos.y;
-                dyExit  =  rrect.pos.y                - (lrect.pos.y + lrect.siz.y);
+                dyEnter = (otherRect.pos.y + otherRect.siz.y) -  thisRect.pos.y;
+                dyExit  =  otherRect.pos.y                    - (thisRect.pos.y + thisRect.siz.y);
             }
 
             float txEnter = dxEnter / body->velocity().x;
             float tyEnter = dyEnter / body->velocity().y;
             float txExit  = dxExit  / body->velocity().x;
             float tyExit  = dyExit  / body->velocity().y;
+
             float enterTime = std::max(txEnter, tyEnter);
             float exitTime  = std::min(txExit , tyExit );
-
-            if (enterTime >= exitTime || enterTime < 0) 
-            {
-                collisionTime = std::numeric_limits<double>::infinity();
-            }
-            else 
-            {
-                collisionTime = enterTime;
-                if (enterTime <= 0)
-                {
-                    if (txEnter == 0)
-                    {
-                        collisionFaces |= (body->velocity().x > 0 ? (1 << 2) : (1 << 4));
-                    }
-                    if (tyEnter == 0)
-                    {
-                        collisionFaces |= (body->velocity().y > 0 ? (1 << 1) : (1 << 3));
-                    }
-                }
-            }
+            if (enterTime >= exitTime || enterTime < 0 || enterTime > maxResTime) return maxResTime;
+            return enterTime;
         }
+    }
+    int Physics::QueryCollisionTouchResolution(Body *body, Body *other)
+    {
+        rect thisRect = body->GetRect();
+        rect otherRect = other->GetRect();
+
+        int res = 0;
+        
+        if (
+            body->velocity().x > 0 &&
+            thisRect.pos.x + thisRect.siz.x == otherRect.pos.x && 
+            (
+                IsIn(otherRect.pos.y                  , thisRect.pos.y, thisRect.pos.y + thisRect.siz.y) || 
+                IsIn(otherRect.pos.y + otherRect.siz.y, thisRect.pos.y, thisRect.pos.y + thisRect.siz.y)
+            )
+        )
+            res |= (1 << 1);
+        
+        if (
+            body->velocity().x < 0 &&
+            thisRect.pos.x == otherRect.pos.x + otherRect.siz.x && 
+            (
+                IsIn(otherRect.pos.y                  , thisRect.pos.y, thisRect.pos.y + thisRect.siz.y) || 
+                IsIn(otherRect.pos.y + otherRect.siz.y, thisRect.pos.y, thisRect.pos.y + thisRect.siz.y)
+            )
+        )
+            res |= (1 << 3);
+
+        if (
+            body->velocity().y > 0 &&
+            thisRect.pos.y + thisRect.siz.y == otherRect.pos.y && 
+            (
+                IsIn(otherRect.pos.x                  , thisRect.pos.x, thisRect.pos.x + thisRect.siz.x) || 
+                IsIn(otherRect.pos.x + otherRect.siz.x, thisRect.pos.x, thisRect.pos.x + thisRect.siz.x)
+            )
+        )
+            res |= (1 << 2);
+
+        if (
+            body->velocity().y < 0 &&
+            thisRect.pos.y == otherRect.pos.y + otherRect.siz.y && 
+            (
+                IsIn(otherRect.pos.x                  , thisRect.pos.x, thisRect.pos.x + thisRect.siz.x) || 
+                IsIn(otherRect.pos.x + otherRect.siz.x, thisRect.pos.x, thisRect.pos.x + thisRect.siz.x)
+            )
+        )
+            res |= (1 << 4);
+
+        return res;
+    }
+
+    inline bool Physics::IsIn(float x, float l, float r)
+    {
+        return (l <= x && x <= r);
     }
 #pragma endregion
 }

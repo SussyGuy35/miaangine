@@ -59,6 +59,11 @@ int main(int argc, char* argv[])
 
     while (true)
     {
+        bod->velocity().x = 0;
+        if (mia::_Input().getKey(SDL_SCANCODE_RIGHT)) bod->velocity().x =  4;
+        if (mia::_Input().getKey(SDL_SCANCODE_LEFT )) bod->velocity().x = -4;
+        bod->AddAcceleration({0, -.00091});
+
         mia::_Game().Update();
 
         if (mia::_Input().getKey(SDL_SCANCODE_D)) mia::_Camera().position().x += mia::_Camera().size() * .5 * mia::_Time().deltaTime();
@@ -67,11 +72,6 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_S)) mia::_Camera().position().y -= mia::_Camera().size() * .5 * mia::_Time().deltaTime();
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() - 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
         if (mia::_Input().getKey(SDL_SCANCODE_Q)) mia::_Camera().Resize(mia::_Camera().size() + 1 * mia::_Camera().size() * mia::_Time().deltaTime(), mia::v2f(.5, .5));
-
-        bod->velocity().x = 0;
-        if (mia::_Input().getKey(SDL_SCANCODE_RIGHT)) bod->velocity().x =  4;
-        if (mia::_Input().getKey(SDL_SCANCODE_LEFT )) bod->velocity().x = -4;
-        bod->AddAcceleration({0, -.00091});
 
         // printf("%.4f\t%.4f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 

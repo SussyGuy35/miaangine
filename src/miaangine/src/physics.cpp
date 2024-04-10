@@ -51,6 +51,7 @@ namespace mia
         body->velocity() += body->force() / body->mass();
         body->force() = v2f::zero();
     }
+
     void Physics::StaticBodyHandle(Body *body, double elapsedTime)
     {
         body->master().position() += body->velocity() * elapsedTime;
@@ -181,49 +182,36 @@ namespace mia
         if (
             body->velocity().x > 0 &&
             thisRect.pos.x + thisRect.siz.x == otherRect.pos.x && 
-            (
-                IsIn(otherRect.pos.y                  , thisRect.pos.y, thisRect.pos.y + thisRect.siz.y) || 
-                IsIn(otherRect.pos.y + otherRect.siz.y, thisRect.pos.y, thisRect.pos.y + thisRect.siz.y)
-            )
+            thisRect.pos.y < otherRect.pos.y + otherRect.siz.y &&
+            thisRect.pos.y + thisRect.pos.y > otherRect.pos.y
         )
             res |= (1 << 1);
         
         if (
             body->velocity().x < 0 &&
             thisRect.pos.x == otherRect.pos.x + otherRect.siz.x && 
-            (
-                IsIn(otherRect.pos.y                  , thisRect.pos.y, thisRect.pos.y + thisRect.siz.y) || 
-                IsIn(otherRect.pos.y + otherRect.siz.y, thisRect.pos.y, thisRect.pos.y + thisRect.siz.y)
-            )
+            thisRect.pos.y < otherRect.pos.y + otherRect.siz.y &&
+            thisRect.pos.y + thisRect.pos.y > otherRect.pos.y
         )
             res |= (1 << 3);
 
         if (
             body->velocity().y > 0 &&
             thisRect.pos.y + thisRect.siz.y == otherRect.pos.y && 
-            (
-                IsIn(otherRect.pos.x                  , thisRect.pos.x, thisRect.pos.x + thisRect.siz.x) || 
-                IsIn(otherRect.pos.x + otherRect.siz.x, thisRect.pos.x, thisRect.pos.x + thisRect.siz.x)
-            )
+            thisRect.pos.x < otherRect.pos.x + otherRect.siz.x &&
+            thisRect.pos.x + thisRect.pos.x > otherRect.pos.x
         )
             res |= (1 << 2);
 
         if (
             body->velocity().y < 0 &&
             thisRect.pos.y == otherRect.pos.y + otherRect.siz.y && 
-            (
-                IsIn(otherRect.pos.x                  , thisRect.pos.x, thisRect.pos.x + thisRect.siz.x) || 
-                IsIn(otherRect.pos.x + otherRect.siz.x, thisRect.pos.x, thisRect.pos.x + thisRect.siz.x)
-            )
+            thisRect.pos.x < otherRect.pos.x + otherRect.siz.x &&
+            thisRect.pos.x + thisRect.pos.x > otherRect.pos.x
         )
             res |= (1 << 4);
 
         return res;
-    }
-
-    inline bool Physics::IsIn(float x, float l, float r)
-    {
-        return (l <= x && x <= r);
     }
 #pragma endregion
 }

@@ -1,19 +1,17 @@
 #include "body.hpp"
 
-#include "physics.hpp"
-
 namespace mia
 {
 #pragma region Constructor Destructor
-    Body::Body(BodyType type, v2f size, v2f offset, float mass, v2f initForce):
+    Body::Body(Object *master, int type, v2f size, v2f offset, v2f pivot):
+        _master(master),
         _type(type),
         _size(size),
         _offset(offset),
-        _pivot(v2f::zero()),
-        _trigger(false),
-        _mass(mass),
+        _pivot(pivot),
+        _mass(1),
         _velocity(v2f::zero()),
-        _force(initForce)
+        _force(v2f::zero())
     {}
 
     Body::~Body()
@@ -21,73 +19,54 @@ namespace mia
 #pragma endregion
 
 #pragma region GetSet method
-    v2f Body::offset() const
+    const Object& Body::master() const
     {
-        return _offset;
+        return *_master;
     }
-    v2f Body::size() const
+    int Body::getType() const
+    {
+        return _type;
+    }
+    const v2f& Body::size() const
     {
         return _size;
     }
-    v2f Body::pivot() const
+    const v2f& Body::offset() const
+    {
+        return _offset;
+    }
+    const v2f& Body::pivot() const
     {
         return _pivot;
     }
-    bool Body::isTrigger() const
-    {
-        return _trigger;
-    }
-    bool Body::isStatic() const
-    {
-        return _type == _BODY_STATIC;
-    }
-    float Body::mass() const
+    const float& Body::mass() const
     {
         return _mass;
     }
-    v2f Body::velocity() const
+    const v2f& Body::velocity() const
     {
         return _velocity;
     }
-    v2f Body::force() const
+    const v2f& Body::force() const
     {
         return _force;
     }
-    quadtree::Box<float> Body::getRect() const
-    {
-        quadtree::Box<float> res;
-        res.width = _size.x;
-        res.height = _size.y;
-        res.left = _master->position().x + _offset.x - (_pivot.x * res.width); 
-        res.top = _master->position().y + _offset.y - ( _pivot.y * res.height); 
-        return res;
-    }
 
-    int& Body::setType(bool newState)
+    int Body::setType(int newType)
     {
-        if (_type == _BODY_DYNAMIC && newState == _BODY_STATIC)
-        {
-            Physics::Instance().RemoveBody(this);
-            Physics::Instance().RegisterBody(this); // FIXME
-        }
-
-        return _type = newState;
-    }
-    v2f& Body::offset()
-    {
-        return _offset;
+        return _type;
     }
     v2f& Body::size()
     {
         return _size;
     }
+    v2f& Body::offset()
+    {
+        return _offset;
+    }
     v2f& Body::pivot()
     {
         return _pivot;
-    }
-    bool& Body::setTrigger(int newState)
-    {
-        return _trigger = newState;
     }
     float& Body::mass()
     {
@@ -104,6 +83,12 @@ namespace mia
 #pragma endregion
 
 #pragma region Public method
+    Object& Body::ChangeMaster(Object *newMaster)
+    {
+        _master = newMaster;
+        return *_master;
+    }
+
     v2f Body::AddForce(v2f force)
     {
         _force += force;
@@ -134,11 +119,7 @@ namespace mia
     }
     const char* Body::ToStr() const
     {
-        return "Body(Component)";
-    }
-    bool Body::Init()
-    {
-        Physics::Instance().RegisterBody(this);
+        return "Body";
     }
 #pragma endregion
 }

@@ -3,9 +3,6 @@
 
 #include "common.hpp"
 
-#include <functional>
-#include "Quadtree/Quadtree.h"
-
 #include "portrait.hpp"
 
 namespace mia
@@ -18,12 +15,11 @@ namespace mia
         ~Renderer();
 
     private:
-        std::function<quadtree::Box<float>(Portrait* p)> _getBox;
-        quadtree::Quadtree<Portrait*, decltype(_getBox)> _portraitTree;
+        std::vector<Portrait*> _portraitsList;
 
     public:
         void RegisterPortrait(Portrait *portrait);
-        void RemovePortrait(Portrait *portrait);
+        void UnregisterPortrait(Portrait *portrait);
 
         void Render(SDL_Renderer *renderer);
 

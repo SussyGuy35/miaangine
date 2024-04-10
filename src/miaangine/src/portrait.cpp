@@ -1,11 +1,10 @@
 #include "portrait.hpp"
 
-#include "renderer.hpp"
-
 namespace mia
 {
 #pragma region Constructor Destructor
-    Portrait::Portrait(Sprite* sprite, v2f offset, SDL_Color color, v2f pivot):
+    Portrait::Portrait(Object *master, Sprite* sprite, v2f offset, SDL_Color color, v2f pivot):
+        _master(master),
         _sprite(sprite),
         _offset(offset),
         _color(color),
@@ -17,35 +16,40 @@ namespace mia
 #pragma endregion
 
 #pragma region GetSet method
-    const Sprite* Portrait::sprite() const
+    const Object& Portrait::master() const
     {
-        return _sprite;
+        return *_master;
     }
-    v2f Portrait::offset() const
+    const Sprite& Portrait::sprite() const
+    {
+        if (!_sprite)
+        {
+            // FIXME
+        }
+
+        return *_sprite;
+    }
+    const v2f& Portrait::offset() const
     {
         return _offset;
     }
-    SDL_Color Portrait::color() const
+    const SDL_Color& Portrait::color() const
     {
         return _color;
     }
-    v2f Portrait::pivot() const
+    const v2f& Portrait::pivot() const
     {
         return _pivot;
     }
-    quadtree::Box<float> Portrait::getRect() const
-    {
-        quadtree::Box<float> res;
-        res.width = 1.0 * _sprite->size.x / PPU;
-        res.height = 1.0 * _sprite->size.y / PPU;
-        res.left = _master->position().x + _offset.x - (_pivot.x * res.width); 
-        res.top = _master->position().y + _offset.y - ( _pivot.y * res.height); 
-        return res;
-    }
 
-    Sprite* Portrait::sprite()
+    Sprite& Portrait::sprite()
     {
-        return _sprite;
+        if (!_sprite)
+        {
+            // FIXME
+        }
+
+        return *_sprite;
     }
     v2f& Portrait::offset()
     {
@@ -61,6 +65,14 @@ namespace mia
     }
 #pragma endregion
 
+#pragma region Public method
+    Object& Portrait::ChangeMaster(Object *newMaster)
+    {
+        _master = newMaster;
+        return *_master;
+    }
+#pragma endregion
+
 #pragma region Inherited method
     int Portrait::getID() const 
     {
@@ -68,12 +80,7 @@ namespace mia
     }
     const char* Portrait::ToStr() const
     {
-        return "Portrait(Component)";
-    }
-
-    bool Portrait::Init()
-    {
-        Renderer::Instance().RegisterPortrait(this);
+        return "Portrait";
     }
 #pragma endregion
 }

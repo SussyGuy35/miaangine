@@ -35,7 +35,7 @@ namespace mia
 
         for (Sprite *sprite : _sprites) 
         {
-            sprite->texture = _texture;
+            sprite->tex = _texture;
         }
     }
 

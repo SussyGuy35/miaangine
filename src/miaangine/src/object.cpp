@@ -1,75 +1,99 @@
 #include "object.hpp"
 
-#include "transform.hpp"
-#include "component.hpp"
+#include "portrait.hpp"
+#include "body.hpp"
 
 namespace mia
 {
 #pragma region Contructor Destructor
-    Object::Object(const char *name, v2f position, v2f scale):
+    Object::Object(const char *name = "Untitled", v2f position = v2f::zero()):
         _name(name),
-        _active(true),
-        _scene(-1),
-        _transform(new Transform(position, scale, nullptr, this))
+        _tag(0),
+        _position(position),
+        _portrait(nullptr),
+        _body(nullptr)
     {}
-    Object::Object(const char *name, float x, float y, float sx, float sy):
+    Object::Object(const char *name, float x, float y):
         _name(name),
-        _active(true),
-        _scene(-1),
-        _transform(new Transform(v2f(x, y), v2f(sx, sy), nullptr, this))
+        _tag(0),
+        _position(v2f(x, y)),
+        _portrait(nullptr),
+        _body(nullptr)
     {}
-    Object::Object(const char *name, Transform* parent, v2f position, v2f scale):
-        _name(name),
-        _active(true),
-        _scene(-1),
-        _transform(new Transform(position, scale, parent, this))
-    {}
-    Object::Object(const char *name, Transform* parent, float x, float y, float sx, float sy):
-        _name(name),
-        _active(true),
-        _scene(-1),
-        _transform(new Transform(v2f(x, y), v2f(sx, sy), parent, this))
+    Object::Object(float x, float y):
+        _name("Untitled"),
+        _tag(0),
+        _position(v2f(x, y)),
+        _portrait(nullptr),
+        _body(nullptr)
     {}
 
     Object::~Object()
     {
-        delete _transform;
+        // TODO Add destroy method
+
+        delete _portrait;
+        delete _body;
     }
 #pragma endregion
 
 #pragma region GetSet-method
-    string Object::name() const 
+    string Object::name() const
     {
         return _name;
-    }
-    bool Object::isActive() const
-    {
-        return _active;
     }
     uint32_t Object::getTag() const
     {
         return _tag;
     }
-    int Object::getScene() const
+    const v2f& Object::position() const
     {
-        return _scene;
+        return _position;
     }
-    const Transform& Object::transform() const
+    const Portrait& Object::portrait() const
     {
-        return *_transform;
+        if (!_portrait) 
+        {
+            // FIXME
+        }
+
+        return *_portrait;
     }
-    
+    const Body& Object::body() const
+    {
+        if (!_body) 
+        {
+            // FIXME
+        }
+
+        return *_body;
+    }
+
     string& Object::name()
     {
         return _name;
     }
-    bool Object::SetActive(bool newState)
+    v2f& Object::position()
     {
-        _active = newState;
+        return _position;
     }
-    Transform& Object::transform() 
+    Portrait& Object::portrait()
     {
-        return *_transform;
+        if (!_portrait) 
+        {
+            // FIXME
+        }
+
+        return *_portrait;
+    }
+    Body& Object::body()
+    {
+        if (!_body) 
+        {
+            // FIXME
+        }
+
+        return *_body;
     }
 #pragma endregion
 
@@ -89,12 +113,6 @@ namespace mia
         // TODO safety
         _tag &= ~(1 << tag);
     }
-    void Object::AddComponent(Component *newComponent)
-    {
-        _components.push_back(newComponent);
-        newComponent->SetMaster(_transform); //FIXME
-        newComponent->Init();
-    }
 #pragma endregion
 
 #pragma region Inherited method
@@ -104,7 +122,7 @@ namespace mia
     }
     const char* Object::ToStr() const
     {
-        return string("Object");
+        return "Object";
     }
 #pragma endregion
 }

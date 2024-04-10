@@ -2,6 +2,8 @@
 
 #include "camera.hpp"
 
+#include "physics.hpp"
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -39,8 +41,14 @@ namespace mia
         SDL_RenderClear(renderer);
 
         RenderPortraits(renderer);
+        if (_renderBodies) RenderBodyRects(renderer);
 
         SDL_RenderPresent(renderer);
+    }
+
+    void Renderer::SetRenderBodies(bool state)
+    {
+        _renderBodies = state;
     }
 #pragma endregion
 
@@ -65,6 +73,24 @@ namespace mia
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
 
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+        }
+    }
+    void Renderer::RenderBodyRects(SDL_Renderer *renderer)
+    {
+        const std::vector<Body*> bodyList = Physics::Instance().GetBodiesList();
+        for (Body *body : bodyList)
+        {
+            SDL_Rect screenRect;
+            rect worldRect = body->GetRect();
+
+            v2f topleft = Camera::Instance().WorldToScreenPoint(worldRect.pos + v2f::up() * worldRect.siz.y);
+            screenRect.w = static_cast<int>(worldRect.siz.x * Camera::Instance().unitSize());
+            screenRect.h = static_cast<int>(worldRect.siz.y * Camera::Instance().unitSize());
+            screenRect.x = static_cast<int>(topleft.x);
+            screenRect.y = static_cast<int>(topleft.y);
+
+            SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+            SDL_RenderDrawRect(renderer, &screenRect);
         }
     }
 

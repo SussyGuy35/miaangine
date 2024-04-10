@@ -78,7 +78,6 @@ namespace mia
             elapsedTime -= updateTime;
             if (elapsedTime <= 0) break;
         }
-            printf("%d %d %d %d\n", ((touchedFaces >> 1) & 1),((touchedFaces >> 2) & 1),((touchedFaces >> 3) & 1),((touchedFaces >> 4) & 1));
     }
     void Physics::TriggerBodyHandle(Body *body, double elapsedTime)
     {

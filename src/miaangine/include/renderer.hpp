@@ -17,6 +17,8 @@ namespace mia
     private:
         std::vector<Portrait*> _portraitsList;
 
+        bool _renderBodies;
+
     public:
         void RegisterPortrait(Portrait *portrait);
         void UnregisterPortrait(Portrait *portrait);
@@ -25,8 +27,11 @@ namespace mia
 
         void Render(SDL_Renderer *renderer);
 
+        void SetRenderBodies(bool state);
+
     private:
         void RenderPortraits(SDL_Renderer *renderer);
+        void RenderBodyRects(SDL_Renderer *renderer);
 
         SDL_Rect PortraitRectCalculate(Portrait &portrait);
     };

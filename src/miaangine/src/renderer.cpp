@@ -28,6 +28,11 @@ namespace mia
         }
     }
 
+    const std::vector<Portrait*> Renderer::GetPortraitssList()
+    {
+        return _portraitsList;
+    }
+
     void Renderer::Render(SDL_Renderer *renderer)
     {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);

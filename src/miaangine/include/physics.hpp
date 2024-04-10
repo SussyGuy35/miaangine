@@ -17,18 +17,20 @@ namespace mia
     private:
         std::vector<Body*> _bodiesList;
 
+        const int MAX_COLLISION_RESOLUTION = 3;
+
     public:
         void RegisterBody(Body *body);
         void UnregisterBody(Body *body);
 
         void Update(double elapsedTime);
 
-        std::vector<Body*> GetColliding(Body *body);
-        void ResolveCollision(Body *lbody, Body *rbody);
+        const std::vector<Body*> GetBodiesList();
 
     private:
-        void BodiesDynamicsHandle(double elapsedTime);
-        void BodiesCollisionHandle();
+        void BodiesDynamicsHandle(Body *body, double &remainTime, int index);
+
+        void QueryCollisionResolusion(Body *body, Body *other, double &collisionTime, int &collisionFaces);
     };
 }
 

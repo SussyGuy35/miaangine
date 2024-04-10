@@ -21,6 +21,8 @@ namespace mia
         void RegisterPortrait(Portrait *portrait);
         void UnregisterPortrait(Portrait *portrait);
 
+        const std::vector<Portrait*> GetPortraitssList();
+
         void Render(SDL_Renderer *renderer);
 
     private:

@@ -33,14 +33,14 @@ namespace mia
         BodiesCollisionHandle();
     }
 
-    std::vector<Body*> Physics::GetColliding(Body &body)
+    std::vector<Body*> Physics::GetColliding(Body *body)
     {
         
     }
 
-    void Physics::ResolveCollision(Body &lbody, Body &rbody)
+    void Physics::ResolveCollision(Body *lbody, Body *rbody)
     {
-
+        
     }
 #pragma endregion
 
@@ -63,34 +63,23 @@ namespace mia
         {
             if (body->getType() == _BODY_STATIC) continue;
 
-            for (Body* body : _bodiesList)
+            for (Body* other : _bodiesList)
             {
-                
+                if (body->getType() == _BODY_TRIGGER) continue;
+
+                if (body->GetRect().overlap(other->GetRect()))
+                {
+                    if (body->getType() == _BODY_DYNAMIC)
+                    {
+                        ResolveCollision(body, other);
+                    }
+                    else 
+                    {
+                        // TODO TRIGGER collision
+                    }
+                }
             }
         }
-
-        // for (Body* body : _dynamicBodies)
-        // {
-        //     std::vector<Body*> others = _bodyTree.query(body->getRect());
-        //     if (others.empty()) continue;
-
-        //     for (int i = 0; i < COLLISION_RESOLVE_TRY; i++)
-        //     {
-        //         ResolveCollision(body, others.back());
-
-        //         others = _bodyTree.query(body->getRect());
-        //         if (others.empty()) break;
-        //     }
-        // }
-
-        // std::vector<std::pair<Body*, Body*>> _bodiesIntersections = _bodyTree.findAllIntersections();
-        // for (std::pair<Body*, Body*> bodiesPair : _bodiesIntersections)
-        // {
-        //     Body* lbody = bodiesPair.first;
-        //     Body* rbody = bodiesPair.second;
-
-        //     ResolveCollision(lbody, rbody);
-        // }
     }
 #pragma endregion
 }

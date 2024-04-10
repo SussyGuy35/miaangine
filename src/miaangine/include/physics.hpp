@@ -23,8 +23,8 @@ namespace mia
 
         void Update(double elapsedTime);
 
-        std::vector<Body*> GetColliding(Body &body);
-        void ResolveCollision(Body &lbody, Body &rbody);
+        std::vector<Body*> GetColliding(Body *body);
+        void ResolveCollision(Body *lbody, Body *rbody);
 
     private:
         void BodiesDynamicsHandle(double elapsedTime);

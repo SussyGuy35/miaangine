@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/SpriteTest.png");
 
-    const int num = 50;
+    const int num = 10;
     mia::Object *obj[num][num];
     mia::Portrait *prt[num][num];
     mia::Body *bod[num][num];
@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
         for (int j = 0; j < num; j++)
         {
             obj[i][j] = new mia::Object(
-                i * 3, j * 3
+                i * 3, j * 3 + 5
             );
 
             prt[i][j] = new mia::Portrait(
@@ -29,13 +29,21 @@ int main(int argc, char* argv[])
 
             bod[i][j] = new mia::Body(
                 obj[i][j],
-                mia::_BODY_STATIC,
+                mia::_BODY_DYNAMIC,
                 1, 1
             );
             mia::_Physics().RegisterBody(bod[i][j]);
-            // bod[i][j]->AddForce({.5, -.5});
         }
     }
+    
+    mia::Object *plane = new mia::Object(
+        0, 0
+    );
+    mia::Body *planeBody = new mia::Body(
+        plane,
+        mia::_BODY_STATIC,
+        100, 1
+    );
 
     mia::_Camera().position() = (mia::v2f(0, 0));
 

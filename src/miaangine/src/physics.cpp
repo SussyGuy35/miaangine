@@ -65,7 +65,6 @@ namespace mia
                 bodiesQueried[i] = true;
                 DynamicBodyDynamicUpdate(body, elapsedTime, bodiesQueried);
             }
-            printf("\n");
         }
 
         // for (int i = 0; i < COLLISION_RESOLUTION_TIME; i++)
@@ -125,7 +124,7 @@ namespace mia
 
         double updateTime = GetTimeToCollideBody(body, consideredRect, elapsedTime);
         body->master().position() += body->velocity() * updateTime;
-        printf("%s : %f\n", body->master().name().str(), updateTime);
+        // printf("%s : %f\n", body->master().name().str(), updateTime);
     }
 
     double Physics::GetTimeToCollideBody(Body *body, rect consideredRect, double maxTime)

@@ -5,5 +5,6 @@
 #include "vector.hpp"
 #include "singleton.hpp"
 #include "rect.hpp"
+#include "mask.hpp"
 
 #endif

@@ -25,22 +25,17 @@ namespace mia
         void RegisterPortrait(Portrait *portrait);
         void UnregisterPortrait(Portrait *portrait);
 
-        void DrawRect(rect rect, SDL_Color color = { 255, 255, 255, 255 });
-        void ClearDrawRects();
+        void Render(SDL_Renderer *renderer);
 
         const std::vector<Portrait*> GetPortraitssList();
 
-        void Render(SDL_Renderer *renderer);
-
-        void SetRenderBodies(bool state);
+        void RenderBodiesCollision(bool state);
 
     private:
         void RenderPortraits(SDL_Renderer *renderer);
         void RenderBodyRects(SDL_Renderer *renderer);
-        void RenderDebugRects(SDL_Renderer *renderer);
-
-        SDL_Rect PortraitRectCalculate(Portrait &portrait);
-
+        
+        SDL_Rect WorldRectToSDLScreenRect(const rect& worldRect);
     };
 }
 

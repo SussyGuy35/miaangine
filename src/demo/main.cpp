@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/abc.png");
 
-    mia::_Renderer().SetRenderBodies(true);
+    mia::_Renderer().RenderBodiesCollision(true);
 
     // mia::Object *a = new mia::Object("A", 1, 2);
     // mia::Object *b = new mia::Object("B", 5, 2);
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
             mia::_Physics().Update(-.05);
         }
 
-        printf("> %f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
+        // printf("> %f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 
         if (mia::_Input().isQuit()) break;
 

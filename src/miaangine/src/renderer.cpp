@@ -31,13 +31,16 @@ namespace mia
         }
     }
 
-    void Renderer::DrawRect(rect rect, SDL_Color color)
+    void Renderer::Render(SDL_Renderer *renderer)
     {
-        _debugRectList.push_back({ rect, color });
-    }
-    void Renderer::ClearDrawRects()
-    {
-        _debugRectList.clear();
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+        RenderPortraits(renderer);
+
+        if (_renderBodies) RenderBodyRects(renderer);
+
+        SDL_RenderPresent(renderer);
     }
 
     const std::vector<Portrait*> Renderer::GetPortraitssList()
@@ -45,19 +48,7 @@ namespace mia
         return _portraitsList;
     }
 
-    void Renderer::Render(SDL_Renderer *renderer)
-    {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-
-        RenderPortraits(renderer);
-        if (_renderBodies) RenderBodyRects(renderer);
-        RenderDebugRects(renderer);
-
-        SDL_RenderPresent(renderer);
-    }
-
-    void Renderer::SetRenderBodies(bool state)
+    void Renderer::RenderBodiesCollision(bool state)
     {
         _renderBodies = state;
     }
@@ -80,7 +71,7 @@ namespace mia
             SDL_SetTextureColorMod(texture, portrait->color().r, portrait->color().b, portrait->color().g);
             SDL_SetTextureAlphaMod(texture, portrait->color().a);
 
-            SDL_Rect dstrect = PortraitRectCalculate(*portrait);
+            SDL_Rect dstrect = WorldRectToSDLScreenRect(portrait->GetRect());
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
 
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
@@ -91,42 +82,16 @@ namespace mia
         const std::vector<Body*> bodyList = Physics::Instance().GetBodiesList();
         for (Body *body : bodyList)
         {
-            SDL_Rect screenRect;
-            rect worldRect = body->GetRect();
-
-            v2f topleft = Camera::Instance().WorldToScreenPoint(worldRect.pos + v2f::up() * worldRect.siz.y);
-            screenRect.w = static_cast<int>(worldRect.siz.x * Camera::Instance().unitSize());
-            screenRect.h = static_cast<int>(worldRect.siz.y * Camera::Instance().unitSize());
-            screenRect.x = static_cast<int>(topleft.x);
-            screenRect.y = static_cast<int>(topleft.y);
+            SDL_Rect rect = WorldRectToSDLScreenRect(body->GetRect());;
 
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-            SDL_RenderDrawRect(renderer, &screenRect);
-        }
-    }
-    void Renderer::RenderDebugRects(SDL_Renderer *renderer)
-    {
-        for (auto p : _debugRectList)
-        {
-            SDL_Rect screenRect;
-            rect worldRect = p.first;
-
-            v2f topleft = Camera::Instance().WorldToScreenPoint(worldRect.pos + v2f::up() * worldRect.siz.y);
-            screenRect.w = static_cast<int>(worldRect.siz.x * Camera::Instance().unitSize());
-            screenRect.h = static_cast<int>(worldRect.siz.y * Camera::Instance().unitSize());
-            screenRect.x = static_cast<int>(topleft.x);
-            screenRect.y = static_cast<int>(topleft.y);
-
-            SDL_SetRenderDrawColor(renderer, p.second.r, p.second.g, p.second.b, p.second.a);
-            SDL_RenderDrawRect(renderer, &screenRect);
+            SDL_RenderDrawRect(renderer, &rect);
         }
     }
 
-    SDL_Rect Renderer::PortraitRectCalculate(Portrait &portrait)
+    SDL_Rect Renderer::WorldRectToSDLScreenRect(const rect& worldRect)
     {
         SDL_Rect screenRect;
-        rect worldRect = portrait.GetRect();
-
         v2f topleft = Camera::Instance().WorldToScreenPoint(worldRect.pos + v2f::up() * worldRect.siz.y);
         screenRect.w = static_cast<int>(worldRect.siz.x * Camera::Instance().unitSize());
         screenRect.h = static_cast<int>(worldRect.siz.y * Camera::Instance().unitSize());

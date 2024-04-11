@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     //     mia::_Game().Render();
     // }
 
-    const int n = 2;
+    const int n = 10;
 
     mia::Object *obj[n][n];
     mia::Body *body[n][n];
@@ -71,16 +71,14 @@ int main(int argc, char* argv[])
         for (int i = 0; i < n; i++) { for (int j = 0; j < n; j++) 
         {
             double rng = 1.0 * rand() / RAND_MAX;
-            body[i][j]->AddAcceleration({0, -.00001});
-            body[i][j]->velocity().x = .0211 * rng;
+            body[i][j]->AddAcceleration({0, -16});
+            body[i][j]->velocity().x = 30 * rng;
         }}
 
-        // mia::_Game().Update();
-        mia::_Input().Update();
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_SPACE))
-            mia::_Physics().Update(1);
-
-        // printf("> %f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
+        mia::_Game().Update();
+        // mia::_Input().Update();
+        // if (mia::_Input().getKeyDown(SDL_SCANCODE_SPACE))
+        //     mia::_Physics().Update(1);
 
         if (mia::_Input().isQuit()) break;
 

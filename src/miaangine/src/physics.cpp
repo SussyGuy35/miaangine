@@ -1,6 +1,6 @@
 #include "physics.hpp"
 
-#include "renderer.hpp"
+#include "time.hpp"
 
 namespace mia
 {
@@ -66,18 +66,15 @@ namespace mia
 #pragma region Private method
     void Physics::ApplyForceToBody(Body* body)
     {
-        body->velocity() += body->force() / body->mass();
+        body->velocity() += body->force() * Time::Instance().deltaTime() / body->mass();
         body->force() = v2f::zero();
     }
     
     void Physics::ApplyBodyDynamic(Body *body, double elapsedTime)
     {
-        for (Body *body : _bodiesList)
-        {
-            if (body->getType() == _BODY_STATIC) continue;
+        if (body->getType() == _BODY_STATIC) return;
 
-            body->master().position() += body->velocity() * elapsedTime;
-        }
+        body->master().position() += body->velocity() * elapsedTime;
     }
 
     void Physics::ResolveBodyCollision(Body *body, Body *other)

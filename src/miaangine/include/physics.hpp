@@ -17,7 +17,7 @@ namespace mia
     private:
         std::vector<Body*> _bodiesList;
 
-        const int MAX_COLLISION_RESOLUTION_SEARCH = 15;
+        const int MAX_COLLISION_RESOLUTION_SEARCH = 16;
 
     public:
         void RegisterBody(Body *body);

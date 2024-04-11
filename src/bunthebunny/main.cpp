@@ -1,6 +1,7 @@
 #include "miaangine.hpp"
 
 #include "box.hpp"
+#include "player.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -12,6 +13,8 @@ int main(int argc, char* argv[])
     boxes.push_back( new Box(0, 0, 100, 1) );
 
     mia::_Renderer().RenderBodiesCollision(true);
+
+    Player *player = new Player(5, 5);
 
     while (true)
     {

@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
     //     mia::_Game().Render();
     // }
 
-    const int n = 10;
+    const int n = 3;
 
     mia::Object *obj[n][n];
     mia::Body *body[n][n];
@@ -61,28 +61,23 @@ int main(int argc, char* argv[])
         mia::_Physics().RegisterBody(body[i][j]);
     }}
     mia::Object *pl = new mia::Object(0, 0);
-    mia::Body *bp = new mia::Body(pl, mia::_BODY_STATIC, {100, 1});
+    mia::Body *bp = new mia::Body(pl, mia::_BODY_STATIC, {120, 1});
     mia::_Physics().RegisterBody(bp);
+
+    mia::_Camera().position().y = -10;
 
     while (true)
     {
         for (int i = 0; i < n; i++) { for (int j = 0; j < n; j++) 
         {
             double rng = 1.0 * rand() / RAND_MAX;
-            body[i][j]->AddAcceleration({0, -.01});
-            body[i][j]->velocity().x = 10 * rng;
+            body[i][j]->AddAcceleration({0, -.00001});
+            body[i][j]->velocity().x = .0211 * rng;
         }}
 
-        // mia::_Game().Update();
-        mia::_Input().Update();
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_SPACE))
-        {
-            mia::_Physics().Update(.05);
-        }
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_R))
-        {
-            mia::_Physics().Update(-.05);
-        }
+        mia::_Game().Update();
+        // mia::_Input().Update();
+        // mia::_Physics().Update(mia::_Time().deltaTime());
 
         // printf("> %f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 

@@ -17,8 +17,7 @@ namespace mia
     private:
         std::vector<Body*> _bodiesList;
 
-        const int MAX_COLLISION_RESOLUTION_TIME = 1;
-        const int MAX_COLLISION_RESOLUTION_SEARCH = 128;
+        const int MAX_COLLISION_RESOLUTION_SEARCH = 15;
 
     public:
         void RegisterBody(Body *body);
@@ -30,6 +29,8 @@ namespace mia
 
     private:
         void ApplyForceToBody(Body *body);
+        void ApplyBodyDynamic(Body *body, double elapsedTime);
+        void ResolveBodyCollision(Body *body, Body *other);
     };
 }
 

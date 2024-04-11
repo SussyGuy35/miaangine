@@ -10,8 +10,7 @@ namespace mia
     enum BodyType
     {
         _BODY_STATIC = 0,
-        _BODY_DYNAMIC,
-        _BODY_TRIGGER
+        _BODY_DYNAMIC
     };
 
     class Body : public Entity
@@ -28,6 +27,7 @@ namespace mia
         v2f _size;
         v2f _pivot;
         v2f _offset;
+        bool _triggered;
         
         float _mass;
         v2f _velocity;
@@ -37,8 +37,9 @@ namespace mia
         const Object& master() const;
         int getType() const;
         const v2f& size() const;
-        const v2f& offset() const;
         const v2f& pivot() const;
+        const v2f& offset() const;
+        bool IsTriggered() const;
         const float& mass() const;
         const v2f& velocity() const;
         const v2f& force() const;
@@ -46,8 +47,8 @@ namespace mia
         Object& master();
         int setType(int newType);
         v2f& size();
-        v2f& offset();
         v2f& pivot();
+        v2f& offset();
         float& mass();
         v2f& velocity();
         v2f& force();
@@ -55,7 +56,8 @@ namespace mia
         Object& ChangeMaster(Object *newMaster);
         
         rect GetRect() const;
-        
+        bool SetTriggered(bool newState);
+
         v2f AddForce(v2f force);
         v2f AddForce(float x, float y);
         v2f AddAcceleration(v2f acceleration);

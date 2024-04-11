@@ -36,13 +36,17 @@ namespace mia
     {
         return _size;
     }
+    const v2f& Body::pivot() const
+    {
+        return _pivot;
+    }
     const v2f& Body::offset() const
     {
         return _offset;
     }
-    const v2f& Body::pivot() const
+    bool Body::IsTriggered() const 
     {
-        return _pivot;
+        return _triggered;
     }
     const float& Body::mass() const
     {
@@ -74,13 +78,13 @@ namespace mia
     {
         return _size;
     }
-    v2f& Body::offset()
-    {
-        return _offset;
-    }
     v2f& Body::pivot()
     {
         return _pivot;
+    }
+    v2f& Body::offset()
+    {
+        return _offset;
     }
     float& Body::mass()
     {
@@ -114,6 +118,10 @@ namespace mia
         res.siz = _size;
         res.pos = master().position() + _offset - v2f(_pivot.x * res.siz.x, _pivot.y * res.siz.y);
         return res;
+    }
+    bool Body::SetTriggered(bool newState)
+    {
+        return _triggered = newState;
     }
 
     v2f Body::AddForce(v2f force)

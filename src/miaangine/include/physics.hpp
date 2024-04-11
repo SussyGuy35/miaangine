@@ -30,14 +30,6 @@ namespace mia
 
     private:
         void ApplyForceToBody(Body *body);
-        void DynamicBodyHandle(double elapsedTime);
-        void DynamicBodyDynamicUpdate(Body* body, double elapsedTime, std::vector<bool> &bodiesQueried, int time = 0);
-
-        double GetTimeToCollideBody(Body *body, rect consideredRect, double maxTime);
-        double GetTimeToCollide(const rect& lRect, const rect& rRect, v2f velocity);
-
-        void TouchedBodyHandle(Body *body);
-        int GetTouchedFaces(const rect& lRect, const rect& rRect);
     };
 }
 

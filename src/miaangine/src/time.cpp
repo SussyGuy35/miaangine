@@ -43,8 +43,8 @@ namespace mia
         _elapseTicks = _currentTicks - _lastFrameTicks;
         _lastFrameTicks = _currentTicks;
 
-        _deltaTime = static_cast<double>(_elapseTicks) / static_cast<double>(SDL_GetPerformanceFrequency());
-        // _deltaTime = 1;
+        // _deltaTime = static_cast<double>(_elapseTicks) / static_cast<double>(SDL_GetPerformanceFrequency());
+        _deltaTime = .01;
 
         _currentTime += _deltaTime;
 

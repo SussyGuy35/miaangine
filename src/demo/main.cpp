@@ -73,7 +73,16 @@ int main(int argc, char* argv[])
             body[i][j]->velocity().x = 10 * rng;
         }}
 
-        mia::_Game().Update();
+        // mia::_Game().Update();
+        mia::_Input().Update();
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_SPACE))
+        {
+            mia::_Physics().Update(.05);
+        }
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_R))
+        {
+            mia::_Physics().Update(-.05);
+        }
 
         printf("> %f\t%f\n", mia::_Time().fps(), mia::_Time().deltaTime());
 

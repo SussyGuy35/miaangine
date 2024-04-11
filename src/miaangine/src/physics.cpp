@@ -36,16 +36,9 @@ namespace mia
 
     void Physics::Update(double elapsedTime)
     {
-        for (Body *body : _bodiesList)
-        {
-            ApplyForceToBody(body);
-
-            // TouchedBodyHandle(body);
-            if (body->getType() == _BODY_STATIC) StaticBodyHandle(body, elapsedTime);
-            if (body->getType() == _BODY_DYNAMIC) DynamicBodyHandle(body, elapsedTime);
-            if (body->getType() == _BODY_TRIGGER) TriggerBodyHandle(body, elapsedTime);
-            // TouchedBodyHandle(body);
-        }
+        for (Body *body : _bodiesList) ApplyForceToBody(body);
+        
+        DynamicBodyHandle(elapsedTime);
     }
 #pragma endregion
 
@@ -56,33 +49,61 @@ namespace mia
         body->force() = v2f::zero();
     }
 
-    void Physics::TouchedBodyHandle(Body *body)
+    void Physics::DynamicBodyHandle(double elapsedTime)
     {
-        rect bodyRect = body->GetRect();
-        rect consideredRect;
-
-        consideredRect.pos.x = bodyRect.pos.x - .01;
-        consideredRect.pos.y = bodyRect.pos.y - .01;
-        consideredRect.siz.x = bodyRect.siz.x + .01;
-        consideredRect.siz.y = bodyRect.siz.y + .01;
-
-        int touchedFaces = 0;
-        for (Body *other : _bodiesList) // TODO 
+        for (int i = 0; i < MAX_COLLISION_RESOLUTION_TIME; i++)
         {
-            touchedFaces |= GetTouchedFaces(body->GetRect(), other->GetRect());
+            std::vector<bool> bodiesQueried(_bodiesList.size(), false);
+
+            for (size_t i = 0; i < _bodiesList.size(); i++)
+            {
+                if (bodiesQueried[i]) continue;
+
+                Body *body = _bodiesList[i];
+                if (body->getType() != _BODY_DYNAMIC) continue;
+
+                bodiesQueried[i] = true;
+                DynamicBodyDynamicUpdate(body, elapsedTime, bodiesQueried);
+            }
+            printf("\n");
         }
 
-        if ((touchedFaces >> 1) & 1 && body->velocity().x > 0) body->velocity().x = 0;
-        if ((touchedFaces >> 2) & 1 && body->velocity().y > 0) body->velocity().y = 0;
-        if ((touchedFaces >> 3) & 1 && body->velocity().x < 0) body->velocity().x = 0;
-        if ((touchedFaces >> 4) & 1 && body->velocity().y < 0) body->velocity().y = 0;
+        // for (int i = 0; i < COLLISION_RESOLUTION_TIME; i++)
+        // {
+        //     std::vector<double> updateTime(_bodiesList.size(), 0);
+        //     for (size_t i = 0; i < _bodiesList.size(); i++)
+        //     {
+        //         Body *body = _bodiesList[i];
+        //         if (body->getType() != _BODY_DYNAMIC) continue;
+        //         if (bodiesUpdateTimeLeft[i] <= 0) continue;
+
+        //         rect bodyRect = body->GetRect();
+        //         rect consideredRect;
+        //         consideredRect.pos.x = std::min(bodyRect.pos.x, bodyRect.pos.x + body->velocity().x * float(elapsedTime));
+        //         consideredRect.pos.y = std::min(bodyRect.pos.y, bodyRect.pos.y + body->velocity().y * float(elapsedTime));
+        //         consideredRect.siz.x = bodyRect.siz.x + std::abs(body->velocity().x * float(elapsedTime));
+        //         consideredRect.siz.y = bodyRect.siz.y + std::abs(body->velocity().y * float(elapsedTime));
+            
+        //         updateTime[i] = GetTimeToCollideBody(body, consideredRect, bodiesUpdateTimeLeft, bodiesUpdateTimeLeft[i]);
+        //     }
+
+        //     for (size_t i = 0; i < _bodiesList.size(); i++)
+        //     {
+        //         Body *body = _bodiesList[i];
+        //         if (body->getType() != _BODY_DYNAMIC) continue;
+        //         if (bodiesUpdateTimeLeft[i] <= 0) continue;
+                
+        //         body->master().position() += body->velocity() * updateTime[i];
+
+        //         bodiesUpdateTimeLeft[i] -= updateTime[i];
+        //     }
+        // }
     }
-    void Physics::StaticBodyHandle(Body *body, double elapsedTime)
+
+    void Physics::DynamicBodyDynamicUpdate(Body* body, double elapsedTime, std::vector<bool> &bodiesQueried, int time)
     {
-        body->master().position() += body->velocity() * elapsedTime;
-    }
-    void Physics::DynamicBodyHandle(Body *body, double elapsedTime)
-    {
+        if (time == MAX_COLLISION_RESOLUTION_SEARCH) return;
+
         rect bodyRect = body->GetRect();
         rect consideredRect;
         consideredRect.pos.x = std::min(bodyRect.pos.x, bodyRect.pos.x + body->velocity().x * float(elapsedTime));
@@ -90,36 +111,48 @@ namespace mia
         consideredRect.siz.x = bodyRect.siz.x + std::abs(body->velocity().x * float(elapsedTime));
         consideredRect.siz.y = bodyRect.siz.y + std::abs(body->velocity().y * float(elapsedTime));
 
-        Renderer::Instance().DrawRect({ {consideredRect.pos.x, consideredRect.pos.y + 2}, consideredRect.siz });
-
-        double updateTime = elapsedTime;
-        for (Body *other : _bodiesList) // TODO 
+        for (size_t i = 0; i < _bodiesList.size(); i++)
         {
-            if (body == other) continue;
+            if (bodiesQueried[i]) continue;
+
+            Body *other = _bodiesList[i];
             if (!consideredRect.overlap(other->GetRect())) continue;
 
-            v2f deltaVelocity = body->velocity() - other->velocity();
-
-            double collideTime = GetTimeToCollide(body->GetRect(), other->GetRect(), deltaVelocity);
-            updateTime = std::min(updateTime, collideTime);
-        // printf("%s : %s > %f\n", body->master().name().str(), other->master().name().str(), collideTime);
+            bodiesQueried[i] = true;
+            DynamicBodyDynamicUpdate(other, elapsedTime, bodiesQueried, time);
+        // printf("%s : %s | %d %d %d\n", body->master().name().str(), other->master().name().str(), bodiesQueried[0], bodiesQueried[1], bodiesQueried[2]);
         }
 
-        // printf(" > %s : %f %f\n", body->master().name().str(), body->velocity().x * updateTime, body->velocity().y * updateTime);
+        double updateTime = GetTimeToCollideBody(body, consideredRect, elapsedTime);
         body->master().position() += body->velocity() * updateTime;
-    }
-    void Physics::TriggerBodyHandle(Body *body, double elapsedTime)
-    {
-        // TODO
-        body->master().position() += body->velocity() * elapsedTime;
+        printf("%s : %f\n", body->master().name().str(), updateTime);
     }
 
-    double Physics::GetTimeToCollide(const rect& lRect, const rect& rRect, const v2f& deltaVelocity)
+    double Physics::GetTimeToCollideBody(Body *body, rect consideredRect, double maxTime)
+    {
+        double result = maxTime;
+        for (size_t i = 0; i < _bodiesList.size(); i++)
+        {
+            Body *other = _bodiesList[i];
+            if (other == body) continue;
+            if (!consideredRect.overlap(other->GetRect())) continue;;
+
+            double collideTime = GetTimeToCollide(
+                body->GetRect(), 
+                other->GetRect(), 
+                body->velocity()
+            );
+            result = std::min(result, collideTime);
+        }
+        return result;
+    }
+
+    double Physics::GetTimeToCollide(const rect& lRect, const rect& rRect, v2f velocity)
     {
         float lxNear, rxNear, lxFar, rxFar;
         float lyNear, ryNear, lyFar, ryFar;
 
-        if (deltaVelocity.x > 0) 
+        if (velocity.x > 0) 
         {
             lxNear = lRect.pos.x + lRect.siz.x;
             lxFar  = lRect.pos.x;
@@ -134,7 +167,7 @@ namespace mia
             rxFar  = rRect.pos.x;
         }
 
-        if (deltaVelocity.y > 0) 
+        if (velocity.y > 0) 
         {
             lyNear = lRect.pos.y + lRect.siz.y;
             lyFar  = lRect.pos.y;
@@ -157,7 +190,7 @@ namespace mia
         double txEnter, txExit;
         double tyEnter, tyExit;
         
-        if (deltaVelocity.x == 0)
+        if (velocity.x == 0)
         {
             txEnter = std::numeric_limits<double>::infinity();
             if (lRect.pos.x < rRect.pos.x + rRect.siz.x && lRect.pos.x + lRect.siz.x > rRect.pos.x) txEnter = -std::numeric_limits<double>::infinity();
@@ -165,11 +198,11 @@ namespace mia
         }
         else
         {
-            txEnter = dxEnter / deltaVelocity.x;
-            txExit  = dxExit  / deltaVelocity.x;
+            txEnter = dxEnter / velocity.x;
+            txExit  = dxExit  / velocity.x;
         }
 
-        if (deltaVelocity.y == 0)
+        if (velocity.y == 0)
         {
             tyEnter = std::numeric_limits<double>::infinity();
             if (lRect.pos.y < rRect.pos.y + rRect.siz.y && lRect.pos.y + lRect.siz.y > rRect.pos.y) tyEnter = -std::numeric_limits<double>::infinity();
@@ -177,8 +210,8 @@ namespace mia
         }
         else
         {
-            tyEnter = dyEnter / deltaVelocity.y;
-            tyExit  = dyExit  / deltaVelocity.y;
+            tyEnter = dyEnter / velocity.y;
+            tyExit  = dyExit  / velocity.y;
         }
 
         double enterTime = std::max(txEnter, tyEnter);
@@ -186,6 +219,28 @@ namespace mia
 
         if (enterTime >= exitTime || enterTime < 0) return std::numeric_limits<double>::infinity();
         return enterTime;
+    }
+
+    void Physics::TouchedBodyHandle(Body *body)
+    {
+        rect bodyRect = body->GetRect();
+        rect consideredRect;
+
+        consideredRect.pos.x = bodyRect.pos.x - .01;
+        consideredRect.pos.y = bodyRect.pos.y - .01;
+        consideredRect.siz.x = bodyRect.siz.x + .01;
+        consideredRect.siz.y = bodyRect.siz.y + .01;
+
+        int touchedFaces = 0;
+        for (Body *other : _bodiesList) // TODO 
+        {
+            touchedFaces |= GetTouchedFaces(body->GetRect(), other->GetRect());
+        }
+
+        if ((touchedFaces >> 1) & 1 && body->velocity().x > 0) body->velocity().x = 0;
+        if ((touchedFaces >> 2) & 1 && body->velocity().y > 0) body->velocity().y = 0;
+        if ((touchedFaces >> 3) & 1 && body->velocity().x < 0) body->velocity().x = 0;
+        if ((touchedFaces >> 4) & 1 && body->velocity().y < 0) body->velocity().y = 0;
     }
 
     int Physics::GetTouchedFaces(const rect& lRect, const rect& rRect)

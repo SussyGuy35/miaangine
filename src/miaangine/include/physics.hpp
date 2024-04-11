@@ -17,7 +17,7 @@ namespace mia
     private:
         std::vector<Body*> _bodiesList;
 
-        const int MAX_COLLISION_RESOLUTION = 3;
+        const int MAX_COLLISION_RESOLUTION = 5;
 
     public:
         void RegisterBody(Body *body);
@@ -29,14 +29,13 @@ namespace mia
 
     private:
         void ApplyForceToBody(Body *body);
+        void TouchedBodyHandle(Body *body);
         void StaticBodyHandle(Body *body, double elapsedTime);
         void DynamicBodyHandle(Body *body, double elapsedTime);
         void TriggerBodyHandle(Body *body, double elapsedTime);
 
-        double QueryCollisionTimeResolution(Body *body, Body *other, double maxResTime);
-        int QueryCollisionTouchResolution(Body *body, Body *other);
-
-        inline bool IsIn(float x, float l, float r);
+        double GetTimeToCollide(const rect& lRect, const rect& rRect, const v2f& deltaVelocity);
+        int GetTouchedFaces(const rect& lRect, const rect& rRect);
     };
 }
 

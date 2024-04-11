@@ -8,7 +8,8 @@ namespace mia
 {
 #pragma region Constructor Destructor
     Renderer::Renderer():
-        _portraitsList(std::vector<Portrait*>())
+        _portraitsList(std::vector<Portrait*>()),
+        _debugRectList(std::vector<std::pair<rect, SDL_Color>>())
     {}
 
     Renderer::~Renderer()
@@ -30,6 +31,15 @@ namespace mia
         }
     }
 
+    void Renderer::DrawRect(rect rect, SDL_Color color)
+    {
+        _debugRectList.push_back({ rect, color });
+    }
+    void Renderer::ClearDrawRects()
+    {
+        _debugRectList.clear();
+    }
+
     const std::vector<Portrait*> Renderer::GetPortraitssList()
     {
         return _portraitsList;
@@ -42,6 +52,7 @@ namespace mia
 
         RenderPortraits(renderer);
         if (_renderBodies) RenderBodyRects(renderer);
+        RenderDebugRects(renderer);
 
         SDL_RenderPresent(renderer);
     }
@@ -90,6 +101,23 @@ namespace mia
             screenRect.y = static_cast<int>(topleft.y);
 
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+            SDL_RenderDrawRect(renderer, &screenRect);
+        }
+    }
+    void Renderer::RenderDebugRects(SDL_Renderer *renderer)
+    {
+        for (auto p : _debugRectList)
+        {
+            SDL_Rect screenRect;
+            rect worldRect = p.first;
+
+            v2f topleft = Camera::Instance().WorldToScreenPoint(worldRect.pos + v2f::up() * worldRect.siz.y);
+            screenRect.w = static_cast<int>(worldRect.siz.x * Camera::Instance().unitSize());
+            screenRect.h = static_cast<int>(worldRect.siz.y * Camera::Instance().unitSize());
+            screenRect.x = static_cast<int>(topleft.x);
+            screenRect.y = static_cast<int>(topleft.y);
+
+            SDL_SetRenderDrawColor(renderer, p.second.r, p.second.g, p.second.b, p.second.a);
             SDL_RenderDrawRect(renderer, &screenRect);
         }
     }

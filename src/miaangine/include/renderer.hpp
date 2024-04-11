@@ -17,11 +17,16 @@ namespace mia
     private:
         std::vector<Portrait*> _portraitsList;
 
+        std::vector<std::pair<rect, SDL_Color>> _debugRectList;
+
         bool _renderBodies;
 
     public:
         void RegisterPortrait(Portrait *portrait);
         void UnregisterPortrait(Portrait *portrait);
+
+        void DrawRect(rect rect, SDL_Color color = { 255, 255, 255, 255 });
+        void ClearDrawRects();
 
         const std::vector<Portrait*> GetPortraitssList();
 
@@ -32,8 +37,10 @@ namespace mia
     private:
         void RenderPortraits(SDL_Renderer *renderer);
         void RenderBodyRects(SDL_Renderer *renderer);
+        void RenderDebugRects(SDL_Renderer *renderer);
 
         SDL_Rect PortraitRectCalculate(Portrait &portrait);
+
     };
 }
 

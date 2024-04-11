@@ -9,7 +9,8 @@ namespace mia
 {
     enum EventType
     {
-        _EVENT_ON_ENTER_FRAME = -INT16_MIN,
+        _EVENT_START_GAME = -INT16_MIN,
+        _EVENT_ON_ENTER_FRAME,
         _EVENT_PRIMARY_UPDATE
         // TODO
     };

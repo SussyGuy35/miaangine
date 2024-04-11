@@ -102,20 +102,20 @@ namespace mia
             double tx = (body->velocity().x != 0 ? dx / body->velocity().x : std::numeric_limits<double>::infinity());
             double ty = (body->velocity().y != 0 ? dy / body->velocity().y : std::numeric_limits<double>::infinity());
 
-            if (ty <= tx) 
+            if (tx < ty) 
             {
-                body->master().position().y -= body->velocity().y * ty;
-                body->velocity().y = 0;
+                body->master().position().x += -body->velocity().x * tx;
+                body->velocity().x = 0;
             }
             else 
             {
-                body->master().position().x -= body->velocity().x * tx;
-                body->velocity().x = 0;
+                body->master().position().y += -body->velocity().y * ty;
+                body->velocity().y = 0;
             }
         }
         else
         {
-            
+            // TODO
         }
     }
 #pragma endregion

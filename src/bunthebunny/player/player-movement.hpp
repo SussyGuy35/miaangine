@@ -7,12 +7,10 @@
 class PlayerMovement
 {
 public:
-    PlayerMovement(mia::Body *body);
+    PlayerMovement();
     ~PlayerMovement();
     
 private:
-    mia::Body &_body;
-
     float _maxSpeed;
     float _groundAcceleration;
     float _groundDeceleration;
@@ -39,7 +37,7 @@ public:
     void SetDirectionInput(int input);
     void SetJumpInput(bool input);
 
-    void Update();
+    void Update(mia::Body &body);
 
 private:
     void MovingHandle();
@@ -48,7 +46,7 @@ private:
     void GroundedCheck();
     void GravityApply();
 
-    void ApplyVelocity();
+    void ApplyVelocity(mia::Body &body);
 
     float GetCurrentAcceleration();
 };

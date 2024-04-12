@@ -7,7 +7,7 @@ Player::Player(int x, int y):
     Observer(),
     _portrait(nullptr), // FIXME
     _body(new mia::Body(this, mia::_BODY_DYNAMIC, {1, 1.5}, {0, 0.5})),
-    _movement(new PlayerMovement(_body))
+    _movement(new PlayerMovement())
 {
     mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
@@ -17,6 +17,15 @@ Player::~Player()
 {
     delete _portrait;
     delete _body;
+}
+
+mia::Portrait& Player::portrait()
+{
+    return *_portrait;
+}
+mia::Body& Player::body()
+{
+    return *_body;
 }
 
 void Player::Update(int message)
@@ -32,6 +41,6 @@ void Player::Update(int message)
         if (mia::_Input().getKey(SDL_SCANCODE_C)) jumpInput = true;
         _movement->SetJumpInput(jumpInput);
 
-        _movement->Update();
+        _movement->Update(*_body);
     }
 }

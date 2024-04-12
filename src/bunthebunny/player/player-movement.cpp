@@ -1,7 +1,6 @@
 #include "player-movement.hpp"
 
-PlayerMovement::PlayerMovement(mia::Body *body):
-    _body(*body),
+PlayerMovement::PlayerMovement():
     _maxSpeed(10),
     _groundAcceleration(10),
     _groundDeceleration(2),
@@ -26,14 +25,14 @@ void PlayerMovement::SetJumpInput(bool input)
     _jumpInput = input;
 }
 
-void PlayerMovement::Update()
+void PlayerMovement::Update(mia::Body &body)
 {
     GravityApply();
 
     MovingHandle();
     JumpHandle();
 
-    ApplyVelocity();
+    ApplyVelocity(body);
 }
 
 void PlayerMovement::MovingHandle()
@@ -82,9 +81,9 @@ void PlayerMovement::GravityApply()
     }
 }
 
-void PlayerMovement::ApplyVelocity()
+void PlayerMovement::ApplyVelocity(mia::Body &body)
 {
-    _body.velocity() = _currentVelocity;
+    body.velocity() = _currentVelocity;
 }
 
 float PlayerMovement::GetCurrentAcceleration()

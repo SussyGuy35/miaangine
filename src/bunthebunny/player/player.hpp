@@ -15,5 +15,8 @@ private:
 
     PlayerMovement *_movement;
 
+    mia::Portrait& portrait();
+    mia::Body& body();
+
     void Update(int message) override;
 };

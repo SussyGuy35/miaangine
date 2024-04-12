@@ -1,7 +1,7 @@
 #include "miaangine.hpp"
 
 #include "box.hpp"
-#include "player.hpp"
+#include "player/player.hpp"
 
 int main(int argc, char* argv[])
 {

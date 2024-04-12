@@ -29,5 +29,9 @@ void Player::Update(int message)
         _movement->SetDirectionInput(horizontalInput);
 
         _movement->Update();
+
+        bool jumpInput = false;
+        if (mia::_Input().getKey(SDL_SCANCODE_C)) jumpInput = true;
+        _movement->SetJumpInput(jumpInput);
     }
 }

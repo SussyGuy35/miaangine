@@ -21,7 +21,7 @@ namespace mia
     const int INIT_WINDOW_WIDTH = 1600;
     const int INIT_WINDOW_HEIGHT = 900;
 
-    const float INIT_CAMERA_SIZE = 100; 
+    const float INIT_CAMERA_SIZE = 20; 
 
     const int PPU = 16;
 }

@@ -21,6 +21,11 @@ private:
     float _onAirDeceleration;
     float _onAirTurnRate;
 
+    float _jumpHeight;
+    float _gravityDragDownScale;
+    float _coyoteTime;
+    float _jumpBufferTime;
+
     int _directionInput = 0;
     bool _jumpInput = false;
     bool _isGrounded = true; // TODO
@@ -28,7 +33,7 @@ private:
     mia::v2f _currentVelocity;
     mia::v2f _desiredVelocity;
 
-    const float GRAVITY = -10;
+    const float GRAVITY = -40;
 
 public:
     void SetDirectionInput(int input);
@@ -41,7 +46,7 @@ private:
 
     void MovingHandle();
     void JumpHandle();
-    
+
     void ApplyVelocity();
 
     float GetCurrentAcceleration();

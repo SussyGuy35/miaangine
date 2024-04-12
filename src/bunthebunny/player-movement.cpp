@@ -2,13 +2,15 @@
 
 PlayerMovement::PlayerMovement(mia::Body *body):
     _body(*body),
-    _maxSpeed(100),
-    _groundAcceleration(1),
-    _groundDeceleration(.5),
-    _groundTurnRate(.5),
+    _maxSpeed(10),
+    _groundAcceleration(10),
+    _groundDeceleration(2),
+    _groundTurnRate(2),
     _onAirAcceleration(1),
     _onAirDeceleration(1),
-    _onAirTurnRate(1)
+    _onAirTurnRate(1),
+    _jumpHeight(20),
+    _gravityDragDownScale(1.5)
 {}
 
 PlayerMovement::~PlayerMovement()
@@ -36,7 +38,14 @@ void PlayerMovement::Update()
 
 void PlayerMovement::GravityApply()
 {
-    _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
+    if (_currentVelocity.y < 0)
+    {
+        _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();
+    }
+    else 
+    {
+        _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
+    }
 }
 
 void PlayerMovement::MovingHandle()
@@ -55,7 +64,15 @@ void PlayerMovement::MovingHandle()
 }
 void PlayerMovement::JumpHandle()
 {
+    if (_jumpInput)
+    {
+        if (_currentVelocity.y <= 0) _currentVelocity.y = _jumpHeight;
+    }
 
+    // if (_currentVelocity.y)
+    // {
+
+    // }
 }
 
 void PlayerMovement::ApplyVelocity()

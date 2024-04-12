@@ -11,6 +11,7 @@ int main(int argc, char* argv[])
 
     std::vector<Box*> boxes;
     boxes.push_back( new Box(0, 0, 100, 1) );
+    boxes.push_back( new Box(2, 0, 5, 3) );
 
     mia::_Renderer().RenderBodiesCollision(true);
 

@@ -3,14 +3,17 @@
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(manager),
     _maxSpeed(10),
-    _groundAcceleration(5),
-    _groundDeceleration(2),
-    _groundTurnRate(2),
+    _groundAcceleration(10),
+    _groundDeceleration(5),
+    _groundTurnRate(5),
     _onAirAcceleration(2),
-    _onAirDeceleration(2),
-    _onAirTurnRate(2),
-    _jumpHeight(20),
-    _gravityDragDownScale(1.5)
+    _onAirDeceleration(5),
+    _onAirTurnRate(5),
+    _jumpHeight(15),
+    _gravityDragDownScale(1.5),
+    _coyoteTime(.06),
+    _jumpBufferTime(.08),
+    _state(FALLING)
 {}
 
 PlayerMovement::~PlayerMovement()
@@ -27,6 +30,8 @@ void PlayerMovement::SetInput(int directionInput, bool jumpInput)
 void PlayerMovement::Update(mia::Body &body)
 {
     GroundedCheck();
+
+    StateReCheck();
 
     GravityApply(body);
 
@@ -52,10 +57,44 @@ void PlayerMovement::MovingHandle()
 }
 void PlayerMovement::JumpHandle()
 {
+    if (!_isGrounded)
+    {
+        if (!_coyoteLock && _state != JUMPING)
+        {
+            _coyoteTimeBound = mia::_Time().time() + _coyoteTime;
+        }
+        _coyoteLock = true;
+    }
+    else 
+    {
+        _coyoteLock = false;
+    }
+    printf("%d\n", _coyoteLock);
+
     if (_jumpInput)
     {
-        if (_isGrounded) _currentVelocity.y = _jumpHeight;
+        if (mia::_Time().time() <= _coyoteTimeBound)
+        {
+            JumpRaw();
+            _coyoteTimeBound = -1;
+        }
+        else
+        {
+            _bufferTimeBound = mia::_Time().time() + _jumpBufferTime;
+        }
     }
+
+    if (_isGrounded && (mia::_Time().time() <= _bufferTimeBound)) 
+    {
+        _bufferTimeBound = -1;
+        JumpRaw();
+    }
+}
+
+void PlayerMovement::JumpRaw()
+{
+    _currentVelocity.y = _jumpHeight;
+    _state = JUMPING;
 }
 
 void PlayerMovement::GroundedCheck()
@@ -85,6 +124,25 @@ void PlayerMovement::GravityApply(const mia::Body &body)
 void PlayerMovement::ApplyVelocity(mia::Body &body)
 {
     body.velocity() = _currentVelocity;
+}
+
+void PlayerMovement::StateReCheck()
+{
+    if (!_isGrounded) 
+    {
+        if (_state == STANDING) 
+        {
+            _state = FALLING;
+        }
+        if (_state == JUMPING)
+        {
+            if (_currentVelocity.y < 0) _state = FALLING;
+        }
+    }
+    else 
+    {
+        _state = STANDING;
+    }
 }
 
 float PlayerMovement::GetCurrentAcceleration()

@@ -11,6 +11,13 @@ public:
     ~PlayerMovement();
     
 private:
+    enum PlayerMovementState
+    {
+        STANDING,
+        JUMPING,
+        FALLING,
+    };
+
     Player *_manager;
 
     float _maxSpeed;
@@ -26,9 +33,14 @@ private:
     float _coyoteTime;
     float _jumpBufferTime;
 
+    int _state;
+
     int _directionInput = 0;
     bool _jumpInput = false;
     bool _isGrounded = true; // TODO
+    float _coyoteTimeBound = -1;
+    bool _coyoteLock = false;
+    float _bufferTimeBound = -1;
 
     mia::v2f _currentVelocity;
     mia::v2f _desiredVelocity;
@@ -43,11 +55,14 @@ public:
 private:
     void MovingHandle();
     void JumpHandle();
+    void JumpRaw();
 
     void GroundedCheck();
     void GravityApply(const mia::Body &body);
 
     void ApplyVelocity(mia::Body &body);
+
+    void StateReCheck();
 
     float GetCurrentAcceleration();
 };

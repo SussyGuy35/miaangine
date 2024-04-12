@@ -36,18 +36,6 @@ void PlayerMovement::Update()
     ApplyVelocity();
 }
 
-void PlayerMovement::GravityApply()
-{
-    if (_currentVelocity.y < 0)
-    {
-        _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();
-    }
-    else 
-    {
-        _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
-    }
-}
-
 void PlayerMovement::MovingHandle()
 {
     _desiredVelocity.x = _maxSpeed * _directionInput;
@@ -73,6 +61,25 @@ void PlayerMovement::JumpHandle()
     // {
 
     // }
+}
+
+void PlayerMovement::GroundedCheck()
+{
+    mia::rect checkRect;
+    // checkRect.x = 
+    _isGrounded = ( mia::_Physics().Query(checkRect) && _currentVelocity.y <= 0 );
+}
+
+void PlayerMovement::GravityApply()
+{
+    if (_currentVelocity.y < 0)
+    {
+        _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();
+    }
+    else 
+    {
+        _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
+    }
 }
 
 void PlayerMovement::ApplyVelocity()

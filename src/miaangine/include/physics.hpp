@@ -27,6 +27,9 @@ namespace mia
 
         const std::vector<Body*> GetBodiesList();
 
+        bool Query(rect rect);
+        bool Query(float x, float y, float sx, float sy);
+
     private:
         void ApplyForceToBody(Body *body);
         void ApplyBodyDynamic(Body *body, double elapsedTime);

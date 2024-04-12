@@ -61,6 +61,23 @@ namespace mia
             }
         }
     }
+    bool Physics::Query(rect rect)
+    {
+        for (Body *body : _bodiesList)
+        {
+            if (rect.overlap(body->GetRect())) return true;
+        }
+        return false;
+    }
+    bool Physics::Query(float x, float y, float sx, float sy)
+    {
+        rect rect = { x, y, sx, sy };
+        for (Body *body : _bodiesList)
+        {
+            if (rect.overlap(body->GetRect())) return true;
+        }
+        return false;
+    }
 #pragma endregion
 
 #pragma region Private method

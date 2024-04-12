@@ -42,10 +42,11 @@ public:
     void Update();
 
 private:
-    void GravityApply();
-
     void MovingHandle();
     void JumpHandle();
+
+    void GroundedCheck();
+    void GravityApply();
 
     void ApplyVelocity();
 

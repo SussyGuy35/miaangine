@@ -46,7 +46,5 @@ void Player::Update(int message)
 
         _movement->SetInput(horizontalInput, jumpInput);
         _movement->Update(*_body);
-
-        // printf("(%.2f %.2f) : (%.2f, %.2f)\n", position().x, position().y, _body->velocity().x, _body->velocity().y);
     }
 }

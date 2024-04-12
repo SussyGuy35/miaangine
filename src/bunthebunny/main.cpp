@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 
     mia::_Renderer().RenderBodiesCollision(true);
 
-    Player *player = new Player(5, 5);
+    Player *player = new Player(5, 1);
 
     while (true)
     {

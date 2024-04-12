@@ -41,16 +41,7 @@ namespace mia
     {
         return 1.0 * _screenWidth / _size;
     }
-    quadtree::Box<float> Camera::getRect() const
-    {
-        quadtree::Box<float> res;
-        res.width = getCameraWidth();
-        res.height = getCameraHeight();
-        res.left = _position.x;
-        res.top = _position.y;
-        return res;
-    }
-
+    
     float& Camera::size()
     {
         return _size;

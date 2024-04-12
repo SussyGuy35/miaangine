@@ -28,7 +28,7 @@ void PlayerMovement::Update(mia::Body &body)
 {
     GroundedCheck();
 
-    GravityApply();
+    GravityApply(body);
 
     MovingHandle();
     JumpHandle();
@@ -69,8 +69,9 @@ void PlayerMovement::GroundedCheck()
     _isGrounded = ( mia::_Physics().Query(checkRect) && _currentVelocity.y <= 0 );
 }
 
-void PlayerMovement::GravityApply()
+void PlayerMovement::GravityApply(const mia::Body &body)
 {
+    _currentVelocity.y = body.velocity().y;
     if (_currentVelocity.y < 0)
     {
         _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();

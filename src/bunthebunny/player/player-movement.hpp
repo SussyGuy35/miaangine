@@ -45,7 +45,7 @@ private:
     void JumpHandle();
 
     void GroundedCheck();
-    void GravityApply();
+    void GravityApply(const mia::Body &body);
 
     void ApplyVelocity(mia::Body &body);
 

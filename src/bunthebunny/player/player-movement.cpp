@@ -1,6 +1,7 @@
 #include "player-movement.hpp"
 
-PlayerMovement::PlayerMovement():
+PlayerMovement::PlayerMovement(Player *manager):
+    _manager(manager),
     _maxSpeed(10),
     _groundAcceleration(10),
     _groundDeceleration(2),
@@ -15,18 +16,18 @@ PlayerMovement::PlayerMovement():
 PlayerMovement::~PlayerMovement()
 {}
 
-void PlayerMovement::SetDirectionInput(int input)
+void PlayerMovement::SetInput(int directionInput, bool jumpInput)
 {
-    _directionInput = input;
+    _directionInput = directionInput;
     _directionInput = (_directionInput > 0) - (_directionInput < 0);
-}
-void PlayerMovement::SetJumpInput(bool input)
-{
-    _jumpInput = input;
+
+    _jumpInput = jumpInput;
 }
 
 void PlayerMovement::Update(mia::Body &body)
 {
+    GroundedCheck();
+
     GravityApply();
 
     MovingHandle();
@@ -53,19 +54,18 @@ void PlayerMovement::JumpHandle()
 {
     if (_jumpInput)
     {
-        if (_currentVelocity.y <= 0) _currentVelocity.y = _jumpHeight;
+        if (_isGrounded) _currentVelocity.y = _jumpHeight;
     }
-
-    // if (_currentVelocity.y)
-    // {
-
-    // }
 }
 
 void PlayerMovement::GroundedCheck()
 {
+    mia::rect playerRect = _manager->body().GetRect();
     mia::rect checkRect;
-    // checkRect.x = 
+    checkRect.pos.x = playerRect.pos.x;
+    checkRect.pos.y = playerRect.pos.y - .002;
+    checkRect.siz.x = playerRect.siz.x;
+    checkRect.siz.y = 0.001;
     _isGrounded = ( mia::_Physics().Query(checkRect) && _currentVelocity.y <= 0 );
 }
 

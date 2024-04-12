@@ -7,10 +7,12 @@
 class PlayerMovement
 {
 public:
-    PlayerMovement();
+    PlayerMovement(Player *manager);
     ~PlayerMovement();
     
 private:
+    Player *_manager;
+
     float _maxSpeed;
     float _groundAcceleration;
     float _groundDeceleration;
@@ -34,8 +36,7 @@ private:
     const float GRAVITY = -40;
 
 public:
-    void SetDirectionInput(int input);
-    void SetJumpInput(bool input);
+    void SetInput(int directionInput, bool jumpInput);
 
     void Update(mia::Body &body);
 

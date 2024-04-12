@@ -71,7 +71,7 @@ namespace mia
     }
     bool Physics::Query(float x, float y, float sx, float sy)
     {
-        rect rect = { x, y, sx, sy };
+        rect rect = { {x, y}, {sx, sy} };
         for (Body *body : _bodiesList)
         {
             if (rect.overlap(body->GetRect())) return true;

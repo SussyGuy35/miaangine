@@ -15,6 +15,7 @@ private:
 
     PlayerMovement *_movement;
 
+public:
     mia::Portrait& portrait();
     mia::Body& body();
 

@@ -7,7 +7,7 @@ Player::Player(int x, int y):
     Observer(),
     _portrait(nullptr), // FIXME
     _body(new mia::Body(this, mia::_BODY_DYNAMIC, {1, 1.5}, {0, 0.5})),
-    _movement(new PlayerMovement())
+    _movement(new PlayerMovement(this))
 {
     mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
@@ -35,12 +35,11 @@ void Player::Update(int message)
         int horizontalInput = 0;
         if (mia::_Input().getKey(SDL_SCANCODE_RIGHT)) horizontalInput += 1;
         if (mia::_Input().getKey(SDL_SCANCODE_LEFT )) horizontalInput -= 1;
-        _movement->SetDirectionInput(horizontalInput);
 
         bool jumpInput = false;
         if (mia::_Input().getKey(SDL_SCANCODE_C)) jumpInput = true;
-        _movement->SetJumpInput(jumpInput);
 
+        _movement->SetInput(horizontalInput, jumpInput);
         _movement->Update(*_body);
     }
 }

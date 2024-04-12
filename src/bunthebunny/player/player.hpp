@@ -3,6 +3,7 @@
 #include "miaangine.hpp"
 
 class PlayerMovement;
+class PlayerVisual;
 class Player : public mia::Object, public mia::Observer
 {
 public:
@@ -14,6 +15,7 @@ private:
     mia::Body* _body;
 
     PlayerMovement *_movement;
+    PlayerVisual *_visual;
 
 public:
     mia::Portrait& portrait();

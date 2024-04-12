@@ -1,14 +1,19 @@
 #include "player.hpp"
 
 #include "player-movement.hpp"
+#include "player-visual.hpp"
 
 Player::Player(int x, int y):
     Object("Player", x, y),
     Observer(),
-    _portrait(nullptr), // FIXME
-    _body(new mia::Body(this, mia::_BODY_DYNAMIC, {1, 1.5}, {0, 0.5})),
-    _movement(new PlayerMovement(this))
+    _portrait(new mia::Portrait(this, nullptr)), // FIXME
+    _body(new mia::Body(this, mia::_BODY_DYNAMIC, {1, 1.5}, {-0.5, 0})),
+    _movement(new PlayerMovement(this)),
+    _visual(new PlayerVisual(this))
 {
+    _portrait->setSprite(_visual->GetSprite(0));
+
+    mia::_Renderer().RegisterPortrait(_portrait);
     mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
 }
@@ -41,5 +46,7 @@ void Player::Update(int message)
 
         _movement->SetInput(horizontalInput, jumpInput);
         _movement->Update(*_body);
+
+        // printf("(%.2f %.2f) : (%.2f, %.2f)\n", position().x, position().y, _body->velocity().x, _body->velocity().y);
     }
 }

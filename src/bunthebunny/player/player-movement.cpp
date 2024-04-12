@@ -3,12 +3,12 @@
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(manager),
     _maxSpeed(10),
-    _groundAcceleration(10),
+    _groundAcceleration(5),
     _groundDeceleration(2),
     _groundTurnRate(2),
-    _onAirAcceleration(1),
-    _onAirDeceleration(1),
-    _onAirTurnRate(1),
+    _onAirAcceleration(2),
+    _onAirDeceleration(2),
+    _onAirTurnRate(2),
     _jumpHeight(20),
     _gravityDragDownScale(1.5)
 {}

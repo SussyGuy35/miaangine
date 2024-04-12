@@ -27,7 +27,7 @@ namespace mia
 
         void Render(SDL_Renderer *renderer);
 
-        const std::vector<Portrait*> GetPortraitssList();
+        const std::vector<Portrait*> GetPortraitList();
 
         void RenderBodiesCollision(bool state);
 

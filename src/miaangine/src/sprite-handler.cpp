@@ -28,11 +28,16 @@ namespace mia
 #pragma region Public method
     void SpriteHandler::SetSource(const char *source)
     {
-        // TODO safety
         
         SDL_DestroyTexture(_texture);
         _texture = IMG_LoadTexture(Game::Instance().renderer, source);
 
+        if (SDL_QueryTexture(_texture, NULL, NULL, NULL, NULL) != 0)
+        {
+            // TODO safety
+            return;
+        }
+        
         for (Sprite *sprite : _sprites) 
         {
             sprite->tex = _texture;

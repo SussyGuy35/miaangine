@@ -43,7 +43,7 @@ namespace mia
         SDL_RenderPresent(renderer);
     }
 
-    const std::vector<Portrait*> Renderer::GetPortraitssList()
+    const std::vector<Portrait*> Renderer::GetPortraitList()
     {
         return _portraitsList;
     }
@@ -59,7 +59,7 @@ namespace mia
     {
         for (Portrait *portrait : _portraitsList)
         {
-            Sprite &sprite = portrait->sprite();
+            const Sprite &sprite = portrait->sprite();
             SDL_Texture *texture = sprite.tex;
 
             if (SDL_QueryTexture(texture, NULL, NULL, NULL, NULL) != 0)

@@ -15,7 +15,8 @@ namespace mia
     Game::~Game()
     {}
 
-    int Game::InitWindow()
+    int Game::
+    InitWindow()
     {
         if (SDL_Init(SDL_INIT_VIDEO) < 0) 
         {

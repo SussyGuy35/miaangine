@@ -56,13 +56,9 @@ namespace mia
 
         return *_master;
     }
-    Sprite& Portrait::sprite()
+    const Sprite& Portrait::setSprite(Sprite *sprite)
     {
-        if (!_sprite)
-        {
-            // FIXME
-        }
-
+        _sprite = sprite;
         return *_sprite;
     }
     v2f& Portrait::offset()

@@ -37,14 +37,24 @@ void Player::Update(int message)
 {
     if (message == mia::_EVENT_PRIMARY_UPDATE)
     {
-        int horizontalInput = 0;
+        int horizontalInput = 0, verticalInput = 0;
         if (mia::_Input().getKey(SDL_SCANCODE_RIGHT)) horizontalInput += 1;
         if (mia::_Input().getKey(SDL_SCANCODE_LEFT )) horizontalInput -= 1;
+        if (mia::_Input().getKey(SDL_SCANCODE_UP   )) verticalInput += 1;
+        if (mia::_Input().getKey(SDL_SCANCODE_DOWN )) verticalInput -= 1;
 
         bool jumpInput = false;
-        if (mia::_Input().getKey(SDL_SCANCODE_C)) jumpInput = true;
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_C)) jumpInput = true;
 
-        _movement->SetInput(horizontalInput, jumpInput);
+        bool dashInput = false;
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_X)) dashInput = true;
+
+        _movement->SetInput(horizontalInput, verticalInput, jumpInput, dashInput);
         _movement->Update(*_body);
+    }
+
+    if (message == mia::_EVENT_AFTER_PHYSICS_CALCULATION)
+    {
+        _movement->LateUpdate(*_body);
     }
 }

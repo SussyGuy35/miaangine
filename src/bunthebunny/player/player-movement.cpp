@@ -3,28 +3,38 @@
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(manager),
     _maxSpeed(10),
+
     _groundAcceleration(10),
     _groundDeceleration(5),
     _groundTurnRate(5),
     _onAirAcceleration(2),
     _onAirDeceleration(5),
     _onAirTurnRate(5),
+
     _jumpHeight(15),
     _gravityDragDownScale(1.5),
-    _coyoteTime(.06),
-    _jumpBufferTime(.08),
+    _coyoteTime(0.06),
+    _jumpBufferTime(0.08),
+
+    _dashDelayTime(0.05),
+
     _state(FALLING)
 {}
 
 PlayerMovement::~PlayerMovement()
 {}
 
-void PlayerMovement::SetInput(int directionInput, bool jumpInput)
+void PlayerMovement::SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput)
 {
-    _directionInput = directionInput;
+    _directionInput = horizontalInput;
     _directionInput = (_directionInput > 0) - (_directionInput < 0);
 
     _jumpInput = jumpInput;
+
+    if (horizontalInput != 0 && verticalInput != 0)
+        _dashDirectionInput = mia::v2f(horizontalInput, verticalInput).normalize();
+
+    _dashInput = dashInput;
 }
 
 void PlayerMovement::Update(mia::Body &body)
@@ -38,11 +48,24 @@ void PlayerMovement::Update(mia::Body &body)
     MovingHandle();
     JumpHandle();
 
+    DashHandle();
+
     ApplyVelocity(body);
+}
+
+void PlayerMovement::LateUpdate(mia::Body &body)
+{
+    _storeVelocity = std::abs(body.velocity().x);
+
 }
 
 void PlayerMovement::MovingHandle()
 {
+    if (_state == DASH_PREPARE || _state == DASHING)
+    {
+        return;
+    }
+
     _desiredVelocity.x = _maxSpeed * _directionInput;
 
     float accelerationStep = GetCurrentAcceleration() * _maxSpeed * mia::_Time().deltaTime();
@@ -52,11 +75,17 @@ void PlayerMovement::MovingHandle()
     if (std::min(_currentVelocity.x, _currentVelocity.x - actualStep) <= _desiredVelocity.x && 
         _desiredVelocity.x <= std::max(_currentVelocity.x, _currentVelocity.x - actualStep))
     {
-        _currentVelocity.x = _desiredVelocity.x;
+        float delta = _currentVelocity.x - _desiredVelocity.x;
+        _currentVelocity.x -= delta;
     }
 }
 void PlayerMovement::JumpHandle()
 {
+    if (_state == DASH_PREPARE || _state == DASHING)
+    {
+        return;
+    }
+
     if (!_isGrounded)
     {
         if (!_coyoteLock && _state != JUMPING)
@@ -69,7 +98,6 @@ void PlayerMovement::JumpHandle()
     {
         _coyoteLock = false;
     }
-    printf("%d\n", _coyoteLock);
 
     if (_jumpInput)
     {
@@ -90,11 +118,41 @@ void PlayerMovement::JumpHandle()
         JumpRaw();
     }
 }
-
 void PlayerMovement::JumpRaw()
 {
     _currentVelocity.y = _jumpHeight;
     _state = JUMPING;
+}
+
+void PlayerMovement::DashHandle()
+{
+    if (_state == DASH_PREPARE)
+    {
+            printf("%f\n", _dashFinalSpeed);
+        if (_dashTimeBound > 0 && mia::_Time().time() >= _dashTimeBound)
+        {
+            DashRaw(_dashDirectionInput * _dashFinalSpeed);
+            _dashTimeBound = -1;
+        }
+
+        return;
+    }
+
+    if (_state == DASHING) return; //TODO
+
+    if (_dashInput)
+    {
+        _state = DASH_PREPARE;
+        _currentVelocity = mia::v2f::zero();
+        _dashFinalSpeed = _storeVelocity;
+
+        _dashTimeBound = mia::_Time().time() + _dashDelayTime;
+    }
+}
+void PlayerMovement::DashRaw(mia::v2f value)
+{
+    _currentVelocity = value * 2;
+    _state = DASHING;
 }
 
 void PlayerMovement::GroundedCheck()
@@ -110,6 +168,11 @@ void PlayerMovement::GroundedCheck()
 
 void PlayerMovement::GravityApply(const mia::Body &body)
 {
+    if (_state == DASH_PREPARE || _state == DASHING)
+    {
+        return;
+    }
+
     _currentVelocity.y = body.velocity().y;
     if (_currentVelocity.y < 0)
     {
@@ -128,6 +191,11 @@ void PlayerMovement::ApplyVelocity(mia::Body &body)
 
 void PlayerMovement::StateReCheck()
 {
+    if (_state == DASH_PREPARE)
+    {
+        return;
+    }
+
     if (!_isGrounded) 
     {
         if (_state == STANDING) 
@@ -137,6 +205,10 @@ void PlayerMovement::StateReCheck()
         if (_state == JUMPING)
         {
             if (_currentVelocity.y < 0) _state = FALLING;
+        }
+        if (_state == DASHING)
+        {
+            _state = FALLING;
         }
     }
     else 

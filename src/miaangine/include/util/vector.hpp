@@ -167,6 +167,7 @@ namespace mia
 		
 		inline v2f normalize()
 		{
+			if (magnitude() == 0) return 0;
 			return *this / magnitude();
 		}
 

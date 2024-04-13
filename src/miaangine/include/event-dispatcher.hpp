@@ -11,7 +11,8 @@ namespace mia
     {
         _EVENT_START_GAME = -INT16_MIN,
         _EVENT_ON_ENTER_FRAME,
-        _EVENT_PRIMARY_UPDATE
+        _EVENT_PRIMARY_UPDATE,
+        _EVENT_AFTER_PHYSICS_CALCULATION
         // TODO
     };
 

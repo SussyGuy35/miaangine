@@ -4,6 +4,7 @@
 
 class PlayerMovement;
 class PlayerVisual;
+class PlayerUI;
 class Player : public mia::Object, public mia::Observer
 {
 public:
@@ -11,8 +12,8 @@ public:
     ~Player();
 
 private:
-    mia::Portrait* _portrait;
-    mia::Body* _body;
+    mia::Portrait *_portrait;
+    mia::Body *_body;
 
     PlayerMovement *_movement;
     PlayerVisual *_visual;

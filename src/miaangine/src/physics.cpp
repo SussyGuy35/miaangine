@@ -2,6 +2,8 @@
 
 #include "time.hpp"
 
+#include "event-dispatcher.hpp"
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -60,6 +62,8 @@ namespace mia
                 }
             }
         }
+
+        EventDispatcher::Instance().Notify(_EVENT_AFTER_PHYSICS_CALCULATION);
     }
     bool Physics::Query(rect rect)
     {

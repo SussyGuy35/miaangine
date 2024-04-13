@@ -1,7 +1,5 @@
 #pragma once
 
-#include "miaangine.hpp"
-
 #include "player.hpp"
 
 class PlayerMovement
@@ -16,6 +14,8 @@ private:
         STANDING,
         JUMPING,
         FALLING,
+        DASH_PREPARE,
+        DASHING
     };
 
     Player *_manager;
@@ -32,15 +32,26 @@ private:
     float _gravityDragDownScale;
     float _coyoteTime;
     float _jumpBufferTime;
+    
+    float _dashDelayTime;
 
     int _state;
 
+    bool _isGrounded = true;
+    float _storeVelocity = 0;
+
     int _directionInput = 0;
     bool _jumpInput = false;
-    bool _isGrounded = true; // TODO
+    mia::v2f _dashDirectionInput = mia::v2f::zero();
+    bool _dashInput = false;
+
+    //Jump help
     float _coyoteTimeBound = -1;
     bool _coyoteLock = false;
     float _bufferTimeBound = -1;
+    // Dash
+    float _dashFinalSpeed = 0;
+    float _dashTimeBound = -1;
 
     mia::v2f _currentVelocity;
     mia::v2f _desiredVelocity;
@@ -48,14 +59,17 @@ private:
     const float GRAVITY = -40;
 
 public:
-    void SetInput(int directionInput, bool jumpInput);
+    void SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput);
 
     void Update(mia::Body &body);
+    void LateUpdate(mia::Body &body);
 
 private:
     void MovingHandle();
     void JumpHandle();
     void JumpRaw();
+    void DashHandle();
+    void DashRaw(mia::v2f value);
 
     void GroundedCheck();
     void GravityApply(const mia::Body &body);

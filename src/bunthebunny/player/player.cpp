@@ -44,7 +44,7 @@ void Player::Update(int message)
         if (mia::_Input().getKey(SDL_SCANCODE_DOWN )) verticalInput -= 1;
 
         bool jumpInput = false;
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_C)) jumpInput = true;
+        if (mia::_Input().getKey(SDL_SCANCODE_C)) jumpInput = true;
 
         bool dashInput = false;
         if (mia::_Input().getKeyDown(SDL_SCANCODE_X)) dashInput = true;

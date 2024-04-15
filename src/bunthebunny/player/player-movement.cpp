@@ -4,7 +4,7 @@ PlayerMovement::PlayerMovement(Player *manager):
     _manager(manager),
     _maxSpeed(10),
 
-    _groundAcceleration(10),
+    _groundAcceleration(5),
     _groundDeceleration(5),
     _groundTurnRate(5),
     _onAirAcceleration(2),
@@ -46,6 +46,8 @@ void PlayerMovement::Update(mia::Body &body)
     GravityApply(body);
 
     MovingHandle();
+
+    JumpAvailabilityCheck();
     JumpHandle();
 
     DashHandle();
@@ -55,30 +57,48 @@ void PlayerMovement::Update(mia::Body &body)
 
 void PlayerMovement::LateUpdate(mia::Body &body)
 {
-    _storeVelocity = std::abs(body.velocity().x);
+    // _storeVelocity = std::abs(body.velocity().x);
 
+}
+
+void PlayerMovement::AddStoreSpeed(float value)
+{
+    _storeVelocity += value;
 }
 
 void PlayerMovement::MovingHandle()
 {
+    // Please don't read this, i don't understand this either
     if (_state == DASH_PREPARE || _state == DASHING)
     {
         return;
     }
 
-    _desiredVelocity.x = _maxSpeed * _directionInput;
-
     float accelerationStep = GetCurrentAcceleration() * _maxSpeed * mia::_Time().deltaTime();
-    float actualStep = accelerationStep * (_currentVelocity.x < _desiredVelocity.x ? 1 : -1);
 
-    _currentVelocity.x += actualStep;
-    if (std::min(_currentVelocity.x, _currentVelocity.x - actualStep) <= _desiredVelocity.x && 
-        _desiredVelocity.x <= std::max(_currentVelocity.x, _currentVelocity.x - actualStep))
+    _desiredVelocity.x = _maxSpeed * _directionInput;
+    int sign = (_currentVelocity.x < _desiredVelocity.x) - (_currentVelocity.x > _desiredVelocity.x);
+    _currentVelocity.x += accelerationStep * sign;
+    if (
+        std::min(_currentVelocity.x, _currentVelocity.x - accelerationStep * sign) <= _desiredVelocity.x && 
+        std::max(_currentVelocity.x, _currentVelocity.x - accelerationStep * sign) >= _desiredVelocity.x 
+    )
     {
-        float delta = _currentVelocity.x - _desiredVelocity.x;
-        _currentVelocity.x -= delta;
+        _currentVelocity.x = _desiredVelocity.x;
     }
+
+    float storeVelocityDelta = accelerationStep * (_desiredVelocity.x != 0 ? 1 : -1);
+    if (
+        std::min(_totalStoreVelocityGainNormalMove, _totalStoreVelocityGainNormalMove + storeVelocityDelta) <= std::abs(_desiredVelocity.x) && 
+        std::max(_totalStoreVelocityGainNormalMove, _totalStoreVelocityGainNormalMove + storeVelocityDelta) >= std::abs(_desiredVelocity.x) 
+    )
+    {
+        storeVelocityDelta = std::abs(_desiredVelocity.x) - _totalStoreVelocityGainNormalMove;
+    }
+    AddStoreSpeed(storeVelocityDelta);
+    _totalStoreVelocityGainNormalMove += storeVelocityDelta;
 }
+
 void PlayerMovement::JumpHandle()
 {
     if (_state == DASH_PREPARE || _state == DASHING)
@@ -86,12 +106,12 @@ void PlayerMovement::JumpHandle()
         return;
     }
 
-    if (!_isGrounded)
+    if (_coyoteTimerCount >= 0) _coyoteTimerCount -= mia::_Time().deltaTime();
+    if (_bufferTimerCount >= 0) _bufferTimerCount -= mia::_Time().deltaTime();
+
+    if (!_canJump)
     {
-        if (!_coyoteLock && _state != JUMPING)
-        {
-            _coyoteTimeBound = mia::_Time().time() + _coyoteTime;
-        }
+        if (!_coyoteLock) _coyoteTimerCount = _coyoteTime;
         _coyoteLock = true;
     }
     else 
@@ -101,24 +121,28 @@ void PlayerMovement::JumpHandle()
 
     if (_jumpInput)
     {
-        if (mia::_Time().time() <= _coyoteTimeBound)
+        if (_coyoteTimerCount >= 0)
         {
-            JumpRaw();
-            _coyoteTimeBound = -1;
+            ExecuteAJump();
+            _coyoteTimerCount = -1;
         }
         else
         {
-            _bufferTimeBound = mia::_Time().time() + _jumpBufferTime;
+            _bufferTimerCount = _jumpBufferTime;
         }
     }
 
-    if (_isGrounded && (mia::_Time().time() <= _bufferTimeBound)) 
+    if (_canJump && _bufferTimerCount >= 0) 
     {
-        _bufferTimeBound = -1;
-        JumpRaw();
+        ExecuteAJump();
+        _bufferTimerCount = -1;
     }
 }
-void PlayerMovement::JumpRaw()
+void PlayerMovement::JumpAvailabilityCheck()
+{
+    _canJump = _isGrounded && _state != DASH_PREPARE;
+}
+void PlayerMovement::ExecuteAJump()
 {
     _currentVelocity.y = _jumpHeight;
     _state = JUMPING;
@@ -128,10 +152,9 @@ void PlayerMovement::DashHandle()
 {
     if (_state == DASH_PREPARE)
     {
-            printf("%f\n", _dashFinalSpeed);
         if (_dashTimeBound > 0 && mia::_Time().time() >= _dashTimeBound)
         {
-            DashRaw(_dashDirectionInput * _dashFinalSpeed);
+            ExecuteADash(_dashDirectionInput * _dashFinalSpeed);
             _dashTimeBound = -1;
         }
 
@@ -149,7 +172,7 @@ void PlayerMovement::DashHandle()
         _dashTimeBound = mia::_Time().time() + _dashDelayTime;
     }
 }
-void PlayerMovement::DashRaw(mia::v2f value)
+void PlayerMovement::ExecuteADash(mia::v2f value)
 {
     _currentVelocity = value * 2;
     _state = DASHING;
@@ -187,6 +210,8 @@ void PlayerMovement::GravityApply(const mia::Body &body)
 void PlayerMovement::ApplyVelocity(mia::Body &body)
 {
     body.velocity() = _currentVelocity;
+
+    printf("%f : %f\n", _storeVelocity, body.velocity().x);
 }
 
 void PlayerMovement::StateReCheck()

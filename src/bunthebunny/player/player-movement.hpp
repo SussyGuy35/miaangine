@@ -37,7 +37,8 @@ private:
 
     int _state;
 
-    bool _isGrounded = true;
+    bool _isGrounded = false;
+    bool _canJump = false;
     float _storeVelocity = 0;
 
     int _directionInput = 0;
@@ -45,13 +46,15 @@ private:
     mia::v2f _dashDirectionInput = mia::v2f::zero();
     bool _dashInput = false;
 
-    //Jump help
-    float _coyoteTimeBound = -1;
+    // Jump help
+    float _coyoteTimerCount = -1;
     bool _coyoteLock = false;
-    float _bufferTimeBound = -1;
+    float _bufferTimerCount = -1;
     // Dash
     float _dashFinalSpeed = 0;
     float _dashTimeBound = -1;
+    // Store velocity
+    float _totalStoreVelocityGainNormalMove = false;
 
     mia::v2f _currentVelocity;
     mia::v2f _desiredVelocity;
@@ -64,12 +67,17 @@ public:
     void Update(mia::Body &body);
     void LateUpdate(mia::Body &body);
 
+    void AddStoreSpeed(float value);
+
 private:
     void MovingHandle();
+
     void JumpHandle();
-    void JumpRaw();
+    void JumpAvailabilityCheck();
+    void ExecuteAJump();
+
     void DashHandle();
-    void DashRaw(mia::v2f value);
+    void ExecuteADash(mia::v2f value);
 
     void GroundedCheck();
     void GravityApply(const mia::Body &body);

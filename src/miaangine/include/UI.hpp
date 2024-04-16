@@ -19,8 +19,8 @@ namespace mia
         string _name;
         uint32_t _tag;
 
-        v2f center;
-        v2f offset;
+        v2f _center;
+        v2f _offset;
 
         Image *_image;
 
@@ -39,6 +39,10 @@ namespace mia
         bool IsContainTag(int tag);
         uint32_t AddTag(int tag);
         uint32_t RemoveTag(int tag);
+
+    public:
+        int getID() const override;
+        const char* ToStr() const override;
     };
 }
 

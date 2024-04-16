@@ -13,7 +13,9 @@ namespace mia
         _ENTITY_WORLDOBJECT,
         _ENTITY_COMPONENT,
         _ENTITY_PORTRAIT,
-        _ENTITY_BODY
+        _ENTITY_BODY,
+        _ENTITY_UI,
+        _ENTITY_IMAGE
         //TODO
     };
 

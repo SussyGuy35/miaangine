@@ -2,21 +2,21 @@
 
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(manager),
-    _maxSpeed(10),
+    _maxSpeed(9),
 
-    _groundAcceleration(5),
-    _groundDeceleration(5),
-    _groundTurnRate(5),
+    _groundAcceleration(4),
+    _groundDeceleration(2),
+    _groundTurnRate(2),
     _onAirAcceleration(2),
-    _onAirDeceleration(5),
-    _onAirTurnRate(5),
+    _onAirDeceleration(1),
+    _onAirTurnRate(3),
 
     _jumpHeight(15),
     _gravityDragDownScale(1.5),
-    _coyoteTime(0.06),
+    _coyoteTime(0.08),
     _jumpBufferTime(0.08),
 
-    _dashDelayTime(0.05),
+    _dashDelay(.05),
 
     _state(FALLING)
 {}
@@ -31,7 +31,7 @@ void PlayerMovement::SetInput(int horizontalInput, int verticalInput, bool jumpI
 
     _jumpInput = jumpInput;
 
-    if (horizontalInput != 0 && verticalInput != 0)
+    if (horizontalInput != 0 || verticalInput != 0)
         _dashDirectionInput = mia::v2f(horizontalInput, verticalInput).normalize();
 
     _dashInput = dashInput;
@@ -169,7 +169,7 @@ void PlayerMovement::DashHandle()
         _currentVelocity = mia::v2f::zero();
         _dashFinalSpeed = _storeVelocity;
 
-        _dashTimeBound = mia::_Time().time() + _dashDelayTime;
+        _dashTimeBound = mia::_Time().time() + _dashDelay;
     }
 }
 void PlayerMovement::ExecuteADash(mia::v2f value)
@@ -189,7 +189,7 @@ void PlayerMovement::GroundedCheck()
     _isGrounded = ( mia::_Physics().Query(checkRect) && _currentVelocity.y <= 0 );
 }
 
-void PlayerMovement::GravityApply(const mia::Body &body)
+void PlayerMovement::GravityApply(mia::Body &body)
 {
     if (_state == DASH_PREPARE || _state == DASHING)
     {
@@ -199,11 +199,13 @@ void PlayerMovement::GravityApply(const mia::Body &body)
     _currentVelocity.y = body.velocity().y;
     if (_currentVelocity.y < 0)
     {
-        _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();
+        body.AddAcceleration(0, GRAVITY * _gravityDragDownScale);
+        // _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();
     }
     else 
     {
-        _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
+        body.AddAcceleration(0, GRAVITY);
+        // _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
     }
 }
 

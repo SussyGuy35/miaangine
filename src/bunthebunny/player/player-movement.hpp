@@ -33,7 +33,7 @@ private:
     float _coyoteTime;
     float _jumpBufferTime;
     
-    float _dashDelayTime;
+    float _dashDelay;
 
     int _state;
 
@@ -80,7 +80,7 @@ private:
     void ExecuteADash(mia::v2f value);
 
     void GroundedCheck();
-    void GravityApply(const mia::Body &body);
+    void GravityApply(mia::Body &body);
 
     void ApplyVelocity(mia::Body &body);
 

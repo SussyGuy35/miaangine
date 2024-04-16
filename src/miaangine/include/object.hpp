@@ -22,7 +22,7 @@ namespace mia
         string _name;
         uint32_t _tag;
 
-        v2f _position;
+        v2f _position; 
 
         Portrait *_portrait;
         Body *_body;

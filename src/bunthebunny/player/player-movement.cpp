@@ -64,9 +64,10 @@ void PlayerMovement::LateUpdate(mia::Body &body)
 void PlayerMovement::AddStoreSpeed(float value)
 {
     _storeVelocity += value;
+    // TODO Add decay time
 }
 
-void PlayerMovement::MovingHandle()
+void PlayerMovement::MovingHandle() // TODO Update Movement = 0 when hit wall
 {
     // Please don't read this, i don't understand this either
     if (_state == DASH_PREPARE || _state == DASHING)
@@ -212,8 +213,6 @@ void PlayerMovement::GravityApply(mia::Body &body)
 void PlayerMovement::ApplyVelocity(mia::Body &body)
 {
     body.velocity() = _currentVelocity;
-
-    printf("%f : %f\n", _storeVelocity, body.velocity().x);
 }
 
 void PlayerMovement::StateReCheck()

@@ -52,7 +52,7 @@ private:
     float _bufferTimerCount = -1;
     // Dash
     float _dashFinalSpeed = 0;
-    float _dashTimeBound = -1;
+    float _dashTimeBound = -1; // TODO Change to timer 
     // Store velocity
     float _totalStoreVelocityGainNormalMove = false;
 

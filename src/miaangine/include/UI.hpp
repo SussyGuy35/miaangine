@@ -12,7 +12,10 @@ namespace mia
     class UI : public Entity
     {
     public:
-        UI();
+        UI(const char *name, v2f center = v2f::zero(), v2f offset = v2f::zero());
+        UI(const char *name, float cx, float cy, float ox = 0, float oy = 0);
+        UI(v2f center = v2f::zero(), v2f offset = v2f::zero());
+        UI(float cx, float cy, float ox = 0, float oy = 0);
         virtual ~UI();
 
     private:

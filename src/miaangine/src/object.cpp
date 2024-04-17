@@ -20,6 +20,13 @@ namespace mia
         _portrait(nullptr),
         _body(nullptr)
     {}
+    Object::Object(v2f position):
+        _name("Untitled"),
+        _tag(0),
+        _position(position),
+        _portrait(nullptr),
+        _body(nullptr)
+    {}
     Object::Object(float x, float y):
         _name("Untitled"),
         _tag(0),

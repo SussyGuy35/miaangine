@@ -15,6 +15,7 @@ namespace mia
     public:
         Object(const char *name = "Untitled", v2f position = v2f::zero());
         Object(const char *name, float x, float y);
+        Object(v2f position = v2f::zero());
         Object(float x, float y);
         virtual ~Object();
 

@@ -3,27 +3,34 @@
 namespace mia
 {
 #pragma region Contructor Destructor
-    // UI::UI(const char *name, v2f position):
-    //     _name(name),
-    //     _tag(0),
-    //     _position(position),
-    //     _portrait(nullptr),
-    //     _body(nullptr)
-    // {}
-    // UI::UI(const char *name, float x, float y):
-    //     _name(name),
-    //     _tag(0),
-    //     _position(v2f(x, y)),
-    //     _portrait(nullptr),
-    //     _body(nullptr)
-    // {}
-    // UI::UI(float x, float y):
-    //     _name("Untitled"),
-    //     _tag(0),
-    //     _position(v2f(x, y)),
-    //     _portrait(nullptr),
-    //     _body(nullptr)
-    // {}
+    UI::UI(const char *name, v2f center, v2f offset):
+        _name(name),
+        _tag(0),
+        _center(center),
+        _offset(offset),
+        _image(nullptr)
+    {}
+    UI::UI(const char *name, float cx, float cy, float ox, float oy):
+        _name(name),
+        _tag(0),
+        _center(v2f(cx, cy)),
+        _offset(v2f(ox, oy)),
+        _image(nullptr)
+    {}
+    UI::UI(v2f center, v2f offset):
+        _name("Untitled"),
+        _tag(0),
+        _center(center),
+        _offset(offset),
+        _image(nullptr)
+    {}
+    UI::UI(float cx, float cy, float ox, float oy):
+        _name("Untitled"),
+        _tag(0),
+        _center(v2f(cx, cy)),
+        _offset(v2f(ox, oy)),
+        _image(nullptr)
+    {}
 
     UI::~UI()
     {

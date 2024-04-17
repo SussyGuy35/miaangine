@@ -14,8 +14,10 @@ namespace mia
             siz(size)
         {}
 
-        ~Sprite()
-        {}
+        virtual ~Sprite()
+        {
+            DestroyTexture();
+        }
 
         SDL_Texture *tex;
         v2i pos;

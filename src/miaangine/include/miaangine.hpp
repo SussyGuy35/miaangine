@@ -18,6 +18,7 @@
 #include "portrait.hpp"
 #include "body.hpp"
 #include "image.hpp"
+#include "tilemap.hpp"
 
 #include "sprite.hpp"
 

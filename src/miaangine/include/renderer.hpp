@@ -5,6 +5,7 @@
 
 #include "portrait.hpp"
 #include "image.hpp"
+#include "tilemap.hpp"
 
 namespace mia
 {
@@ -18,7 +19,7 @@ namespace mia
     private:
         std::vector<Portrait*> _portraitsList;
         std::vector<Image*> _imagesList;
-
+        std::vector<Tilemap*> _tilemapsList;
         std::vector<std::pair<rect, SDL_Color>> _debugRectList;
 
         bool _renderBodies;
@@ -30,6 +31,9 @@ namespace mia
         void RegisterImage(Image *image);
         void UnregisterImage(Image *image);
 
+        void RegisterTilemap(Tilemap *tilemap);
+        void UnregisterTilemap(Tilemap *tilemap);
+
         void Render(SDL_Renderer *renderer);
 
         const std::vector<Portrait*> GetPortraitList();
@@ -39,6 +43,7 @@ namespace mia
     private:
         void RenderPortraits(SDL_Renderer *renderer);
         void RenderImages(SDL_Renderer *renderer);
+        void RenderTilemaps(SDL_Renderer *renderer);
         void RenderBodyRects(SDL_Renderer *renderer);
         
         SDL_Rect WorldRectToSDLScreenRect(const rect& worldRect);

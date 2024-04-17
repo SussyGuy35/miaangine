@@ -1,9 +1,12 @@
 #include "tilemap.hpp"
 
+#include <fstream>
+#include <string>
+
 namespace mia
 {
     Tilemap::Tilemap():
-        _data(nullptr),
+        _layout(nullptr),
         _palette(nullptr),
         _width(0),
         _height(0),
@@ -13,7 +16,7 @@ namespace mia
 
     Tilemap::~Tilemap()
     {
-        delete _data;
+        delete _layout;
     }
 
     int Tilemap::width() const
@@ -24,6 +27,10 @@ namespace mia
     {
         return _height;
     }
+    const TilemapPalette& Tilemap::palette() const
+    {
+        return *_palette;
+    }
     const v2f& Tilemap::position() const
     {
         return _position;
@@ -33,13 +40,13 @@ namespace mia
         return _size;
     }
 
-    int* Tilemap::data()
+    int* Tilemap::layout()
     {
-        return _data;
+        return _layout;
     }
-    TilemapPalette* Tilemap::palette()
+    TilemapPalette& Tilemap::palette()
     {
-        return _palette;
+        return *_palette;
     }
     int& Tilemap::width()
     {
@@ -58,14 +65,57 @@ namespace mia
         return _size;
     }
 
-    Sprite* Tilemap::GetSprite(int x, int y)
+    bool Tilemap::LoadLayout(const char *dir)
+    {
+        std::ifstream input;
+        input.open(dir);
+
+        if (!input.is_open()) 
+        {
+            // TODO error
+            throw;
+        }
+
+        input >> _width >> _height;
+        delete[] _layout;
+        _layout = new int[_width * _height];
+        for (int j = _height - 1; j >= 0; j--)
+        {
+            for (int i = 0; i < _width; i++)
+            {
+                input >> _layout[i * _width + j];
+            }
+        }
+    }
+
+    void Tilemap::SetPalette(TilemapPalette *palette)
+    {
+        if (!palette)
+        {
+            // TODO error
+        }
+
+        _palette = palette;
+    }
+
+    bool Tilemap::HasTile(int x, int y)
+    {
+        if (x < 0 || x >= _width || y < 0 || y >= _height)
+        {
+            //TODO error
+            return false;
+        }
+
+        return (_layout[x * _width + y] > 0);
+    }
+    Sprite& Tilemap::GetSprite(int x, int y)
     {
         if (x < 0 || x >= _width || y < 0 || y >= _height)
         {
             //TODO error
         }
 
-        return _palette->GetSprite(_data[x * _width + y]);
+        return _palette->GetSprite(_layout[x * _width + y]);
     }
     rect Tilemap::GetRect(int x, int y)
     {
@@ -106,7 +156,7 @@ namespace mia
             int v = y + dy[i];
             if (u < 0 || u > _width || v < 0 || v > _height) continue;
 
-            if (_data[u * _width + v] <= 0) return true;
+            if (_layout[u * _width + v] <= 0) return true;
         }
 
         return false;

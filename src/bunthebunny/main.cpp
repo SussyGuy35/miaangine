@@ -17,6 +17,16 @@ int main(int argc, char* argv[])
 
     Player *player = new Player(5, 1);
 
+    mia::TilemapPalette *pl = new mia::TilemapPalette();
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+
+    mia::Tilemap *tm = new mia::Tilemap();
+    tm->LoadLayout("D:/SDL/miaangine/asset/map.txt");
+    tm->SetPalette(pl);
+    tm->size() = {1, 1};
+    mia::_Renderer().RegisterTilemap(tm);
+
     while (true)
     {
         if (mia::_Input().getKey(SDL_SCANCODE_W)) mia::_Camera().position().y += 10 * mia::_Time().deltaTime();

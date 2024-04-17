@@ -17,10 +17,12 @@ namespace mia
         std::vector<Sprite*> _sprites;
     
     public:
+        void Load(const char* dir);
+
         Sprite* AddSprite(Sprite *sprite);
         void RemoveSprite(Sprite *sprite);
 
-        Sprite* GetSprite(int index);
+        Sprite& GetSprite(int index);
         SDL_Texture* GetTexture(int index);
     };
 }

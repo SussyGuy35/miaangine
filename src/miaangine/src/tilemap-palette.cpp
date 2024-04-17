@@ -23,27 +23,27 @@ namespace mia
         }
     }
 
-    Sprite* TilemapPalette::GetSprite(int index)
+    Sprite& TilemapPalette::GetSprite(int index)
     {
-        if (index >= _sprites.size() || !_sprites[index])
+        if (index < 1 || index >= _sprites.size() || !_sprites[index])
         {
             // TODO error
         }
 
-        return _sprites[index];
+        return *_sprites[index - 1];
     }
     SDL_Texture* TilemapPalette::GetTexture(int index)
     {
-        if (index >= _sprites.size())
+        if (index < 1 || index >= _sprites.size())
         {
             // TODO error
         }
 
-        if (SDL_QueryTexture(_sprites[index]->tex, NULL, NULL, NULL, NULL) != 0)
+        if (SDL_QueryTexture(_sprites[index - 1]->tex, NULL, NULL, NULL, NULL) != 0)
         {
             // TODO error
         }
 
-        return _sprites[index]->tex;
+        return _sprites[index - 1]->tex;
     }
 }

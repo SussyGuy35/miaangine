@@ -45,10 +45,26 @@ namespace mia
         }
     }
 
+    void Renderer::RegisterTilemap(Tilemap *tilemap)
+    {
+        _tilemapsList.push_back(tilemap);
+    }
+    void Renderer::UnregisterTilemap(Tilemap *tilemap)
+    {
+        auto tilemapIterator = std::find(_tilemapsList.begin(), _tilemapsList.end(), tilemap);
+
+        if (tilemapIterator != _tilemapsList.end())
+        {
+            _tilemapsList.erase(tilemapIterator);
+        }
+    }
+
     void Renderer::Render(SDL_Renderer *renderer)
     {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
+
+        RenderTilemaps(renderer);
 
         RenderPortraits(renderer);
 
@@ -114,6 +130,34 @@ namespace mia
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
         
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+        }
+    }
+    void Renderer::RenderTilemaps(SDL_Renderer *renderer)
+    {
+        for (Tilemap *tilemap : _tilemapsList)
+        {
+            for (int i = 0; i < tilemap->width(); i++)
+            {
+                for (int j = 0; j < tilemap->height(); j++)
+                {
+                    if (!tilemap->HasTile(i, j)) continue;
+
+                    const Sprite &sprite = tilemap->GetSprite(i, j);
+                    SDL_Texture *texture = sprite.tex;
+
+                    if (SDL_QueryTexture(texture, NULL, NULL, NULL, NULL) != 0)
+                    {
+                        // TODO Add Error
+                        continue;
+                    }
+
+                    SDL_Rect dstrect = WorldRectToSDLScreenRect(tilemap->GetRect(i, j));
+                    SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
+                    printf("%d %d %d %d\n", dstrect.x, dstrect.y, dstrect.w, dstrect.h);
+
+                    SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+                }
+            }
         }
     }
     void Renderer::RenderBodyRects(SDL_Renderer *renderer)

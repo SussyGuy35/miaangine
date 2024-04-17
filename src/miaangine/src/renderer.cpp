@@ -31,6 +31,20 @@ namespace mia
         }
     }
 
+    void Renderer::RegisterImage(Image *image)
+    {
+        _imagesList.push_back(image);
+    }
+    void Renderer::UnregisterImage(Image *image)
+    {
+        auto imageIterator = std::find(_imagesList.begin(), _imagesList.end(), image);
+
+        if (imageIterator != _imagesList.end())
+        {
+            _imagesList.erase(imageIterator);
+        }
+    }
+
     void Renderer::Render(SDL_Renderer *renderer)
     {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -39,6 +53,8 @@ namespace mia
         RenderPortraits(renderer);
 
         if (_renderBodies) RenderBodyRects(renderer);
+
+        RenderImages(renderer);
 
         SDL_RenderPresent(renderer);
     }
@@ -74,6 +90,29 @@ namespace mia
             SDL_Rect dstrect = WorldRectToSDLScreenRect(portrait->GetRect());
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
 
+            SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+        }
+    }
+    void Renderer::RenderImages(SDL_Renderer *renderer)
+    {
+        for (Image *image : _imagesList)
+        {
+            const Sprite &sprite = image->sprite();
+            SDL_Texture *texture = sprite.tex;
+
+            if (SDL_QueryTexture(texture, NULL, NULL, NULL, NULL) != 0)
+            {
+                // TODO Add Error
+                continue;
+            }
+
+            SDL_SetTextureColorMod(texture, image->color().r, image->color().b, image->color().g);
+            SDL_SetTextureAlphaMod(texture, image->color().a);
+
+            rect imgRect = image->GetRect();
+            SDL_Rect dstrect = { (int)imgRect.pos.x, (int)imgRect.pos.y, (int)imgRect.siz.x, (int)imgRect.siz.y };
+            SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
+        
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
         }
     }

@@ -14,8 +14,10 @@
 
 #include "observer.hpp"
 #include "object.hpp"
+#include "ui.hpp"
 #include "portrait.hpp"
 #include "body.hpp"
+#include "image.hpp"
 
 #include "sprite.hpp"
 

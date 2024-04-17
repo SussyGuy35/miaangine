@@ -17,6 +17,12 @@ int main(int argc, char* argv[])
 
     Player *player = new Player(5, 1);
 
+//
+    mia::UI *ui = new mia::UI(0.5, 0.5);
+    mia::Image *img = new mia::Image(ui, mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}), {100, 100}, {0.5, 0.5});
+    printf("%f %f %f %f\n", img->GetRect().pos.x, img->GetRect().pos.y, img->GetRect().siz.x, img->GetRect().siz.y);
+    mia::_Renderer().RegisterImage(img);
+//
     while (true)
     {
         if (mia::_Input().getKey(SDL_SCANCODE_W)) mia::_Camera().position().y += 10 * mia::_Time().deltaTime();

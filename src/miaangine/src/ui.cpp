@@ -1,5 +1,7 @@
 #include "ui.hpp"
 
+#include "image.hpp"
+
 namespace mia
 {
 #pragma region Contructor Destructor

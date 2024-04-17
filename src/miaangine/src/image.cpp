@@ -1,5 +1,7 @@
 #include "image.hpp"
 
+#include "camera.hpp"
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -98,12 +100,11 @@ namespace mia
 
     rect Image::GetRect() const
     {
-        // TODO
-        // rect res = rect();
-        // res.siz.x = 1.0 * sprite().siz.x / PPU;
-        // res.siz.y = 1.0 * sprite().siz.y / PPU;
-        // res.pos = master().position() + _offset - v2f(_pivot.x * res.siz.x, _pivot.y * res.siz.y);
-        // return res;
+        rect res = rect();
+        res.siz = _size;
+        res.pos.x = Camera::Instance().getScreenWidth()  * master().center().x + _offset.x - _pivot.x * _size.x;
+        res.pos.y = Camera::Instance().getScreenHeight() * master().center().y + _offset.y - _pivot.y * _size.y;
+        return res;
     }
 #pragma endregion
 

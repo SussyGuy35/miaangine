@@ -108,6 +108,11 @@ namespace mia
         // TODO safety
         _tag &= ~(1 << tag);
     }
+
+    Image& UI::SetImage(Image *image)
+    {
+        _image = image;
+    }
 #pragma endregion
 
 #pragma region Inherited method

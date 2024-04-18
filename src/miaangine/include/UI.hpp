@@ -43,6 +43,8 @@ namespace mia
         uint32_t AddTag(int tag);
         uint32_t RemoveTag(int tag);
 
+        Image& SetImage(Image *image);
+
     public:
         int getID() const override;
         const char* ToStr() const override;

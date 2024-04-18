@@ -12,7 +12,9 @@ namespace mia
         _mass(1),
         _velocity(v2f::zero()),
         _force(v2f::zero())
-    {}
+    {
+        _master->SetBody(this);
+    }
 
     Body::~Body()
     {}

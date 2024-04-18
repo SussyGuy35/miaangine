@@ -120,6 +120,15 @@ namespace mia
         // TODO safety
         _tag &= ~(1 << tag);
     }
+
+    Portrait& Object::SetPortrait(Portrait *portrait)
+    {
+        _portrait = portrait;
+    }
+    Body& Object::SetBody(Body *body)
+    {
+        _body = body;
+    }
 #pragma endregion
 
 #pragma region Inherited method

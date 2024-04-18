@@ -12,7 +12,9 @@ namespace mia
         _pivot(pivot),
         _offset(offset),
         _color(color)
-    {}
+    {
+        _master->SetImage(this);
+    }
 
     Image::~Image()
     {}

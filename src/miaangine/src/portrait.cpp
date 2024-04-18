@@ -9,7 +9,9 @@ namespace mia
         _offset(offset),
         _color(color),
         _pivot(pivot)
-    {}
+    {
+        _master->SetPortrait(this);
+    }
 
     Portrait::~Portrait()
     {}

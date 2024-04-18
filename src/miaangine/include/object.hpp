@@ -44,8 +44,8 @@ namespace mia
         uint32_t AddTag(int tag);
         uint32_t RemoveTag(int tag);
 
-        // Portrait& MakePortrait();
-        // Body& MakeBody();
+        Portrait& SetPortrait(Portrait *portrait);
+        Body& SetBody(Body *body);
 
     public:
         int getID() const override;

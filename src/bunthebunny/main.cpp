@@ -10,21 +10,20 @@ int main(int argc, char* argv[])
     mia::_Game().InitWindow();
 
     std::vector<Box*> boxes;
-    boxes.push_back( new Box(9, .8, 10, 1) );
+    boxes.push_back( new Box(9, 0, 10, 1) );
     boxes.push_back( new Box(0, 0, 10, 1) );
-    // boxes.push_back( new Box(2, 0, 5, 3) );
+    boxes.push_back( new Box(2, 0, 5, 3) );
 
     mia::_Renderer().RenderBodiesCollision(true);
 
     Player *player = new Player(7, 1);
-    mia::_Camera().SetCenter({5, 3});
 
-    // mia::TilemapPalette *pl = new mia::TilemapPalette();
-    // pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
-    // pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
-    // mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {1, 1});
-    // mia::_Renderer().RegisterTilemap(tm);
-    // mia::_Physics().RegisterTilemap(tm);
+    mia::TilemapPalette *pl = new mia::TilemapPalette();
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+    mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {1, 1});
+    mia::_Renderer().RegisterTilemap(tm);
+    mia::_Physics().RegisterTilemap(tm);
 
     while (true)
     {

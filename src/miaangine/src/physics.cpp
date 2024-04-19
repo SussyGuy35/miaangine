@@ -43,7 +43,7 @@ namespace mia
         _tilemapsList.push_back(tilemap);
 
         for (int i = 0; i < tilemap->width(); i++) for (int j = 0; j < tilemap->height(); j++)
-            _staticRectList.push_back(tilemap->GetRect(i, j));
+            if (tilemap->HasTile(i, j)) _staticRectList.push_back(tilemap->GetRect(i, j));
     }
     void Physics::UnregisterTilemap(Tilemap *tilemap)
     {

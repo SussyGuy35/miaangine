@@ -135,6 +135,19 @@ namespace mia
 
         return _palette->GetSprite(_layout[x * _width + y]);
     }
+    rect Tilemap::GetSpriteRect(int x, int y)
+    {
+        if (x < 0 || x >= _width || y < 0 || y >= _height)
+        {
+            //TODO error
+        }
+
+        rect res;
+        res.siz.x = 1.0 * GetSprite(x, y).siz.x / PPU;
+        res.siz.y = 1.0 * GetSprite(x, y).siz.y / PPU;
+        res.pos = _position + v2f(x * _size.x, y * _size.y);
+        return res;
+    }
     rect Tilemap::GetRect(int x, int y)
     {
         if (x < 0 || x >= _width || y < 0 || y >= _height)

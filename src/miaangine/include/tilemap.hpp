@@ -45,6 +45,7 @@ namespace mia
 
         bool HasTile(int x, int y);
         Sprite& GetSprite(int x, int y);
+        rect GetSpriteRect(int x, int y);
         rect GetRect(int x, int y);
 
         std::vector<rect>& GetAllExposedRects();

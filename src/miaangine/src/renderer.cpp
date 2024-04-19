@@ -151,7 +151,7 @@ namespace mia
                         continue;
                     }
 
-                    SDL_Rect dstrect = WorldRectToSDLScreenRect(tilemap->GetRect(i, j));
+                    SDL_Rect dstrect = WorldRectToSDLScreenRect(tilemap->GetSpriteRect(i, j));
                     SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
 
                     SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);

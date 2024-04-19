@@ -109,6 +109,11 @@ namespace mia
 		{}
 
 	public:
+		inline bool operator==(const v2f& other)
+		{
+			return ((x == other.x) && (y == other.y));
+		}
+
 		inline v2f& operator+=(const v2f& other)
 		{
 			x += other.x;

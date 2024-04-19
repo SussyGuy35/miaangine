@@ -72,10 +72,6 @@ namespace mia
         
         return *_master;
     }
-    int Body::setType(int newType)
-    {
-        return _type;
-    }
     v2f& Body::size()
     {
         return _size;

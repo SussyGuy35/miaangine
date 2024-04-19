@@ -10,7 +10,7 @@ namespace mia
     class Tilemap
     {
     public:
-        Tilemap();
+        Tilemap(const char *dir, TilemapPalette *palette, v2f size, v2f position = v2f::zero());
         virtual ~Tilemap();
 
     private:
@@ -23,9 +23,9 @@ namespace mia
         v2f _position;
         v2f _size;
 
-    public:
-        bool LoadLayout(const char *dir);
+        std::vector<rect> _exposedRects;
 
+    public:
         int width() const;
         int height() const;
         const TilemapPalette& palette() const;
@@ -39,11 +39,15 @@ namespace mia
         v2f& position();
         v2f& size();
 
-        bool HasTile(int x, int y);
+        bool LoadLayout(const char *dir);
+        void UpdateLayout();
         void SetPalette(TilemapPalette *palette);
+
+        bool HasTile(int x, int y);
         Sprite& GetSprite(int x, int y);
         rect GetRect(int x, int y);
-        std::vector<rect> GetAllExposedRects();
+
+        std::vector<rect>& GetAllExposedRects();
 
     private:
         bool CheckExposed(int x, int y);

@@ -45,7 +45,6 @@ namespace mia
         const v2f& force() const;
 
         Object& master();
-        int setType(int newType);
         v2f& size();
         v2f& pivot();
         v2f& offset();

@@ -153,7 +153,6 @@ namespace mia
 
                     SDL_Rect dstrect = WorldRectToSDLScreenRect(tilemap->GetRect(i, j));
                     SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
-                    printf("%d %d %d %d\n", dstrect.x, dstrect.y, dstrect.w, dstrect.h);
 
                     SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
                 }

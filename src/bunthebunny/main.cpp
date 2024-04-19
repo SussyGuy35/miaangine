@@ -10,22 +10,24 @@ int main(int argc, char* argv[])
     mia::_Game().InitWindow();
 
     std::vector<Box*> boxes;
-    boxes.push_back( new Box(0, 0, 100, 1) );
+    boxes.push_back( new Box(0, 0, 10, 1) );
+    boxes.push_back( new Box(10, .2, 10, 1) );
     boxes.push_back( new Box(2, 0, 5, 3) );
 
     mia::_Renderer().RenderBodiesCollision(true);
 
-    Player *player = new Player(5, 1);
+    if (&boxes.back()->body() == nullptr)
+        printf("%p\n", &boxes.back()->body());
 
-    mia::TilemapPalette *pl = new mia::TilemapPalette();
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+    Player *player = new Player(7, 2);
+    mia::_Camera().SetCenter({5, 3});
 
-    mia::Tilemap *tm = new mia::Tilemap();
-    tm->LoadLayout("D:/SDL/miaangine/asset/map.txt");
-    tm->SetPalette(pl);
-    tm->size() = {1, 1};
-    mia::_Renderer().RegisterTilemap(tm);
+    // mia::TilemapPalette *pl = new mia::TilemapPalette();
+    // pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+    // pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
+    // mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {1, 1});
+    // mia::_Renderer().RegisterTilemap(tm);
+    // mia::_Physics().RegisterTilemap(tm);
 
     while (true)
     {
@@ -39,11 +41,13 @@ int main(int argc, char* argv[])
 
         mia::_Game().Update();
 
+        // printf("%f %f\n", player->position().x, player->position().y);
+
         if (mia::_Input().isQuit()) break;
 
         mia::_Game().Render();
 
-        // SDL_Delay(50);
+        SDL_Delay(50);
     }
 
     mia::_Game().ClearWindow();

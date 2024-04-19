@@ -2,9 +2,9 @@
 
 Box::Box(float x, float y, float sx, float sy):
     Object("Box", x, y),
-    body(new mia::Body(this, mia::_BODY_STATIC, {sx, sy}))
+    _body(new mia::Body(this, mia::_BODY_STATIC, {sx, sy}))
 {
-    mia::_Physics().RegisterBody(body);
+    mia::_Physics().RegisterBody(_body);
 }
 
 Box::~Box()

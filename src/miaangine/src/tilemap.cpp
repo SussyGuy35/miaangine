@@ -5,14 +5,16 @@
 
 namespace mia
 {
-    Tilemap::Tilemap():
+    Tilemap::Tilemap(const char *dir, TilemapPalette *palette, v2f size, v2f position):
         _layout(nullptr),
-        _palette(nullptr),
+        _palette(palette),
         _width(0),
         _height(0),
-        _position(v2f::zero()),
-        _size(v2f::zero())
-    {}
+        _position(position),
+        _size(size)
+    {
+        LoadLayout(dir);
+    }
 
     Tilemap::~Tilemap()
     {
@@ -86,6 +88,22 @@ namespace mia
                 input >> _layout[i * _width + j];
             }
         }
+
+        UpdateLayout();
+    }
+    void Tilemap::UpdateLayout()
+    {
+        for (int i = 0; i < _width; i++) 
+        {
+            for (int j = 0; j < _height; j++)
+            {
+                if (!HasTile(i, j)) continue;
+                if (CheckExposed(i, j))
+                {
+                    _exposedRects.push_back(GetRect(i, j));
+                }
+            }
+        }
     }
 
     void Tilemap::SetPalette(TilemapPalette *palette)
@@ -129,21 +147,9 @@ namespace mia
         res.pos = _position + v2f(x * _size.x, y * _size.y);
         return res;
     }
-    std::vector<rect> Tilemap::GetAllExposedRects()
+    std::vector<rect>& Tilemap::GetAllExposedRects()
     {
-        std::vector<rect> res;
-        for (int i = 0; i < _width; i++) 
-        {
-            for (int j = 0; j < _height; j++)
-            {
-                if (CheckExposed(i, j))
-                {
-                    res.push_back(GetRect(i, j));
-                }
-            }
-        }
-
-        return res;
+        return _exposedRects;
     }
 
     bool Tilemap::CheckExposed(int x, int y)
@@ -156,7 +162,7 @@ namespace mia
             int v = y + dy[i];
             if (u < 0 || u > _width || v < 0 || v > _height) continue;
 
-            if (_layout[u * _width + v] <= 0) return true;
+            if (!HasTile(u, v)) return true;
         }
 
         return false;

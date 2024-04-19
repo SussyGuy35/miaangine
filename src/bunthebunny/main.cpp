@@ -10,16 +10,13 @@ int main(int argc, char* argv[])
     mia::_Game().InitWindow();
 
     std::vector<Box*> boxes;
+    boxes.push_back( new Box(9, .8, 10, 1) );
     boxes.push_back( new Box(0, 0, 10, 1) );
-    boxes.push_back( new Box(10, .2, 10, 1) );
-    boxes.push_back( new Box(2, 0, 5, 3) );
+    // boxes.push_back( new Box(2, 0, 5, 3) );
 
     mia::_Renderer().RenderBodiesCollision(true);
 
-    if (&boxes.back()->body() == nullptr)
-        printf("%p\n", &boxes.back()->body());
-
-    Player *player = new Player(7, 2);
+    Player *player = new Player(7, 1);
     mia::_Camera().SetCenter({5, 3});
 
     // mia::TilemapPalette *pl = new mia::TilemapPalette();
@@ -47,7 +44,7 @@ int main(int argc, char* argv[])
 
         mia::_Game().Render();
 
-        SDL_Delay(50);
+        SDL_Delay(5);
     }
 
     mia::_Game().ClearWindow();

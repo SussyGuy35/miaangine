@@ -78,22 +78,18 @@ namespace mia
 
             for (const rect &targetRect : _staticRectList)
             {
-                float timeHitScale = 1;
-                v2f hit = v2f::zero(), normal = v2f::zero();
-                if (BodycastRect(body, targetRect, body->velocity() * elapsedTime, timeHitScale, hit, normal)) 
+                double tHit = 1;
+                v2f point = v2f::zero(), normal = v2f::zero();
+                if (BodycastRect(body, targetRect, body->velocity() * elapsedTime, tHit, point, normal)) 
                 {
-                    printf("%f %f x %f %f, %f : ", body->velocity().x, body->velocity().y, normal.x, normal.y, timeHitScale);
-
-                    body->velocity() += v2f(normal.x * std::abs(body->velocity().x) * (1 - timeHitScale),
-                                            normal.y * std::abs(body->velocity().y) * (1 - timeHitScale)
-                                        );
-
-                    printf("%f %f\n", body->velocity().x, body->velocity().y);
+                    body->velocity() += v2f(
+                        normal.x * std::abs(body->velocity().x) * (1 - tHit + CONTACT_OFFSET),
+                        normal.y * std::abs(body->velocity().y) * (1 - tHit + CONTACT_OFFSET)
+                    );
                 }
-
-                ApplyBodyDynamic(body, elapsedTime);
             }
 
+            ApplyBodyDynamic(body, elapsedTime);
         }
 
         EventDispatcher::Instance().Notify(_EVENT_AFTER_PHYSICS_CALCULATION);
@@ -117,45 +113,53 @@ namespace mia
         return false;
     }
 
-    bool Physics::RaycastRect(const v2f &origin, const v2f &velocity, const rect &target, float &timeHit, v2f &hit, v2f &normal)
+    bool Physics::RaycastRect(const v2f &origin, const v2f &velocity, const rect &target, double &tHit, v2f &point, v2f &normal)
     {
-        float txNear = (target.pos.x - origin.x) / velocity.x;
-        float txFar  = (target.pos.x + target.siz.x - origin.x) / velocity.x;
-        float tyNear = (target.pos.y - origin.y) / velocity.y;
-        float tyFar  = (target.pos.y + target.siz.y - origin.y) / velocity.y;
+        tHit = std::numeric_limits<double>::infinity();
+        normal = v2f::zero();
+        point = v2f::zero();
 
-        if (txNear > txFar) std::swap(txNear, txFar);
-        if (tyNear > tyFar) std::swap(tyNear, tyFar);
+        v2f tnear = v2f(
+            (target.pos.x - origin.x) / velocity.x,
+            (target.pos.y - origin.y) / velocity.y
+        );
+        v2f tfar = v2f(
+            (target.pos.x + target.siz.x - origin.x) / velocity.x,
+            (target.pos.y + target.siz.y - origin.y) / velocity.y
+        );
 
-        if (txNear > tyFar || tyNear > txFar) return false;
+        if (tnear.x > tfar.x) std::swap<float>(tnear.x, tfar.x);
+        if (tnear.y > tfar.y) std::swap<float>(tnear.y, tfar.y);
 
-        float tHitNear = std::max(txNear, tyNear);
-        float tHitFar = std::min(txFar, tyFar);
+        if (tnear.x > tfar.y || tnear.y > tfar.x) return false;
 
-        if (tHitFar < 0) return false;
+        tHit = std::max(tnear.x, tnear.y);
+		double hitFar = std::min(tfar.x, tfar.y);
 
-        timeHit = tHitNear;
-        hit = origin + tHitNear * velocity;
-        if (txNear > tyNear)
-        {
+		if (hitFar < 0) return false;
+
+        point = origin + tHit * velocity;
+
+        if (tnear.x > tnear.y)
             if (velocity.x < 0)
                 normal = v2f::right();
-            else 
+            else
                 normal = v2f::left();
-        }
-        else if (txNear < tyNear)
-        {
+        else if (tnear.x < tnear.y)
             if (velocity.y < 0)
                 normal = v2f::up();
-            else 
+            else
                 normal = v2f::down();
-        }
 
         return true;
     }
 
-    bool Physics::BodycastRect(Body *body, const rect &targetRect, const v2f &step, float &timeHit, v2f &hit, v2f &normal)
+    bool Physics::BodycastRect(Body *body, const rect &targetRect, const v2f &step, double &tHit, v2f &point, v2f &normal)
     {
+        tHit = std::numeric_limits<double>::infinity();
+        normal = v2f::zero();
+        point = v2f::zero();
+
         rect bodyRect = body->GetRect();
 
         if (body->velocity().x == 0 && body->velocity().y == 0) return false;
@@ -164,9 +168,9 @@ namespace mia
         expandTargetRect.pos = targetRect.pos - bodyRect.siz / 2;
         expandTargetRect.siz = targetRect.siz + bodyRect.siz;
 
-        if (RaycastRect(bodyRect.pos + bodyRect.siz / 2, step, expandTargetRect, timeHit, hit, normal));
+        if (RaycastRect(bodyRect.pos + bodyRect.siz / 2, step, expandTargetRect, tHit, point, normal));
         {
-            if (0 <= timeHit && timeHit <= 1.0) return true;
+            return (0 <= tHit && tHit <= 1.0);
         }
 
         return false;

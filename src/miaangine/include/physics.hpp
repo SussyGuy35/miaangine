@@ -20,6 +20,8 @@ namespace mia
         std::vector<Tilemap*> _tilemapsList;
         std::vector<rect> _staticRectList;
 
+        const float CONTACT_OFFSET = .001;
+
     public:
         void RegisterBody(Body *body);
         void UnregisterBody(Body *body);
@@ -34,8 +36,8 @@ namespace mia
         bool Query(rect rect);
         bool Query(float x, float y, float sx, float sy);
 
-        bool RaycastRect(const v2f &origin, const v2f &velocity, const rect &target, float &timeHit, v2f &hit, v2f &normal);
-        bool BodycastRect(Body *body, const rect &otherRect, const v2f &step, float &timeHit, v2f &hit, v2f &normal);
+        bool RaycastRect(const v2f &origin, const v2f &velocity, const rect &target, double &timeHit, v2f &hit, v2f &normal);
+        bool BodycastRect(Body *body, const rect &otherRect, const v2f &step, double &timeHit, v2f &hit, v2f &normal);
 
     private:
         void ApplyForceToBody(Body *body);

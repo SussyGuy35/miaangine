@@ -10,8 +10,8 @@ int main(int argc, char* argv[])
     mia::_Game().InitWindow();
 
     std::vector<Box*> boxes;
-    boxes.push_back( new Box(9, 0, 10, 1) );
     boxes.push_back( new Box(0, 0, 10, 1) );
+    boxes.push_back( new Box(9, 1, 10, 1) );
     boxes.push_back( new Box(2, 0, 5, 3) );
 
     mia::_Renderer().RenderBodiesCollision(true);
@@ -42,8 +42,6 @@ int main(int argc, char* argv[])
         if (mia::_Input().isQuit()) break;
 
         mia::_Game().Render();
-
-        SDL_Delay(5);
     }
 
     mia::_Game().ClearWindow();

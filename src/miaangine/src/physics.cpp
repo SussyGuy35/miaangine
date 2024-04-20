@@ -83,8 +83,8 @@ namespace mia
                 if (BodycastRect(body, targetRect, body->velocity() * elapsedTime, tHit, point, normal)) 
                 {
                     body->velocity() += v2f(
-                        normal.x * std::abs(body->velocity().x) * (1 - tHit + CONTACT_OFFSET),
-                        normal.y * std::abs(body->velocity().y) * (1 - tHit + CONTACT_OFFSET)
+                        normal.x * std::abs(body->velocity().x) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET)),
+                        normal.y * std::abs(body->velocity().y) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET))
                     );
                 }
             }

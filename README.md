@@ -191,3 +191,12 @@ One of basic tools, access by ```mia::_Time()```. </br>
 ### Camera
 *Like above, Camera is the one define how thing on World should be considered in Screen.* </br>
 One of basic tools, access by ```mia::_Camera()```. </br>
+
+## Things I could do better
+*this is like a place where I confess my sins when I was working on the project* </br>
+- Error handling and debugging system. *(this engine has done so poorly on debug and error handling so I think this is literally unusable by anyone else except me)*
+- Use less pointer and heap allocation to store things. *(heap allocation allow many powerful thing but also the pain in the ass when come down to error handling)*
+- Use less OOP approach when I can use something simpler.
+- Use fewer get/set functions and some weird way to access an object's attributes. *(this is like the result of 2 thing above, I tried to use pointer stuff but also want to prevent error so I came up with the weirdest thing humanity can possibly came up with)*
+- More clear on ownership *(this engine has no clear on ownerships, this might also the result of overuse heap allocation and transfer parameters as pointer)*
+*time to do another one*

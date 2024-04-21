@@ -46,6 +46,8 @@ int main(int argc, char* argv[])
         if (mia::_Input().isQuit()) break;
 
         mia::_Game().Render();
+
+        // SDL_Delay(50);
     }
 
     mia::_Game().ClearWindow();

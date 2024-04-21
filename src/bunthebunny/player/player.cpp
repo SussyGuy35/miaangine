@@ -51,6 +51,8 @@ void Player::Update(int message)
 
         _movement->SetInput(horizontalInput, verticalInput, jumpInput, dashInput);
 
+        _portrait->setSprite(_visual->GetSprite());
+
         _movement->Update(*_body);
         _visual->Update();
     }

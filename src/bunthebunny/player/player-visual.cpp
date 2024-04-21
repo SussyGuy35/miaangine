@@ -25,13 +25,11 @@ mia::Sprite* PlayerVisual::GetSprite()
 
 void PlayerVisual::Update()
 {
-    // FIXME
     count -= mia::_Time().deltaTime();
-    printf("%f\n", count);
 
     if (count <= 0)
     {
         _sprite = _runAnimation.NextSprite();
-        count = 0.2;
+        count = 0.1;
     }
 }

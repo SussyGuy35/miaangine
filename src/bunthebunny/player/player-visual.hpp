@@ -17,7 +17,7 @@ private:
     mia::Clip _idleAnimation;
     mia::Clip _runAnimation;
 
-    float count = 0.2; //FIXME
+    float count = 0.1; //FIXME
 
 public:
     mia::Sprite* GetSprite();

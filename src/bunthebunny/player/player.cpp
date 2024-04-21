@@ -6,12 +6,12 @@
 Player::Player(int x, int y):
     Object("Player", x, y),
     Observer(),
-    _portrait(new mia::Portrait(this, nullptr)), // FIXME
-    _body(new mia::Body(this, mia::_BODY_DYNAMIC, {1, 1.5}, {-0.5, 0})),
+    _portrait(new mia::Portrait(this, nullptr, {0.5, 0.125})), // FIXME
+    _body(new mia::Body(this, mia::_BODY_DYNAMIC, {.9, 1.5}, {0.5, 0})),
     _movement(new PlayerMovement(this)),
     _visual(new PlayerVisual(this))
 {
-    _portrait->setSprite(_visual->GetSprite(0));
+    _portrait->setSprite(_visual->GetSprite());
 
     mia::_Renderer().RegisterPortrait(_portrait);
     mia::_Physics().RegisterBody(_body);
@@ -50,7 +50,9 @@ void Player::Update(int message)
         if (mia::_Input().getKeyDown(SDL_SCANCODE_X)) dashInput = true;
 
         _movement->SetInput(horizontalInput, verticalInput, jumpInput, dashInput);
+
         _movement->Update(*_body);
+        _visual->Update();
     }
 
     if (message == mia::_EVENT_AFTER_PHYSICS_CALCULATION)

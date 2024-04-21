@@ -13,8 +13,14 @@ public:
 private:
     Player *_manager;
 
-    std::vector<mia::Sprite*> _sprites;
+    mia::Sprite *_sprite;
+    mia::Clip _idleAnimation;
+    mia::Clip _runAnimation;
+
+    float count = 0.2; //FIXME
 
 public:
-    mia::Sprite* GetSprite(int index);
+    mia::Sprite* GetSprite();
+
+    void Update();
 };

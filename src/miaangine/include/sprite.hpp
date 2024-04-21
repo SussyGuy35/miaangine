@@ -23,7 +23,7 @@ namespace mia
         v2i pos;
         v2i siz;
         
-        void DestroyTexture()
+        inline void DestroyTexture()
         {
             SDL_DestroyTexture(tex);
         }

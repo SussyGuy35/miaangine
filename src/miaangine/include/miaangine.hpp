@@ -18,9 +18,10 @@
 #include "portrait.hpp"
 #include "body.hpp"
 #include "image.hpp"
-#include "tilemap.hpp"
 
 #include "sprite.hpp"
+#include "clip.hpp"
+#include "tilemap.hpp"
 
 namespace mia
 {

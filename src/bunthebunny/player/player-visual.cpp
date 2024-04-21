@@ -1,19 +1,37 @@
 #include "player-visual.hpp"
 
 PlayerVisual::PlayerVisual(Player *manager):
-    _manager(manager)
+    _manager(manager),
+    _sprite(nullptr),
+    _idleAnimation(mia::Clip()),
+    _runAnimation(mia::Clip())
 {
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/Character.png");
-    _sprites.push_back( mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}) );
+    _idleAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 0}, {48, 48}, {48, 48});
+    _runAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 48}, {48 * 8, 48}, {48, 48});
+
+    _sprite = _runAnimation.GetCurrentSprite();
 }
 
 PlayerVisual::~PlayerVisual()
 {
-    for (mia::Sprite* sprite : _sprites) delete sprite;
-    _sprites.clear();
+    _idleAnimation.DestroyAllSprite();
+    _runAnimation.DestroyAllSprite();
 }
 
-mia::Sprite* PlayerVisual::GetSprite(int index)
+mia::Sprite* PlayerVisual::GetSprite()
 {
-    return _sprites[index];
+    return _sprite;
+}
+
+void PlayerVisual::Update()
+{
+    // FIXME
+    count -= mia::_Time().deltaTime();
+    printf("%f\n", count);
+
+    if (count <= 0)
+    {
+        _sprite = _runAnimation.NextSprite();
+        count = 0.2;
+    }
 }

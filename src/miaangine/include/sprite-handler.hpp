@@ -19,8 +19,6 @@ namespace mia
         string _source;
         SDL_Texture *_texture;
 
-        std::vector<Sprite*> _sprites;
-
     public:
         const char* getSource() const;
         const SDL_Texture* getTexture() const;
@@ -28,8 +26,6 @@ namespace mia
         void SetSource(const char *source);
 
         Sprite* MakeCut(v2i position, v2i size);
-        void DestroyCut(Sprite *sprite);
-        void DestroyAllCuts(); 
     };
 }
 

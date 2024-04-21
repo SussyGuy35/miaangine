@@ -20,7 +20,7 @@ namespace mia
         std::vector<Tilemap*> _tilemapsList;
         std::vector<rect> _staticRectList;
 
-        const float CONTACT_OFFSET = .05;
+        const float CONTACT_OFFSET = .1;
 
     public:
         void RegisterBody(Body *body);

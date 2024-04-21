@@ -85,7 +85,7 @@ namespace mia
         {
             for (int i = 0; i < _width; i++)
             {
-                input >> _layout[i * _width + j];
+                input >> _layout[i + j * _width];
             }
         }
 
@@ -124,7 +124,7 @@ namespace mia
             return false;
         }
 
-        return (_layout[x * _width + y] > 0);
+        return (_layout[x + y * _width] > 0);
     }
     Sprite& Tilemap::GetSprite(int x, int y)
     {
@@ -133,7 +133,7 @@ namespace mia
             //TODO error
         }
 
-        return _palette->GetSprite(_layout[x * _width + y]);
+        return _palette->GetSprite(_layout[x + y * _width]);
     }
     rect Tilemap::GetSpriteRect(int x, int y)
     {

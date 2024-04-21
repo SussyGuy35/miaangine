@@ -9,25 +9,37 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    std::vector<Box*> boxes;
-    boxes.push_back( new Box(0, 0, 10, 1) );
-    boxes.push_back( new Box(2, .2, 10, 1) );
-    boxes.push_back( new Box(4, .4, 10, 1) );
-    boxes.push_back( new Box(6, .6, 10, 1) );
-    boxes.push_back( new Box(8, .8, 10, 1) );
-    boxes.push_back( new Box(10, 1, 10, 1) );
-    // boxes.push_back( new Box(2, 0, 5, 3) );
+    // std::vector<Box*> boxes;
+    // boxes.push_back( new Box(0, 0, 10, 1) );
+    // boxes.push_back( new Box(2, .2, 10, 1) );
+    // boxes.push_back( new Box(4, .4, 10, 1) );
+    // boxes.push_back( new Box(6, .6, 10, 1) );
+    // boxes.push_back( new Box(8, .8, 10, 1) );
+    // boxes.push_back( new Box(10, 1, 10, 1) );
+    // // boxes.push_back( new Box(2, 0, 5, 3) );
 
     mia::_Renderer().RenderBodiesCollision(true);
 
     Player *player = new Player(.5, 1);
 
-    // mia::TilemapPalette *pl = new mia::TilemapPalette();
-    // pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
-    // pl->AddSprite(mia::_SpriteHandler().MakeCut({0, 0}, {32, 32}));
-    // mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {1, 1});
-    // mia::_Renderer().RegisterTilemap(tm);
-    // mia::_Physics().RegisterTilemap(tm);
+    mia::TilemapPalette *pl = new mia::TilemapPalette();
+    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0 , 32}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({16, 32}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({32, 32}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0 , 16}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({16, 16}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({32, 16}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({0 , 0 }, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({16, 0 }, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({32, 0 }, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({48, 0 }, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({64, 0 }, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
+    pl->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
+    mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {.9, .9});
+    mia::_Renderer().RegisterTilemap(tm);
+    mia::_Physics().RegisterTilemap(tm);
 
     while (true)
     {

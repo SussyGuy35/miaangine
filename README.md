@@ -191,12 +191,31 @@ One of basic tools, access by ```mia::_Time()```. </br>
 ### Camera
 *Like above, Camera is the one define how thing on World should be considered in Screen.* </br>
 One of basic tools, access by ```mia::_Camera()```. </br>
+- ```int getScreenWidth()```: Get screen width.
+- ```int getScreenHeight()```: Get screen height.
+- ```float getCameraWidth()```: Get camera width in World.
+- ```float getCameraHeight()```: Get camera height in World.
+- ```v2f SetCenter(v2f position)```: Set camera center position.
+- ```float Resize(float newSize, v2f pivot)```: Resize camera to "newSize" in pivot "pivot"
+- ```v2f WorldToScreenPoint(v2f point)```: Get Screen point from a World point.
+- ```v2f ScreenToWorldPoint(v2f point)```: Get World point from a Screen point.
+
+### Renderer
+One of basic tools, access by ```mia::_Renderer()```. </br>
+- ```void RegisterPortrait(Portrait *portrait)```: Register Portrait to render.
+- ```void UnregisterPortrait(Portrait *portrait)```: UnRegister Portrait from render.
+- ```void RegisterImage(Image *image)```: Register Image to render.
+- ```void UnregisterImage(Image *image)```: UnRegister Image from render.
+- ```void RegisterTilemap(Tilemap *tilemap)```: Register Tilemap to render.
+- ```void UnregisterTilemap(Tilemap *tilemap)```: UnRegister Tilemap from render.
+- ```void RenderBodiesCollision(bool state)```: Enable Render Bodies collision (or not).
 
 ## Things I could do better
 *this is like a place where I confess my sins when I was working on the project* </br>
 - Error handling and debugging system. *(this engine has done so poorly on debug and error handling so I think this is literally unusable by anyone else except me)*
 - Use less pointer and heap allocation to store things. *(heap allocation allow many powerful thing but also the pain in the ass when come down to error handling)*
-- Use less OOP approach when I can use something simpler.
+- Use less OOP approach while I can use something simpler.
 - Use fewer get/set functions and some weird way to access an object's attributes. *(this is like the result of 2 thing above, I tried to use pointer stuff but also want to prevent error so I came up with the weirdest thing humanity can possibly came up with)*
 - More clear on ownership *(this engine has no clear on ownerships, this might also the result of overuse heap allocation and transfer parameters as pointer)*
+
 *time to do another one*

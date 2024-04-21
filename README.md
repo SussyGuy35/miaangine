@@ -1,136 +1,193 @@
 # MIAANGINE
-**wait the big refactor**
-<!-- 
-## THIS README.MD IS OUTDATED AF :P
+A simple 2D AABB based GameEngine using SDL C++ run in WIndows.
 
-## Overview
-Miaangine is a simple, lightweight 2D game engine using C++ SDL2 by Miaan. <br>
-The engine can work on Windows
+------------
 
-## Demo
-Use CMake to build the CMakeLists.txt:
-```bash
-mkdir build
-cd build
-cmake ..
-```
-Then you can compile and run game.exe to run the demo
+
+
+## Disclaimer
+The engine still not yet finished, it lack a lot of feature </br>
+I will definitely re-do a new one </br>
+*but like for real, i'm really suprised if you can use this abomination*
 
 ## Getting Started
-Copy "src/miaangine/" folder from the source code and paste it wherever in your project <br> 
-Then you can import "miaangine.hpp" to use all the features or import specify any file depending on your needs
+```#include "miaangine.hpp"``` to use all the features or import specify any file depending on your needs. </br>
+All engine components are in the ```mia``` namespace.
 
 ## Features
-- Custom SDL window
-- Render 2D rectangle
-- Input system
-- Game loop events
-- AABB-based physic engine
+- Custom SDL window.
+- Object-based engine.
+- Camera system - World position.
+- Input system.
+- Events system.
+- AABB-based physics.
+- Audio support.
 
-## Tutorial
-*Make sure to import the necessary header* <br>
-**This toturial litterally outdated after a day :P** 
+## Basics
+### Tools
+The engine mostly use function to access object. </br>
+The engine contains some basic tools:
+- Game: Handle some basic SDL stuff and contain some generic function for the engine.
+- Input: Handle the inputs.
+- Time: Handle time of the engine.
+- Events: Handle events callback system.
+- Camera: World Camera.
+- Renderer: Manage the engine's rendering.
+- Physics: Manage the engine's physics.
+- SpriteHandler: Help make *Sprite. 
 
-### Init/End program
-Use ```mia::Init()``` to make the SDL window
-```c
-mia::Init(uint32_t width, uint32_t height, bool fullscreen)
-```
-Use ```mia::End()``` to exit program
+</br>You can use all the tools by ```mia::_<name-of-tool>()```.
+### Concept
+- Screen: is the plane of the program screen, the real plane where things are rendered out.
+- World: a plane/layout which is separated from Screen, related with Screen through Camera
+
+## Entry point 
+*Make sure to import the necessary header*
+
+### Init
+Go to the ```common.hpp``` file and change the const variables for your usage. </br>
+*this is so bad but I don't want to redo it anymore*
+
+### Windows
+```mia::_Game().InitWindow()``` to make the SDL program. </br>
+```mia::_Game().ClearWindow()``` to clear the SDL program.
 
 ### Game loop
-Make a simple ```while(true)``` loop and use ```mia::NewFrame()``` to tell the engine run a new frame
-```c
+Make a simple ```while(true)``` loop and use ```mia::_Game().Update()``` to tell the engine update. </br>
+Use ```mia::_Game().Render()"``` to render. </br>
+Use ```if (mia::_Input().isQuit()) break;``` break out of the loop if user quit the window.
+
+### Summary
+Together, you might have something like this as a entry point:
+```
+mia::_Game().InitWindow();
 while (true)
 {
-    mia::NewFrame();
-
-    // Game logic here
+	mia::_Game().Update();
+	
+	// Game logic here
+	
+	 if (mia::_Input().isQuit()) break;
+	mia::_Game().Render();
 }
-```
-After this, every game object will have its game loop (more detail below)
-
-### Game object
-Create your class then inherit ```WorldObject```, then implant the method ```void Update(uint8_t message)```
-```c
-#include "miaangine.hpp"
-
-class MyObject : public mia::WorldObject
-{
-public:
-    MyObject():
-        WorldObject("Name of my object")
-    {}
-
-    void Update(uint8_t message) override;
-
-};
+mia::_Game().ClearWindow();
 ```
 
-### Event system
-*Miaangine uses event publisher system to notify each game object and you can freely custom it* <br>
-Use ```mia::events->[event publisher]->RegisterListener([object])``` to register object to a event publisher <br>
-Then the method ```Update(uint8_t message)``` in every game object is registered will be automatically called with a different ```uint8_t message``` based on the event 
-```c
-MyObject():
-    WorldObject("Name of my object")
-{
-    mia::events->primaryUpdate->RegisterListener(this);
-}
+## API
+The engine mostly use function to access object attributes.
+
+### Utilities
+The engine contain some utilities.
+
+#### Vector (2D)
+Vector have 3 variant are ```v2f```; ```v2i```; ```v2d``` which contain difference type of "x, y". ```v2f``` for "float"; ```v2i``` for "int"; ```v2d``` for "double". </br>
+Besides basic operator, it also have ```magnitude()```, ```normalize()```.
+
+#### String
+Just a lighter, simpler version of ```std::string```.
+
+#### Mask
+A 32-bit bitmask 
+- ```insert(int pos)```: Insert bit to "pos".
+- ```remove(int pos)```: Remove bit in "pos".
+- ```query(int pos)```: Check if a bit in "pos".
+- ```count()```: Return number of bit in mask.
+- ```get()```: Return the mask as int.
+
+#### Rect
+A rectangle data. 
+- ```v2f pos```: position
+- ```v2f siz```: size
+- ```rect(v2f pos, v2f siz)```: Init a rect with pos and siz.
+- ```bool contain(v2f point)```: Check if contain a point.
+- ```bool contain(rect other)```: Check if contain a rect.
+- ```bool overlap(rect other)```: Check if overlap other rect.
+
+#### Singleton
+Inheritance this class to make the class become singleton
 ```
-```c
-void MyObject::Update(uint8_t message)
-{
-    switch (message)
-    {
-    case mia::_EVENT_PRIMARY_UPDATE:
-        // Game logic here
-
-        break;
-    
-    default:
-        break;
-    }
-}
+class <target-class> : public Singleton<<target-class>>
 ```
-There are built-in events: (format of this part: - [event publisher name] <[the event message]> : [the event description]) <br>
-- onEnterNewFrame <_EVENT_ON_ENTER_FRAME> : notify whenever a new frame runs, this event will notify before any calculation in that frame
-- primaryUpdate <_EVENT_PRIMARY_UPDATE> : notify every frame, after calculating the timer and receiving input but before calculating the physic
-
-*you can see the usage of the event system by looking at the demo*
-
-### Rendering
-*Miaangine currently just support rendering 2D rectangle* <br> 
-Make a portrait (render image) inside a ```WorldObject``` by method ```MakePortrait()```
-```c
-MyObject():
-    WorldObject("Name of my object")
-{
-    MakePortrait(size, offset)
-}
-
+Remember to private the constructor and add friend class to Singleton.
 ```
-Then you can use ```portrait()``` to access the portrait of an object <br>
-*You can add multiple portraits to one object and use ```portrait(int index)``` to access to them* <br>
-Use ```RegisterPortrait()``` to register the portrait to the renderer
-```c
-MyObject():
-    WorldObject("Name of my object")
-{
-    MakePortrait(size, offset)
-    mia::portraitRenderer->RegisterPortrait(portrait());
-}
+private:
+friend class Singleton<<target-class>>
 ```
-*You can also make a stand-alone Portrait by ```new Portrait()``` but I recomment using GameObject::MakePortrait()*
 
-### Physics
-**Miaangine physics only supports AABB** <br>
-Similar to the portrait, make a body by ```MakeBody()```, access it by ```body()```, then use ```RegisterBody()``` to register the body to the physics world (also support multiple body in one object)
-```c
-MyObject():
-    WorldObject("Name of my object")
-{
-    MakeBody(size, offset)
-    mia::physics->RegisterBody(body());
-}
-``` -->
+### Object*
+
+#### Object
+The main working ...object existing on World.
+- string name.
+- v2f position.
+- Portrait *portrait: Portrait component.
+- Body *body: Body component
+
+#### UI
+The main object existing on Screen.
+- string name.
+- v2f position.
+- Image *image: Image component
+
+### Component
+
+#### Portrait
+An Object's component, is the way to render object.
+- Sprite *sprite.
+- v2f pivot.
+- v2f offset.
+- SDL_Color color.
+- ```Portrait(Object *master, ...)```: Constructor a Portait attach to "master".
+- ```Object ChangeMaster(Object *other)```: Set new master.
+- ```rect GetRect()```: Get the rect of Portrait.
+
+#### Body
+An Object's component, is the way to render object.
+- BodyType type: have 2 type _BODY_STATIC and _BODY_DYNAMIC.
+- v2f size.
+- v2f pivot.
+- v2f offset.
+- v2f velocity.
+- ```Body(Object *master, ...)```: Constructor a Portait attach to "master".
+- ```Object ChangeMaster(Object *other)```: Set new master.
+- ```rect GetRect()```: Get the rect of Body.
+- ```AddForce(v2f value)```: Add force.
+- ```AddAcceleration(v2f value)```: Add acceleration.
+
+#### Image
+An UI's component, is the way to render UI.
+- Sprite *sprite.
+- v2f pivot.
+- v2f offset.
+- SDL_Color color.
+- ```Image(UI *master, ...)```: Constructor a Image attach to "master".
+- ```Object ChangeMaster(Object *other)```: Set new master.
+- ```rect GetRect()```: Get the rect of Image.
+
+### Game
+One of basic tools, access by ```mia::_Game()```. </br>
+- ```int InitWindow()```: Init SDL program according to ```common.hpp```.
+- ```int ClearWindow()```: Clear SDL program.
+- ```int Update()```: Update game.
+- ```int Render()```: Render game.
+
+### Input
+One of basic tools, access by ```mia::_Input()```. </br>
+- ```void Update()```: Update/Register input.
+- ```bool getKey(int key)```: Check if "key" is holding.
+- ```bool getKeyDown(int key)```: Check if "key" is pressed in the last update.
+- ```bool getKeyUp(int key)```: Check if "key" is released in the last update.
+- ```v2f getMousePosition()```: Get the mouse position in the last update.
+- ```bool isQuit()```: Check if user quit the program.
+
+### Time
+One of basic tools, access by ```mia::_Time()```. </br>
+- ```void Step()```: Update time clock.
+- ```double deltaTime()```: Get the delta time between 2 update.
+- ```float fps()```: Get the current FPS.
+- ```double time()```: Get the current time (in seconds).
+- ```uint64_t stepCount()```: Get the ammount of update.
+
+### Camera
+*Like above, Camera is the one define how thing on World should be considered in Screen.* </br>
+One of basic tools, access by ```mia::_Camera()```. </br>

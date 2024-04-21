@@ -61,7 +61,7 @@ namespace mia
 
     void Renderer::Render(SDL_Renderer *renderer)
     {
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
         SDL_RenderClear(renderer);
 
         RenderTilemaps(renderer);

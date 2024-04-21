@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     pl->AddSprite(mia::_SpriteHandler().MakeCut({64, 0 }, {16, 16}));
     pl->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
     pl->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
-    mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {.9, .9});
+    mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {0.925, 0.925});
     mia::_Renderer().RegisterTilemap(tm);
     mia::_Physics().RegisterTilemap(tm);
 

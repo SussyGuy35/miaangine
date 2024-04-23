@@ -11,7 +11,8 @@ namespace mia
         _pivot(pivot),
         _mass(1),
         _velocity(v2f::zero()),
-        _force(v2f::zero())
+        _force(v2f::zero()),
+        _contact(0)
     {
         _master->SetBody(this);
     }
@@ -62,6 +63,10 @@ namespace mia
     {
         return _force;
     }
+    const std::vector<v2f>& Body::contact() const
+    {
+        return _contact;
+    }
 
     Object& Body::master()
     {
@@ -95,6 +100,10 @@ namespace mia
     v2f& Body::force()
     {
         return _force;
+    }
+    std::vector<v2f>& Body::contact()
+    {
+        return _contact;
     }
 #pragma endregion
 

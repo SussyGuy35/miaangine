@@ -33,6 +33,8 @@ namespace mia
         v2f _velocity;
         v2f _force;
 
+        std::vector<v2f> _contact;
+
     public:
         const Object& master() const;
         int getType() const;
@@ -43,6 +45,7 @@ namespace mia
         const float& mass() const;
         const v2f& velocity() const;
         const v2f& force() const;
+        const std::vector<v2f>& contact() const;
 
         Object& master();
         v2f& size();
@@ -51,6 +54,7 @@ namespace mia
         float& mass();
         v2f& velocity();
         v2f& force();
+        std::vector<v2f>& contact();
 
         Object& ChangeMaster(Object *newMaster);
         

@@ -16,8 +16,6 @@ Player::Player(int x, int y):
     mia::_Renderer().RegisterPortrait(_portrait);
     mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
-
-    _movement->Init(this);
 }
 
 Player::~Player()

@@ -33,6 +33,7 @@ private:
     float _coyoteTime;
     float _jumpBufferTime;
     
+    float _dashVelocityThreshhold;
     float _dashDelay;
     float _initDashDuration;
     float _initDashMultiplier;
@@ -69,7 +70,6 @@ private:
 public:
     Player& GetManager();
 
-    void Init(Player *manager);
     void SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput);
 
     void Update();

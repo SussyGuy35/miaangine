@@ -16,9 +16,10 @@ PlayerMovement::PlayerMovement(Player *manager):
     _coyoteTime(0.08),
     _jumpBufferTime(0.08),
 
+    _dashVelocityThreshhold(3),
     _dashDelay(.05),
     _initDashDuration(.25),
-    _initDashMultiplier(5),
+    _initDashMultiplier(3.5),
     _lateDashMultiplier(2),
 
     _state(FALLING)
@@ -31,6 +32,13 @@ void PlayerMovement::SetInput(int horizontalInput, int verticalInput, bool jumpI
 {
     _directionInput = horizontalInput;
     _directionInput = (_directionInput > 0) - (_directionInput < 0);
+
+    std::vector<mia::v2f> contactNormals = _manager.body().contact();
+    for (mia::v2f normal : contactNormals)
+    {
+        if (normal.x < 0 && _directionInput > 0) _directionInput = 0.0;
+        if (normal.x > 0 && _directionInput < 0) _directionInput = 0.0;
+    }
 
     _jumpInput = jumpInput;
 
@@ -69,7 +77,7 @@ void PlayerMovement::AddStoreSpeed(float value)
     // TODO Add decay time
 }
 
-void PlayerMovement::MovingHandle() // TODO Update Movement = 0 when hit wall
+void PlayerMovement::MovingHandle() 
 {
     // Please don't read this, i don't understand this either
     if (_state == DASH_PREPARE || _state == DASHING)
@@ -104,7 +112,7 @@ void PlayerMovement::MovingHandle() // TODO Update Movement = 0 when hit wall
 
 void PlayerMovement::JumpHandle()
 {
-    if (_state == DASH_PREPARE || _state == DASHING)
+    if (_state == DASH_PREPARE)// || _state == DASHING)
     {
         return;
     }
@@ -182,7 +190,7 @@ void PlayerMovement::DashHandle()
         return;
     }
 
-    if (_dashInput)
+    if (_dashInput && _storeVelocity > _dashVelocityThreshhold)
     {
         _state = DASH_PREPARE;
         _currentVelocity = mia::v2f::zero();

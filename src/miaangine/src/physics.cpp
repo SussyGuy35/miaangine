@@ -196,6 +196,8 @@ namespace mia
             }
         }
 
+        body->contact().clear();
+
         while (!_resolveQueue.empty())
         {
             rect targetRect = _resolveQueue.top().second;
@@ -209,7 +211,9 @@ namespace mia
                     normal.x * std::abs(body->velocity().x) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET)),
                     normal.y * std::abs(body->velocity().y) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET))
                 );
-            }            
+            
+                body->contact().push_back(normal);
+            }
         }
     }
     void Physics::ApplyForceToBody(Body* body)

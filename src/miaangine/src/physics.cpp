@@ -4,6 +4,8 @@
 
 #include "event-dispatcher.hpp"
 
+#include <queue>
+
 namespace mia
 {
 #pragma region Constructor Destructor
@@ -76,18 +78,7 @@ namespace mia
         {
             if (body->getType() == _BODY_STATIC) continue;
 
-            for (const rect &targetRect : _staticRectList)
-            {
-                double tHit = 1;
-                v2f point = v2f::zero(), normal = v2f::zero();
-                if (BodycastRect(body, targetRect, body->velocity() * elapsedTime, tHit, point, normal)) 
-                {
-                    body->velocity() += v2f(
-                        normal.x * std::abs(body->velocity().x) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET)),
-                        normal.y * std::abs(body->velocity().y) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET))
-                    );
-                }
-            }
+            ResolveBodyCollision(body, elapsedTime);
 
             ApplyBodyDynamic(body, elapsedTime);
         }
@@ -178,6 +169,49 @@ namespace mia
 #pragma endregion
 
 #pragma region Private method
+    void Physics::ResolveBodyCollision(Body *body, double elapsedTime)
+    {
+        rect bodyRect = body->GetRect();
+        rect considerRect;
+        considerRect.pos.x = std::min(1.0 * bodyRect.pos.x, bodyRect.pos.x + body->velocity().x * elapsedTime);
+        considerRect.pos.y = std::min(1.0 * bodyRect.pos.y, bodyRect.pos.y + body->velocity().y * elapsedTime);
+        considerRect.siz.x = bodyRect.siz.x + body->velocity().x * elapsedTime;
+        considerRect.siz.y = bodyRect.siz.y + body->velocity().y * elapsedTime;
+
+        auto comp = [&](std::pair<double, rect>& left, std::pair<double, rect>& right) { return left.first > right.first; };
+        std::priority_queue<
+            std::pair<double, rect>, 
+            std::vector<std::pair<double, rect>>,
+            decltype(comp)
+        > _resolveQueue(comp);
+        for (const rect &targetRect : _staticRectList)
+        {
+            if (!considerRect.overlap(targetRect)) continue; // FIXME
+
+            double tHit = 1;
+            v2f point = v2f::zero(), normal = v2f::zero();
+            if (BodycastRect(body, targetRect, body->velocity() * elapsedTime, tHit, point, normal)) 
+            {
+                _resolveQueue.push( std::make_pair(tHit, targetRect) );
+            }
+        }
+
+        while (!_resolveQueue.empty())
+        {
+            rect targetRect = _resolveQueue.top().second;
+            _resolveQueue.pop();
+
+            double tHit = 1;
+            v2f point = v2f::zero(), normal = v2f::zero();
+            if (BodycastRect(body, targetRect, body->velocity() * elapsedTime, tHit, point, normal)) 
+            {
+                body->velocity() += v2f(
+                    normal.x * std::abs(body->velocity().x) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET)),
+                    normal.y * std::abs(body->velocity().y) * (std::min(1.0,  1 - tHit + CONTACT_OFFSET))
+                );
+            }            
+        }
+    }
     void Physics::ApplyForceToBody(Body* body)
     {
         body->velocity() += body->force() * Time::Instance().deltaTime() / body->mass();

@@ -40,6 +40,7 @@ namespace mia
         bool BodycastRect(Body *body, const rect &otherRect, const v2f &step, double &timeHit, v2f &hit, v2f &normal);
 
     private:
+        void ResolveBodyCollision(Body *body, double elapsedTime);
         void ApplyForceToBody(Body *body);
         void ApplyBodyDynamic(Body *body, double elapsedTime);
         void BodyCollisionResolution(Body *body, const rect &otherRect, double elapsedTime);

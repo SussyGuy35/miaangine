@@ -21,6 +21,8 @@ private:
 public:
     mia::Portrait& portrait();
     mia::Body& body();
+    PlayerMovement& movement();
+    PlayerVisual& visual();
 
     void Update(int message) override;
 };

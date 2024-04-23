@@ -11,16 +11,23 @@ public:
     ~PlayerVisual();
 
 private:
-    Player *_manager;
+    Player &_manager;
 
-    mia::Sprite *_sprite;
     mia::Clip _idleAnimation;
     mia::Clip _runAnimation;
+    mia::Clip _jumpAnimation;
+    mia::Clip _fallAnimation;
+    
+    mia::Clip *_currentClip;
 
-    float count = 0.1; //FIXME
+    float _frameTimer = 0.1; 
 
 public:
+    Player& GetManager();
+
     mia::Sprite* GetSprite();
 
     void Update();
+
+    void PlayCurrentAnimation();
 };

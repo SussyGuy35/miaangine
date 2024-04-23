@@ -1,15 +1,17 @@
 #include "player-movement.hpp"
 
+#include "player.hpp"
+
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(*manager),
     _maxSpeed(10),
 
-    _groundAcceleration(4),
-    _groundDeceleration(6),
-    _groundTurnRate(6),
-    _onAirAcceleration(3),
-    _onAirDeceleration(.5),
-    _onAirTurnRate(3),
+    _groundAcceleration(5),
+    _groundDeceleration(8),
+    _groundTurnRate(8),
+    _onAirAcceleration(4),
+    _onAirDeceleration(1),
+    _onAirTurnRate(5),
 
     _jumpHeight(15),
     _gravityDragDownScale(1.5),
@@ -18,15 +20,33 @@ PlayerMovement::PlayerMovement(Player *manager):
 
     _dashVelocityThreshhold(3),
     _dashDelay(.05),
-    _initDashDuration(.25),
-    _initDashMultiplier(3.5),
-    _lateDashMultiplier(2),
+    _initDashDuration(.2),
+    _initDashMultiplier(2.5),
+    _lateDashMultiplier(1.75),
 
     _state(FALLING)
 {}
 
 PlayerMovement::~PlayerMovement()
 {}
+
+Player& PlayerMovement::GetManager()
+{
+    return _manager;
+}
+int PlayerMovement::GetState()
+{
+    return _state;
+}
+
+int PlayerMovement::GetMoveDirection()
+{
+    return _directionInput;
+}
+mia::v2f PlayerMovement::GetDashDirection()
+{
+    return _lastDashVelocity.normalize();
+}
 
 void PlayerMovement::SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput)
 {
@@ -68,7 +88,7 @@ void PlayerMovement::Update()
 
 void PlayerMovement::LateUpdate()
 {
-    printf("%f\n", _storeVelocity);
+
 }
 
 void PlayerMovement::AddStoreSpeed(float value)
@@ -171,7 +191,7 @@ void PlayerMovement::DashHandle()
             _state = DASHING;
 
             _dashDelayTimeBound = -1;
-            _dashInitTimeBound = mia::_Time().time() + _dashDelay;
+            _dashInitTimeBound = mia::_Time().time() + _initDashDuration;
         }
 
         return;
@@ -245,18 +265,26 @@ void PlayerMovement::StateReCheck()
 
     if (!_isGrounded) 
     {
-        if (_state == STANDING) 
-        {
-            _state = FALLING;
-        }
         if (_state == JUMPING)
         {
             if (_currentVelocity.y < 0) _state = FALLING;
         }
+        else 
+        {
+            _state = FALLING;
+        }
     }
     else 
     {
-        _state = STANDING;
+        const float THRESHHOLDSCALE = .3;
+        if (std::abs(_currentVelocity.x) > _maxSpeed * THRESHHOLDSCALE) 
+        {
+            _state = RUNNING;
+        }
+        else 
+        {
+            _state = STANDING;
+        }
     }
 }
 
@@ -264,13 +292,13 @@ float PlayerMovement::GetCurrentAcceleration()
 {
     if (_isGrounded)
     {
-        if (_desiredVelocity.x == 0) return _groundDeceleration;
+        if (std::abs(_desiredVelocity.x) < std::abs(_currentVelocity.x)) return _groundDeceleration;
         else if (_desiredVelocity.x * _currentVelocity.x < 0) return _groundTurnRate * 2;
         else return _groundAcceleration;
     }
     else
     {
-        if (_desiredVelocity.x == 0) return _onAirDeceleration;
+        if (std::abs(_desiredVelocity.x) < std::abs(_currentVelocity.x)) return _onAirDeceleration;
         else if (_desiredVelocity.x * _currentVelocity.x < 0) return _onAirTurnRate * 2;
         else return _onAirAcceleration;
     }

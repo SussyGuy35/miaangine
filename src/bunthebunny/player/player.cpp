@@ -33,6 +33,15 @@ mia::Body& Player::body()
     return *_body;
 }
 
+PlayerMovement& Player::movement()
+{
+    return *_movement;
+}
+PlayerVisual& Player::visual()
+{
+    return *_visual;
+}
+
 void Player::Update(int message)
 {
     if (message == mia::_EVENT_PRIMARY_UPDATE)

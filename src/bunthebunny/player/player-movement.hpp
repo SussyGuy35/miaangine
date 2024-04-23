@@ -2,6 +2,16 @@
 
 #include "player.hpp"
 
+enum PlayerMovementState
+{
+    STANDING,
+    RUNNING,
+    JUMPING,
+    FALLING,
+    DASH_PREPARE,
+    DASHING
+};
+
 class PlayerMovement
 {
 public:
@@ -9,15 +19,6 @@ public:
     ~PlayerMovement();
     
 private:
-    enum PlayerMovementState
-    {
-        STANDING,
-        JUMPING,
-        FALLING,
-        DASH_PREPARE,
-        DASHING
-    };
-
     Player &_manager;
 
     float _maxSpeed;
@@ -32,6 +33,8 @@ private:
     float _gravityDragDownScale;
     float _coyoteTime;
     float _jumpBufferTime;
+
+    float _climbGravityScale;
     
     float _dashVelocityThreshhold;
     float _dashDelay;
@@ -43,6 +46,7 @@ private:
 
     bool _isGrounded = false;
     bool _canJump = false;
+    bool _climbing = false;
     float _storeVelocity = 0;
 
     int _directionInput = 0;
@@ -69,6 +73,10 @@ private:
 
 public:
     Player& GetManager();
+    int GetState();
+
+    int GetMoveDirection();
+    mia::v2f GetDashDirection();
 
     void SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput);
 
@@ -87,6 +95,8 @@ private:
     void DashHandle();
 
     void GroundedCheck();
+    void ClimbingCheck();
+
     void GravityApply();
 
     void ApplyVelocity();

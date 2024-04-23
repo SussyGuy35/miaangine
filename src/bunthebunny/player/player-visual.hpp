@@ -17,6 +17,7 @@ private:
     mia::Clip _runAnimation;
     mia::Clip _jumpAnimation;
     mia::Clip _fallAnimation;
+    mia::Clip _dashAnimation[5];
     
     mia::Clip *_currentClip;
 

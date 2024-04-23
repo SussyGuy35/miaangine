@@ -12,7 +12,11 @@ PlayerVisual::PlayerVisual(Player *manager):
     _idleAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 0}, {48 * 8, 48}, {48, 48});
     _runAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 48}, {48 * 8, 48}, {48, 48});
     _jumpAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 48*2}, {48, 48}, {48, 48});
-    _fallAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {48*2, 96}, {48, 48}, {48, 48});
+    _fallAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {48*2, 48*2}, {48, 48}, {48, 48});
+    for (int i = 0; i < 5; i++)
+    {
+        _dashAnimation[i].MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {48*i, 48*3}, {48, 48}, {48, 48});
+    }
 }
 
 PlayerVisual::~PlayerVisual()
@@ -30,8 +34,6 @@ void PlayerVisual::Update()
 {
     PlayCurrentAnimation();
 
-    mia::v2f dashDir = _manager.movement().GetDashDirection();
-    float dashAngle = std::tan(dashDir.y / dashDir.x);
     switch (_manager.movement().GetState())
     {
     case PlayerMovementState::STANDING:
@@ -52,7 +54,21 @@ void PlayerVisual::Update()
 
     case PlayerMovementState::DASH_PREPARE:
     case PlayerMovementState::DASHING:
-        
+        {
+            mia::v2f dashDir = _manager.movement().GetDashDirection();
+            dashDir.x = std::abs(dashDir.x);
+
+            if (dashDir == mia::v2f(0, 1).normalize())
+                _currentClip = &_dashAnimation[0];
+            if (dashDir == mia::v2f(1, 1).normalize())
+                _currentClip = &_dashAnimation[1];
+            if (dashDir == mia::v2f(1, 0).normalize())
+                _currentClip = &_dashAnimation[2];
+            if (dashDir == mia::v2f(1, -1).normalize())
+                _currentClip = &_dashAnimation[3];
+            if (dashDir == mia::v2f(0, -1).normalize())
+                _currentClip = &_dashAnimation[4];
+        }
         // TODO
         break;
 

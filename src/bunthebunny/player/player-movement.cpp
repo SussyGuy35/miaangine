@@ -1,8 +1,8 @@
 #include "player-movement.hpp"
 
 PlayerMovement::PlayerMovement(Player *manager):
-    _manager(manager),
-    _maxSpeed(9),
+    _manager(*manager),
+    _maxSpeed(10),
 
     _groundAcceleration(4),
     _groundDeceleration(6),
@@ -40,13 +40,13 @@ void PlayerMovement::SetInput(int horizontalInput, int verticalInput, bool jumpI
     _dashInput = dashInput;
 }
 
-void PlayerMovement::Update(mia::Body &body)
+void PlayerMovement::Update()
 {
     GroundedCheck();
 
     StateReCheck();
 
-    GravityApply(body);
+    GravityApply();
 
     MovingHandle();
 
@@ -55,13 +55,12 @@ void PlayerMovement::Update(mia::Body &body)
 
     DashHandle();
 
-    ApplyVelocity(body);
+    ApplyVelocity();
 }
 
-void PlayerMovement::LateUpdate(mia::Body &body)
+void PlayerMovement::LateUpdate()
 {
-    // _storeVelocity = std::abs(body.velocity().x);
-
+    printf("%f\n", _storeVelocity);
 }
 
 void PlayerMovement::AddStoreSpeed(float value)
@@ -192,15 +191,10 @@ void PlayerMovement::DashHandle()
         _dashDelayTimeBound = mia::_Time().time() + _dashDelay;
     }
 }
-void PlayerMovement::ExecuteADash(mia::v2f value)
-{
-    _currentVelocity = value * _initDashMultiplier;
-    _state = DASHING;
-}
 
 void PlayerMovement::GroundedCheck()
 {
-    mia::rect playerRect = _manager->body().GetRect();
+    mia::rect playerRect = _manager.body().GetRect();
     mia::rect checkRect;
     checkRect.pos.x = playerRect.pos.x;
     checkRect.pos.y = playerRect.pos.y - .002;
@@ -209,29 +203,29 @@ void PlayerMovement::GroundedCheck()
     _isGrounded = ( mia::_Physics().Query(checkRect) && _currentVelocity.y <= 0 );
 }
 
-void PlayerMovement::GravityApply(mia::Body &body)
+void PlayerMovement::GravityApply()
 {
     if (_state == DASH_PREPARE || _state == DASHING)
     {
         return;
     }
 
-    _currentVelocity.y = body.velocity().y;
+    _currentVelocity.y = _manager.body().velocity().y;
     if (_currentVelocity.y < 0)
     {
-        body.AddAcceleration(0, GRAVITY * _gravityDragDownScale);
+        _manager.body().AddAcceleration(0, GRAVITY * _gravityDragDownScale);
         // _currentVelocity.y += GRAVITY * _gravityDragDownScale * mia::_Time().deltaTime();
     }
     else 
     {
-        body.AddAcceleration(0, GRAVITY);
+        _manager.body().AddAcceleration(0, GRAVITY);
         // _currentVelocity.y += GRAVITY * mia::_Time().deltaTime();
     }
 }
 
-void PlayerMovement::ApplyVelocity(mia::Body &body)
+void PlayerMovement::ApplyVelocity()
 {
-    body.velocity() = _currentVelocity;
+    _manager.body().velocity() = _currentVelocity;
 }
 
 void PlayerMovement::StateReCheck()

@@ -16,6 +16,8 @@ Player::Player(int x, int y):
     mia::_Renderer().RegisterPortrait(_portrait);
     mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
+
+    _movement->Init(this);
 }
 
 Player::~Player()
@@ -53,12 +55,12 @@ void Player::Update(int message)
 
         _portrait->setSprite(_visual->GetSprite());
 
-        _movement->Update(*_body);
+        _movement->Update();
         _visual->Update();
     }
 
     if (message == mia::_EVENT_AFTER_PHYSICS_CALCULATION)
     {
-        _movement->LateUpdate(*_body);
+        _movement->LateUpdate();
     }
 }

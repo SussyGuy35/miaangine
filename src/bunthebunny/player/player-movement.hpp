@@ -18,7 +18,7 @@ private:
         DASHING
     };
 
-    Player *_manager;
+    Player &_manager;
 
     float _maxSpeed;
     float _groundAcceleration;
@@ -67,10 +67,13 @@ private:
     const float GRAVITY = -40;
 
 public:
+    Player& GetManager();
+
+    void Init(Player *manager);
     void SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput);
 
-    void Update(mia::Body &body);
-    void LateUpdate(mia::Body &body);
+    void Update();
+    void LateUpdate();
 
     void AddStoreSpeed(float value);
 
@@ -82,12 +85,11 @@ private:
     void ExecuteAJump();
 
     void DashHandle();
-    void ExecuteADash(mia::v2f value);
 
     void GroundedCheck();
-    void GravityApply(mia::Body &body);
+    void GravityApply();
 
-    void ApplyVelocity(mia::Body &body);
+    void ApplyVelocity();
 
     void StateReCheck();
 

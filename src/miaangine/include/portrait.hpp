@@ -22,6 +22,7 @@ namespace mia
         v2f _offset;
         SDL_Color _color;
         v2f _pivot;
+        SDL_RendererFlip _flip;
 
     public:
         const Object& master() const;
@@ -29,12 +30,14 @@ namespace mia
         const v2f& offset() const;
         const SDL_Color& color() const;
         const v2f& pivot() const;
+        const SDL_RendererFlip& flip() const;
 
         Object& master();
         v2f& offset();
         const Sprite& setSprite(Sprite *sprite);
         SDL_Color& color();
         v2f& pivot();
+        SDL_RendererFlip& flip();
 
         Object& ChangeMaster(Object *newMaster);
 

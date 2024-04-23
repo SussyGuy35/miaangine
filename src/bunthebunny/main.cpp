@@ -17,9 +17,6 @@ int main(int argc, char* argv[])
     // boxes.push_back( new Box(8, .8, 10, 1) );
     // boxes.push_back( new Box(10, 1, 10, 1) );
     // // boxes.push_back( new Box(2, 0, 5, 3) );
-
-    mia::_Renderer().RenderBodiesCollision(true);
-
     Player *player = new Player(.5, 1);
 
     mia::TilemapPalette *pl = new mia::TilemapPalette();

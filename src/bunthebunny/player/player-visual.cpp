@@ -26,15 +26,12 @@ Player& PlayerVisual::GetManager()
     return _manager;
 }
 
-mia::Sprite* PlayerVisual::GetSprite()
-{
-    return _currentClip->GetCurrentSprite();
-}
-
 void PlayerVisual::Update()
 {
     PlayCurrentAnimation();
 
+    mia::v2f dashDir = _manager.movement().GetDashDirection();
+    float dashAngle = std::tan(dashDir.y / dashDir.x);
     switch (_manager.movement().GetState())
     {
     case PlayerMovementState::STANDING:
@@ -55,8 +52,7 @@ void PlayerVisual::Update()
 
     case PlayerMovementState::DASH_PREPARE:
     case PlayerMovementState::DASHING:
-        mia::v2f dir = _manager.movement().GetDashDirection();
-        float angle = std::tan(dir.y / dir.x);
+        
         // TODO
         break;
 
@@ -64,6 +60,8 @@ void PlayerVisual::Update()
         _currentClip = &_idleAnimation;
         break;
     }
+
+    UpdatePortrait();
 }
 
 void PlayerVisual::PlayCurrentAnimation()
@@ -73,6 +71,18 @@ void PlayerVisual::PlayCurrentAnimation()
     if (_frameTimer <= 0)
     {
         _currentClip->NextSprite();
-        _frameTimer = 0.1;
+        _frameTimer = _timePerFrame;
+    }
+}
+
+void PlayerVisual::UpdatePortrait()
+{
+    _manager.portrait().setSprite(_currentClip->GetCurrentSprite());
+
+    int moveDir = _manager.movement().GetMoveDirection();
+    if (moveDir != 0)
+    {
+        if (moveDir < 0) _manager.portrait().flip() = SDL_FLIP_HORIZONTAL;
+        else             _manager.portrait().flip() = SDL_FLIP_NONE;
     }
 }

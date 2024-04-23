@@ -11,8 +11,6 @@ Player::Player(int x, int y):
     _movement(new PlayerMovement(this)),
     _visual(new PlayerVisual(this))
 {
-    _portrait->setSprite(_visual->GetSprite());
-
     mia::_Renderer().RegisterPortrait(_portrait);
     mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
@@ -59,8 +57,6 @@ void Player::Update(int message)
         if (mia::_Input().getKeyDown(SDL_SCANCODE_X)) dashInput = true;
 
         _movement->SetInput(horizontalInput, verticalInput, jumpInput, dashInput);
-
-        _portrait->setSprite(_visual->GetSprite());
 
         _movement->Update();
         _visual->Update();

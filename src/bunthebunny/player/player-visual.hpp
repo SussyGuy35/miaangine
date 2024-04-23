@@ -20,14 +20,14 @@ private:
     
     mia::Clip *_currentClip;
 
-    float _frameTimer = 0.1; 
+    float _timePerFrame = 0.1; 
+    float _frameTimer = _timePerFrame;
 
 public:
     Player& GetManager();
 
-    mia::Sprite* GetSprite();
-
     void Update();
 
     void PlayCurrentAnimation();
+    void UpdatePortrait();
 };

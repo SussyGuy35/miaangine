@@ -106,7 +106,8 @@ namespace mia
             SDL_Rect dstrect = WorldRectToSDLScreenRect(portrait->GetRect());
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
 
-            SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+            // SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+            SDL_RenderCopyEx(renderer, texture, &srcrect, &dstrect, 0, NULL, portrait->flip());
         }
     }
     void Renderer::RenderImages(SDL_Renderer *renderer)

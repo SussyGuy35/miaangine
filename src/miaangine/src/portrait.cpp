@@ -8,7 +8,8 @@ namespace mia
         _sprite(sprite),
         _offset(offset),
         _color(color),
-        _pivot(pivot)
+        _pivot(pivot),
+        _flip(SDL_FLIP_NONE)
     {
         _master->SetPortrait(this);
     }
@@ -48,6 +49,10 @@ namespace mia
     {
         return _pivot;
     }
+    const SDL_RendererFlip& Portrait::flip() const
+    {
+        return _flip;
+    }
 
     Object& Portrait::master()
     {
@@ -74,6 +79,10 @@ namespace mia
     v2f& Portrait::pivot()
     {
         return _pivot;
+    }
+    SDL_RendererFlip& Portrait::flip()
+    {
+        return _flip;        
     }
 #pragma endregion
 

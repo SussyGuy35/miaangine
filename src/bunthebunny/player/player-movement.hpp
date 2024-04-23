@@ -34,6 +34,9 @@ private:
     float _jumpBufferTime;
     
     float _dashDelay;
+    float _initDashDuration;
+    float _initDashMultiplier;
+    float _lateDashMultiplier;
 
     int _state;
 
@@ -52,7 +55,9 @@ private:
     float _bufferTimerCount = -1;
     // Dash
     float _dashFinalSpeed = 0;
-    float _dashTimeBound = -1; // TODO Change to timer 
+    float _dashDelayTimeBound = -1;
+    float _dashInitTimeBound = -1;
+    mia::v2f _lastDashVelocity = mia::v2f::zero();
     // Store velocity
     float _totalStoreVelocityGainNormalMove = false;
 

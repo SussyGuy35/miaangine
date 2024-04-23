@@ -5,11 +5,11 @@ PlayerMovement::PlayerMovement(Player *manager):
     _maxSpeed(9),
 
     _groundAcceleration(4),
-    _groundDeceleration(5),
-    _groundTurnRate(5),
+    _groundDeceleration(6),
+    _groundTurnRate(6),
     _onAirAcceleration(3),
-    _onAirDeceleration(1),
-    _onAirTurnRate(2),
+    _onAirDeceleration(.5),
+    _onAirTurnRate(3),
 
     _jumpHeight(15),
     _gravityDragDownScale(1.5),
@@ -17,6 +17,9 @@ PlayerMovement::PlayerMovement(Player *manager):
     _jumpBufferTime(0.08),
 
     _dashDelay(.05),
+    _initDashDuration(.25),
+    _initDashMultiplier(5),
+    _lateDashMultiplier(2),
 
     _state(FALLING)
 {}
@@ -153,16 +156,32 @@ void PlayerMovement::DashHandle()
 {
     if (_state == DASH_PREPARE)
     {
-        if (_dashTimeBound > 0 && mia::_Time().time() >= _dashTimeBound)
+        if (_dashDelayTimeBound > 0 && mia::_Time().time() >= _dashDelayTimeBound)
         {
-            ExecuteADash(_dashDirectionInput * _dashFinalSpeed);
-            _dashTimeBound = -1;
+            _lastDashVelocity = _dashDirectionInput * _dashFinalSpeed;
+
+            _currentVelocity = _lastDashVelocity * _initDashMultiplier;
+            _state = DASHING;
+
+            _dashDelayTimeBound = -1;
+            _dashInitTimeBound = mia::_Time().time() + _dashDelay;
         }
 
         return;
     }
 
-    if (_state == DASHING) return; //TODO
+    if (_state == DASHING) 
+    {
+        if (_dashInitTimeBound > 0 && mia::_Time().time() >= _dashInitTimeBound)
+        {
+            _currentVelocity = _lastDashVelocity * _lateDashMultiplier;
+            _state = FALLING;
+
+            _dashInitTimeBound = -1;
+        }
+
+        return;
+    }
 
     if (_dashInput)
     {
@@ -170,12 +189,12 @@ void PlayerMovement::DashHandle()
         _currentVelocity = mia::v2f::zero();
         _dashFinalSpeed = _storeVelocity;
 
-        _dashTimeBound = mia::_Time().time() + _dashDelay;
+        _dashDelayTimeBound = mia::_Time().time() + _dashDelay;
     }
 }
 void PlayerMovement::ExecuteADash(mia::v2f value)
 {
-    _currentVelocity = value * 2;
+    _currentVelocity = value * _initDashMultiplier;
     _state = DASHING;
 }
 
@@ -217,7 +236,7 @@ void PlayerMovement::ApplyVelocity(mia::Body &body)
 
 void PlayerMovement::StateReCheck()
 {
-    if (_state == DASH_PREPARE)
+    if (_state == DASH_PREPARE || _state == DASHING)
     {
         return;
     }
@@ -231,10 +250,6 @@ void PlayerMovement::StateReCheck()
         if (_state == JUMPING)
         {
             if (_currentVelocity.y < 0) _state = FALLING;
-        }
-        if (_state == DASHING)
-        {
-            _state = FALLING;
         }
     }
     else 

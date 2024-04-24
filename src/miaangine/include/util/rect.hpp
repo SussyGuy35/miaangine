@@ -45,6 +45,16 @@ namespace mia
                 pos.y + siz.y > other.pos.y
             );
         }
+
+        inline bool operator== (const rect& other)
+        {
+            return (
+                pos.x == other.pos.x && 
+                pos.y == other.pos.y &&
+                siz.x == other.siz.x && 
+                siz.y == other.siz.y
+            );
+        }
     };
 }
 

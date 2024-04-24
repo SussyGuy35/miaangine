@@ -77,6 +77,8 @@ public:
     Player& GetManager();
     int GetState();
 
+    void Reset();
+
     float GetStoreSpeed();
     int GetMoveDirection();
     mia::v2f GetDashDirection();

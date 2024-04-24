@@ -33,11 +33,14 @@ namespace mia
             _bodiesList.erase(bodyIterator);
         }
 
-        // auto rectIterator = std::find(_staticRectList.begin(), _staticRectList.end(), body->GetRect());
-        // if (rectIterator != _staticRectList.end())
-        // {
-        //     _staticRectList.erase(rectIterator);
-        // }
+        if (body->getType() == _BODY_STATIC)
+        {
+            auto rectIterator = std::find(_staticRectList.begin(), _staticRectList.end(), body->GetRect());
+            if (rectIterator != _staticRectList.end())
+            {
+                _staticRectList.erase(rectIterator);
+            }
+        }
     }
 
     void Physics::RegisterTilemap(Tilemap *tilemap)
@@ -55,14 +58,14 @@ namespace mia
             _tilemapsList.erase(tilemapIterator);
         }
 
-        // for (int i = 0; i < tilemap->width(); i++) for (int j = 0; j < tilemap->height(); j++)
-        // {
-        //     auto rectIterator = std::find(_staticRectList.begin(), _staticRectList.end(), tilemap->GetRect(i, j));
-        //     if (rectIterator != _staticRectList.end())
-        //     {
-        //         _staticRectList.erase(rectIterator);
-        //     }
-        // }
+        for (int i = 0; i < tilemap->width(); i++) for (int j = 0; j < tilemap->height(); j++)
+        {
+            auto rectIterator = std::find(_staticRectList.begin(), _staticRectList.end(), tilemap->GetRect(i, j));
+            if (rectIterator != _staticRectList.end())
+            {
+                _staticRectList.erase(rectIterator);
+            }
+        }
     }
 
     const std::vector<Body*> Physics::GetBodiesList()

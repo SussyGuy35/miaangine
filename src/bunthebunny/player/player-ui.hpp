@@ -3,6 +3,7 @@
 #include "miaangine.hpp"
 
 #include "player.hpp"
+#include "ui-main.hpp"
 
 class PlayerUI
 {
@@ -13,6 +14,7 @@ public:
 private:
     Player &_manager;
 
+    UIMain _mainUI;
     mia::UI *_meter;
     mia::Image *_metterImg;
 
@@ -20,5 +22,8 @@ private:
     float _maxMeterValue;
 
 public:
+    void Activate();
+    void DeActivate();
+
     void Update();
 };

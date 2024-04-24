@@ -8,10 +8,12 @@ class PlayerUI;
 class Player : public mia::Object, public mia::Observer
 {
 public:
-    Player(int x, int y);
+    Player(float x, float y);
     ~Player();
 
 private:
+    bool _active;
+
     mia::Portrait *_portrait;
     mia::Body *_body;
 
@@ -27,4 +29,7 @@ public:
     PlayerUI& ui();
 
     void Update(int message) override;
+
+    void Activate();
+    void DeActivate();
 };

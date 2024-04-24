@@ -30,6 +30,12 @@ Player& PlayerVisual::GetManager()
     return _manager;
 }
 
+void PlayerVisual::Reset()
+{
+    _currentClip = &_idleAnimation;
+    _frameTimer = _timePerFrame;
+}
+
 void PlayerVisual::Update()
 {
     PlayCurrentAnimation();

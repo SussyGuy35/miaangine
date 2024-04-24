@@ -8,5 +8,10 @@ public:
     UIMain();
     ~UIMain();
 
+private:
     mia::Image *_image;
+
+public:
+    void Activate();
+    void DeActivate();
 };

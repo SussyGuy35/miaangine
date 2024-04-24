@@ -4,18 +4,18 @@
 #include "player-visual.hpp"
 #include "player-ui.hpp"
 
-Player::Player(int x, int y):
+Player::Player(float x, float y):
     Object("Player", x, y),
     Observer(),
+    _active(false),
     _portrait(new mia::Portrait(this, nullptr, {0.5, 0.125})), // FIXME
     _body(new mia::Body(this, mia::_BODY_DYNAMIC, {.9, 1.5}, {0.5, 0})),
     _movement(new PlayerMovement(this)),
     _visual(new PlayerVisual(this)),
     _ui(new PlayerUI(this))
 {
-    mia::_Renderer().RegisterPortrait(_portrait);
-    mia::_Physics().RegisterBody(_body);
     mia::_Events().RegisterObserver(this);
+    // Activate();
 }
 
 Player::~Player()
@@ -48,6 +48,7 @@ PlayerUI& Player::ui()
 
 void Player::Update(int message)
 {
+    if (!_active) return;
     if (message == mia::_EVENT_PRIMARY_UPDATE)
     {
         int horizontalInput = 0, verticalInput = 0;
@@ -73,4 +74,28 @@ void Player::Update(int message)
     {
         _movement->LateUpdate();
     }
+}
+
+void Player::Activate()
+{
+    if (_active) return;
+    _active = true;
+
+    _ui->Activate();
+
+    mia::_Renderer().RegisterPortrait(_portrait);
+    mia::_Physics().RegisterBody(_body);
+}
+
+void Player::DeActivate()
+{
+    if (!_active) return;
+    _active = false;
+
+    _movement->Reset();
+    _visual->Reset();
+    _ui->DeActivate();
+
+    mia::_Renderer().UnregisterPortrait(_portrait);
+    mia::_Physics().UnregisterBody(_body);
 }

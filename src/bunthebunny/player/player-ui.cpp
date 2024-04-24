@@ -5,6 +5,7 @@
 
 PlayerUI::PlayerUI(Player *manager):
     _manager(*manager),
+    _mainUI(UIMain()),
     _meter(new mia::UI(1, 1)),
     _metterImg(new mia::Image(_meter, nullptr)),
     _maxMeterHeight(241),
@@ -15,11 +16,21 @@ PlayerUI::PlayerUI(Player *manager):
     _metterImg->pivot() = {1, 1};
     _metterImg->offset() = {-79, -60};
     _metterImg->size() = mia::v2f(60, _maxMeterHeight);
-    mia::_Renderer().RegisterImage(_metterImg);
 }
 
 PlayerUI::~PlayerUI()
 {}
+
+void PlayerUI::Activate()
+{
+    mia::_Renderer().RegisterImage(_metterImg);
+    _mainUI.Activate();
+}
+void PlayerUI::DeActivate()
+{
+    mia::_Renderer().UnregisterImage(_metterImg);
+    _mainUI.DeActivate();
+}
 
 void PlayerUI::Update()
 {

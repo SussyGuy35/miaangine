@@ -39,6 +39,14 @@ int PlayerMovement::GetState()
     return _state;
 }
 
+void PlayerMovement::Reset()
+{
+    _manager.body().velocity() = mia::v2f::zero();
+    _currentVelocity = mia::v2f::zero();
+    _desiredVelocity = mia::v2f::zero();
+    _state = FALLING;
+}
+
 float PlayerMovement::GetStoreSpeed()
 {
     return _storeVelocity;
@@ -210,7 +218,7 @@ void PlayerMovement::WallJumpHandle()
     {
         if (_wallJumpCoyoteTimerCount >= 0)
         {
-            ExecuteAJump(_jumpHeight + _storeVelocity / 2);
+            ExecuteAJump(_jumpHeight + _storeVelocity);
             _wallJumpCoyoteTimerCount = -1;
         }
         else
@@ -221,7 +229,7 @@ void PlayerMovement::WallJumpHandle()
 
     if (_canWallJump && _wallJumpBufferTimerCount >= 0) 
     {
-        ExecuteAJump(_jumpHeight + _storeVelocity / 2);
+        ExecuteAJump(_jumpHeight + _storeVelocity);
         _wallJumpBufferTimerCount = -1;
     }
 }

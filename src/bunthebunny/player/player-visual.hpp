@@ -27,6 +27,8 @@ private:
 public:
     Player& GetManager();
 
+    void Reset();
+
     void Update();
 
     void PlayCurrentAnimation();

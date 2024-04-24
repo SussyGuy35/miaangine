@@ -3,6 +3,7 @@
 #include "box.hpp"
 #include "player/player.hpp"
 #include "ui-main.hpp"
+#include "level.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -10,36 +11,31 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    // std::vector<Box*> boxes;
-    // boxes.push_back( new Box(0, 0, 10, 1) );
-    // boxes.push_back( new Box(2, .2, 10, 1) );
-    // boxes.push_back( new Box(4, .4, 10, 1) );
-    // boxes.push_back( new Box(6, .6, 10, 1) );
-    // boxes.push_back( new Box(8, .8, 10, 1) );
-    // boxes.push_back( new Box(10, 1, 10, 1) );
-    // // boxes.push_back( new Box(2, 0, 5, 3) );
-    Player *player = new Player(.5, 1);
+    Player mainPlayer = Player(0.0, 0.0);
 
-    UIMain *uimain = new UIMain();
-
-    mia::TilemapPalette *pl = new mia::TilemapPalette();
+    mia::TilemapPalette *mapPalette = new mia::TilemapPalette();
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({0 , 32}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({16, 32}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({32, 32}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({0 , 16}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({16, 16}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({32, 16}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({0 , 0 }, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({16, 0 }, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({32, 0 }, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({48, 0 }, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({64, 0 }, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
-    pl->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
-    mia::Tilemap *tm = new mia::Tilemap("D:/SDL/miaangine/asset/map.txt", pl, {0.925, 0.925});
-    mia::_Renderer().RegisterTilemap(tm);
-    mia::_Physics().RegisterTilemap(tm);
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 32}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 32}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 32}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 16}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 16}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 16}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 0 }, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 0 }, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 0 }, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({48, 0 }, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 0 }, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
+    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
+
+    Level level00 = Level("D:/SDL/miaangine/asset/map.txt", mapPalette);
+    level00.startPlayerPosition = {1, 5};
+    level00.startCameraPosition = {0, 0};
+    level00.startCameraSize = 20;
+    level00.player = &mainPlayer;
+    level00.ActivateMap();
+    // level00.ReloadLevel();
 
     while (true)
     {
@@ -50,6 +46,8 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_Q)) mia::_Camera().Resize(mia::_Camera().size() * 1.001, mia::v2f(0.5, 0.5));
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() * 0.999, mia::v2f(0.5, 0.5));
         // FIXME
+
+        if (mia::_Input().getKey(SDL_SCANCODE_R)) level00.ReloadLevel();
 
         mia::_Game().Update();
 

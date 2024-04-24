@@ -7,10 +7,18 @@ UIMain::UIMain():
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/UI.png");
     _image->setSprite(mia::_SpriteHandler().MakeCut({0, 0}, {240, 135}));
     _image->size() = mia::v2f(mia::_Camera().getScreenWidth(), mia::_Camera().getScreenHeight());
-    mia::_Renderer().RegisterImage(_image);
 }
 
 UIMain::~UIMain()
 {
     
+}
+
+void UIMain::Activate()
+{
+    mia::_Renderer().RegisterImage(_image);
+}
+void UIMain::DeActivate()
+{
+    mia::_Renderer().UnregisterImage(_image);
 }

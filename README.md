@@ -58,11 +58,16 @@ BunTheBunny is a platformer 2D game.
 ### Speedbuff
 - Temporary increase player movement speed.
 
-## Score
+### Score
 - Final score of a level calculated by:
 	+ Time to complete.
 	+ Final speed.
 	+ Max speed.
+
+## Source
+- All code by me.
+- Art mostly by [WibuKa](https://github.com/WibuKa), I modified it a bit
+- All sound, music by me.
 
 ------------
 

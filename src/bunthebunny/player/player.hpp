@@ -17,12 +17,14 @@ private:
 
     PlayerMovement *_movement;
     PlayerVisual *_visual;
+    PlayerUI *_ui;
 
 public:
     mia::Portrait& portrait();
     mia::Body& body();
     PlayerMovement& movement();
     PlayerVisual& visual();
+    PlayerUI& ui();
 
     void Update(int message) override;
 };

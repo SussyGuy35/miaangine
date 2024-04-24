@@ -2,6 +2,7 @@
 
 #include "box.hpp"
 #include "player/player.hpp"
+#include "ui-main.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -18,6 +19,8 @@ int main(int argc, char* argv[])
     // boxes.push_back( new Box(10, 1, 10, 1) );
     // // boxes.push_back( new Box(2, 0, 5, 3) );
     Player *player = new Player(.5, 1);
+
+    UIMain *uimain = new UIMain();
 
     mia::TilemapPalette *pl = new mia::TilemapPalette();
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");

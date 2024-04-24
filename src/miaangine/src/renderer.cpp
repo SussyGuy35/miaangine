@@ -129,7 +129,7 @@ namespace mia
             rect imgRect = image->GetRect();
             SDL_Rect dstrect = { (int)imgRect.pos.x, (int)imgRect.pos.y, (int)imgRect.siz.x, (int)imgRect.siz.y };
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
-        
+
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
         }
     }

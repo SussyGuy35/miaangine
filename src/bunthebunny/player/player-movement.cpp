@@ -7,19 +7,19 @@ PlayerMovement::PlayerMovement(Player *manager):
     _maxSpeed(10),
 
     _groundAcceleration(5),
-    _groundDeceleration(8),
-    _groundTurnRate(8),
-    _onAirAcceleration(4),
+    _groundDeceleration(6),
+    _groundTurnRate(6),
+    _onAirAcceleration(5),
     _onAirDeceleration(1),
-    _onAirTurnRate(5),
+    _onAirTurnRate(4),
 
     _jumpHeight(15),
     _gravityDragDownScale(1.5),
     _coyoteTime(0.08),
-    _jumpBufferTime(0.08),
+    _jumpBufferTime(0.12),
 
     _dashVelocityThreshhold(3),
-    _dashDelay(.05),
+    _dashDelay(.025),
     _initDashDuration(.2),
     _initDashMultiplier(2.5),
     _lateDashMultiplier(1.75),
@@ -39,6 +39,10 @@ int PlayerMovement::GetState()
     return _state;
 }
 
+float PlayerMovement::GetStoreSpeed()
+{
+    return _storeVelocity;
+}
 int PlayerMovement::GetMoveDirection()
 {
     return _directionInput;
@@ -80,6 +84,9 @@ void PlayerMovement::Update()
 
     JumpAvailabilityCheck();
     JumpHandle();
+
+    WallJumpAvailabilityCheck();
+    WallJumpHandle();
 
     DashHandle();
 
@@ -154,7 +161,7 @@ void PlayerMovement::JumpHandle()
     {
         if (_coyoteTimerCount >= 0)
         {
-            ExecuteAJump();
+            ExecuteAJump(_jumpHeight);
             _coyoteTimerCount = -1;
         }
         else
@@ -165,7 +172,7 @@ void PlayerMovement::JumpHandle()
 
     if (_canJump && _bufferTimerCount >= 0) 
     {
-        ExecuteAJump();
+        ExecuteAJump(_jumpHeight);
         _bufferTimerCount = -1;
     }
 }
@@ -173,10 +180,65 @@ void PlayerMovement::JumpAvailabilityCheck()
 {
     _canJump = _isGrounded && _state != DASH_PREPARE;
 }
-void PlayerMovement::ExecuteAJump()
+void PlayerMovement::ExecuteAJump(float force)
 {
-    _currentVelocity.y = _jumpHeight;
+    _currentVelocity.y = force;
     _state = JUMPING;
+}
+
+void PlayerMovement::WallJumpHandle()
+{
+    if (_state == DASH_PREPARE)// || _state == DASHING)
+    {
+        return;
+    }
+
+    if (_wallJumpCoyoteTimerCount >= 0) _wallJumpCoyoteTimerCount -= mia::_Time().deltaTime();
+    if (_wallJumpBufferTimerCount >= 0) _wallJumpBufferTimerCount -= mia::_Time().deltaTime();
+
+    if (!_canWallJump)
+    {
+        if (!_wallJumpCoyoteLock) _wallJumpCoyoteTimerCount = _coyoteTime;
+        _wallJumpCoyoteLock = true;
+    }
+    else 
+    {
+        _wallJumpCoyoteLock = false;
+    }
+
+    if (_jumpInput)
+    {
+        if (_wallJumpCoyoteTimerCount >= 0)
+        {
+            ExecuteAJump(_jumpHeight + _storeVelocity / 2);
+            _wallJumpCoyoteTimerCount = -1;
+        }
+        else
+        {
+            _wallJumpBufferTimerCount = _jumpBufferTime;
+        }
+    }
+
+    if (_canWallJump && _wallJumpBufferTimerCount >= 0) 
+    {
+        ExecuteAJump(_jumpHeight + _storeVelocity / 2);
+        _wallJumpBufferTimerCount = -1;
+    }
+}
+void PlayerMovement::WallJumpAvailabilityCheck()
+{
+    if (_desiredVelocity.x == 0) return;
+
+    const float OFFSET = 0.1;
+    mia::rect playerRect = _manager.body().GetRect();
+    mia::rect checkRectLeft, checkRectRight;
+    checkRectLeft.pos.x = playerRect.pos.x - OFFSET - OFFSET;
+    checkRectRight.pos.x = playerRect.pos.x + playerRect.siz.x + OFFSET;
+    checkRectLeft.pos.y = checkRectRight.pos.y = playerRect.pos.y;
+    checkRectLeft.siz.x = checkRectRight.siz.x = OFFSET;
+    checkRectLeft.siz.y = checkRectRight.siz.y =playerRect.siz.y;
+
+    _canWallJump = mia::_Physics().Query(checkRectLeft) || mia::_Physics().Query(checkRectRight);
 }
 
 void PlayerMovement::DashHandle()
@@ -222,12 +284,13 @@ void PlayerMovement::DashHandle()
 
 void PlayerMovement::GroundedCheck()
 {
+    const float OFFSET = 0.05;
     mia::rect playerRect = _manager.body().GetRect();
     mia::rect checkRect;
     checkRect.pos.x = playerRect.pos.x;
-    checkRect.pos.y = playerRect.pos.y - .002;
+    checkRect.pos.y = playerRect.pos.y - 2 * OFFSET;
     checkRect.siz.x = playerRect.siz.x;
-    checkRect.siz.y = 0.001;
+    checkRect.siz.y = OFFSET;
     _isGrounded = ( mia::_Physics().Query(checkRect) && _currentVelocity.y <= 0 );
 }
 
@@ -292,14 +355,14 @@ float PlayerMovement::GetCurrentAcceleration()
 {
     if (_isGrounded)
     {
-        if (std::abs(_desiredVelocity.x) < std::abs(_currentVelocity.x)) return _groundDeceleration;
-        else if (_desiredVelocity.x * _currentVelocity.x < 0) return _groundTurnRate * 2;
+        if (_desiredVelocity.x * _currentVelocity.x < 0) return _groundTurnRate * 2;
+        else if (std::abs(_desiredVelocity.x) < std::abs(_currentVelocity.x)) return _groundDeceleration;
         else return _groundAcceleration;
     }
     else
     {
-        if (std::abs(_desiredVelocity.x) < std::abs(_currentVelocity.x)) return _onAirDeceleration;
-        else if (_desiredVelocity.x * _currentVelocity.x < 0) return _onAirTurnRate * 2;
+        if (_desiredVelocity.x * _currentVelocity.x < 0) return _onAirTurnRate * 2;
+        else if (std::abs(_desiredVelocity.x) < std::abs(_currentVelocity.x)) return _onAirDeceleration;
         else return _onAirAcceleration;
     }
 

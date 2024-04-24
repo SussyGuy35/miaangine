@@ -33,8 +33,6 @@ private:
     float _gravityDragDownScale;
     float _coyoteTime;
     float _jumpBufferTime;
-
-    float _climbGravityScale;
     
     float _dashVelocityThreshhold;
     float _dashDelay;
@@ -46,7 +44,7 @@ private:
 
     bool _isGrounded = false;
     bool _canJump = false;
-    bool _climbing = false;
+    bool _canWallJump;
     float _storeVelocity = 0;
 
     int _directionInput = 0;
@@ -58,6 +56,10 @@ private:
     float _coyoteTimerCount = -1;
     bool _coyoteLock = false;
     float _bufferTimerCount = -1;
+    // Wall Jump help
+    float _wallJumpCoyoteTimerCount = -1;
+    bool _wallJumpCoyoteLock = false;
+    float _wallJumpBufferTimerCount = -1;
     // Dash
     float _dashFinalSpeed = 0;
     float _dashDelayTimeBound = -1;
@@ -75,6 +77,7 @@ public:
     Player& GetManager();
     int GetState();
 
+    float GetStoreSpeed();
     int GetMoveDirection();
     mia::v2f GetDashDirection();
 
@@ -90,12 +93,14 @@ private:
 
     void JumpHandle();
     void JumpAvailabilityCheck();
-    void ExecuteAJump();
+    void ExecuteAJump(float force);
+
+    void WallJumpHandle();
+    void WallJumpAvailabilityCheck();
 
     void DashHandle();
 
     void GroundedCheck();
-    void ClimbingCheck();
 
     void GravityApply();
 

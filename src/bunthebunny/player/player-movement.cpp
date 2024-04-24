@@ -283,8 +283,8 @@ void PlayerMovement::DashHandle()
     if (_dashInput && _storeVelocity > _dashVelocityThreshhold)
     {
         _state = DASH_PREPARE;
+        _dashFinalSpeed = std::max(_storeVelocity * 1.0, _currentVelocity.magnitude() * 0.5);
         _currentVelocity = mia::v2f::zero();
-        _dashFinalSpeed = _storeVelocity;
 
         _dashDelayTimeBound = mia::_Time().time() + _dashDelay;
     }

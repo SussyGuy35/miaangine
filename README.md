@@ -1,9 +1,73 @@
-# MIAANGINE
-A simple 2D AABB based GameEngine using SDL C++ run in WIndows.
+# GAME - BunTheBunny
+
+## Disclaimer
+I already done this game demo ([here](https://krakra.itch.io/bunthebunny)) using Unity, so this is a port to SDL C++.
+
+## General
+BunTheBunny is a platformer 2D game.
+
+## Mechanic
+
+### Player
+
+#### Movement system
+*This might tight up with the engine physics system*
+- Move around by *arrow keys*.
+- Have distinct movement acceleration and decceleration based on current player movement and state.
+	+ Acceleration and Decceleration here means how fast the player can reach the desired speed.
+	+ Fully customizable.
+- Jump using ```C``` button.
+- Jumping having quite a bit of helper:
+	+ Coyote time: Allow player to jump even after left the ground for a bit of time.
+	+ Jump buffer: Allow player to jump when touch the ground even player input the jump a bit sooner than expected.
+	+ Purpose: For better controlling player.
+
+#### Store velocity system
+- Player can store the velocity.
+- **store velocity** might be use in difference way.
+	+ Run.
+	+ Take the power up.
+	+ Use obstacles.
+
+#### Dash system
+- Dash by ```X```.
+- Player will dash in the direction of *arrow keys*.
+- Dash will use **store velocity**, which mean more **store velocity** the faster player dash.
+
+#### Wall jump system
+- Wall jump by ```C``` when near the Wall.
+- Wall jump also use **store velocity** as additional velocity to the jump.
+
+### Special
+- For better feeling on dashing, the first few ticks of the dash, player actually move many times **store velocity** fast.
+- Because of the above, player can cancel the dash by jump or wall jump and take advantage of the fast velocity in start of the dash and perform a super far jump, this might call **jump dash cancel**. *(The easiest way to excute this is by move in a flat surface and press ```X``` -> ```C```)*
+
+## Obstacles/Buff
+
+### Spike
+- Simply kill (reset level) when player touched.
+
+### Spring
+- Transfer all player velocity to upward velocity and a bit more addition.
+- Add a bit velocity to player **store velocity**.
+
+### Surfboard
+- Transfer all player velocity to horizontal velocity and a bit more addition.
+- Add a bit velocity to player **store velocity**.
+
+### Speedbuff
+- Temporary increase player movement speed.
+
+## Score
+- Final score of a level calculated by:
+	+ Time to complete.
+	+ Final speed.
+	+ Max speed.
 
 ------------
 
-
+# MIAANGINE
+A simple 2D AABB based GameEngine using SDL C++ run in WIndows.
 
 ## Disclaimer
 The engine still not yet finished, it lack a lot of feature </br>
@@ -73,6 +137,16 @@ while (true)
 mia::_Game().ClearWindow();
 ```
 
+## Mechanic
+
+### Event system
+Observer design pattern.
+
+### Physics
+Arbitrary AABB Collision.
+
+### *and many thing more*
+
 ## API
 The engine mostly use function to access object attributes.
 
@@ -128,6 +202,13 @@ The main object existing on Screen.
 - string name.
 - v2f position.
 - Image *image: Image component
+
+#### Observer
+The observer of the event system.
+- ```void Update(int message)```: This will be called if the event it registered call, "message" corresponding the event.
+
+#### Tilemap
+it work
 
 ### Component
 
@@ -200,6 +281,12 @@ One of basic tools, access by ```mia::_Camera()```. </br>
 - ```v2f WorldToScreenPoint(v2f point)```: Get Screen point from a World point.
 - ```v2f ScreenToWorldPoint(v2f point)```: Get World point from a Screen point.
 
+### Event
+One of basic tools, access by ```mia::_Events()```. </br>
+- ```RegisterObserver(Observer *observer)```.
+- ```RemoveObserver(Observer *observer)```.
+- ```Notify(int message)```: Notify the registered observer with the "message".
+
 ### Renderer
 One of basic tools, access by ```mia::_Renderer()```. </br>
 - ```void RegisterPortrait(Portrait *portrait)```: Register Portrait to render.
@@ -209,6 +296,26 @@ One of basic tools, access by ```mia::_Renderer()```. </br>
 - ```void RegisterTilemap(Tilemap *tilemap)```: Register Tilemap to render.
 - ```void UnregisterTilemap(Tilemap *tilemap)```: UnRegister Tilemap from render.
 - ```void RenderBodiesCollision(bool state)```: Enable Render Bodies collision (or not).
+
+### Physics
+One of basic tools, access by ```mia::_Physics()```.
+- ```void RegisterBody(Body *Body)```: Register Body collision, dynamic handle.
+- ```void UnregisterBody(Body *Body)```: UnRegister Body collision, dynamic handle.
+- ```void RegisterTilemap(Tilemap *tilemap)```: Register Tilemap collision.
+- ```void UnregisterTilemap(Tilemap *tilemap)```: UnRegister Tilemap collision.
+- ```bool Query(rect rect)```: return if there's STATIC body in area "rect"
+- ```bool RaycastRect(v2f origin, v2f velocity, rect target, double &timeHit, v2f &hitPoint, v2f &normal)```: Cast a ray in "origin" to direction "velocity", distance "velocity" magnitude with the target "target", return if the ray hit, and output:
+	+ ```timeHit```: return time need to hit the target (scale in "velocity")
+	+ ```hitPoint```: return hit point.
+	+ ```normal```: return normal vector of the hit.
+
+### Other
+
+#### Clip 
+A container manager multiple sprite.
+
+#### TilemapPalette
+A container contain sprites to be used as data for Tilemap.
 
 ## Things I could do better
 *this is like a place where I confess my sins when I was working on the project* </br>

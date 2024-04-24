@@ -1,5 +1,23 @@
 # GAME - BunTheBunny
 
+## Table of Contents
+- [Disclaimer](#disclaimer)
+- [General](#general)
+- [Mechanic](#mechanic)
+  - [Player](#player)
+    - [Movement system](#movement-system)
+    - [Store velocity system](#store-velocity-system)
+    - [Dash system](#dash-system)
+    - [Wall jump system](#wall-jump-system)
+  - [Special](#special)
+- [Obstacles/Buff](#obstaclesbuff)
+  - [Spike](#spike)
+  - [Spring](#spring)
+  - [Surfboard](#surfboard)
+  - [Speedbuff](#speedbuff)
+  - [Score](#score)
+- [Source](#source)
+
 ## Disclaimer
 I already done this game demo ([here](https://krakra.itch.io/bunthebunny)) using Unity, so this is a port to SDL C++.
 
@@ -66,13 +84,57 @@ BunTheBunny is a platformer 2D game.
 
 ## Source
 - All code by me.
-- Art mostly by [WibuKa](https://github.com/WibuKa), I modified it a bit
+- Art by [WibuKa](https://github.com/WibuKa)
 - All sound, music by me.
+*for clear, WibuKa and I work on the [game]([here](https://krakra.itch.io/bunthebunny)) for a GameJam, the art asset made by WibuKa on that project and in this project, i modified it a bit and the music once was made by other but I made the music for this project*
 
 ------------
 
 # MIAANGINE
 A simple 2D AABB based GameEngine using SDL C++ run in WIndows.
+
+## Table of Contents
+- [Disclaimer](#disclaimer)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [Basics](#basics)
+  - [Tools](#tools)
+  - [Concept](#concept)
+- [Entry point](#entry-point)
+  - [Init](#init)
+  - [Windows](#windows)
+  - [Game loop](#game-loop)
+  - [Summary](#summary)
+- [Mechanic](#mechanic)
+  - [Event system](#event-system)
+  - [Physics](#physics)
+  - [API](#api)
+- [Utilities](#utilities)
+  - [Vector (2D)](#vector-2d)
+  - [String](#string)
+  - [Mask](#mask)
+  - [Rect](#rect)
+  - [Singleton](#singleton)
+- [Object*](#object)
+  - [Object](#object)
+  - [UI](#ui)
+  - [Observer](#observer)
+  - [Tilemap](#tilemap)
+- [Component](#component)
+  - [Portrait](#portrait)
+  - [Body](#body)
+  - [Image](#image)
+- [Game](#game)
+- [Input](#input)
+- [Time](#time)
+- [Camera](#camera)
+- [Event](#event)
+- [Renderer](#renderer)
+- [Physics](#physics-1)
+- [Other](#other)
+  - [Clip](#clip)
+  - [TilemapPalette](#tilemappalette)
+- [Things I could do better](#things-i-could-do-better)
 
 ## Disclaimer
 The engine still not yet finished, it lack a lot of feature </br>

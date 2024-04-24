@@ -11,6 +11,8 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
+    mia::_Audio().Play(mia::_Audio().Insert("D:/SDL/miaangine/asset/ost.wav", -1));
+
     Player mainPlayer = Player(0.0, 0.0);
 
     mia::TilemapPalette *mapPalette = new mia::TilemapPalette();

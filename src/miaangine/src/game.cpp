@@ -72,6 +72,7 @@ namespace mia
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(renderer);
         IMG_Quit();
+        Mix_Quit();
         SDL_Quit();
     }
 

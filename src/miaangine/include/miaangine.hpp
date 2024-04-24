@@ -11,6 +11,7 @@
 #include "camera.hpp"
 #include "renderer.hpp"
 #include "physics.hpp"
+#include "audio.hpp"
 
 #include "observer.hpp"
 #include "object.hpp"
@@ -33,6 +34,7 @@ namespace mia
     inline Camera& _Camera() { return Camera::Instance(); }
     inline Renderer& _Renderer() { return Renderer::Instance(); }
     inline Physics& _Physics() { return Physics::Instance(); }
+    inline AudioManager& _Audio() { return AudioManager::Instance(); }
 }
 
 #endif

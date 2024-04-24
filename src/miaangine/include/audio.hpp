@@ -12,7 +12,13 @@ namespace mia
         AudioManager();
         ~AudioManager();
 
-    
+    private:
+        std::map<int, std::vector<Mix_Chunk*>> _mixMap; 
+
+    public:
+        int Insert(const char *dir, int index = -1);
+
+        bool Play(int index, int loop = 0);
     };
 }
 

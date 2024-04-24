@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() * 0.999, mia::v2f(0.5, 0.5));
         // FIXME
 
-        if (mia::_Input().getKey(SDL_SCANCODE_R)) level00.ReloadLevel();
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) level00.ReloadLevel();
 
         mia::_Game().Update();
 

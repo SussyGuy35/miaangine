@@ -18,7 +18,7 @@ namespace mia
     int Game::
     InitWindow()
     {
-        if (SDL_Init(SDL_INIT_VIDEO) < 0) 
+        if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO ) < 0) 
         {
             return -1;
         }
@@ -50,6 +50,12 @@ namespace mia
     
         int imgFlags = IMG_INIT_PNG;
         if (!(IMG_Init(imgFlags) & imgFlags)) 
+        {
+            SDL_Quit();
+            return -1;
+        }
+
+        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
         {
             SDL_Quit();
             return -1;

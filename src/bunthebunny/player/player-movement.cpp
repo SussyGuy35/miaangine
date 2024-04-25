@@ -54,6 +54,7 @@ void PlayerMovement::Reset()
     _currentVelocity = mia::v2f::zero();
     _desiredVelocity = mia::v2f::zero();
     _storeVelocity = 0;
+    _totalStoreVelocityGainNormalMove = 0;
     _state = FALLING;
 }
 

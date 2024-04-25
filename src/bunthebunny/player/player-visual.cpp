@@ -2,7 +2,6 @@
 
 #include "player.hpp"
 #include "player-movement.hpp"
-#include "particle.hpp"
 
 PlayerVisual::PlayerVisual(Player *manager):
     _manager(*manager),

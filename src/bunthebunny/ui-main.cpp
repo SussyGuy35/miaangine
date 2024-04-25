@@ -5,7 +5,7 @@ UIMain::UIMain():
     _image(new mia::Image(this, nullptr))
 {
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/UI.png");
-    _image->setSprite(mia::_SpriteHandler().MakeCut({0, 0}, {240, 135}));
+    _image->setSprite(mia::_SpriteHandler().MakeCut({0, 0}, {315, 135}));
     _image->size() = mia::v2f(mia::_Camera().getScreenWidth(), mia::_Camera().getScreenHeight());
 }
 

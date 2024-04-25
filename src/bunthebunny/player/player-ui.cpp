@@ -8,14 +8,14 @@ PlayerUI::PlayerUI(Player *manager):
     _mainUI(UIMain()),
     _meter(new mia::UI(1, 1)),
     _metterImg(new mia::Image(_meter, nullptr)),
-    _maxMeterHeight(241),
+    _maxMeterHeight(170),
     _maxMeterValue(30)
 {
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/blank.png");
     _metterImg->setSprite(mia::_SpriteHandler().MakeCut({0, 0}, {10, 10}));
     _metterImg->pivot() = {1, 1};
-    _metterImg->offset() = {-79, -60};
-    _metterImg->size() = mia::v2f(60, _maxMeterHeight);
+    _metterImg->offset() = {-35, -35};
+    _metterImg->size() = mia::v2f(25, _maxMeterHeight);
 }
 
 PlayerUI::~PlayerUI()

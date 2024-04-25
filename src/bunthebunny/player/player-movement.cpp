@@ -9,7 +9,7 @@ Particle *_reGDashParticle;
 
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(*manager),
-    _maxSpeed(10),
+    _maxSpeed(8),
 
     _groundAcceleration(5),
     _groundDeceleration(6),
@@ -25,8 +25,8 @@ PlayerMovement::PlayerMovement(Player *manager):
 
     _dashVelocityThreshhold(3),
     _dashDelay(.025),
-    _initDashDuration(.15),
-    _initDashMultiplier(3),
+    _initDashDuration(.2),
+    _initDashMultiplier(2.5),
     _lateDashMultiplier(1.75),
 
     _state(FALLING)

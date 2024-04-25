@@ -9,7 +9,7 @@ Surfplate::Surfplate(Player *player, mia::v2f position):
     Obstacle(position),
     _player(*player),
     _portrait(new mia::Portrait(this, nullptr)),
-    _additionalSpeed(8), // FIXME
+    _additionalSpeed(5), // FIXME
     _cooldown(.5)
 {
     this->position() = position;

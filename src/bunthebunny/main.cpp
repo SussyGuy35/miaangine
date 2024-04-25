@@ -38,12 +38,12 @@ int main(int argc, char* argv[])
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
 
     Level *level00 = new Level("D:/SDL/miaangine/asset/map.txt", mapPalette);
-    level00->startPlayerPosition = {1, 5};
+    level00->startPlayerPosition = {0, 5};
     level00->startCameraPosition = {0, 0};
-    level00->startCameraSize = 20;
+    level00->startCameraSize = 45;
     level00->player = mainPlayer;
     level00->ActivateMap();
-    // level00.ReloadLevel();
+    level00->ReloadLevel();
 
     while (true)
     {

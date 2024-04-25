@@ -36,5 +36,5 @@ void Level::ReloadPlayer()
 void Level::ReloadCamera()
 {
     mia::_Camera().position() = startCameraPosition;
-    mia::_Camera().size() = startCameraSize;
+    mia::_Camera().Resize(startCameraSize);
 }

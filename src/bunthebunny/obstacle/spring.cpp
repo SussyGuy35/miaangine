@@ -9,7 +9,7 @@ Spring::Spring(Player *player, mia::v2f position):
     Obstacle(position),
     _player(*player),
     _portrait(new mia::Portrait(this, nullptr)),
-    _additionalSpeed(5), // FIXME
+    _additionalSpeed(3), // FIXME
     _cooldown(.5)
 {
     this->position() = position;
@@ -54,7 +54,7 @@ void Spring::Update(int massage)
             if (GetRect().overlap(_player.body().GetRect()))
             {
                 _player.movement().AddTemporaryStoreSpeed(_additionalSpeed);
-                _player.movement().TranferVelocity(mia::v2f::up() * std::max(_additionalSpeed * 4, (_player.movement().GetStoreSpeed() + _player.movement().GetSpeed())));
+                _player.movement().TranferVelocity(mia::v2f::up() * std::max(_additionalSpeed * 5, (_player.movement().GetStoreSpeed() + _player.movement().GetSpeed())));
                 _player.movement().RegainDash();
 
                 _portrait->setSprite(_useSprite);

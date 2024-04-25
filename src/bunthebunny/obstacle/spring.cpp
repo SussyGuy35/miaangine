@@ -64,3 +64,14 @@ void Spring::Update(int massage)
         }
     }
 }
+
+void Spring::Activate()
+{
+    mia::_Renderer().RegisterPortrait(&portrait());
+    mia::_Events().RegisterObserver(this);
+}
+void Spring::DeActivate()
+{
+    mia::_Renderer().UnregisterPortrait(&portrait());
+    mia::_Events().RemoveObserver(this);
+}

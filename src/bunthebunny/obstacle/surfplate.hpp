@@ -21,4 +21,6 @@ private:
 public:
     mia::rect GetRect() const override;
     void Update(int message) override;
+    void Activate() override;
+    void DeActivate() override;
 };

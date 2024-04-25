@@ -8,7 +8,7 @@ CameraController::CameraController(Player *player):
     rightBound(0),
     idealPlayerOffset(0),
     camFollowingBound(0),
-    smooth(5)
+    smooth(2)
 {
     mia::_Events().RegisterObserver(this);
 }

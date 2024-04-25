@@ -1,5 +1,9 @@
 #include "game-manager.hpp"
 
+#include "obstacle/spring.hpp"
+#include "obstacle/surfplate.hpp"
+#include "obstacle/spike-up.hpp"
+
 GameManager::GameManager()
 {
     mia::_Events().RegisterObserver(this);
@@ -32,6 +36,8 @@ void GameManager::MakeLevel()
     levelList.push_back(level);
     
     level->MakeMap("D:/SDL/miaangine/asset/map.txt", mapPalette);
+
+    
 
     level->startPlayerPosition = {0, 5};
 

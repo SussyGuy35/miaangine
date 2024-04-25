@@ -9,7 +9,7 @@ Particle *_reGDashParticle;
 
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(*manager),
-    _maxSpeed(8),
+    _maxSpeed(8.5),
 
     _groundAcceleration(5),
     _groundDeceleration(6),

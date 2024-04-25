@@ -10,4 +10,7 @@ public:
     Obstacle(mia::v2f position): mia::Object(position) {}
 
     virtual mia::rect GetRect() const = 0;
+
+    virtual void Activate() = 0;
+    virtual void DeActivate() = 0;
 };

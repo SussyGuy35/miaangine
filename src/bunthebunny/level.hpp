@@ -3,6 +3,7 @@
 #include "miaangine.hpp"
 #include "player/player.hpp"
 #include "camera-controller.hpp"
+#include "obstacle/obstacle.hpp"
 
 class Level
 {
@@ -12,6 +13,8 @@ public:
 
 public:
     mia::Tilemap *map;
+    std::vector<Obstacle*> obstacleList;
+
     CameraController camControl;
 
     Player *player;
@@ -19,6 +22,7 @@ public:
     mia::v2f startPlayerPosition;
 
     void MakeMap(const char *layoutDir, mia::TilemapPalette *palette);
+    void AddObstacle(Obstacle* obstacle);
     
     void ActivateMap();
     void DeActivateMap();

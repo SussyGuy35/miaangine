@@ -1,9 +1,9 @@
-#include "spike.hpp"
+#include "spike-up.hpp"
 
 const float HEIGHT = .1;
 const float WIDTH = .925;
 
-Spike::Spike(Player *player, mia::v2f position, int size):
+UpSpike::UpSpike(Player *player, mia::v2f position, int size):
     Obstacle(position),
     _player(*player),
     _size(size), 
@@ -24,9 +24,9 @@ Spike::Spike(Player *player, mia::v2f position, int size):
     mia::_Events().RegisterObserver(this);
 }
 
-Spike::~Spike() = default;
+UpSpike::~UpSpike() = default;
 
-mia::rect Spike::GetRect() const 
+mia::rect UpSpike::GetRect() const 
 {
     mia::rect res;
     res.pos = position();
@@ -35,7 +35,7 @@ mia::rect Spike::GetRect() const
     return res;
 }
 
-void Spike::Update(int massage)
+void UpSpike::Update(int massage)
 {
     if (massage == mia::_EVENT_AFTER_PHYSICS_CALCULATION)
     {
@@ -44,4 +44,15 @@ void Spike::Update(int massage)
             // TODO
         }
     }
+}
+
+void UpSpike::Activate()
+{
+    mia::_Renderer().RegisterPortrait(&portrait());
+    mia::_Events().RegisterObserver(this);
+}
+void UpSpike::DeActivate()
+{
+    mia::_Renderer().UnregisterPortrait(&portrait());
+    mia::_Events().RemoveObserver(this);
 }

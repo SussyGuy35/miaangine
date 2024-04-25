@@ -16,15 +16,30 @@ void Level::MakeMap(const char *layoutDir, mia::TilemapPalette *palette)
     map = new mia::Tilemap(layoutDir, palette, {0.925, 0.925});
 }
 
+void Level::AddObstacle(Obstacle* obstacle)
+{
+    obstacleList.push_back(obstacle);
+}
+
 void Level::ActivateMap()
 {
     mia::_Renderer().RegisterTilemap(map);
     mia::_Physics().RegisterTilemap(map);
+
+    for (Obstacle *obs : obstacleList)
+    {
+        obs->Activate();
+    }
 }
 void Level::DeActivateMap()
 {
     mia::_Renderer().UnregisterTilemap(map);
     mia::_Physics().UnregisterTilemap(map);
+
+    for (Obstacle *obs : obstacleList)
+    {
+        obs->DeActivate();
+    }
 }
 
 void Level::ReloadLevel()

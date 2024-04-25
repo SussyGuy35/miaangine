@@ -21,7 +21,7 @@ private:
     
     mia::Clip *_currentClip;
 
-    float _timePerFrame = 0.15; 
+    float _timePerFrame = 0.1; 
     float _frameTimer = _timePerFrame;
 
 public:

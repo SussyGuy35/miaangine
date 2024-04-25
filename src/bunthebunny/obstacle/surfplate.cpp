@@ -16,9 +16,6 @@ Surfplate::Surfplate(Player *player, mia::v2f position):
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/obstacles-16x16.png");
     _portrait->setSprite(mia::_SpriteHandler().MakeCut({16*3, 0}, {16, 16}));
-    mia::_Renderer().RegisterPortrait(_portrait);
-
-    mia::_Events().RegisterObserver(this);
 }
 
 Surfplate::~Surfplate() = default;
@@ -55,4 +52,15 @@ void Surfplate::Update(int massage)
             }
         }
     }
+}
+
+void Surfplate::Activate()
+{
+    mia::_Renderer().RegisterPortrait(_portrait);
+    mia::_Events().RegisterObserver(this);
+}
+void Surfplate::DeActivate()
+{
+    mia::_Renderer().UnregisterPortrait(_portrait);
+    mia::_Events().RemoveObserver(this);
 }

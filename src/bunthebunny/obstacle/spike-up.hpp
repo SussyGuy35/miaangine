@@ -2,11 +2,11 @@
 
 #include "obstacle.hpp"
 
-class Spike : public Obstacle
+class UpSpike : public Obstacle
 {
 public:
-    Spike(Player *player, mia::v2f position = mia::v2f::zero(), int size = 1);
-    ~Spike();
+    UpSpike(Player *player, mia::v2f position = mia::v2f::zero(), int size = 1);
+    ~UpSpike();
 
 private:
     Player &_player;
@@ -19,4 +19,6 @@ private:
 public:
     mia::rect GetRect() const override;
     void Update(int message) override;
+    void Activate() override;
+    void DeActivate() override;
 };

@@ -79,9 +79,12 @@ public:
 
     void Reset();
 
+    float GetSpeed();
     float GetStoreSpeed();
     int GetMoveDirection();
     mia::v2f GetDashDirection();
+
+    void TranferVelocity(mia::v2f targetVelocity);
 
     void SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput);
 

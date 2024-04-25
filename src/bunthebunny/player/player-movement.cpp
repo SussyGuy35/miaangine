@@ -44,9 +44,15 @@ void PlayerMovement::Reset()
     _manager.body().velocity() = mia::v2f::zero();
     _currentVelocity = mia::v2f::zero();
     _desiredVelocity = mia::v2f::zero();
+    _storeVelocity = 0;
     _state = FALLING;
 }
 
+float PlayerMovement::GetSpeed()
+{
+    if (_state == DASHING) return _lastDashVelocity.magnitude() * _lateDashMultiplier;
+    return std::abs(_manager.body().velocity().x);
+}
 float PlayerMovement::GetStoreSpeed()
 {
     return _storeVelocity;
@@ -58,6 +64,14 @@ int PlayerMovement::GetMoveDirection()
 mia::v2f PlayerMovement::GetDashDirection()
 {
     return _lastDashVelocity.normalize();
+}
+
+void PlayerMovement::TranferVelocity(mia::v2f targetVelocity)
+{
+    if (targetVelocity.y > 0) _state = JUMPING;
+    else _state = FALLING;
+
+    _manager.body().velocity() = _currentVelocity = targetVelocity;
 }
 
 void PlayerMovement::SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput)
@@ -218,7 +232,7 @@ void PlayerMovement::WallJumpHandle()
     {
         if (_wallJumpCoyoteTimerCount >= 0)
         {
-            ExecuteAJump(_jumpHeight + _storeVelocity);
+            ExecuteAJump(_jumpHeight);
             _wallJumpCoyoteTimerCount = -1;
         }
         else
@@ -229,7 +243,7 @@ void PlayerMovement::WallJumpHandle()
 
     if (_canWallJump && _wallJumpBufferTimerCount >= 0) 
     {
-        ExecuteAJump(_jumpHeight + _storeVelocity);
+        ExecuteAJump(_jumpHeight);
         _wallJumpBufferTimerCount = -1;
     }
 }

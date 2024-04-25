@@ -4,6 +4,7 @@
 #include "player/player.hpp"
 #include "ui-main.hpp"
 #include "level.hpp"
+#include "obstacle/spring.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -11,9 +12,11 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    mia::_Audio().Play(mia::_Audio().Insert("D:/SDL/miaangine/asset/ost.wav", -1));
+    // mia::_Audio().Play(mia::_Audio().Insert("D:/SDL/miaangine/asset/ost.wav", -1));
 
-    Player mainPlayer = Player(0.0, 0.0);
+    Player *mainPlayer = new Player(0.0, 0.0);
+
+    // Spring spr = Spring(&mainPlayer, {10, 6});
 
     mia::TilemapPalette *mapPalette = new mia::TilemapPalette();
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");
@@ -31,12 +34,12 @@ int main(int argc, char* argv[])
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
 
-    Level level00 = Level("D:/SDL/miaangine/asset/map.txt", mapPalette);
-    level00.startPlayerPosition = {1, 5};
-    level00.startCameraPosition = {0, 0};
-    level00.startCameraSize = 20;
-    level00.player = &mainPlayer;
-    level00.ActivateMap();
+    Level *level00 = new Level("D:/SDL/miaangine/asset/map.txt", mapPalette);
+    level00->startPlayerPosition = {1, 5};
+    level00->startCameraPosition = {0, 0};
+    level00->startCameraSize = 20;
+    level00->player = mainPlayer;
+    level00->ActivateMap();
     // level00.ReloadLevel();
 
     while (true)
@@ -49,7 +52,7 @@ int main(int argc, char* argv[])
         if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() * 0.999, mia::v2f(0.5, 0.5));
         // FIXME
 
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) level00.ReloadLevel();
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) level00->ReloadLevel();
 
         mia::_Game().Update();
 

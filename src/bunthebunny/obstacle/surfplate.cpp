@@ -46,8 +46,8 @@ void Surfplate::Update(int massage)
         {
             if (GetRect().overlap(_player.body().GetRect()))
             {
-                // _player.movement().AddStoreSpeed(_additionalSpeed);
-                _player.movement().TranferVelocity(mia::v2f::right() * (_player.movement().GetStoreSpeed() + _player.movement().GetSpeed()));
+                _player.movement().AddTemporaryStoreSpeed(_additionalSpeed);
+                _player.movement().TranferVelocity(mia::v2f::right() * (_player.movement().GetStoreSpeed() + _additionalSpeed + _player.movement().GetSpeed()));
                 _player.movement().RegainDash();
 
                 _active = false;

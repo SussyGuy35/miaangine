@@ -62,6 +62,9 @@ private:
     bool _wallJumpCoyoteLock = false;
     float _wallJumpBufferTimerCount = -1;
     // Dash
+    float _temporaryStoreVelocity = 0;
+    float _decayTemporaryStoreVelocityTime = 0.5;
+    float _decayTemporaryStoreVelocityTimeBound = -1;
     float _dashFinalSpeed = 0;
     float _dashDelayTimeBound = -1;
     float _dashInitTimeBound = -1;
@@ -94,7 +97,7 @@ public:
     void Update();
     void LateUpdate();
 
-    void AddStoreSpeed(float value);
+    void AddTemporaryStoreSpeed(float value);
 
 private:
     void MovingHandle();

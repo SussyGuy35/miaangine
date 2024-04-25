@@ -36,5 +36,5 @@ void PlayerUI::Update()
 {
     float speedValue = _manager.movement().GetStoreSpeed();
 
-    _metterImg->size().y = _maxMeterHeight * (speedValue / _maxMeterValue);
+    _metterImg->size().y = _maxMeterHeight * std::min(1.0, 1.0 * speedValue / _maxMeterValue);
 }

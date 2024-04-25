@@ -54,6 +54,7 @@ void PlayerMovement::Reset()
     _currentVelocity = mia::v2f::zero();
     _desiredVelocity = mia::v2f::zero();
     _storeVelocity = 0;
+    _temporaryStoreVelocity = 0;
     _totalStoreVelocityGainNormalMove = 0;
     _state = FALLING;
 }
@@ -117,6 +118,20 @@ void PlayerMovement::Update()
 
     GravityApply();
 
+    if (_temporaryStoreVelocity >= 0 && mia::_Time().time() > _decayTemporaryStoreVelocityTimeBound)
+    {
+        float step = _temporaryStoreVelocity * 10 * mia::_Time().deltaTime();
+
+        _storeVelocity -= step;
+        _temporaryStoreVelocity -= step;
+
+        if (std::abs(_storeVelocity - _temporaryStoreVelocity) < .01)
+        {
+            _storeVelocity -= _temporaryStoreVelocity;
+            _temporaryStoreVelocity = 0;
+        }
+    }
+
     MovingHandle();
 
     JumpAvailabilityCheck();
@@ -135,9 +150,12 @@ void PlayerMovement::LateUpdate()
 
 }
 
-void PlayerMovement::AddStoreSpeed(float value)
+void PlayerMovement::AddTemporaryStoreSpeed(float value)
 {
     _storeVelocity += value;
+    _temporaryStoreVelocity += value;
+
+    _decayTemporaryStoreVelocityTimeBound = mia::_Time().time() + _decayTemporaryStoreVelocityTime;
     // TODO Add decay time
 }
 
@@ -170,7 +188,7 @@ void PlayerMovement::MovingHandle()
     {
         storeVelocityDelta = std::abs(_desiredVelocity.x) - _totalStoreVelocityGainNormalMove;
     }
-    AddStoreSpeed(storeVelocityDelta);
+    _storeVelocity += storeVelocityDelta;
     _totalStoreVelocityGainNormalMove += storeVelocityDelta;
 }
 

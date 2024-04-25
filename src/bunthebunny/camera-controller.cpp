@@ -1,20 +1,28 @@
 #include "camera-controller.hpp"
 
-CamaraController::CamaraController(Player *player):
+CameraController::CameraController(Player *player):
     _player(player),
+    startPosition(mia::v2f::zero()),
+    startSize(45),
     leftBound(0),
     rightBound(0),
     idealPlayerOffset(0),
     camFollowingBound(0),
-    _smooth(5)
+    smooth(5)
 {
     mia::_Events().RegisterObserver(this);
 }
 
-CamaraController::~CamaraController()
+CameraController::~CameraController()
 {}
 
-void CamaraController::Update(int message)
+void CameraController::Reset()
+{
+    mia::_Camera().position() = startPosition;
+    mia::_Camera().Resize(startSize);
+}
+
+void CameraController::Update(int message)
 {
     if (message == mia::_EVENT_PRIMARY_UPDATE)
     {
@@ -27,7 +35,7 @@ void CamaraController::Update(int message)
         {
             float targetPos = _player->position().x + idealPlayerOffset - mia::_Camera().getCameraWidth() / 2;
 
-            mia::_Camera().position().x = mia::_Camera().position().x + (targetPos - mia::_Camera().position().x) * _smooth * mia::_Time().deltaTime();
+            mia::_Camera().position().x = mia::_Camera().position().x + (targetPos - mia::_Camera().position().x) * smooth * mia::_Time().deltaTime();
 
             if (std::abs(targetPos - mia::_Camera().position().x) < 0.05) _following = false;
         }

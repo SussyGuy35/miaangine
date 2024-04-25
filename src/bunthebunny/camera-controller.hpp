@@ -3,26 +3,31 @@
 #include "miaangine.hpp"
 #include "player/player.hpp"
 
-class CamaraController : public mia::Observer
+class CameraController : public mia::Observer
 {
 public:
-    CamaraController(Player *player);
-    ~CamaraController();
+    CameraController(Player *player);
+    ~CameraController();
+
+private:
+    Player *_player;
+
+    bool _following = false;
 
 public:
+    mia::v2f startPosition;
+    float startSize;
+
     float leftBound;
     float rightBound;
 
     float idealPlayerOffset;
     float camFollowingBound;
 
-private:
-    Player *_player;
-
-    float _smooth;
-
-    bool _following = false;
+    float smooth;
 
 public:
+    void Reset();
+
     void Update(int message) override;
 };

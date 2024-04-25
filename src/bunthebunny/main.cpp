@@ -1,14 +1,6 @@
 #include "miaangine.hpp"
 
-#include "box.hpp"
-#include "player/player.hpp"
-#include "ui-main.hpp"
-#include "level.hpp"
-#include "obstacle/spring.hpp"
-#include "obstacle/surfplate.hpp"
-#include "obstacle/spike.hpp"
-#include "particle.hpp"
-#include "camera-controller.hpp"
+#include "game-manager.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -18,43 +10,15 @@ int main(int argc, char* argv[])
 
     // mia::_Audio().Play(mia::_Audio().Insert("D:/SDL/miaangine/asset/ost.wav", -1));
 
-    Player *mainPlayer = new Player(0.0, 0.0);
+    Player *player = new Player(0.0, 0.0);
 
-    Spike *spk = new Spike(mainPlayer, {9, .925 * 6}, 3);
-
-    mia::TilemapPalette *mapPalette = new mia::TilemapPalette();
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 32}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 32}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 32}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 16}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 16}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 16}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 0 }, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 0 }, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 0 }, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({48, 0 }, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 0 }, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
-    mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
-
-    Level *level00 = new Level("D:/SDL/miaangine/asset/map.txt", mapPalette);
-    level00->startPlayerPosition = {0, 5};
-    level00->startCameraPosition = {0, 0};
-    level00->startCameraSize = 45;
-    level00->player = mainPlayer;
-    level00->ActivateMap();
-    level00->ReloadLevel();
-
-    CamaraController *camMan = new CamaraController(mainPlayer);
-    camMan->leftBound = 0;
-    camMan->rightBound = 200;
-    camMan->idealPlayerOffset = 5;
-    camMan->camFollowingBound = 7;
+    GameManager::Instance().Init(player);
+    GameManager::Instance().MakeLevel();
+    GameManager::Instance().LoadLevel(0);
 
     while (true)
     {
-        if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) level00->ReloadLevel();
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) GameManager::Instance().ReloadLevel();
 
         mia::_Game().Update();
 

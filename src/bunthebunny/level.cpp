@@ -1,23 +1,30 @@
 #include "level.hpp"
 
-Level::Level(const char *layoutDir, mia::TilemapPalette *palette):
-    map(mia::Tilemap(layoutDir, palette, {0.925, 0.925}))
+Level::Level(Player *player):
+    camControl(CameraController(player)),
+    player(player)
 {}
 
 Level::~Level()
 {
     DeActivateMap();
+    delete map;
+}
+
+void Level::MakeMap(const char *layoutDir, mia::TilemapPalette *palette)
+{
+    map = new mia::Tilemap(layoutDir, palette, {0.925, 0.925});
 }
 
 void Level::ActivateMap()
 {
-    mia::_Renderer().RegisterTilemap(&map);
-    mia::_Physics().RegisterTilemap(&map);
+    mia::_Renderer().RegisterTilemap(map);
+    mia::_Physics().RegisterTilemap(map);
 }
 void Level::DeActivateMap()
 {
-    mia::_Renderer().UnregisterTilemap(&map);
-    mia::_Physics().UnregisterTilemap(&map);
+    mia::_Renderer().UnregisterTilemap(map);
+    mia::_Physics().UnregisterTilemap(map);
 }
 
 void Level::ReloadLevel()
@@ -35,6 +42,5 @@ void Level::ReloadPlayer()
 
 void Level::ReloadCamera()
 {
-    mia::_Camera().position() = startCameraPosition;
-    mia::_Camera().Resize(startCameraSize);
+    camControl.Reset();
 }

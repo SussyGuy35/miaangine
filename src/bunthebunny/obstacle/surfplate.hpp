@@ -2,18 +2,16 @@
 
 #include "obstacle.hpp"
 
-class Spring : public Obstacle
+class Surfplate : public Obstacle
 {
 public:
-    Spring(Player *player, mia::v2f position = mia::v2f::zero());
-    ~Spring();
+    Surfplate(Player *player, mia::v2f position = mia::v2f::zero());
+    ~Surfplate();
 
 private:
     mia::Portrait *_portrait;
 
     Player &_player;
-    mia::Sprite *_useSprite;
-    mia::Sprite *_unuseSprite;
 
     float _additionalSpeed;
     float _cooldown;

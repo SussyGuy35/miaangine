@@ -1,11 +1,11 @@
-#include "spring.hpp"
+#include "surfplate.hpp"
 
 const float HEIGHT = .5;
 const float WIDTH = .925;
 
-float _cooldownTimerCount = -1;
+float _surfcooldownTimerCount = -1;
 
-Spring::Spring(Player *player, mia::v2f position):
+Surfplate::Surfplate(Player *player, mia::v2f position):
     Obstacle(position),
     _player(*player),
     _portrait(new mia::Portrait(this, nullptr)),
@@ -15,18 +15,15 @@ Spring::Spring(Player *player, mia::v2f position):
     this->position() = position;
 
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/obstacles-16x16.png");
-    _unuseSprite = mia::_SpriteHandler().MakeCut({16*2, 0}, {16, 16});
-    _useSprite = mia::_SpriteHandler().MakeCut({16*2, 16}, {16, 16});
-
-    _portrait->setSprite(_unuseSprite);
+    _portrait->setSprite(mia::_SpriteHandler().MakeCut({16*3, 0}, {16, 16}));
     mia::_Renderer().RegisterPortrait(_portrait);
 
     mia::_Events().RegisterObserver(this);
 }
 
-Spring::~Spring() = default;
+Surfplate::~Surfplate() = default;
 
-mia::rect Spring::GetRect() const 
+mia::rect Surfplate::GetRect() const 
 {
     mia::rect res;
     res.pos = position();
@@ -35,31 +32,26 @@ mia::rect Spring::GetRect() const
     return res;
 }
 
-void Spring::Update(int massage)
+void Surfplate::Update(int massage)
 {
     if (massage == mia::_EVENT_AFTER_PHYSICS_CALCULATION)
     {
         if (!_active)
         {
-            _cooldownTimerCount -= mia::_Time().deltaTime();
+            _surfcooldownTimerCount -= mia::_Time().deltaTime();
 
-            if (_cooldownTimerCount <= 0) 
-            {
-                _active = true;
-                _portrait->setSprite(_unuseSprite);
-            }
+            if (_surfcooldownTimerCount <= 0) _active = true;
         }
         else 
         {
             if (GetRect().overlap(_player.body().GetRect()))
             {
                 // _player.movement().AddStoreSpeed(_additionalSpeed);
-                _player.movement().TranferVelocity(mia::v2f::up() * (_player.movement().GetStoreSpeed() + _player.movement().GetSpeed()));
+                _player.movement().TranferVelocity(mia::v2f::right() * (_player.movement().GetStoreSpeed() + _player.movement().GetSpeed()));
                 _player.movement().RegainDash();
 
-                _portrait->setSprite(_useSprite);
                 _active = false;
-                _cooldownTimerCount = _cooldown;
+                _surfcooldownTimerCount = _cooldown;
             }
         }
     }

@@ -311,7 +311,7 @@ void PlayerMovement::DashHandle()
             _currentVelocity = _lastDashVelocity * _initDashMultiplier;
             _state = DASHING;
 
-            _dashParticle->Play(_manager.position() + mia::v2f::up() * 1);
+            // _dashParticle->Play(_manager.position() + mia::v2f::up() * 1);
 
             _dashDelayTimeBound = -1;
             _dashInitTimeBound = mia::_Time().time() + _initDashDuration;

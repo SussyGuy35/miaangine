@@ -7,6 +7,7 @@
 #include "obstacle/spring.hpp"
 #include "obstacle/surfplate.hpp"
 #include "particle.hpp"
+#include "camera-controller.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -45,16 +46,14 @@ int main(int argc, char* argv[])
     level00->ActivateMap();
     level00->ReloadLevel();
 
+    CamaraController *camMan = new CamaraController(mainPlayer);
+    camMan->leftBound = 0;
+    camMan->rightBound = 200;
+    camMan->idealPlayerOffset = 5;
+    camMan->camFollowingBound = 7;
+
     while (true)
     {
-        if (mia::_Input().getKey(SDL_SCANCODE_W)) mia::_Camera().position().y += 10 * mia::_Time().deltaTime();
-        if (mia::_Input().getKey(SDL_SCANCODE_A)) mia::_Camera().position().x -= 10 * mia::_Time().deltaTime();
-        if (mia::_Input().getKey(SDL_SCANCODE_S)) mia::_Camera().position().y -= 10 * mia::_Time().deltaTime();
-        if (mia::_Input().getKey(SDL_SCANCODE_D)) mia::_Camera().position().x += 10 * mia::_Time().deltaTime();
-        if (mia::_Input().getKey(SDL_SCANCODE_Q)) mia::_Camera().Resize(mia::_Camera().size() * 1.001, mia::v2f(0.5, 0.5));
-        if (mia::_Input().getKey(SDL_SCANCODE_E)) mia::_Camera().Resize(mia::_Camera().size() * 0.999, mia::v2f(0.5, 0.5));
-        // FIXME
-
         if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) level00->ReloadLevel();
 
         mia::_Game().Update();

@@ -6,6 +6,7 @@
 #include "level.hpp"
 #include "obstacle/spring.hpp"
 #include "obstacle/surfplate.hpp"
+#include "obstacle/spike.hpp"
 #include "particle.hpp"
 #include "camera-controller.hpp"
 
@@ -19,8 +20,7 @@ int main(int argc, char* argv[])
 
     Player *mainPlayer = new Player(0.0, 0.0);
 
-    Spring spr = Spring(mainPlayer, {10, 6});
-    Surfplate sup = Surfplate(mainPlayer, {15, .925 *6});
+    Spike *spk = new Spike(mainPlayer, {9, .925 * 6}, 3);
 
     mia::TilemapPalette *mapPalette = new mia::TilemapPalette();
     mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");

@@ -16,6 +16,8 @@ namespace mia
         std::vector<Sprite*> _spriteList;
         int _index;
 
+        bool IsLastFrame();
+        int GetIndex();
         void AddSprite(Sprite *sprite);
         Sprite* GetCurrentSprite();
         Sprite* NextSprite();

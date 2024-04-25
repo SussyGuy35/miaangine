@@ -1,6 +1,11 @@
 #include "player-movement.hpp"
 
 #include "player.hpp"
+#include "particle.hpp"
+
+Particle *_jumpParticle;
+Particle *_dashParticle;
+Particle *_reGDashParticle;
 
 PlayerMovement::PlayerMovement(Player *manager):
     _manager(*manager),
@@ -25,7 +30,11 @@ PlayerMovement::PlayerMovement(Player *manager):
     _lateDashMultiplier(1.75),
 
     _state(FALLING)
-{}
+{
+    _jumpParticle = new Particle("D:/SDL/miaangine/asset/effect-48x48.png", {0, 48}, {48 * 3, 48}, {48, 48});
+    _dashParticle = new Particle("D:/SDL/miaangine/asset/effect-48x48.png", {0, 0}, {48 * 4, 48}, {48, 48});
+    _reGDashParticle = new Particle("D:/SDL/miaangine/asset/effect-48x48.png", {0, 48*2}, {48 * 4, 48}, {48, 48});
+}
 
 PlayerMovement::~PlayerMovement()
 {}
@@ -66,6 +75,11 @@ mia::v2f PlayerMovement::GetDashDirection()
     return _lastDashVelocity.normalize();
 }
 
+void PlayerMovement::RegainDash()
+{
+    _reGDashParticle->Play(_manager.position() + mia::v2f::up() * 1);
+    _canDash = true;
+}
 void PlayerMovement::TranferVelocity(mia::v2f targetVelocity)
 {
     if (targetVelocity.y > 0) _state = JUMPING;
@@ -200,10 +214,21 @@ void PlayerMovement::JumpHandle()
 }
 void PlayerMovement::JumpAvailabilityCheck()
 {
+    if (!_canJump && _isGrounded)
+    {
+        _jumpParticle->Play(_manager.position());
+    }
+
     _canJump = _isGrounded && _state != DASH_PREPARE;
 }
 void PlayerMovement::ExecuteAJump(float force)
 {
+    if (_state == DASHING)
+    {
+        _canDash = false;
+    }
+
+    _jumpParticle->Play(_manager.position());
     _currentVelocity.y = force;
     _state = JUMPING;
 }
@@ -265,6 +290,17 @@ void PlayerMovement::WallJumpAvailabilityCheck()
 
 void PlayerMovement::DashHandle()
 {
+    if (!_canDash)
+    {
+        if (_state != DASH_PREPARE && _state != DASHING && _state != JUMPING)
+        {
+            if (_canJump || _canWallJump)
+            {
+                RegainDash();
+            }
+        }
+    }
+
     if (_state == DASH_PREPARE)
     {
         if (_dashDelayTimeBound > 0 && mia::_Time().time() >= _dashDelayTimeBound)
@@ -274,8 +310,12 @@ void PlayerMovement::DashHandle()
             _currentVelocity = _lastDashVelocity * _initDashMultiplier;
             _state = DASHING;
 
+            _dashParticle->Play(_manager.position() + mia::v2f::up() * 1);
+
             _dashDelayTimeBound = -1;
             _dashInitTimeBound = mia::_Time().time() + _initDashDuration;
+
+            _canDash = false;
         }
 
         return;
@@ -294,13 +334,33 @@ void PlayerMovement::DashHandle()
         return;
     }
 
-    if (_dashInput && _storeVelocity > _dashVelocityThreshhold)
+    if (_dashInput)
+    {
+        if (_canDash && _storeVelocity > _dashVelocityThreshhold)
+        {
+            _state = DASH_PREPARE;
+            _dashFinalSpeed = std::max(_storeVelocity, std::abs(_currentVelocity.x) / _lateDashMultiplier);
+            _currentVelocity = mia::v2f::zero();
+
+            _dashDelayTimeBound = mia::_Time().time() + _dashDelay;
+        }
+        else 
+        {
+            _dashBufferTimerCount = _jumpBufferTime;
+        }
+    } 
+
+    if (_dashBufferTimerCount >= 0) _dashBufferTimerCount -= mia::_Time().deltaTime();
+    if (_canDash && _storeVelocity > _dashVelocityThreshhold && _dashBufferTimerCount >= 0)
     {
         _state = DASH_PREPARE;
-        _dashFinalSpeed = std::max(_storeVelocity * 1.0, _currentVelocity.magnitude() * 0.5);
+        _dashFinalSpeed = std::max(_storeVelocity, std::abs(_currentVelocity.x) / _lateDashMultiplier);
         _currentVelocity = mia::v2f::zero();
 
         _dashDelayTimeBound = mia::_Time().time() + _dashDelay;
+        _canDash = false;
+
+        _dashBufferTimerCount = -1;
     }
 }
 

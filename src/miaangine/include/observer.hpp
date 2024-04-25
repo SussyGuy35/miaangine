@@ -6,8 +6,6 @@ namespace mia
     class Observer
     {
     public:
-        virtual ~Observer() {}
-
         virtual void Update(int message) = 0;
     };
 }

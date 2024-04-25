@@ -46,6 +46,7 @@ private:
     bool _canJump = false;
     bool _canWallJump;
     float _storeVelocity = 0;
+    bool _canDash = false;
 
     int _directionInput = 0;
     bool _jumpInput = false;
@@ -65,6 +66,7 @@ private:
     float _dashDelayTimeBound = -1;
     float _dashInitTimeBound = -1;
     mia::v2f _lastDashVelocity = mia::v2f::zero();
+    float _dashBufferTimerCount =-1;
     // Store velocity
     float _totalStoreVelocityGainNormalMove = false;
 
@@ -84,6 +86,7 @@ public:
     int GetMoveDirection();
     mia::v2f GetDashDirection();
 
+    void RegainDash();
     void TranferVelocity(mia::v2f targetVelocity);
 
     void SetInput(int horizontalInput, int verticalInput, bool jumpInput, bool dashInput);

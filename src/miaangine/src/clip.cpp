@@ -12,6 +12,14 @@ namespace mia
     Clip::~Clip()
     {}
 
+    bool Clip::IsLastFrame()
+    {
+        return _index == _spriteList.size() - 1;
+    }
+    int Clip::GetIndex()
+    {
+        return _index;
+    }
     void Clip::AddSprite(Sprite *sprite)
     {
         _spriteList.push_back(sprite);

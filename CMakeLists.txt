@@ -4,12 +4,11 @@ project(BunTheBunny)
 
 set(CMAKE_CXX_STANDARD 14)
 
-# TAG
-# if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-#     add_compile_options(-Wall -Wextra)
-# else()
-#     add_compile_options(-w)
-# endif()
+if (WIN32)
+    set(SUBSYSTEM_LINKER_OPTIONS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
+else()
+    set(SUBSYSTEM_LINKER_OPTIONS "-mwindows")
+endif()
 
 # SDL
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/vendor")

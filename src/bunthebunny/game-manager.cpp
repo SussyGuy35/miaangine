@@ -50,7 +50,7 @@ void GameManager::MakeLevel(const char *dir)
 
     if (!input.is_open()) 
     {
-        printf("No source for GameManager");
+        SDL_Log("No source for GameManager");
         return;
     }
 
@@ -114,7 +114,6 @@ void GameManager::MakeLevel(const char *dir)
     input >> level->camControl.rightBound;
     input >> level->camControl.idealPlayerOffset;
     input >> level->camControl.camFollowingBound;
-
 }
 
 void GameManager::LoadMainMenu()
@@ -146,8 +145,15 @@ void GameManager::LoadLevel(int index)
     }
     else 
     {
-        if (_currentLevel > 0 && _currentLevel < levelList.size()) levelList[_currentLevel]->DeActivateMap();
-
+        if (_currentLevel > 0 && _currentLevel < levelList.size()) 
+        {
+            levelList[_currentLevel]->DeActivateMap();
+        }
+        if (_currentLevel < 0) 
+        {
+            mainMenu->DeActivate();
+        }
+        
         level.ActivateMap();
         level.ReloadLevel();
     }

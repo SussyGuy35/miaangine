@@ -18,6 +18,7 @@ namespace mia
         bool _keysUpState[SDL_NUM_SCANCODES];
 
         v2f _mousePos;
+        bool _mouseDown;
 
         bool _isQuit;
 
@@ -29,6 +30,7 @@ namespace mia
         bool getKeyUp(int key) const;
 
         v2f getMousePosition() const;
+        bool getMouseButtonDown() const;
 
         bool isQuit() const;
 

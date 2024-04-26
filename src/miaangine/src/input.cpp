@@ -8,6 +8,7 @@ namespace mia
         _keysDownState{false},
         _keysUpState{false},
         _mousePos(v2f::zero()),
+        _mouseDown(false),
         _isQuit(false)
     {}
 
@@ -20,6 +21,7 @@ namespace mia
     {
         memset(_keysDownState, 0, SDL_NUM_SCANCODES);
 		memset(_keysUpState, 0, SDL_NUM_SCANCODES);
+        _mouseDown = false;
 
         SDL_Event event;
 		while (SDL_PollEvent(&event))
@@ -35,6 +37,11 @@ namespace mia
                 SDL_GetMouseState(&x, &y);
 
                 _mousePos = v2f(x, y);
+            }
+
+            if (event.type == SDL_MOUSEBUTTONDOWN)
+            {
+                _mouseDown = true;
             }
 
             if (event.type == SDL_KEYUP || event.type == SDL_KEYDOWN)
@@ -59,6 +66,10 @@ namespace mia
     v2f Input::getMousePosition() const
     {
         return _mousePos;
+    }
+    bool Input::getMouseButtonDown() const
+    {
+        return _mouseDown;
     }
     bool Input::isQuit() const 
     {

@@ -11,6 +11,10 @@ public:
 private:
     mia::Image *_image;
 
+    mia::rect rect00;
+    mia::rect rect01;
+    mia::rect rect02;
+
 public:
     void Activate();
     void DeActivate();

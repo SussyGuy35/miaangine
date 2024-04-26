@@ -57,7 +57,7 @@ namespace mia
         if (SDL_QueryTexture(_texture, NULL, NULL, NULL, NULL) != 0)
         {
             // TODO safety
-            printf("Wrong source you moron\n");
+            SDL_Log("Wrong source you moron clip\n");
             return 0;
         }
 

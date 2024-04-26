@@ -34,7 +34,7 @@ void Enddoor::Update(int massage)
         if (GetRect().overlap(_player.body().GetRect()))
         {
             mia::_Audio().Play(5);
-            GameManager::Instance().ReloadLevel();
+            GameManager::Instance().LoadMainMenu();
         }
     }
 }

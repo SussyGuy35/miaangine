@@ -8,10 +8,11 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    Player *player = new Player(0.0, 0.0);
+    Player *player = new Player(-1000, 1000);
 
     GameManager::Instance().Init(player);
     GameManager::Instance().MakeLevel("./../asset/level00.txt");
+    GameManager::Instance().LoadLevel(0);
     GameManager::Instance().LoadMainMenu();
 
     while (true)
@@ -20,7 +21,7 @@ int main(int argc, char* argv[])
 
         mia::_Game().Update();
 
-        // printf("%f %f\n", player->position().x, player->position().y);
+        // SDL_Log("%f %f\n", player->position().x, player->position().y);
 
         if (mia::_Input().isQuit()) break;
 

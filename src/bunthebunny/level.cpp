@@ -4,7 +4,7 @@ Level::Level(Player *player):
     camControl(CameraController(player)),
     player(player)
 {
-    enddoor = new Enddoor(player, {0, 0});
+    enddoor = new Enddoor(player, {-100, -100});
 }
 
 Level::~Level()

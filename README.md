@@ -27,7 +27,7 @@
 - [Source](#source)
 
 ## Demo
-- Demo: [https://drive.google.com/file/d/1I0z_A9C7AnCDxg_k7nUf-NUrVHoCafYY/view?usp=drive_link](https://drive.google.com/file/d/1I0z_A9C7AnCDxg_k7nUf-NUrVHoCafYY/view?usp=drive_link)
+- Demo: [https://drive.google.com/file/d/1uVFAW6RbYmwjxG1NOEa0GxsbpG5UAtMT/view?usp=sharing](https://drive.google.com/file/d/1uVFAW6RbYmwjxG1NOEa0GxsbpG5UAtMT/view?usp=sharing)
 
 ## Disclaimer
 I already done this game demo ([here](https://krakra.itch.io/bunthebunny)) using Unity, so this is a port to SDL C++.

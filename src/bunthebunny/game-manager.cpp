@@ -63,15 +63,25 @@ void GameManager::MakeLevel(const char *dir)
         level->AddObstacle(spring);
     }
 
-    // input >> obstacleCount;
-    // for (int i = 0; i < obstacleCount; i++)
-    // {
-    //     int x, y;
-    //     input >> x >> y;
+    input >> obstacleCount;
+    for (int i = 0; i < obstacleCount; i++)
+    {
+        int x, y;
+        input >> x >> y;
 
-    //     Surfplate *spring = new Surfplate(player, {float(x * .925), float(y * .925)});
-    //     level->AddObstacle(spring);
-    // }
+        Surfplate *surf = new Surfplate(player, {float(x * .925), float(y * .925)});
+        level->AddObstacle(surf);
+    }
+
+    input >> obstacleCount;
+    for (int i = 0; i < obstacleCount; i++)
+    {
+        int x, y, c;
+        input >> x >> y >> c;
+
+        UpSpike *spike = new UpSpike(player, {float(x * .925), float(y * .925)}, c);
+        level->AddObstacle(spike);
+    }
 
     input >> level->startPlayerPosition.x >> level->startPlayerPosition.y;
 
@@ -112,5 +122,8 @@ void GameManager::ReloadLevel()
 
 void GameManager::Update(int message)
 {
-
+    if (message == mia::_EVENT_AFTER_PHYSICS_CALCULATION)
+    {
+        if (player->position().y < -10) ReloadLevel();
+    }
 }

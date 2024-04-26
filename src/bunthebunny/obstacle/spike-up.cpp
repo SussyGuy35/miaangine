@@ -1,5 +1,7 @@
 #include "spike-up.hpp"
 
+#include "game-manager.hpp"
+
 const float HEIGHT = .1;
 const float WIDTH = .925;
 
@@ -41,7 +43,7 @@ void UpSpike::Update(int massage)
     {
         if (GetRect().overlap(_player.body().GetRect()))
         {
-            // TODO
+            GameManager::Instance().ReloadLevel();
         }
     }
 }

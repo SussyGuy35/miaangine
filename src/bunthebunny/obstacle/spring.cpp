@@ -15,8 +15,8 @@ Spring::Spring(Player *player, mia::v2f position):
     this->position() = position;
 
     mia::_SpriteHandler().SetSource("./../asset/obstacles-16x16.png");
-    _unuseSprite = mia::_SpriteHandler().MakeCut({16*2, 0}, {16, 16});
-    _useSprite = mia::_SpriteHandler().MakeCut({16*2, 16}, {16, 16});
+    _unuseSprite = mia::_SpriteHandler().MakeCut({16*3, 0}, {16, 16});
+    _useSprite = mia::_SpriteHandler().MakeCut({16*4, 0}, {16, 16});
 
     _portrait->setSprite(_unuseSprite);
     mia::_Renderer().RegisterPortrait(_portrait);

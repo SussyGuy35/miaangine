@@ -50,7 +50,7 @@ private:
 
     int _directionInput = 0;
     bool _jumpInput = false;
-    mia::v2f _dashDirectionInput = mia::v2f::zero();
+    mia::v2f _dashDirectionInput = mia::v2f::right();
     bool _dashInput = false;
 
     // Jump help

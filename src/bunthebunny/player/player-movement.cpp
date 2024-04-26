@@ -23,7 +23,7 @@ PlayerMovement::PlayerMovement(Player *manager):
     _coyoteTime(0.08),
     _jumpBufferTime(0.12),
 
-    _dashVelocityThreshhold(3),
+    _dashVelocityThreshhold(5),
     _dashDelay(.025),
     _initDashDuration(.2),
     _initDashMultiplier(2.5),
@@ -133,6 +133,18 @@ void PlayerMovement::Update()
             _temporaryStoreVelocity = 0;
         }
     }
+
+    if (!_canDash)
+    {
+        if (_state != DASH_PREPARE && _state != DASHING && _state != JUMPING)
+        {
+            if (_isGrounded)
+            {
+                RegainDash();
+            }
+        }
+    }
+
 
     MovingHandle();
 
@@ -249,7 +261,7 @@ void PlayerMovement::ExecuteAJump(float force)
         _canDash = false;
     }
 
-    RegainDash();
+    // RegainDash();
 
     mia::_Audio().Play(2);
     _jumpParticle->Play(_manager.position());
@@ -321,7 +333,7 @@ void PlayerMovement::DashHandle()
     {
         if (_state != DASH_PREPARE && _state != DASHING && _state != JUMPING)
         {
-            if (_canJump || _canWallJump)
+            if (_isGrounded)
             {
                 RegainDash();
             }
@@ -364,10 +376,11 @@ void PlayerMovement::DashHandle()
 
     if (_dashInput)
     {
-        if (_canDash && _storeVelocity > _dashVelocityThreshhold)
+        if (_canDash)
         {
             _state = DASH_PREPARE;
             _dashFinalSpeed = std::max(_storeVelocity, std::abs(_currentVelocity.x) / _lateDashMultiplier);
+            if (_dashFinalSpeed < _dashVelocityThreshhold) _dashFinalSpeed = _dashVelocityThreshhold;
             _currentVelocity = mia::v2f::zero();
 
             _dashDelayTimeBound = mia::_Time().time() + _dashDelay;

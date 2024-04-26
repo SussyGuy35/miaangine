@@ -5,6 +5,7 @@
 
 #include "portrait.hpp"
 #include "image.hpp"
+#include "text.hpp"
 #include "tilemap.hpp"
 
 namespace mia
@@ -19,17 +20,25 @@ namespace mia
     private:
         std::vector<Portrait*> _portraitsList;
         std::vector<Image*> _imagesList;
+        std::vector<Text*> _textsList;
         std::vector<Tilemap*> _tilemapsList;
         std::vector<std::pair<rect, SDL_Color>> _debugRectList;
+
+        TTF_Font* _font;
 
         bool _renderBodies;
 
     public:
+        void SetFont(const char *dir, int size);
+
         void RegisterPortrait(Portrait *portrait);
         void UnregisterPortrait(Portrait *portrait);
 
         void RegisterImage(Image *image);
         void UnregisterImage(Image *image);
+
+        void RegisterText(Text *text);
+        void UnregisterText(Text *text);
 
         void RegisterTilemap(Tilemap *tilemap);
         void UnregisterTilemap(Tilemap *tilemap);
@@ -43,6 +52,7 @@ namespace mia
     private:
         void RenderPortraits(SDL_Renderer *renderer);
         void RenderImages(SDL_Renderer *renderer);
+        void RenderTexts(SDL_Renderer *renderer);
         void RenderTilemaps(SDL_Renderer *renderer);
         void RenderBodyRects(SDL_Renderer *renderer);
         

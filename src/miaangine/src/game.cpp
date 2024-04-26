@@ -55,6 +55,8 @@ namespace mia
             return -1;
         }
 
+        TTF_Init();
+
         if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
         {
             SDL_Quit();
@@ -72,6 +74,7 @@ namespace mia
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(renderer);
         IMG_Quit();
+        TTF_Quit();
         Mix_Quit();
         SDL_Quit();
     }

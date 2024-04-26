@@ -68,6 +68,15 @@ namespace mia
 
         return *_image;
     }
+    const Text& UI::text() const
+    {
+        if (!_text) 
+        {
+            // FIXME
+        }
+
+        return *_text;
+    }
 
     string& UI::name()
     {
@@ -89,6 +98,15 @@ namespace mia
         }
 
         return *_image;
+    }
+    Text& UI::text() 
+    {
+        if (!_text) 
+        {
+            // FIXME
+        }
+
+        return *_text;
     }
 #pragma endregion
 
@@ -113,6 +131,12 @@ namespace mia
     {
         _image = image;
     }
+
+    Text& UI::SetText(Text *text)
+    {
+        _text = text;
+    }
+
 #pragma endregion
 
 #pragma region Inherited method

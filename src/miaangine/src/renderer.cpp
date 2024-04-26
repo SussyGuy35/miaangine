@@ -9,7 +9,8 @@ namespace mia
 #pragma region Constructor Destructor
     Renderer::Renderer():
         _portraitsList(std::vector<Portrait*>()),
-        _debugRectList(std::vector<std::pair<rect, SDL_Color>>())
+        _debugRectList(std::vector<std::pair<rect, SDL_Color>>()),
+        _font(NULL)
     {}
 
     Renderer::~Renderer()
@@ -17,6 +18,11 @@ namespace mia
 #pragma endregion
 
 #pragma region Public method
+    void Renderer::SetFont(const char *dir, int size)
+    {
+        _font = TTF_OpenFont(dir, size);
+    }
+
     void Renderer::RegisterPortrait(Portrait *portrait)
     {
         _portraitsList.push_back(portrait);
@@ -45,6 +51,20 @@ namespace mia
         }
     }
 
+    void Renderer::RegisterText(Text *text)
+    {
+        _textsList.push_back(text);
+    }
+    void Renderer::UnregisterText(Text *text)
+    {
+        auto textIterator = std::find(_textsList.begin(), _textsList.end(), text);
+
+        if (textIterator != _textsList.end())
+        {
+            _textsList.erase(textIterator);
+        }
+    }
+
     void Renderer::RegisterTilemap(Tilemap *tilemap)
     {
         _tilemapsList.push_back(tilemap);
@@ -61,7 +81,7 @@ namespace mia
 
     void Renderer::Render(SDL_Renderer *renderer)
     {
-        SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+        SDL_SetRenderDrawColor(renderer, 239, 235, 223, 255);
         SDL_RenderClear(renderer);
 
         RenderTilemaps(renderer);
@@ -71,6 +91,7 @@ namespace mia
         if (_renderBodies) RenderBodyRects(renderer);
 
         RenderImages(renderer);
+        RenderTexts(renderer);
 
         SDL_RenderPresent(renderer);
     }
@@ -131,6 +152,27 @@ namespace mia
             SDL_Rect srcrect = { sprite.pos.x, sprite.pos.y, sprite.siz.x, sprite.siz.y };
 
             SDL_RenderCopy(renderer, texture, &srcrect, &dstrect);
+        }
+    }
+    void Renderer::RenderTexts(SDL_Renderer *renderer)
+    {
+        for (Text *text : _textsList)
+        {
+            SDL_Surface* surface = TTF_RenderText_Solid(_font, text->content(), {56, 23, 1, 255});
+            SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+            SDL_FreeSurface(surface);
+
+            int w, h;
+            if (SDL_QueryTexture(texture, NULL, NULL, &w, &h) != 0)
+            {
+                // TODO Add Error
+                continue;
+            }
+
+            mia::v2f pos = text->GetPos();
+            SDL_Rect destRect = { (int)pos.x, (int)pos.y, w, h };
+
+            SDL_RenderCopy(renderer, texture, NULL, &destRect);
         }
     }
     void Renderer::RenderTilemaps(SDL_Renderer *renderer)

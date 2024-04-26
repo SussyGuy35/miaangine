@@ -8,6 +8,7 @@
 namespace mia 
 {
     class Image;
+    class Text;
 
     class UI : public Entity
     {
@@ -26,6 +27,7 @@ namespace mia
         v2f _offset;
 
         Image *_image;
+        Text *_text;
 
     public:
         string name() const;
@@ -33,17 +35,20 @@ namespace mia
         const v2f& center() const;
         const v2f& offset() const;
         const Image& image() const;
+        const Text& text() const;
 
         string& name();
         v2f& center();
         v2f& offset();
         Image& image();
+        Text& text();
 
         bool IsContainTag(int tag);
         uint32_t AddTag(int tag);
         uint32_t RemoveTag(int tag);
 
         Image& SetImage(Image *image);
+        Text& SetText(Text *text);
 
     public:
         int getID() const override;

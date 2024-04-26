@@ -1,6 +1,7 @@
 #include "miaangine.hpp"
 
 #include "game-manager.hpp"
+#include "startmenu.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -8,15 +9,14 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    mia::_Renderer().SetFont("./../asset/Retro Gaming.ttf", 40);
-
     Player *player = new Player(-1000, 1000);
 
     GameManager::Instance().Init(player, "./../asset/score.txt");
     GameManager::Instance().MakeLevel("./../asset/level00.txt");
     GameManager::Instance().MakeLevel("./../asset/level01.txt");
     GameManager::Instance().MakeLevel("./../asset/level02.txt");
-    GameManager::Instance().LoadMainMenu();
+
+    StartM *startScreen = new StartM();
 
     while (true)
     {

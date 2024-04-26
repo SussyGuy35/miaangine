@@ -20,6 +20,8 @@ void GameManager::Init(Player *player, const char *scoreDir)
     this->player = player,
     _scoreDir = scoreDir;
 
+    mia::_Renderer().SetFont("./../asset/Retro Gaming.ttf", 40);
+
     mainMenu = new MainMenu();
 
     mapPalette = new mia::TilemapPalette();

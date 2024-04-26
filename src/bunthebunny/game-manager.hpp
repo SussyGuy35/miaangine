@@ -15,6 +15,8 @@ private:
 private:
     int _currentLevel = 10000;
 
+    mia::string _scoreDir;
+
 public:
     Player *player;
 
@@ -22,7 +24,10 @@ public:
     mia::TilemapPalette *mapPalette;
     std::vector<Level*> levelList;
 
-    void Init(Player *player);
+    void Init(Player *player, const char *scoreDir);
+
+    float GetScore(int index);
+    void SetScore(int index, float value);
 
     void MakeLevel(const char *dir);
 

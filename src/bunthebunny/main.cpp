@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 
     Player *player = new Player(-1000, 1000);
 
-    GameManager::Instance().Init(player);
+    GameManager::Instance().Init(player, "./../asset/score.txt");
     GameManager::Instance().MakeLevel("./../asset/level00.txt");
     GameManager::Instance().LoadLevel(0);
     GameManager::Instance().LoadMainMenu();

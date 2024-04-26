@@ -2,6 +2,10 @@
 
 #include "game-manager.hpp"
 
+#include <iomanip>
+#include <sstream>
+#include <string>
+
 MainMenu::MainMenu():
     UI(0, 0),
     _image(new mia::Image(this, nullptr)),
@@ -28,6 +32,10 @@ void MainMenu::Activate()
 {
     mia::_Renderer().RegisterImage(_image);
     mia::_Events().RegisterObserver(this);
+
+    text00->text().content() = SecondsToTimer(GameManager::Instance().GetScore(0)).c_str();
+    text01->text().content() = SecondsToTimer(GameManager::Instance().GetScore(1)).c_str();
+    text02->text().content() = SecondsToTimer(GameManager::Instance().GetScore(2)).c_str();
 
     mia::_Renderer().RegisterText(&text00->text());
     mia::_Renderer().RegisterText(&text01->text());
@@ -65,4 +73,20 @@ void MainMenu::Update(int message)
             }
         }
     }
+}
+
+std::string MainMenu::SecondsToTimer(float value) 
+{
+    int minutes = static_cast<int>(value / 60);
+    value -= minutes * 60;
+    int seconds = static_cast<int>(value);
+    value -= seconds;
+    int ticks = static_cast<int>(value * 100); 
+
+    std::stringstream ss;
+    ss << std::setfill('0') << std::setw(2) << minutes << ":"
+        << std::setw(2) << seconds << ":"
+        << std::setw(2) << ticks;
+
+    return ss.str();
 }

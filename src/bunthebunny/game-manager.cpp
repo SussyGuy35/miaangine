@@ -13,9 +13,10 @@ GameManager::GameManager()
     mia::_Events().RegisterObserver(this);
 }
 
-void GameManager::Init(Player *player)
+void GameManager::Init(Player *player, const char *scoreDir)
 {
     this->player = player,
+    _scoreDir = scoreDir;
 
     mainMenu = new MainMenu();
 
@@ -41,6 +42,46 @@ void GameManager::Init(Player *player)
     mia::_Audio().Insert("./../asset/dash.wav", 3);
     mia::_Audio().Insert("./../asset/buff.wav", 4);
     mia::_Audio().Insert("./../asset/dead.wav", 5);
+
+    SetScore(0, 3599.59);
+    SetScore(1, 3599.59);
+    SetScore(2, 3599.59);
+}
+
+float GameManager::GetScore(int index)
+{
+    std::ifstream input;
+    input.open(_scoreDir.str());
+
+    if (!input.is_open())
+    {
+        SDL_Log("No source for GameManager");
+        return 3599.59;
+    }
+
+    float value = 0;
+    for (int i = 0; i <= index; i++) input >> value;
+
+    input.close();
+
+    return value;
+}
+void GameManager::SetScore(int index, float value)
+{
+    float newscore[3] {0,0,0};
+
+    std::ifstream input;
+    input.open(_scoreDir.str());
+
+    for (int i = 0; i < 3; i++) input >> newscore[i];
+
+    input.close();
+
+    std::ofstream output(_scoreDir.str(), std::ios::trunc);
+
+    for (int i = 0; i < 3; i++) output << newscore[i] << "\n";
+
+    output.close();
 }
 
 void GameManager::MakeLevel(const char *dir)
@@ -114,6 +155,8 @@ void GameManager::MakeLevel(const char *dir)
     input >> level->camControl.rightBound;
     input >> level->camControl.idealPlayerOffset;
     input >> level->camControl.camFollowingBound;
+
+    input.close();
 }
 
 void GameManager::LoadMainMenu()

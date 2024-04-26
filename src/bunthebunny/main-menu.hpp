@@ -24,4 +24,6 @@ public:
     void DeActivate();
 
     void Update(int message) override;
+
+    std::string SecondsToTimer(float value);
 };

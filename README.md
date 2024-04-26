@@ -99,7 +99,7 @@ BunTheBunny is a platformer 2D game.
 - Art by [WibuKa](https://github.com/WibuKa)
 - All sound, music by me.
 </br>
-*more clear, WibuKa and I work on the [game](https://krakra.itch.io/bunthebunny) for a GameJam, the art asset made by WibuKa on that project and in this project, i modified it a bit and the music once was made by other but I made the music for this project*
+more clear, WibuKa and I work on the ([game](https://krakra.itch.io/bunthebunny)) for a GameJam, the art asset made by WibuKa on that project and in this project, i modified it a bit and the music once was made by other but I made the music for this project.
 
 ------------
 

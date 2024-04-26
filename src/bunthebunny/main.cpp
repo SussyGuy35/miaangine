@@ -14,7 +14,8 @@ int main(int argc, char* argv[])
 
     GameManager::Instance().Init(player, "./../asset/score.txt");
     GameManager::Instance().MakeLevel("./../asset/level00.txt");
-    GameManager::Instance().LoadLevel(0);
+    GameManager::Instance().MakeLevel("./../asset/level00.txt");
+    GameManager::Instance().MakeLevel("./../asset/level00.txt");
     GameManager::Instance().LoadMainMenu();
 
     while (true)

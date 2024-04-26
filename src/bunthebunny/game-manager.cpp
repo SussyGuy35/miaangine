@@ -167,7 +167,11 @@ void GameManager::LoadMainMenu()
 {
     if (_currentLevel < 0) return;
 
-    if (_currentLevel > 0 && _currentLevel < levelList.size()) levelList[_currentLevel]->DeActivateAll();
+    if (_currentLevel > 0 && _currentLevel < levelList.size()) 
+    {
+        levelList[_currentLevel]->DeActivateAll();
+    }
+    player->DeActivate();
 
     mainMenu->Activate();
 

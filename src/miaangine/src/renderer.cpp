@@ -25,6 +25,10 @@ namespace mia
 
     void Renderer::RegisterPortrait(Portrait *portrait)
     {
+        auto portraitIterator = std::find(_portraitsList.begin(), _portraitsList.end(), portrait);
+
+        if (portraitIterator != _portraitsList.end()) return;
+
         _portraitsList.push_back(portrait);
     }
     void Renderer::UnregisterPortrait(Portrait *portrait)
@@ -39,6 +43,10 @@ namespace mia
 
     void Renderer::RegisterImage(Image *image)
     {
+        auto imageIterator = std::find(_imagesList.begin(), _imagesList.end(), image);
+
+        if (imageIterator != _imagesList.end()) return;
+
         _imagesList.push_back(image);
     }
     void Renderer::UnregisterImage(Image *image)
@@ -53,6 +61,10 @@ namespace mia
 
     void Renderer::RegisterText(Text *text)
     {
+        auto textIterator = std::find(_textsList.begin(), _textsList.end(), text);
+
+        if (textIterator != _textsList.end()) return;
+
         _textsList.push_back(text);
     }
     void Renderer::UnregisterText(Text *text)
@@ -67,6 +79,10 @@ namespace mia
 
     void Renderer::RegisterTilemap(Tilemap *tilemap)
     {
+        auto tilemapIterator = std::find(_tilemapsList.begin(), _tilemapsList.end(), tilemap);
+
+        if (tilemapIterator != _tilemapsList.end()) return;
+
         _tilemapsList.push_back(tilemap);
     }
     void Renderer::UnregisterTilemap(Tilemap *tilemap)
@@ -113,6 +129,7 @@ namespace mia
         for (Portrait *portrait : _portraitsList)
         {
             const Sprite &sprite = portrait->sprite();
+            if (&sprite == nullptr) continue;
             SDL_Texture *texture = sprite.tex;
 
             if (SDL_QueryTexture(texture, NULL, NULL, NULL, NULL) != 0)

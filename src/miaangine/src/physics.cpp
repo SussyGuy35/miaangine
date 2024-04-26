@@ -22,6 +22,9 @@ namespace mia
 #pragma region Public method
     void Physics::RegisterBody(Body *body)
     {
+        auto bodyIterator = std::find(_bodiesList.begin(), _bodiesList.end(), body);
+        if (bodyIterator != _bodiesList.end()) return;
+
         _bodiesList.push_back(body);
         if (body->getType() == _BODY_STATIC) _staticRectList.push_back(body->GetRect());
     }

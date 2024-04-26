@@ -65,11 +65,11 @@ void MainMenu::Update(int message)
             }
             if (rect01.contain(mousePos))
             {
-
+                GameManager::Instance().LoadLevel(1);
             }
             if (rect02.contain(mousePos))
             {
-
+                GameManager::Instance().LoadLevel(2);
             }
         }
     }

@@ -83,6 +83,8 @@ void Player::Activate()
 
     _ui->Activate();
 
+    mia::_Renderer().UnregisterPortrait(_portrait);
+    mia::_Physics().UnregisterBody(_body);
     mia::_Renderer().RegisterPortrait(_portrait);
     mia::_Physics().RegisterBody(_body);
 }

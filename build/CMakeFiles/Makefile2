@@ -62,7 +62,7 @@ CMAKE_BINARY_DIR = D:\SDL\miaangine\build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/m.dir/all
+all: CMakeFiles/BunTheBunny.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -70,34 +70,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/m.dir/clean
+clean: CMakeFiles/BunTheBunny.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/m.dir
+# Target rules for target CMakeFiles/BunTheBunny.dir
 
 # All Build rule for target.
-CMakeFiles/m.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\m.dir\build.make CMakeFiles/m.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\m.dir\build.make CMakeFiles/m.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\SDL\miaangine\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32 "Built target m"
-.PHONY : CMakeFiles/m.dir/all
+CMakeFiles/BunTheBunny.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BunTheBunny.dir\build.make CMakeFiles/BunTheBunny.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BunTheBunny.dir\build.make CMakeFiles/BunTheBunny.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\SDL\miaangine\build\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32 "Built target BunTheBunny"
+.PHONY : CMakeFiles/BunTheBunny.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/m.dir/rule: cmake_check_build_system
+CMakeFiles/BunTheBunny.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\SDL\miaangine\build\CMakeFiles 32
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/m.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/BunTheBunny.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\SDL\miaangine\build\CMakeFiles 0
-.PHONY : CMakeFiles/m.dir/rule
+.PHONY : CMakeFiles/BunTheBunny.dir/rule
 
 # Convenience name for target.
-m : CMakeFiles/m.dir/rule
-.PHONY : m
+BunTheBunny: CMakeFiles/BunTheBunny.dir/rule
+.PHONY : BunTheBunny
 
 # clean rule for target.
-CMakeFiles/m.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\m.dir\build.make CMakeFiles/m.dir/clean
-.PHONY : CMakeFiles/m.dir/clean
+CMakeFiles/BunTheBunny.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\BunTheBunny.dir\build.make CMakeFiles/BunTheBunny.dir/clean
+.PHONY : CMakeFiles/BunTheBunny.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

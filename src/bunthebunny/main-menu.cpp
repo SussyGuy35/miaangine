@@ -12,9 +12,9 @@ MainMenu::MainMenu():
     rect00(mia::rect({164.92, 130.2}, {260.4, 195.3})),
     rect01(mia::rect({601.38, 130.2}, {260.4, 195.3})),
     rect02(mia::rect({1024.92, 130.2}, {260.4, 195.3})),
-    text00(new mia::UI({0, 0}, {164.92  + 10, 130.2 + 195.3 + 40})),
-    text01(new mia::UI({0, 0}, {601.38  + 10, 130.2 + 195.3 + 40})),
-    text02(new mia::UI({0, 0}, {1024.92 + 10, 130.2 + 195.3 + 40}))
+    text00(new mia::UI({0, 0}, {164.92  + 35, 130.2 + 195.3 + 40})),
+    text01(new mia::UI({0, 0}, {601.38  + 35, 130.2 + 195.3 + 40})),
+    text02(new mia::UI({0, 0}, {1024.92 + 35, 130.2 + 195.3 + 40}))
 {
     mia::_SpriteHandler().SetSource("./../asset/menu.png");
     _image->setSprite(mia::_SpriteHandler().MakeCut({0, 0}, {630, 270}));

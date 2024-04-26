@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    mia::_Renderer().SetFont("./../asset/Retro Gaming.ttf", 50);
+    mia::_Renderer().SetFont("./../asset/Retro Gaming.ttf", 40);
 
     Player *player = new Player(-1000, 1000);
 

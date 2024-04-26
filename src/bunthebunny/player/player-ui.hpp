@@ -18,6 +18,8 @@ private:
     mia::UI *_meter;
     mia::Image *_metterImg;
 
+    mia::UI *_timer;
+
     float _maxMeterHeight;
     float _maxMeterValue;
 

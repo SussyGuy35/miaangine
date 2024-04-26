@@ -24,7 +24,11 @@ public:
     mia::TilemapPalette *mapPalette;
     std::vector<Level*> levelList;
 
+    float timer;
+
     void Init(Player *player, const char *scoreDir);
+
+    int GetCurrentLevel();
 
     float GetScore(int index);
     void SetScore(int index, float value);
@@ -36,6 +40,10 @@ public:
 
     void LoadLevel(int index);
     void ReloadLevel();
+
+    void RegisterTimeScore(int index);
+
+    std::string SecondsToTimer(float value);
 
     void Update(int message) override;
 }; 

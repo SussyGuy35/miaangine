@@ -7,6 +7,8 @@
 
 #include <fstream>
 #include <string>
+#include <iomanip>
+#include <sstream>
 
 GameManager::GameManager()
 {
@@ -42,10 +44,11 @@ void GameManager::Init(Player *player, const char *scoreDir)
     mia::_Audio().Insert("./../asset/dash.wav", 3);
     mia::_Audio().Insert("./../asset/buff.wav", 4);
     mia::_Audio().Insert("./../asset/dead.wav", 5);
+}
 
-    SetScore(0, 3599.59);
-    SetScore(1, 3599.59);
-    SetScore(2, 3599.59);
+int GameManager::GetCurrentLevel()
+{
+    return _currentLevel;
 }
 
 float GameManager::GetScore(int index)
@@ -74,8 +77,9 @@ void GameManager::SetScore(int index, float value)
     input.open(_scoreDir.str());
 
     for (int i = 0; i < 3; i++) input >> newscore[i];
-
     input.close();
+
+    newscore[index] = value;
 
     std::ofstream output(_scoreDir.str(), std::ios::trunc);
 
@@ -199,6 +203,7 @@ void GameManager::LoadLevel(int index)
         
         level.ActivateMap();
         level.ReloadLevel();
+        timer = 0;
     }
 
     _currentLevel = index;
@@ -209,6 +214,7 @@ void GameManager::ReloadLevel()
     if (_currentLevel < 0 || _currentLevel >= levelList.size()) return;
     
     levelList[_currentLevel]->ReloadLevel();
+    timer = 0;
 }
 
 void GameManager::Update(int message)
@@ -216,5 +222,32 @@ void GameManager::Update(int message)
     if (message == mia::_EVENT_AFTER_PHYSICS_CALCULATION)
     {
         if (player->position().y < -10) ReloadLevel();
+
+        timer += mia::_Time().deltaTime();
     }
+}
+
+void GameManager::RegisterTimeScore(int index)
+{
+    if (timer < GetScore(index))
+    {
+        SetScore(index, timer);
+    }
+    timer = 0;
+}
+
+std::string GameManager::SecondsToTimer(float value) 
+{
+    int minutes = static_cast<int>(value / 60);
+    value -= minutes * 60;
+    int seconds = static_cast<int>(value);
+    value -= seconds;
+    int ticks = static_cast<int>(value * 100); 
+
+    std::stringstream ss;
+    ss << std::setfill('0') << std::setw(2) << minutes << ":"
+        << std::setw(2) << seconds << ":"
+        << std::setw(2) << ticks;
+
+    return ss.str();
 }

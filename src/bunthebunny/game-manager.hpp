@@ -22,7 +22,7 @@ public:
 
     void Init(Player *player);
 
-    void MakeLevel();
+    void MakeLevel(const char *dir);
 
     void LoadLevel(int index);
     void ReloadLevel();

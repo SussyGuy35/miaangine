@@ -31,9 +31,9 @@ PlayerMovement::PlayerMovement(Player *manager):
 
     _state(FALLING)
 {
-    _jumpParticle = new Particle("D:/SDL/miaangine/asset/effect-48x48.png", {0, 48}, {48 * 3, 48}, {48, 48});
-    _dashParticle = new Particle("D:/SDL/miaangine/asset/effect-48x48.png", {0, 0}, {48 * 4, 48}, {48, 48});
-    _reGDashParticle = new Particle("D:/SDL/miaangine/asset/effect-48x48.png", {0, 48*2}, {48 * 4, 48}, {48, 48});
+    _jumpParticle = new Particle("./../asset/effect-48x48.png", {0, 48}, {48 * 3, 48}, {48, 48});
+    _dashParticle = new Particle("./../asset/effect-48x48.png", {0, 0}, {48 * 4, 48}, {48, 48});
+    _reGDashParticle = new Particle("./../asset/effect-48x48.png", {0, 48*2}, {48 * 4, 48}, {48, 48});
 }
 
 PlayerMovement::~PlayerMovement()

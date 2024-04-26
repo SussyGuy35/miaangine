@@ -11,7 +11,7 @@ PlayerUI::PlayerUI(Player *manager):
     _maxMeterHeight(170),
     _maxMeterValue(30)
 {
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/blank.png");
+    mia::_SpriteHandler().SetSource("./../asset/blank.png");
     _metterImg->setSprite(mia::_SpriteHandler().MakeCut({0, 0}, {10, 10}));
     _metterImg->pivot() = {1, 1};
     _metterImg->offset() = {-35, -35};

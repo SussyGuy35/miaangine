@@ -14,7 +14,7 @@ Spring::Spring(Player *player, mia::v2f position):
 {
     this->position() = position;
 
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/obstacles-16x16.png");
+    mia::_SpriteHandler().SetSource("./../asset/obstacles-16x16.png");
     _unuseSprite = mia::_SpriteHandler().MakeCut({16*2, 0}, {16, 16});
     _useSprite = mia::_SpriteHandler().MakeCut({16*2, 16}, {16, 16});
 

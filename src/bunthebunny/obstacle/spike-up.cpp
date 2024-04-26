@@ -12,7 +12,7 @@ UpSpike::UpSpike(Player *player, mia::v2f position, int size):
 {
     this->position() = position;
 
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/obstacles-16x16.png");
+    mia::_SpriteHandler().SetSource("./../asset/obstacles-16x16.png");
     mia::Sprite *sprite = mia::_SpriteHandler().MakeCut({0, 0}, {16, 16});
 
     for (int i = 0; i < size; i++)

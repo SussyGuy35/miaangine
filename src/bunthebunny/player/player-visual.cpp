@@ -9,13 +9,13 @@ PlayerVisual::PlayerVisual(Player *manager):
     _runAnimation(mia::Clip()),
     _currentClip(&_idleAnimation)
 {
-    _idleAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 0}, {48 * 8, 48}, {48, 48});
-    _runAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 48}, {48 * 8, 48}, {48, 48});
-    _jumpAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {0, 48*2}, {48, 48}, {48, 48});
-    _fallAnimation.MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {48*2, 48*2}, {48, 48}, {48, 48});
+    _idleAnimation.MakeAnimation("./../asset/Character-48x48.png", {0, 0}, {48 * 8, 48}, {48, 48});
+    _runAnimation.MakeAnimation("./../asset/Character-48x48.png", {0, 48}, {48 * 8, 48}, {48, 48});
+    _jumpAnimation.MakeAnimation("./../asset/Character-48x48.png", {0, 48*2}, {48, 48}, {48, 48});
+    _fallAnimation.MakeAnimation("./../asset/Character-48x48.png", {48*2, 48*2}, {48, 48}, {48, 48});
     for (int i = 0; i < 5; i++)
     {
-        _dashAnimation[i].MakeAnimation("D:/SDL/miaangine/asset/Character-48x48.png", {48*i, 48*3}, {48, 48}, {48, 48});
+        _dashAnimation[i].MakeAnimation("./../asset/Character-48x48.png", {48*i, 48*3}, {48, 48}, {48, 48});
     }
 }
 

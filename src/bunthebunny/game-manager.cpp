@@ -4,6 +4,9 @@
 #include "obstacle/surfplate.hpp"
 #include "obstacle/spike-up.hpp"
 
+#include <fstream>
+#include <string>
+
 GameManager::GameManager()
 {
     mia::_Events().RegisterObserver(this);
@@ -14,7 +17,7 @@ void GameManager::Init(Player *player)
     this->player = player,
 
     mapPalette = new mia::TilemapPalette();
-    mia::_SpriteHandler().SetSource("D:/SDL/miaangine/asset/tileset-16x16.png");
+    mia::_SpriteHandler().SetSource("./../asset/tileset-16x16.png");
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 32}, {16, 16}));
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({16, 32}, {16, 16}));
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({32, 32}, {16, 16}));
@@ -30,23 +33,54 @@ void GameManager::Init(Player *player)
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
 }
 
-void GameManager::MakeLevel()
+void GameManager::MakeLevel(const char *dir)
 {
+    std::ifstream input;
+    input.open(dir);
+
+    if (!input.is_open()) 
+    {
+        printf("No source for GameManager");
+        return;
+    }
+
     Level *level = new Level(player);
     levelList.push_back(level);
-    
-    level->MakeMap("D:/SDL/miaangine/asset/map.txt", mapPalette);
 
-    
+    std::string mapLayoutDir;
+    input >> mapLayoutDir;
+    level->MakeMap(mapLayoutDir.c_str(), mapPalette);
 
-    level->startPlayerPosition = {0, 5};
+    int obstacleCount;
 
-    level->camControl.startPosition = {0, 0};
-    level->camControl.startSize = 45;
-    level->camControl.leftBound = 0;
-    level->camControl.rightBound = 200;
-    level->camControl.idealPlayerOffset = 5;
-    level->camControl.camFollowingBound = 7;
+    input >> obstacleCount;
+    for (int i = 0; i < obstacleCount; i++)
+    {
+        int x, y;
+        input >> x >> y;
+
+        Spring *spring = new Spring(player, {float(x * .925), float(y * .925)});
+        level->AddObstacle(spring);
+    }
+
+    // input >> obstacleCount;
+    // for (int i = 0; i < obstacleCount; i++)
+    // {
+    //     int x, y;
+    //     input >> x >> y;
+
+    //     Surfplate *spring = new Surfplate(player, {float(x * .925), float(y * .925)});
+    //     level->AddObstacle(spring);
+    // }
+
+    input >> level->startPlayerPosition.x >> level->startPlayerPosition.y;
+
+    input >> level->camControl.startPosition.x >> level->camControl.startPosition.y;
+    input >> level->camControl.startSize;
+    input >> level->camControl.leftBound;
+    input >> level->camControl.rightBound;
+    input >> level->camControl.idealPlayerOffset;
+    input >> level->camControl.camFollowingBound;
 }
 
 void GameManager::LoadLevel(int index)

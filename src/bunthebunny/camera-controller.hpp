@@ -27,6 +27,9 @@ public:
     float smooth;
 
 public:
+    void Active();
+    void DeActive();
+
     void Reset();
 
     void Update(int message) override;

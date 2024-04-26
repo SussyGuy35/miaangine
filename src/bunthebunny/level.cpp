@@ -28,6 +28,7 @@ void Level::DeActivateAll()
     DeActivateMap();
     player->DeActivate();
     enddoor->DeActivate();
+    camControl.DeActive();
 }
 
 void Level::ActivateMap()

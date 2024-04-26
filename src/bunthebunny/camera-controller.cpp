@@ -10,16 +10,25 @@ CameraController::CameraController(Player *player):
     camFollowingBound(0),
     smooth(2)
 {
-    mia::_Events().RegisterObserver(this);
 }
 
 CameraController::~CameraController()
 {}
 
+void CameraController::Active()
+{
+    mia::_Events().RegisterObserver(this);
+}
+void CameraController::DeActive()
+{
+    mia::_Events().RemoveObserver(this);
+}
+
 void CameraController::Reset()
 {
     mia::_Camera().position() = startPosition;
     mia::_Camera().Resize(startSize);
+    Active();
 }
 
 void CameraController::Update(int message)

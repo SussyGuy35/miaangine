@@ -190,6 +190,8 @@ namespace mia
             SDL_Rect destRect = { (int)pos.x, (int)pos.y, w, h };
 
             SDL_RenderCopy(renderer, texture, NULL, &destRect);
+
+            SDL_DestroyTexture(texture);
         }
     }
     void Renderer::RenderTilemaps(SDL_Renderer *renderer)

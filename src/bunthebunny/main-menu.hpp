@@ -15,6 +15,10 @@ private:
     mia::rect rect01;
     mia::rect rect02;
 
+    mia::UI *text00;
+    mia::UI *text01;
+    mia::UI *text02;
+
 public:
     void Activate();
     void DeActivate();

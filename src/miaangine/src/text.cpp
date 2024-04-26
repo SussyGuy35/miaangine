@@ -70,8 +70,8 @@ namespace mia
     v2f Text::GetPos() const
     {
         v2f res;
-        res.x = Camera::Instance().getScreenWidth()  * master().center().x + _offset.x;
-        res.y = Camera::Instance().getScreenHeight() * master().center().y + _offset.y;
+        res.x = Camera::Instance().getScreenWidth()  * master().center().x + master().offset().x + _offset.x;
+        res.y = Camera::Instance().getScreenHeight() * master().center().y + master().offset().y + _offset.y;
         return res;
     }
 #pragma endregion

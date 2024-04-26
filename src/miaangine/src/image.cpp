@@ -104,8 +104,8 @@ namespace mia
     {
         rect res = rect();
         res.siz = _size;
-        res.pos.x = Camera::Instance().getScreenWidth()  * master().center().x + _offset.x - _pivot.x * _size.x;
-        res.pos.y = Camera::Instance().getScreenHeight() * master().center().y + _offset.y - _pivot.y * _size.y;
+        res.pos.x = Camera::Instance().getScreenWidth()  * master().center().x + master().offset().x + _offset.x - _pivot.x * _size.x;
+        res.pos.y = Camera::Instance().getScreenHeight() * master().center().y + master().offset().y + _offset.y - _pivot.y * _size.y;
         return res;
     }
 #pragma endregion

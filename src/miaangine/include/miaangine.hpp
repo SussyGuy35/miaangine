@@ -19,6 +19,7 @@
 #include "portrait.hpp"
 #include "body.hpp"
 #include "image.hpp"
+#include "text.hpp"
 
 #include "sprite.hpp"
 #include "clip.hpp"

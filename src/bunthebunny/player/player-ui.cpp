@@ -10,7 +10,7 @@ PlayerUI::PlayerUI(Player *manager):
     _mainUI(UIMain()),
     _meter(new mia::UI(1, 1)),
     _metterImg(new mia::Image(_meter, nullptr)),
-    _timer(new mia::UI({0, 0}, {70, 10})),
+    _timer(new mia::UI({0.5, 0}, {-80, 10})),
     _reloadrect(mia::rect({1354.3, 14.01}, {42.03, 42.03})),
     _exitrect(mia::rect({1410.34, 14.01}, {42.03, 42.03})),
     _maxMeterHeight(170),

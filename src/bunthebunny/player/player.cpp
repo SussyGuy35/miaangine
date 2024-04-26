@@ -54,6 +54,7 @@ void Player::Update(int message)
     if (message == mia::_EVENT_PRIMARY_UPDATE)
     {
         if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) GameManager::Instance().ReloadLevel();
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_ESCAPE)) GameManager::Instance().LoadMainMenu();
 
         int horizontalInput = 0, verticalInput = 0;
         if (mia::_Input().getKey(SDL_SCANCODE_RIGHT)) horizontalInput += 1;

@@ -72,6 +72,22 @@ void MainMenu::Update(int message)
                 GameManager::Instance().LoadLevel(2);
             }
         }
+        else 
+        {
+            if (mia::_Input().getKeyDown(SDL_SCANCODE_1))
+            {
+                GameManager::Instance().LoadLevel(0);
+            }
+            if (mia::_Input().getKeyDown(SDL_SCANCODE_2))
+            {
+                GameManager::Instance().LoadLevel(1);
+            }
+            if (mia::_Input().getKeyDown(SDL_SCANCODE_3))
+            {
+                GameManager::Instance().LoadLevel(2);
+            }
+        }
+        
     }
 }
 

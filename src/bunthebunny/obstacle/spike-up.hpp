@@ -11,6 +11,8 @@ public:
 private:
     Player &_player;
 
+    std::vector<mia::Portrait*> _portraits;    
+
     int _size;
 
     float _additionalSpeed;

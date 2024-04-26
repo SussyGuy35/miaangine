@@ -1,4 +1,4 @@
-./../asset/map.txt
+./../asset/map02.txt
 
 5
 ./../asset/billboard.png

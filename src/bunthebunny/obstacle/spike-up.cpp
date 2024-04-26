@@ -20,7 +20,7 @@ UpSpike::UpSpike(Player *player, mia::v2f position, int size):
     for (int i = 0; i < size; i++)
     {
         mia::Portrait *portrait = new mia::Portrait(this, sprite, {0, 0}, {(float)0.925 * i, 0});
-        mia::_Renderer().RegisterPortrait(portrait);
+        _portraits.push_back(portrait);
     }
 }
 
@@ -49,11 +49,18 @@ void UpSpike::Update(int massage)
 
 void UpSpike::Activate()
 {
-    mia::_Renderer().RegisterPortrait(&portrait());
+    for (mia::Portrait* prt : _portraits)
+    {
+        mia::_Renderer().RegisterPortrait(prt);
+    }
+
     mia::_Events().RegisterObserver(this);
 }
 void UpSpike::DeActivate()
 {
-    mia::_Renderer().UnregisterPortrait(&portrait());
+    for (mia::Portrait* prt : _portraits)
+    {
+        mia::_Renderer().UnregisterPortrait(prt);
+    }
     mia::_Events().RemoveObserver(this);
 }

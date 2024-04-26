@@ -167,7 +167,7 @@ void GameManager::LoadMainMenu()
 {
     if (_currentLevel < 0) return;
 
-    if (_currentLevel > 0 && _currentLevel < levelList.size()) 
+    if (_currentLevel >= 0 && _currentLevel < levelList.size()) 
     {
         levelList[_currentLevel]->DeActivateAll();
     }
@@ -196,7 +196,7 @@ void GameManager::LoadLevel(int index)
     }
     else 
     {
-        if (_currentLevel > 0 && _currentLevel < levelList.size()) 
+        if (_currentLevel >= 0 && _currentLevel < levelList.size()) 
         {
             levelList[_currentLevel]->DeActivateMap();
         }

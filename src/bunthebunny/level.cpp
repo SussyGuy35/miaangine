@@ -3,7 +3,9 @@
 Level::Level(Player *player):
     camControl(CameraController(player)),
     player(player)
-{}
+{
+    enddoor = new Enddoor(player, {0, 0});
+}
 
 Level::~Level()
 {
@@ -26,6 +28,7 @@ void Level::ActivateMap()
     mia::_Renderer().RegisterTilemap(map);
     mia::_Physics().RegisterTilemap(map);
 
+    enddoor->Activate();
     for (Obstacle *obs : obstacleList)
     {
         obs->Activate();
@@ -36,6 +39,7 @@ void Level::DeActivateMap()
     mia::_Renderer().UnregisterTilemap(map);
     mia::_Physics().UnregisterTilemap(map);
 
+    enddoor->DeActivate();
     for (Obstacle *obs : obstacleList)
     {
         obs->DeActivate();
@@ -44,6 +48,7 @@ void Level::DeActivateMap()
 
 void Level::ReloadLevel()
 {
+    enddoor->position() = endDoorPosition;
     ReloadPlayer();
     ReloadCamera();
 }

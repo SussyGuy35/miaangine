@@ -104,6 +104,7 @@ void GameManager::MakeLevel(const char *dir)
     }
 
     input >> level->startPlayerPosition.x >> level->startPlayerPosition.y;
+    input >> level->endDoorPosition.x >> level->endDoorPosition.y;
 
     input >> level->camControl.startPosition.x >> level->camControl.startPosition.y;
     input >> level->camControl.startSize;
@@ -111,6 +112,7 @@ void GameManager::MakeLevel(const char *dir)
     input >> level->camControl.rightBound;
     input >> level->camControl.idealPlayerOffset;
     input >> level->camControl.camFollowingBound;
+
 }
 
 void GameManager::LoadLevel(int index)

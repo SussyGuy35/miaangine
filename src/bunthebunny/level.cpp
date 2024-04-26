@@ -23,6 +23,13 @@ void Level::AddObstacle(Obstacle* obstacle)
     obstacleList.push_back(obstacle);
 }
 
+void Level::DeActivateAll()
+{
+    DeActivateMap();
+    player->DeActivate();
+    enddoor->DeActivate();
+}
+
 void Level::ActivateMap()
 {
     mia::_Renderer().RegisterTilemap(map);

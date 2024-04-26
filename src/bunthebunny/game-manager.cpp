@@ -17,6 +17,8 @@ void GameManager::Init(Player *player)
 {
     this->player = player,
 
+    mainMenu = new MainMenu();
+
     mapPalette = new mia::TilemapPalette();
     mia::_SpriteHandler().SetSource("./../asset/tileset-16x16.png");
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({0 , 32}, {16, 16}));
@@ -114,6 +116,24 @@ void GameManager::MakeLevel(const char *dir)
     input >> level->camControl.camFollowingBound;
 
 }
+
+void GameManager::LoadMainMenu()
+{
+    if (_currentLevel < 0) return;
+
+    if (_currentLevel > 0 && _currentLevel < levelList.size()) levelList[_currentLevel]->DeActivateAll();
+
+    mainMenu->Activate();
+
+    _currentLevel = -1;
+}
+
+void GameManager::DeActivateMenu()
+{
+    mainMenu->DeActivate();
+
+    _currentLevel = 10000;
+}   
 
 void GameManager::LoadLevel(int index)
 {

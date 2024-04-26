@@ -27,6 +27,8 @@ public:
     void MakeMap(const char *layoutDir, mia::TilemapPalette *palette);
     void AddObstacle(Obstacle* obstacle);
     
+    void DeActivateAll();
+
     void ActivateMap();
     void DeActivateMap();
 

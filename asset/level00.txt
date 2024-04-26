@@ -1,13 +1,29 @@
 ./../asset/map.txt
 
-1
-5 8
+5
+./../asset/billboard.png
+0 0 96 22 
+2.5 10
 
-1
-8 8
+./../asset/billboard.png
+0 24 96 11 
+3 7
 
-1
-10 8 3
+./../asset/billboard.png
+0 36 96 8
+44.5 7
+
+./../asset/billboard.png
+0 45 114 43
+50 10
+
+./../asset/billboard.png
+0 89 133 67
+59 2
+
+0
+0
+0
 
 5 3
 

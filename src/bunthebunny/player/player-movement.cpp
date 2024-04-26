@@ -79,6 +79,8 @@ mia::v2f PlayerMovement::GetDashDirection()
 
 void PlayerMovement::RegainDash()
 {
+    if (_canDash) return;
+
     _reGDashParticle->Play(_manager.position() + mia::v2f::up() * 1);
     _canDash = true;
 }
@@ -247,6 +249,9 @@ void PlayerMovement::ExecuteAJump(float force)
         _canDash = false;
     }
 
+    RegainDash();
+
+    mia::_Audio().Play(2);
     _jumpParticle->Play(_manager.position());
     _currentVelocity.y = force;
     _state = JUMPING;
@@ -333,6 +338,7 @@ void PlayerMovement::DashHandle()
             _state = DASHING;
 
             // _dashParticle->Play(_manager.position() + mia::v2f::up() * 1);
+            mia::_Audio().Play(3);
 
             _dashDelayTimeBound = -1;
             _dashInitTimeBound = mia::_Time().time() + _initDashDuration;

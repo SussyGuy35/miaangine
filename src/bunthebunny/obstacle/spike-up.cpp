@@ -22,8 +22,6 @@ UpSpike::UpSpike(Player *player, mia::v2f position, int size):
         mia::Portrait *portrait = new mia::Portrait(this, sprite, {0, 0}, {(float)0.925 * i, 0});
         mia::_Renderer().RegisterPortrait(portrait);
     }
-
-    mia::_Events().RegisterObserver(this);
 }
 
 UpSpike::~UpSpike() = default;
@@ -43,6 +41,7 @@ void UpSpike::Update(int massage)
     {
         if (GetRect().overlap(_player.body().GetRect()))
         {
+            mia::_Audio().Play(5);
             GameManager::Instance().ReloadLevel();
         }
     }

@@ -8,8 +8,6 @@ int main(int argc, char* argv[])
 
     mia::_Game().InitWindow();
 
-    mia::_Audio().Play(mia::_Audio().Insert("./../asset/ost.wav", -1), -1);
-
     Player *player = new Player(0.0, 0.0);
 
     GameManager::Instance().Init(player);

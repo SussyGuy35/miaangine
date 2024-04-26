@@ -47,6 +47,8 @@ void Surfplate::Update(int massage)
                 _player.movement().TranferVelocity(mia::v2f::right() * (_player.movement().GetStoreSpeed() + _additionalSpeed + _player.movement().GetSpeed()));
                 _player.movement().RegainDash();
 
+                mia::_Audio().Play(1);
+
                 _active = false;
                 _surfcooldownTimerCount = _cooldown;
             }

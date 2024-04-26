@@ -3,6 +3,7 @@
 #include "obstacle/spring.hpp"
 #include "obstacle/surfplate.hpp"
 #include "obstacle/spike-up.hpp"
+#include "obstacle/billboard.hpp"
 
 #include <fstream>
 #include <string>
@@ -31,6 +32,13 @@ void GameManager::Init(Player *player)
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 0 }, {16, 16}));
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({48, 16}, {16, 16}));
     mapPalette->AddSprite(mia::_SpriteHandler().MakeCut({64, 16}, {16, 16}));
+
+    mia::_Audio().Play(mia::_Audio().Insert("./../asset/ost.wav", 0), -1);
+    mia::_Audio().Insert("./../asset/jump.wav", 1);
+    mia::_Audio().Insert("./../asset/land.wav", 2);
+    mia::_Audio().Insert("./../asset/dash.wav", 3);
+    mia::_Audio().Insert("./../asset/buff.wav", 4);
+    mia::_Audio().Insert("./../asset/dead.wav", 5);
 }
 
 void GameManager::MakeLevel(const char *dir)
@@ -52,6 +60,18 @@ void GameManager::MakeLevel(const char *dir)
     level->MakeMap(mapLayoutDir.c_str(), mapPalette);
 
     int obstacleCount;
+
+    input >> obstacleCount;
+    for (int i = 0; i < obstacleCount; i++)
+    {
+        std::string dir;
+        mia::v2i pos, siz;
+        float x, y;
+        input >> dir >> pos.x >> pos.y >> siz.x >> siz.y >> x >> y;
+
+        Billboard *billboard = new Billboard(dir.c_str(), pos, siz, {x, y});
+        level->AddObstacle(billboard);
+    }
 
     input >> obstacleCount;
     for (int i = 0; i < obstacleCount; i++)

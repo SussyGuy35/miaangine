@@ -19,9 +19,6 @@ Spring::Spring(Player *player, mia::v2f position):
     _useSprite = mia::_SpriteHandler().MakeCut({16*4, 0}, {16, 16});
 
     _portrait->setSprite(_unuseSprite);
-    mia::_Renderer().RegisterPortrait(_portrait);
-
-    mia::_Events().RegisterObserver(this);
 }
 
 Spring::~Spring() = default;
@@ -56,6 +53,8 @@ void Spring::Update(int massage)
                 _player.movement().AddTemporaryStoreSpeed(_additionalSpeed);
                 _player.movement().TranferVelocity(mia::v2f::up() * std::max(_additionalSpeed * 5, (_player.movement().GetStoreSpeed() + _player.movement().GetSpeed())));
                 _player.movement().RegainDash();
+
+                mia::_Audio().Play(1);
 
                 _portrait->setSprite(_useSprite);
                 _active = false;

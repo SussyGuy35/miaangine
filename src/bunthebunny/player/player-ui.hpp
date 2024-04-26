@@ -20,6 +20,9 @@ private:
 
     mia::UI *_timer;
 
+    mia::rect _reloadrect;
+    mia::rect _exitrect;
+
     float _maxMeterHeight;
     float _maxMeterValue;
 

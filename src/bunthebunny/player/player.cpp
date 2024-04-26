@@ -4,6 +4,8 @@
 #include "player-visual.hpp"
 #include "player-ui.hpp"
 
+#include "game-manager.hpp"
+
 Player::Player(float x, float y):
     Object("Player", x, y),
     Observer(),
@@ -51,6 +53,8 @@ void Player::Update(int message)
     if (!_active) return;
     if (message == mia::_EVENT_PRIMARY_UPDATE)
     {
+        if (mia::_Input().getKeyDown(SDL_SCANCODE_R)) GameManager::Instance().ReloadLevel();
+
         int horizontalInput = 0, verticalInput = 0;
         if (mia::_Input().getKey(SDL_SCANCODE_RIGHT)) horizontalInput += 1;
         if (mia::_Input().getKey(SDL_SCANCODE_LEFT )) horizontalInput -= 1;

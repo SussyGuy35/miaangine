@@ -11,6 +11,8 @@ PlayerUI::PlayerUI(Player *manager):
     _meter(new mia::UI(1, 1)),
     _metterImg(new mia::Image(_meter, nullptr)),
     _timer(new mia::UI({0, 0}, {70, 10})),
+    _reloadrect(mia::rect({1354.3, 14.01}, {42.03, 42.03})),
+    _exitrect(mia::rect({1410.34, 14.01}, {42.03, 42.03})),
     _maxMeterHeight(170),
     _maxMeterValue(30)
 {
@@ -45,4 +47,18 @@ void PlayerUI::Update()
     _metterImg->size().y = _maxMeterHeight * std::min(1.0, 1.0 * speedValue / _maxMeterValue);
 
     _timer->text().content() = GameManager::Instance().SecondsToTimer(GameManager::Instance().timer).c_str();
+
+    if (mia::_Input().getMouseButtonDown())
+        {
+            mia::v2f mousePos = mia::_Input().getMousePosition();
+
+            if (_reloadrect.contain(mousePos))
+            {
+                GameManager::Instance().ReloadLevel();
+            }
+            if (_exitrect.contain(mousePos))
+            {
+                GameManager::Instance().LoadMainMenu();
+            }
+        }
 }

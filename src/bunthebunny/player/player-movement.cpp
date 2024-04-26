@@ -293,6 +293,9 @@ void PlayerMovement::WallJumpHandle()
 }
 void PlayerMovement::WallJumpAvailabilityCheck()
 {
+    _canWallJump = false;
+    return;
+
     if (_desiredVelocity.x == 0) return;
 
     const float OFFSET = 0.1;

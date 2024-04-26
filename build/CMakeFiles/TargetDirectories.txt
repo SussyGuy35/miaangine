@@ -1,0 +1,3 @@
+D:/SDL/miaangine/build/CMakeFiles/m.dir
+D:/SDL/miaangine/build/CMakeFiles/edit_cache.dir
+D:/SDL/miaangine/build/CMakeFiles/rebuild_cache.dir

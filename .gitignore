@@ -2,6 +2,5 @@
 .vs
 .out
 out
-build
 *.exe
 SDL2.dll
